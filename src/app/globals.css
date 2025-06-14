@@ -1,14 +1,10 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme {
-  /* Colors */
-  /* define all your color varialbes here */
   --color-primary-green: #63be60;
+  --color-prmiray-off-blue: #eef5ff;
+  --color-dark-blue: #071431;
+  --color-primary-gradient: 'bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)]';
 
   /* Container */
   /* customize your container from here */
@@ -49,4 +45,8 @@
 
 .nav-link {
   @apply text-lg  font-normal leading-[155%];
+}
+
+.auth-heading {
+  @apply text-[56px] font-[600] leading-[164%] text-center text-dark-blue max-w-[701px] ;
 }
