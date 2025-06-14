@@ -4,7 +4,9 @@
   --color-primary-green: #63be60;
   --color-prmiray-off-blue: #eef5ff;
   --color-dark-blue: #071431;
-  --color-primary-gradient: 'bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)]';
+  --color-black-gray: #212121;
+  --color-primary-blue: #21489f;
+  --color-secondary-gray:#666565;
 
   /* Container */
   /* customize your container from here */
@@ -43,10 +45,25 @@
 
 /* add your custom class from here */
 
-.nav-link {
-  @apply text-lg  font-normal leading-[155%];
+
+
+@layer components {
+  .primary-btn {
+    @apply max-w-[419px] px-10 h-auto w-auto py-3  capitalize border-[2px] border-solid border-primary-blue rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] text-2xl font-normal leading-[164%] text-white ;
+
+  }
+  .nav-link {
+    @apply text-lg  font-normal leading-[155%];
+  }
+  
+  .auth-heading {
+    @apply text-[56px] font-[600] leading-[164%] text-center text-dark-blue max-w-[701px];
+  }
+
+ 
 }
 
-.auth-heading {
-  @apply text-[56px] font-[600] leading-[164%] text-center text-dark-blue max-w-[701px] ;
+.auth-sub-heading{
+  @apply text-[20px] font-[700] leading-[164%] text-center text-primary-blue;
 }
+

@@ -1,17 +1,24 @@
 import React from "react";
 
 type ButtonProps = {
-  type?: "reset" | "submit";
+  type?: "reset" | "submit" | "button";
   Txt: string | React.ReactNode;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className: string;
 };
 
-const Button: React.FC<ButtonProps> = ({ type, Txt, onClick, className }) => {
+const Button: React.FC<ButtonProps> = ({
+  type = "button",
+  Txt,
+  onClick,
+  className,
+}) => {
   return (
-    <button className={className} onClick={onClick} type={type}>
-      {Txt}
-    </button>
+    <div data-aos="fade-up" data-aos-delay="100">
+      <button className={className} onClick={onClick} type={type}>
+        {Txt}
+      </button>
+    </div>
   );
 };
 
