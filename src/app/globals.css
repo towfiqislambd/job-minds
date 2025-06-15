@@ -6,12 +6,14 @@
   --color-dark-blue: #071431;
   --color-black-gray: #212121;
   --color-primary-blue: #21489f;
-  --color-secondary-gray:#666565;
+  --color-secondary-gray: #666565;
+  --color-dark-blue: #0f1c37;
+  --color-glass-gray: #a1aabe;
 
   /* Container */
   /* customize your container from here */
 
-  --container-max-width: 1440px;
+  --container-max-width: 1720px;
   --container-padding-x: 1rem;
   --container-padding-y: 2rem;
   --shadow-nav-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.08);
@@ -35,6 +37,10 @@
   --breakpoint-3xl: 1520px;
 }
 
+body{
+  overflow-x: hidden;
+}
+
 .container {
   max-width: var(--container-max-width);
   padding-left: var(--container-padding-x);
@@ -45,25 +51,31 @@
 
 /* add your custom class from here */
 
-
-
 @layer components {
   .primary-btn {
-    @apply max-w-[419px] px-10 h-auto w-auto py-3  capitalize border-[2px] border-solid border-primary-blue rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] text-2xl font-normal leading-[164%] text-white ;
-
+    @apply max-w-[419px] px-12 h-auto w-auto py-3  capitalize   rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] text-2xl font-normal leading-[164%] text-white;
   }
+
   .nav-link {
     @apply text-lg  font-normal leading-[155%];
   }
-  
+
   .auth-heading {
     @apply text-[56px] font-[600] leading-[164%] text-center text-dark-blue max-w-[701px];
   }
-
- 
 }
-
-.auth-sub-heading{
+.auth-sub-heading {
   @apply text-[20px] font-[700] leading-[164%] text-center text-primary-blue;
 }
+.auth-input {
+  @apply rounded-[50px] border-[1px] border-solid w-[505px] py-5 px-10;
+}
 
+.gradient-heading {
+  @apply text-[80px] font-bold leading-[132%] tracking-[-0.8px] text-center  bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] bg-clip-text text-transparent;
+}
+
+
+.hero-heading {
+  @apply text-[80px] not-italic font-bold leading-[132%] tracking-[-0.8px] text-center !text-white ;
+}

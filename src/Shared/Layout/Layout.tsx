@@ -15,13 +15,18 @@ const Layout = ({
   return (
     <>
       {pathName.includes("/auth/") ? (
-        <>
-          {children}
-        </>
+        <>{children}</>
       ) : (
         <>
           <Navbar />
-          {children}
+          <main
+            className={`${
+              pathName === "/ai-tool" ||
+              (pathName === "/pricing" && "pt-[165px]")
+            }`}
+          >
+            {children}
+          </main>
           <Footer />
         </>
       )}

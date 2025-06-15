@@ -7,6 +7,7 @@ import {
 import Button from "@/Components/Tags/Button/Button";
 import Heading from "@/Components/Tags/Heading/Heading";
 import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const page = () => {
@@ -58,7 +59,12 @@ const page = () => {
               Txt={
                 <>
                   Don’ have an account?{" "}
-                  <span className="text-primary-blue">sign up</span>
+                  <Link
+                    href={"/auth/sign-up"}
+                    className="text-primary-blue cursor-pointer "
+                  >
+                    sign up
+                  </Link>
                 </>
               }
             />
