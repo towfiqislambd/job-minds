@@ -8,12 +8,19 @@ import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    <section
-      className=" w-full h-[1312px] bg-no-repeat bg-cover "
-      style={{ backgroundImage: `url(${curve.src})` }}
-    >
-      <div className="flex flex-col items-center justify-center pt-[165px]  gap-y-20 w-full container">
-        <div className="flex flex-col items-center  gap-y-[60px] z-10">
+    <section className="relative w-full z-50 pb-[120px] h-auto overflow-hidden">
+      {/* Background Image */}
+      <Image
+        src={curve.src}
+        alt="Background curve"
+        fill
+        priority
+        className="object-contain h-[1320px] w-full object-top -z-10"
+      />
+
+      <div className="flex flex-col items-center justify-center pt-[165px] pb-[60px] gap-y-20 w-full container">
+        {/* Top Heading + Paragraph + Button */}
+        <div className="flex flex-col items-center gap-y-[60px] z-10">
           <div className="flex flex-col items-center gap-y-2.5">
             <Heading
               className="hero-heading max-w-[942px]"
@@ -31,23 +38,23 @@ const HeroSection = () => {
           </div>
           <Button className="primary-btn capitalize" Txt="Start for free" />
         </div>
-        <div className="flex w-[1070px] h-[741px] relative ">
-          <div>
+
+        {/* Frames and Slogan */}
+        <div className="flex flex-col items-center gap-y-[111.24px]">
+          <div className="relative w-[1070px] h-[741px]">
             <Image
-              src={webFrame.src}
-              alt="not found"
+              src={webFrame}
+              alt="Web Frame"
               width={1070}
               height={741}
-              className={" object-contain "}
+              className="object-contain"
             />
             <Image
-              src={mobileFrame.src}
-              alt="not found"
+              src={mobileFrame}
+              alt="Mobile Frame"
               width={317}
               height={687}
-              className={
-                "w-[317px] h-[687px] object-contain absolute bottom-0 right-0 mb-[-80px] "
-              }
+              className="absolute bottom-0 right-0 translate-y-[80px] object-contain"
             />
           </div>
         </div>

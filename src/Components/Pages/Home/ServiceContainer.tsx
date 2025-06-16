@@ -1,0 +1,67 @@
+import ServiceCard from "@/Components/Cards/ServiceCard";
+import Heading from "@/Components/Tags/Heading/Heading";
+import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
+import React from "react";
+import defaultFrame from "../../../assets/images/home/default-service.png";
+
+const ServiceContainer = () => {
+
+  const ServiceContainerArr = [
+    {
+      title: "Quickly create a job-ready resume with Job Minds!",
+      descreption:
+        "Use AI to make your resume ATS-friendly, boost your score, and add job-specific keywords in just a few clicks.",
+      btnTxt: "Create My Resume",
+    },
+    {
+      title: "Create Smart Cover Letters Instantly with AI",
+      descreption:
+        "Stop stressing over that blank page! Grab custom cover letters made just for your job apps in no time.",
+      btnTxt: "Create Letter",
+    },
+    {
+      title:
+        "Here are some fun questions you could throw out during a job interview.",
+      descreption:
+        "Quickly fill out applications with our AI tool, making sure your entries are spot on every time!",
+      btnTxt: "Ask your question.",
+    },
+    {
+      title: "AI That Matches You With the Right Job—In Seconds",
+      descreption:
+        "Check out job suggestions just for you, based on what you’re good at and what you love. No more boring job searches!",
+      btnTxt: "Analyze Job Fit",
+    },
+    {
+      title: "Your LinkedIn, Leveled Up by AI.",
+      descreption:
+        'Our AI builds tailored cover letters that highlight your strengths, align with job descriptions, and save you hours of writing.',
+      btnTxt: "Scan My LinkedIn Now",
+    },
+  ];
+
+  return (
+    <section className=" h-auto flex flex-col gap-y-[60px]  pb-[120px]  w-full container  ">
+      <div className="flex flex-col gap-y-4.5 items-center">
+        <Heading
+          className="text-blue-black max-w-[1498px] text-[72px] font-medium leading-[132%] tracking-[-0.72%] text-center"
+          Txt={
+            <>
+              Simplify Every Step of your Job search with{" "}
+              <span className="gradient-heading !text-[72px]">Job Minds</span>
+            </>
+          }
+        />
+        <Paragraph
+          Txt="Emotional Intelligence Integration"
+          className="text-2xl leading-[164%] font-medium text-light-gray"
+        />
+      </div>
+      {ServiceContainerArr.map((item, idx) => {
+        return <ServiceCard key={idx} title={item.title} descreption={item.descreption} btnTxt={item.btnTxt} bgImg={defaultFrame.src} />;
+      })}
+    </section>
+  );
+};
+
+export default ServiceContainer;

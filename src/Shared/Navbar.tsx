@@ -36,7 +36,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="h-auto bg-transparent absolute w-full px-[100px]  py-10 flex flex-row justify-between items-center  ">
+    <nav className="h-auto z-100 bg-transparent absolute w-full px-[100px]  py-10 flex flex-row justify-between items-center  ">
       <div className="flex flex-row  gap-x-[470px] items-center ">
         <Link href="/" ><SiteLogo /></Link>
 

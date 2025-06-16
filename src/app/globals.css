@@ -9,6 +9,10 @@
   --color-secondary-gray: #666565;
   --color-dark-blue: #0f1c37;
   --color-glass-gray: #a1aabe;
+  --color-primary-gray: #6c6c6c;
+  --color-blue-black: #080c1d;
+  --color-text-blue: #0e1f3a;
+  --color-light-gray: #696969;
 
   /* Container */
   /* customize your container from here */
@@ -37,7 +41,7 @@
   --breakpoint-3xl: 1520px;
 }
 
-body{
+body {
   overflow-x: hidden;
 }
 
@@ -54,6 +58,10 @@ body{
 @layer components {
   .primary-btn {
     @apply max-w-[419px] px-12 h-auto w-auto py-3  capitalize   rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] text-2xl font-normal leading-[164%] text-white;
+  }
+
+  .secondary-btn {
+    @apply rounded-[50px] bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] text-white text-center text-[20px] font-semibold leading-[132%] tracking-[-0.4px] px-12 py-3 cursor-pointer w-auto h-auto;
   }
 
   .nav-link {
@@ -75,7 +83,6 @@ body{
   @apply text-[80px] font-bold leading-[132%] tracking-[-0.8px] text-center  bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] bg-clip-text text-transparent;
 }
 
-
 .hero-heading {
-  @apply text-[80px] not-italic font-bold leading-[132%] tracking-[-0.8px] text-center !text-white ;
+  @apply text-[80px] not-italic font-bold leading-[132%] tracking-[-0.8px] text-center !text-white;
 }
