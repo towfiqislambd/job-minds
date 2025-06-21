@@ -216,4 +216,51 @@ export const Notification = () => {
   );
 };
 
+export const TickMark = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+    >
+      <path
+        d="M9.7 11.2998C9.3 10.8998 8.7 10.8998 8.3 11.2998C7.9 11.6998 7.9 12.2998 8.3 12.6998L11.3 15.6998C11.5 15.8998 11.7 15.9998 12 15.9998C12.3 15.9998 12.5 15.8998 12.7 15.6998L19.7 7.69978C20 7.19978 20 6.59978 19.5 6.29978C19.1 5.99978 18.5 5.99978 18.2 6.39978L12 13.4998L9.7 11.2998Z"
+        fill="#16A249"
+      />
+      <path
+        d="M21 11C20.4 11 20 11.4 20 12C20 16.4 16.4 20 12 20C7.6 20 4 16.4 4 12C4 9.9 4.8 7.9 6.3 6.4C7.8 4.8 9.8 4 12 4C12.6 4 13.3 4.1 13.9 4.2C14.4 4.4 15 4.1 15.2 3.5C15.4 2.9 15 2.5 14.5 2.3H14.4C13.6 2.1 12.8 2 12 2C6.5 2 2 6.5 2 12.1C2 14.7 3.1 17.3 4.9 19.1C6.8 21 9.3 22 11.9 22C17.4 22 21.9 17.5 21.9 12C22 11.4 21.5 11 21 11Z"
+        fill="#16A249"
+      />
+    </svg>
+  );
+};
 
+export const CircleActive = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="23"
+      height="24"
+      viewBox="0 0 23 24"
+      fill="none"
+    >
+      <circle cx="11.5" cy="12" r="11.5" fill="#0184FF" />
+    </svg>
+  );
+};
+
+export const CircleInActive = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="23"
+      height="24"
+      viewBox="0 0 23 24"
+      fill="none"
+    >
+      <circle cx="11.5" cy="12" r="11.5" fill="#A9BAD3" />
+    </svg>
+  );
+};

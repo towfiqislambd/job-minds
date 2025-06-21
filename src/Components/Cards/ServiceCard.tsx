@@ -31,7 +31,11 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         />
         <Button Txt={btnTxt} className="secondary-btn" />
       </div>
-      <div className="relative h-[679px] w-[817px]">
+      <div
+        data-aos="fade-up"
+        data-aos-delay="100"
+        className="relative h-[679px] w-[817px]"
+      >
         <Image
           src={bgImg}
           alt="Background curve"

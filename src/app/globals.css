@@ -6,6 +6,7 @@
   --color-dark-blue: #071431;
   --color-black-gray: #212121;
   --color-primary-blue: #21489f;
+  --color-secondary-blue:#0184FF;
   --color-secondary-gray: #666565;
   --color-dark-blue: #0f1c37;
   --color-glass-gray: #a1aabe;
@@ -85,4 +86,24 @@ body {
 
 .hero-heading {
   @apply text-[80px] not-italic font-bold leading-[132%] tracking-[-0.8px] text-center !text-white;
+}
+
+.pricing-card-heading{
+  @apply text-2xl font-bold leading-[132%] tracking-[-0.24px] text-primary-blue;
+}
+
+.pricing-sub-title{
+  @apply text-[64px] font-bold leading-[132%] tracking-[-0.24px] text-dark-blue ;
+}
+
+.pricing-month-sub-title{
+  @apply text-2xl font-bold leading-[164%] text-primary-gray  ;
+}
+
+.pricing-month-sub-title{
+  @apply text-lg text-dark-blue leading-[164%] font-[600]   ;
+}
+
+.feataures-text{
+  @apply text-lg font-normal leading-[164%] text-dark-blue max-w-[337px]  ;
 }
