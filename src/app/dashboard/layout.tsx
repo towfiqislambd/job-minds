@@ -65,7 +65,7 @@ export default function DashboardLayout({
 
   return (
     <section className="min-h-screen max-h-screen flex">
-      {/* Sidebar */}
+      {/* Sidebars */}
       <aside className="w-[275px] bg-white p-7">
         {/* Logo */}
         <figure className="flex gap-3 items-center mb-10">
