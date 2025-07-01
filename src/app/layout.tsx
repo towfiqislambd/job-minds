@@ -1,16 +1,10 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Geist } from "next/font/google";
-import Navbar from "@/Shared/Navbar";
-import Footer from "@/Shared/Footer";
 import { Toaster } from "react-hot-toast";
 import AosProvider from "@/Provider/AosProvider/AosProvider";
-import UseSiteSettings from "@/Components/UseSiteSettings/UseSiteSettings";
 import QueryProvider from "@/Provider/QueryProvider/QueryProvider";
 import ReduxProvider from "@/Provider/ReduxProvider/ReduxProvider";
-import Layout from "@/Shared/Layout/Layout";
-
-
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,17 +21,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
-
   return (
     <html lang="en">
       <body className={`${geistSans.variable} antialiased`}>
         <QueryProvider>
           <ReduxProvider>
-            <AosProvider>
-              {/* <UseSiteSettings /> */}
-              <Layout>{children}</Layout>
-            </AosProvider>
+            <AosProvider>{children}</AosProvider>
             <Toaster />
           </ReduxProvider>
         </QueryProvider>
