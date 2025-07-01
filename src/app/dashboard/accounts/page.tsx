@@ -1,5 +1,5 @@
 const page = () => {
-  return <div>currentColor</div>;
+  return <div className="pb-[1000px]">currentColor</div>;
 };
 
 export default page;
