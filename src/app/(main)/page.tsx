@@ -1,5 +1,5 @@
 import ServiceContainer from "@/Components/Pages/Home/ServiceContainer";
-import HeroSection from "./../Components/Pages/Home/HeroSection";
+import HeroSection from "../../Components/Pages/Home/HeroSection";
 import PricingSection from "@/Components/Pages/Home/PricingSection";
 import FAQSection from "@/Components/Pages/Home/FAQSection";
 
@@ -29,7 +29,6 @@ const data = [
       "Absolutely! I'm open to both freelance and full‑time roles. Feel free to get in touch.",
   },
 ];
-
 
 export default function Home() {
   return (
