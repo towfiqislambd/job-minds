@@ -1,12 +1,13 @@
 @import "tailwindcss";
 
 @theme {
+  /* Colors */
   --color-primary-green: #63be60;
   --color-prmiray-off-blue: #eef5ff;
   --color-dark-blue: #071431;
   --color-black-gray: #212121;
   --color-primary-blue: #21489f;
-  --color-secondary-blue:#0184FF;
+  --color-secondary-blue: #0184ff;
   --color-secondary-gray: #666565;
   --color-dark-blue: #0f1c37;
   --color-glass-gray: #a1aabe;
@@ -16,23 +17,15 @@
   --color-light-gray: #696969;
 
   /* Container */
-  /* customize your container from here */
-
   --container-max-width: 1720px;
   --container-padding-x: 1rem;
   --container-padding-y: 2rem;
   --shadow-nav-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.08);
 
-  /* Font family */
-  /* add your fonts custom fonts here */
-
-  --font-family-lato: "Lato", sans-serif;
-  --font-family-jakarta: "Lato", sans-serif;
-  --font-lato: var(--font-lato);
+  /* Font Family */
+  --font-poppins: var(--font-poppins);
 
   /* Breakpoints */
-  /* customize your break poing if needed */
-
   --breakpoint-xs: 375px;
   --breakpoint-sm: 480px;
   --breakpoint-md: 576px;
@@ -43,22 +36,21 @@
 }
 
 body {
-  overflow-x: hidden;
+  @apply font-poppins;
 }
 
+/* Container */
 .container {
   max-width: var(--container-max-width);
   padding-left: var(--container-padding-x);
   padding-right: var(--container-padding-x);
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
 }
 
-/* add your custom class from here */
-
+/* Custom CSS */
 @layer components {
   .primary-btn {
-    @apply max-w-[419px] px-12 h-auto w-auto py-3  capitalize   rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] text-2xl font-normal leading-[164%] text-white;
+    @apply max-w-[419px] px-12 h-auto w-auto py-3 capitalize rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] text-2xl font-normal leading-[164%] text-white;
   }
 
   .secondary-btn {
@@ -88,22 +80,22 @@ body {
   @apply text-[80px] not-italic font-bold leading-[132%] tracking-[-0.8px] text-center !text-white;
 }
 
-.pricing-card-heading{
+.pricing-card-heading {
   @apply text-2xl font-bold leading-[132%] tracking-[-0.24px] text-primary-blue;
 }
 
-.pricing-sub-title{
-  @apply text-[64px] font-bold leading-[132%] tracking-[-0.24px] text-dark-blue ;
+.pricing-sub-title {
+  @apply text-[64px] font-bold leading-[132%] tracking-[-0.24px] text-dark-blue;
 }
 
-.pricing-month-sub-title{
-  @apply text-2xl font-bold leading-[164%] text-primary-gray  ;
+.pricing-month-sub-title {
+  @apply text-2xl font-bold leading-[164%] text-primary-gray;
 }
 
-.pricing-month-sub-title{
-  @apply text-lg text-dark-blue leading-[164%] font-[600]   ;
+.pricing-month-sub-title {
+  @apply text-lg text-dark-blue leading-[164%] font-[600];
 }
 
-.feataures-text{
-  @apply text-lg font-normal leading-[164%] text-dark-blue max-w-[337px]  ;
+.feataures-text {
+  @apply text-lg font-normal leading-[164%] text-dark-blue max-w-[337px];
 }
