@@ -68,7 +68,7 @@ export default function DashboardLayout({
   return (
     <section className="min-h-screen max-h-screen flex">
       {/* Sidebar */}
-      <aside className="w-72 bg-white p-7">
+      <aside className="w-72 bg-white p-7 shrink-0">
         {/* Logo */}
         <figure className="flex gap-3 items-center mb-10">
           <DashboardLogo />
@@ -83,16 +83,25 @@ export default function DashboardLayout({
 
           {navLinks?.map((link, idx) => {
             const isActive = pathname === link.path;
+            const isCreating =
+              pathname === "/dashboard/resume-builder/collect-personal-info";
             return (
-              <>
+              <div key={idx}>
                 <Link
                   key={link.id}
                   href={link.path}
-                  className={`flex px-5 py-3 rounded-[50px] gap-4 items-center font-medium ${
-                    isActive
+                  className={`flex px-5 py-3 rounded-[50px] gap-4 items-center font-medium
+                     ${
+                       isActive
+                         ? "bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white"
+                         : "text-light-gray"
+                     }
+                  ${
+                    idx === 0 && isCreating
                       ? "bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white"
                       : "text-light-gray"
-                  }`}
+                  }
+                    `}
                 >
                   {link.icon}
                   <span>{link.label}</span>
@@ -100,7 +109,7 @@ export default function DashboardLayout({
                 {idx === 5 && (
                   <p className="text-light-gray font-medium mt-5">Others</p>
                 )}
-              </>
+              </div>
             );
           })}
         </ul>
@@ -132,7 +141,7 @@ export default function DashboardLayout({
         </section>
 
         {/* outlet */}
-        <section className="p-6 bg-gray-100 h-[calc(100vh-84px)] overflow-y-auto">
+        <section className="p-7 bg-gray-100 h-[calc(100vh-84px)] overflow-y-auto">
           {children}
         </section>
       </main>

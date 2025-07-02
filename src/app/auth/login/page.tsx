@@ -41,7 +41,9 @@ const page = () => {
               </Link>
             </div>
           </div>
-          <Button className="primary-btn" Txt={"Log In "} />
+          <Link href="/dashboard/resume-builder">
+            <Button className="primary-btn" Txt={"Log In "} />
+          </Link>
           <div className="flex flex-col gap-y-[30px] items-center ">
             <Paragraph
               className="text-[#666565] text-xl font-normal leading-[164%] capitalize "

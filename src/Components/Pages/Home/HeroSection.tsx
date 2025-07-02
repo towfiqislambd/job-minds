@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    <section className="relative w-full z-50 pb-[120px] h-auto overflow-hidden">
+    <section id="banner" className="relative w-full z-50 pb-[120px] h-auto overflow-hidden">
       {/* Background Image */}
       <Image
         src={curve.src}
