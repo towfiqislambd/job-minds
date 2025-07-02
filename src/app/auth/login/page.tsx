@@ -4,6 +4,7 @@ import Heading from "@/Components/Tags/Heading/Heading";
 import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
 import Link from "next/link";
 
+
 const page = () => {
   return (
     <form className="w-full min-h-screen flex items-center justify-center">
