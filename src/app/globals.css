@@ -15,6 +15,8 @@
   --color-blue-black: #080c1d;
   --color-text-blue: #0e1f3a;
   --color-light-gray: #696969;
+  --color-dark: #0E1216;
+  --shadow-box: -1.996px 3.992px 57.884px 0px rgba(244, 250, 255, 0.11)
   --color-cream-white: #f8fafb;
   --color-secondary-black: #0e1216;
 
@@ -101,6 +103,14 @@ body {
 .feataures-text {
   @apply text-lg font-normal leading-[164%] text-dark-blue max-w-[337px];
 }
+
+.resume_input{
+  @apply outline-none border rounded-lg px-4 py-2.5 border-gray-200 w-full
+}
+
+.resume_label{
+  @apply block mb-2 text-dark capitalize
+  }
 
 .cv-label {
   @apply text-sm leading-[164%] text-secondary-black font-normal;

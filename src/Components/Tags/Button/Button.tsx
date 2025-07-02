@@ -5,6 +5,7 @@ type ButtonProps = {
   Txt: string | React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className: string;
+  animation?: boolean;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -12,9 +13,15 @@ const Button: React.FC<ButtonProps> = ({
   Txt,
   onClick,
   className,
+  animation = true,
 }) => {
   return (
-    <div data-aos="fade-up" data-aos-delay="100">
+    <div
+      {...(animation && {
+        "data-aos": "fade-up",
+        "data-aos-delay": "100",
+      })}
+    >
       <button className={className} onClick={onClick} type={type}>
         {Txt}
       </button>
