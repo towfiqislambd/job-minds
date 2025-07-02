@@ -74,7 +74,7 @@ const Navbar = () => {
             <Link
               to={item.id}
               smooth={true}
-              duration={500}
+              duration={700}
               onClick={() => {
                 setactiveSection(item.id);
               }}
