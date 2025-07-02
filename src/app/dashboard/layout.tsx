@@ -86,7 +86,7 @@ export default function DashboardLayout({
             const isCreating =
               pathname === "/dashboard/resume-builder/create-resume";
             return (
-              <>
+              <div key={idx}>
                 <Link
                   key={link.id}
                   href={link.path}
@@ -109,7 +109,7 @@ export default function DashboardLayout({
                 {idx === 5 && (
                   <p className="text-light-gray font-medium mt-5">Others</p>
                 )}
-              </>
+              </div>
             );
           })}
         </ul>
