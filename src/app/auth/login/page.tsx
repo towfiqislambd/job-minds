@@ -4,7 +4,6 @@ import Heading from "@/Components/Tags/Heading/Heading";
 import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
 import Link from "next/link";
 
-
 const page = () => {
   return (
     <form className="w-full min-h-screen flex items-center justify-center">
@@ -41,7 +40,9 @@ const page = () => {
               </Link>
             </div>
           </div>
-          <Button className="primary-btn" Txt={"Log In "} />
+          <Link href="/dashboard/resume-builder">
+            <Button className="primary-btn" Txt={"Log In "} />
+          </Link>
           <div className="flex flex-col gap-y-[30px] items-center ">
             <Paragraph
               className="text-[#666565] text-xl font-normal leading-[164%] capitalize "
