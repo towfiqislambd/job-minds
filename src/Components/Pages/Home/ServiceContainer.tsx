@@ -41,7 +41,10 @@ const ServiceContainer = () => {
   ];
 
   return (
-    <section className=" h-auto flex flex-col gap-y-[60px]  pb-[120px]  w-full container  ">
+    <section
+      id="ai-tool"
+      className=" h-auto flex flex-col gap-y-[60px]  pb-[120px]  w-full container  "
+    >
       <div className="flex flex-col gap-y-4.5 items-center">
         <Heading
           className="text-blue-black max-w-[1498px] text-[72px] font-medium leading-[132%] tracking-[-0.72%] text-center"
@@ -58,7 +61,15 @@ const ServiceContainer = () => {
         />
       </div>
       {ServiceContainerArr.map((item, idx) => {
-        return <ServiceCard key={idx} title={item.title} descreption={item.descreption} btnTxt={item.btnTxt} bgImg={defaultFrame.src} />;
+        return (
+          <ServiceCard
+            key={idx}
+            title={item.title}
+            descreption={item.descreption}
+            btnTxt={item.btnTxt}
+            bgImg={defaultFrame.src}
+          />
+        );
       })}
     </section>
   );

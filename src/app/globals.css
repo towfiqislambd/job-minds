@@ -15,6 +15,8 @@
   --color-blue-black: #080c1d;
   --color-text-blue: #0e1f3a;
   --color-light-gray: #696969;
+  --color-cream-white: #f8fafb;
+  --color-secondary-black: #0e1216;
 
   /* Container */
   --container-max-width: 1720px;
@@ -98,4 +100,12 @@ body {
 
 .feataures-text {
   @apply text-lg font-normal leading-[164%] text-dark-blue max-w-[337px];
+}
+
+.cv-label {
+  @apply text-sm leading-[164%] text-secondary-black font-normal;
+}
+
+.cv-input {
+  @apply h-auto w-full rounded-[8px] border-[1px] border-solid border-[#ECEEF0] px-4 py-3 outline-none capitalize ;
 }

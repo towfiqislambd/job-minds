@@ -21,7 +21,10 @@ const FAQSection: React.FC<FAQSectionProps> = ({ data }) => {
   };
 
   return (
-    <section className="w-full gap-y-[59px] flex flex-col   container items-center  ">
+    <section
+      id="pricing"
+      className="w-full gap-y-[59px] flex flex-col   container items-center  "
+    >
       <Heading
         className="text-[64px] font-[600] leading-[164%] capitalize text-primary-blue "
         Txt={"FAQ"}
@@ -34,15 +37,21 @@ const FAQSection: React.FC<FAQSectionProps> = ({ data }) => {
             onClick={() => toggle(index)}
           >
             <div className="flex justify-between items-center">
-              <Heading className="font-[600] text-dark-blue leading-[164%] text-[32px] " Txt={
-                item.question
-              } />
-              <span>{activeIndex === index ? <CircleActive/> : <CircleInActive/> }</span>
+              <Heading
+                className="font-[600] text-dark-blue leading-[164%] text-[32px] "
+                Txt={item.question}
+              />
+              <span>
+                {activeIndex === index ? <CircleActive /> : <CircleInActive />}
+              </span>
             </div>
             {activeIndex === index && (
-              <Paragraph Txt={
-                'Instantly generate job-specific resumes tailored to your skills and experience.'
-              } className=" text-2xl text-primary-gray font-normal leading-[164%] " />
+              <Paragraph
+                Txt={
+                  "Instantly generate job-specific resumes tailored to your skills and experience."
+                }
+                className=" text-2xl text-primary-gray font-normal leading-[164%] "
+              />
             )}
           </div>
         ))}

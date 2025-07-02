@@ -38,7 +38,7 @@ const Footer = () => {
             Txt={
               "As a busy parent, finding time for myself was hard. Now I feel supported daily without feeling overwhelmed."
             }
-            className="text-2xl text-white font-normal leading-[164%] max-w-[467px] text-center "
+            className="text-2xl text-white font-normal leading-[164%] max-w-[467px] text-end "
           />
         </div>
         <div className="flex flex-col gap-y-[100px] w-full ">
