@@ -8,47 +8,79 @@ import {
 import Button from "@/Components/Tags/Button/Button";
 import Heading from "@/Components/Tags/Heading/Heading";
 import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
-import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { Link, Element } from "react-scroll";
+
+
 
 const Navbar = () => {
   const pathName = usePathname();
   const router = useRouter();
 
+  const [isTransparent, setIsTransparent] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsTransparent(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+  
+
   type publicRouteSchema = {
     label: string;
-    redirectLink: string;
+    id: string;
   };
 
   const publicRoutes: publicRouteSchema[] = [
     {
       label: "Home",
-      redirectLink: "/",
+      id:"banner"
     },
     {
       label: "AI tool",
-      redirectLink: "/ai-tool",
+      id:"ai-tool"
     },
     {
       label: "Pricing",
-      redirectLink: "/pricing",
+      id: "pricing",
     },
   ];
 
+
+  const [activeSection, setactiveSection] = useState <string| null> (
+    publicRoutes[0].id
+  )
+
   return (
-    <nav className="h-auto z-100 bg-transparent absolute w-full px-[100px]  py-10 flex flex-row justify-between items-center  ">
-      <div className="flex flex-row  gap-x-[470px] items-center ">
-        <Link href="/" ><SiteLogo /></Link>
+    <nav
+      className={`
+    h-auto bg-[#071431] sticky top-0 z-100  w-full px-[100px] py-10 flex flex-row justify-between items-center`}
+    >
+      <div className="flex cursor-pointer flex-row  gap-x-[470px] items-center ">
+        <div
+          onClick={() => {
+            router.push("/");
+          }}
+        >
+          <SiteLogo />
+        </div>
 
         <div className="relative z-10 flex gap-x-6 h-auto w-auto p-[15px] rounded-[70px] bg-[#293B61]/60 backdrop-blur-[100px]">
           {publicRoutes.map((item, idx) => (
-            <div
+            <Link
+              to={item.id}
+              smooth={true}
+              duration={500}
               onClick={() => {
-                router.push(item.redirectLink);
+                setactiveSection(item.id);
               }}
               key={idx}
               className={`flex flex-row gap-x-2 cursor-pointer px-6 py-3 border-[1px] items-center rounded-[50px] ${
-                item.redirectLink === pathName
+                item.id === activeSection
                   ? "border-white"
                   : "border-transparent"
               }`}
@@ -58,7 +90,7 @@ const Navbar = () => {
                 Txt={item.label}
                 className="text-xl text-white font-medium leading-[150%] "
               />
-            </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -75,9 +107,13 @@ const Navbar = () => {
             <Notification />
           </div>
         </div>
-        <Button onClick={() => {
-          router.push("/auth/login")
-        }} className="primary-btn" Txt={"Log in"} />
+        <Button
+          onClick={() => {
+            router.push("/auth/login");
+          }}
+          className="primary-btn"
+          Txt={"Log in"}
+        />
       </div>
     </nav>
   );
