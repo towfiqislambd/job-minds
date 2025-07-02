@@ -17,7 +17,8 @@
   --color-light-gray: #696969;
   --color-dark: #0E1216;
   --shadow-box: -1.996px 3.992px 57.884px 0px rgba(244, 250, 255, 0.11)
-  
+  --color-cream-white: #f8fafb;
+  --color-secondary-black: #0e1216;
 
   /* Container */
   --container-max-width: 1720px;
@@ -109,4 +110,12 @@ body {
 
 .resume_label{
   @apply block mb-2 text-dark capitalize
+  }
+
+.cv-label {
+  @apply text-sm leading-[164%] text-secondary-black font-normal;
+}
+
+.cv-input {
+  @apply h-auto w-full rounded-[8px] border-[1px] border-solid border-[#ECEEF0] px-4 py-3 outline-none capitalize ;
 }
