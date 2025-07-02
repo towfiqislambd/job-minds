@@ -3,6 +3,7 @@ import resumeImage from "@/assets/images/dashboard/resume.png";
 import resumeImage2 from "@/assets/images/dashboard/resume2.png";
 import Button from "@/Components/Tags/Button/Button";
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 
 type ResumeItem = {
@@ -106,13 +107,13 @@ const Page = () => {
                 animation={false}
                 className="px-6 py-3.5 text-xs rounded-[50px] bg-transparent text-primary-blue border border-primary-blue cursor-pointer"
               />
-
-              {/* Use btn */}
-              <Button
-                Txt="UseThis Template"
-                animation={false}
+              {/* Link */}
+              <Link
                 className="px-6 py-3.5 text-xs rounded-[50px] bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white cursor-pointer"
-              />
+                href="/dashboard/resume-builder/collect-personal-info"
+              >
+                Use This Template
+              </Link>
             </div>
           </div>
         ))}
