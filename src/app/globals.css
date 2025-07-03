@@ -119,3 +119,11 @@ body {
 .cv-input {
   @apply h-auto w-full rounded-[8px] border-[1px] border-solid border-[#ECEEF0] px-4 py-3 outline-none capitalize;
 }
+
+.section_title {
+  @apply text-dark-blue text-3xl font-bold leading-[132%] tracking-[-0.319px] mb-3;
+}
+
+.section_description {
+  @apply text-xl text-light-gray max-w-[680px] leading-[164%];
+}

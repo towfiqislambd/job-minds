@@ -59,12 +59,10 @@ const Page = () => {
   return (
     <section>
       {/* Title */}
-      <h3 className="text-dark-blue text-3xl font-bold leading-[132%] tracking-[-0.319px] mb-3">
-        Build a Standout Resume in Minutes
-      </h3>
+      <h3 className="section_title">Build a Standout Resume in Minutes</h3>
 
       {/* Description */}
-      <p className=" text-xl text-light-gray max-w-[680px] leading-[164%]">
+      <p className="section_description">
         Let AI craft your resume with smart suggestions, clean formatting, and
         ready-to-use templates — no design skills required.
       </p>
