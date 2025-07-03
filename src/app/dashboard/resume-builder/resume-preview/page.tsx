@@ -1,0 +1,53 @@
+"use client";
+import Image from "next/image";
+import resumeImage from "@/assets/images/dashboard/preview.png";
+import { useRouter } from "next/navigation";
+
+const page = () => {
+  const router = useRouter();
+
+  return (
+    <div>
+      {/* Title */}
+      <h4 className="text-dark-blue text-3xl font-semibold leading-[132%] tracking-[-0.319px] mb-7">
+        Check out your <span className="text-blue-500">resume</span>.
+      </h4>
+
+      <div className="bg-white shadow-box rounded-lg mb-5">
+        {/* Image */}
+        <Image
+          src={resumeImage}
+          alt="resume preview"
+          className="w-full h-fit"
+        />
+      </div>
+
+      <div className="flex justify-between items-center bg-white shadow-box rounded-lg p-5">
+        {/* Back btn */}
+        <button
+          onClick={e => {
+            e.preventDefault();
+            router.back();
+          }}
+          className="px-12 py-2.5 rounded-[50px] bg-transparent text-primary-blue border border-primary-blue cursor-pointer"
+        >
+          Back
+        </button>
+
+        <div className="flex justify-end gap-5 items-center">
+          {/* Save btn */}
+          <button className="px-10 py-2.5 rounded-[50px] bg-transparent text-primary-blue border border-primary-blue cursor-pointer">
+            Save
+          </button>
+
+          {/* pdf btn */}
+          <button className="px-12 py-2.5 rounded-[50px] bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white cursor-pointer">
+            Export as pdf
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default page;
