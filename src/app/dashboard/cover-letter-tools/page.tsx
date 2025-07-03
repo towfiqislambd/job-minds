@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 
 interface FormData {
@@ -111,12 +111,12 @@ const page: React.FC = () => {
   };
 
   return (
-    <section className="flex flex-col gap-y-10 h-auto pt-10 container ">
-      <div className="flex flex-col gap-y-3 ">
-        <h3 className="text-dark-blue text-3xl font-bold leading-[132%] tracking-[-0.319px] ">
+    <section className="flex flex-col gap-y-10 h-auto container ">
+      <div className="flex flex-col">
+        <h3 className="section_title">
           Create Professional Cover Letters in Minutes
         </h3>
-        <p className=" text-xl text-light-gray max-w-[680px] leading-[164%]">
+        <p className="section_description">
           AI-powered cover letter generator with GPT-4 Turbo integration
         </p>
       </div>
@@ -203,10 +203,13 @@ const page: React.FC = () => {
               <button className="primary-btn" onClick={handleBack}>
                 Back
               </button>
-              <button className="primary-btn" onClick={(e) => {
-                e.preventDefault()
-                generateCoverLetter()
-              }}>
+              <button
+                className="primary-btn"
+                onClick={e => {
+                  e.preventDefault();
+                  generateCoverLetter();
+                }}
+              >
                 {isGenerated ? "Re-generate" : "Generate"}
               </button>
             </div>

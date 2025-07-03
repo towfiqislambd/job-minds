@@ -84,7 +84,11 @@ export default function DashboardLayout({
           {navLinks?.map((link, idx) => {
             const isActive = pathname === link.path;
             const isCreating =
-              pathname === "/dashboard/resume-builder/collect-personal-info";
+              pathname === "/dashboard/resume-builder/collect-personal-info" ||
+              pathname === "/dashboard/resume-builder/collect-education" ||
+              pathname === "/dashboard/resume-builder/collect-experience" ||
+              pathname === "/dashboard/resume-builder/collect-skills" ||
+              pathname === "/dashboard/resume-builder/resume-preview";
             return (
               <div key={idx}>
                 <Link

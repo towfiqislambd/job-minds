@@ -279,7 +279,10 @@ const page = () => {
         <div className="flex justify-end gap-5 items-center mt-7">
           {/* Cancel btn */}
           <button
-            onClick={e => e.preventDefault()}
+            onClick={e => {
+              e.preventDefault();
+              router.back();
+            }}
             className="px-6 py-2.5 rounded-[50px] bg-transparent text-primary-blue border border-primary-blue cursor-pointer"
           >
             Cancel
