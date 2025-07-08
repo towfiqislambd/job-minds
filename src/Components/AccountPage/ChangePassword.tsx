@@ -32,7 +32,6 @@ const ChangePassword = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="p-7 bg-white shadow-box rounded-lg"
     >
-      {/* Password & Security */}
       <h4 className="section_sub_title">Change Password</h4>
       <p className="section_sub_description !mb-10">
         Remember, your password and security details can be seen by others, so

@@ -28,7 +28,7 @@ const page = () => {
             activeTab === "notification" ? activeClass : "border-gray-200"
           }`}
         >
-          Notification
+          Notification Settings
         </button>
         <button
           onClick={() => setActiveTab("subscription")}
