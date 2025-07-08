@@ -121,9 +121,17 @@ body {
 }
 
 .section_title {
-  @apply text-dark-blue text-3xl font-bold leading-[132%] tracking-[-0.319px] mb-3;
+  @apply text-dark-blue text-3xl font-semibold leading-[132%] tracking-[-0.319px] mb-3;
 }
 
 .section_description {
   @apply text-xl text-light-gray max-w-[680px] leading-[164%];
+}
+
+.section_sub_title {
+  @apply text-dark-blue text-2xl font-semibold leading-[132%] tracking-[-0.319px] mb-1.5;
+}
+
+.section_sub_description {
+  @apply text-light-gray leading-[164%] mb-5;
 }
