@@ -1,15 +1,10 @@
 "use client";
-
 import { CheckIconSvg } from "@/Components/SvgContainer/SvgContainer";
 
-
-
 const Page = () => {
-
-
   return (
-    <section>
-      <div className="mb-10">
+    <section className="space-y-7">
+      <div>
         {/* Title */}
         <h3 className="section_title">LinkedIn Profile Optimizer</h3>
 
@@ -18,42 +13,41 @@ const Page = () => {
           Enhance your professional presence with AI-powered suggestions .
         </p>
       </div>
-      <div className="p-8 bg-white rounded-lg mb-10">
-        <h5 className="text-xl font-bold text-dark-blue mb-6">
-          Improvement Suggestion
-        </h5>
+
+      <div className="p-7 bg-white rounded-lg">
+        <h5 className="section_sub_title !mb-5">Improvement Suggestion</h5>
         <div className="flex flex-wrap items-center gap-5">
-          <div className="">
-            <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-6 py-[13px]">
+          <div>
+            <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-5 py-2.5 font-medium">
               Structure
-              <span className="p-2 flex justify-center items-center rounded-full text-white bg-secondary-blue  font-semibold  h-8 w-8">
+              <span className="justify-center items-center rounded-full text-white bg-secondary-blue  font-semibold h-7 w-7 grid place-items-center">
                 4
               </span>
             </button>
           </div>
-          <div className="">
-            <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-6 py-[13px]">
+          <div>
+            <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-5 py-2.5 font-medium">
               Keywords
-              <span className="p-2 flex justify-center items-center rounded-full text-white bg-[#FFA600]  font-semibold  h-8 w-8">
+              <span className="bg-[#FFA600] justify-center items-center rounded-full text-white  font-semibold h-7 w-7 grid place-items-center">
                 4
               </span>
             </button>
           </div>
           <div className="">
-            <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-6 py-[13px]">
+            <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-5 py-2.5 font-medium">
               Tone
-              <span className="p-2 flex justify-center items-center rounded-full text-white bg-[#F44336] font-semibold  h-8 w-8">
+              <span className="bg-[#F44336] justify-center items-center rounded-full text-white  font-semibold h-7 w-7 grid place-items-center">
                 6
               </span>
             </button>
           </div>
         </div>
       </div>
-      <div className=" flex flex-col xl:flex-row gap-5">
+
+      <div className="flex gap-6">
+        {/* Left */}
         <div className="bg-white rounded-lg p-8 ">
-          <h5 className="text-xl font-bold text-dark-blue mb-6">
-            Current Profile
-          </h5>
+          <h5 className="section_sub_title !mb-5">Current Profile</h5>
           <p className="p-6 bg-cream-white rounded-lg text-dark-blue text-xs font-normal leading-[164%]">
             As a passionate Data Analyst with over three years of experience, I
             thrive on transforming complex data into actionable insights that
@@ -87,10 +81,10 @@ const Page = () => {
             together!
           </p>
         </div>
+
+        {/* Right */}
         <div className="bg-white rounded-lg p-8 ">
-          <h5 className="text-xl font-bold text-dark-blue mb-6">
-            AI-Enhanced Profile
-          </h5>
+          <h5 className="section_sub_title !mb-5">AI-Enhanced Profile</h5>
           <p className="p-6 bg-cream-white rounded-lg text-dark-blue text-xs font-normal leading-[164%]">
             As a passionate Data Analyst with over three years of experience, I
             thrive on transforming complex data into actionable insights that
@@ -125,25 +119,22 @@ const Page = () => {
           </p>
         </div>
       </div>
-      <div className="bg-white rounded-lg p-8 mt-8 flex justify-between items-center">
+
+      <div className="bg-white rounded-lg p-8 flex justify-between items-center">
         <div className="flex items-center gap-2">
-          <span>
-            <CheckIconSvg></CheckIconSvg>
-          </span>
+          <CheckIconSvg />
           <p className="text-lg text-dark-blue leading-[164%]">
-            Profile optimization complete!{" "}
-            <span className="text-secondary-blue">18 improvements </span>
+            Profile optimization complete!
+            <span className="text-secondary-blue"> 18 improvements </span>
             suggested
           </p>
         </div>
-        <div className="flex justify-end gap-5 items-center ">
+        <div className="flex justify-end gap-5 items-center">
           {/* Copy btn */}
-          <button className="px-6 py-3.5 text-lg font-semibold rounded-[50px] bg-transparent bg-gradient-to-r from-[#21489F] to-[#0184FF] bg-clip-text border border-primary-blue cursor-pointer">
-            Copy
-          </button>
+          <button className="secondary-btn">Copy</button>
 
-          {/* Next btn */}
-          <button className="primary-btn px-7 py-3.5 text-lg font-semibold text-white">Download as DOCX</button>
+          {/* Download btn */}
+          <button className="primary-btn">Download as DOCX</button>
         </div>
       </div>
     </section>

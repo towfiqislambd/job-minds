@@ -12,7 +12,7 @@ import {
   SearchSvg,
 } from "@/Components/SvgContainer/SvgContainer";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 const navLinks = [
   {
     id: 1,
@@ -64,13 +64,17 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <section className="min-h-screen max-h-screen flex">
       {/* Sidebar */}
       <aside className="w-72 bg-white p-7 shrink-0">
         {/* Logo */}
-        <figure className="flex gap-3 items-center mb-10">
+        <figure
+          onClick={() => router.push("/")}
+          className="flex gap-3 items-center mb-10 cursor-pointer"
+        >
           <DashboardLogo />
           <p className="text-2xl font-bold tracking-[-0.203px] bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] bg-clip-text text-transparent">
             Job Minds

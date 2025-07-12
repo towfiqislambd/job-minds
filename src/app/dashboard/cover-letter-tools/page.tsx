@@ -120,78 +120,78 @@ const page: React.FC = () => {
           AI-powered cover letter generator with GPT-4 Turbo integration
         </p>
       </div>
-      <div className="flex flex-row gap-x-6 ">
-        <form className="h-auto w-auto bg-white shadow-md flex flex-col gap-y-8 p-10 rounded-[8px] ">
+
+      <div className="flex gap-6 ">
+        <form className="w-[800px] bg-white shadow-box flex flex-col gap-y-3 p-7 rounded-lg">
           <div className="flex flex-col gap-y-2 ">
-            <h4 className="text-dark-blue text-2xl font-bold leading-[132%] tracking-[-0.319px] ">
-              Job details
-            </h4>
-            <p className="max-w-[567px] text-nowrap  text-sm text-light-gray font-normal leading-[140%] ">
+            <h4 className="section_sub_title">Job details</h4>
+            <p className="section_sub_description">
               This information will be displayed publicity so be careful what
               you share
             </p>
           </div>
-          <div className="flex flex-col gap-y-6 ">
-            <div className="relative w-full flex flex-col gap-y-3  ">
-              <p className="cv-label">Job Title</p>
+
+          <div className="flex flex-col gap-y-6">
+            <div className="relative">
+              <label className="resume_label">Job Title</label>
               <input
                 name="jobTitle"
                 value={formData.jobTitle}
                 onChange={handleInputChange}
                 placeholder="Web developer"
-                className="cv-input"
+                className="resume_input"
                 type="text"
               />
             </div>
-            <div className="relative w-full flex flex-col gap-y-3  ">
-              <p className="cv-label">Company Name</p>
+            <div className="relative">
+              <label className="resume_label">Company Name</label>
               <input
                 name="companyName"
                 value={formData.companyName}
                 onChange={handleInputChange}
                 placeholder="Google"
-                className="cv-input"
+                className="resume_input"
                 type="text"
               />
             </div>
-            <div className="relative w-full flex flex-col gap-y-3  ">
-              <p className="cv-label">Department (optional)</p>
+            <div className="relative">
+              <label className="resume_label">Department (optional)</label>
               <input
                 name="department"
                 value={formData.department}
                 onChange={handleInputChange}
                 placeholder="Mern stack"
-                className="cv-input"
+                className="resume_input"
                 type="text"
               />
             </div>
-            <div className="relative w-full flex flex-col gap-y-3  ">
-              <p className="cv-label">Education</p>
+            <div className="relative">
+              <label className="resume_label">Education</label>
               <textarea
                 name="education"
                 value={formData.education}
                 onChange={handleInputChange}
                 placeholder="List your educational background..."
-                className="cv-input !h-[114px] "
+                className="resume_input !h-[114px] "
               ></textarea>
             </div>
-            <div className="relative w-full flex flex-col gap-y-3  ">
-              <p className="cv-label">Key skills</p>
+            <div className="relative">
+              <label className="resume_label">Key skills</label>
               <textarea
                 name="keySkills"
                 value={formData.keySkills}
                 onChange={handleInputChange}
                 placeholder="Describe your key skills"
-                className="cv-input !h-[114px] "
+                className="resume_input !h-[114px] "
               ></textarea>
             </div>
-            <div className="relative w-full flex flex-col gap-y-3  ">
-              <p className="cv-label">Letter Length</p>
+            <div className="relative">
+              <label className="resume_label">Letter Length</label>
               <select
                 name="length"
                 value={formData.length}
                 onChange={handleInputChange}
-                className="cv-input cursor-pointer"
+                className="resume_input"
               >
                 <option value="Short">Short</option>
                 <option value="Long">Long</option>
@@ -215,12 +215,12 @@ const page: React.FC = () => {
             </div>
           </div>
         </form>
-        <div className="h-auto w-full max-h-[637px] bg-white shadow-md flex flex-col gap-y-8 p-6 rounded-[8px]">
+
+        <div className="w-full max-h-[637px] bg-white shadow-md flex flex-col gap-y-3 p-7 rounded-lg">
           <div className="flex flex-row w-full justify-between">
-            <h4 className="text-dark-blue text-xl font-bold leading-[132%] tracking-[-0.319px]">
-              Live Preview
-            </h4>
-            <div className="flex flex-row gap-x-3">
+            <h4 className="section_sub_title">Live Preview</h4>
+
+            <div className="flex flex-row gap-3">
               <select
                 name="length"
                 value={formData.length}
@@ -246,7 +246,8 @@ const page: React.FC = () => {
             value={preview}
             readOnly
           ></textarea>
-          <div className="flex flex-row  gap-x-6 items-center ">
+
+          <div className="flex gap-5 items-center mt-5">
             <button className="primary-btn" onClick={handleSave}>
               Save
             </button>

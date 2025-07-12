@@ -12,8 +12,6 @@ import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Link, Element } from "react-scroll";
 
-
-
 const Navbar = () => {
   const pathName = usePathname();
   const router = useRouter();
@@ -28,7 +26,6 @@ const Navbar = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-  
 
   type publicRouteSchema = {
     label: string;
@@ -38,11 +35,11 @@ const Navbar = () => {
   const publicRoutes: publicRouteSchema[] = [
     {
       label: "Home",
-      id:"banner"
+      id: "banner",
     },
     {
       label: "AI tool",
-      id:"ai-tool"
+      id: "ai-tool",
     },
     {
       label: "Pricing",
@@ -50,10 +47,9 @@ const Navbar = () => {
     },
   ];
 
-
-  const [activeSection, setactiveSection] = useState <string| null> (
+  const [activeSection, setactiveSection] = useState<string | null>(
     publicRoutes[0].id
-  )
+  );
 
   return (
     <nav
@@ -86,10 +82,9 @@ const Navbar = () => {
               }`}
             >
               <WhiteDot />
-              <Heading
-                Txt={item.label}
-                className="text-xl text-white font-medium leading-[150%] "
-              />
+              <p className="text-xl text-white font-medium leading-[150%]">
+                {item.label}
+              </p>
             </Link>
           ))}
         </div>
@@ -98,10 +93,7 @@ const Navbar = () => {
         <div className="w-auto h-auto py-2.5 px-4 flex flex-row items-center rounded-[50px] gap-x-12 border-[1px] border-solid border-white ">
           <div className="flex cursor-pointer flex-row items-center rounded-[50px] gap-x-2.5">
             <WhiteGlobe />
-            <Paragraph
-              Txt={"Eng"}
-              className="text-xl text-white font-medium leading-[150%] "
-            />
+            <p className="text-xl text-white font-medium leading-[150%]">Eng</p>
           </div>
           <div className="flex cursor-pointer flex-row items-center h-auto w-auto border-[1px] border-solid border-white p-3 rounded-full  ">
             <Notification />
@@ -111,8 +103,9 @@ const Navbar = () => {
           onClick={() => {
             router.push("/auth/login");
           }}
-          className="primary-btn"
+          className="primary-btn !py-4 !text-lg"
           Txt={"Log in"}
+          animation={false}
         />
       </div>
     </nav>

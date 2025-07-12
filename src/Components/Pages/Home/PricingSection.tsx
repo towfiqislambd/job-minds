@@ -1,7 +1,5 @@
 import PriciningCard from '@/Components/Cards/PriciningCard';
 import Heading from '@/Components/Tags/Heading/Heading';
-
-
 const pricingArr = [
   {
     title: "Free",
@@ -43,6 +41,7 @@ const PricingSection = () => {
         {pricingArr.map((item, idx) => {
           return (
             <PriciningCard
+              idx={idx}
               key={idx}
               title={item.title}
               pricePerMonth={item.pricePerMonth}
