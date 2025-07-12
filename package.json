@@ -14,6 +14,7 @@
     "aos": "^2.3.4",
     "axios": "^1.9.0",
     "clsx": "^2.1.1",
+    "framer-motion": "^12.23.3",
     "next": "15.3.3",
     "postcss": "^8.5.4",
     "react": "^18.3.1",
@@ -24,6 +25,7 @@
     "react-otp-input": "^3.1.1",
     "react-redux": "^9.2.0",
     "react-scroll": "^1.9.3",
+    "recharts": "^3.1.0",
     "redux-persist": "^6.0.0",
     "tailwind-merge": "^3.3.0"
   },

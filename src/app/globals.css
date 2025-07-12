@@ -136,3 +136,7 @@ body {
 .section_sub_description {
   @apply text-light-gray leading-[164%] mb-5;
 }
+
+.dashboard_card {
+  @apply shadow-box p-7 bg-white rounded-lg;
+}
