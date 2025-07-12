@@ -1,5 +1,7 @@
 "use client";
 
+import { CheckIconSvg } from "@/Components/SvgContainer/SvgContainer";
+
 
 
 const Page = () => {
@@ -24,7 +26,7 @@ const Page = () => {
           <div className="">
             <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-6 py-[13px]">
               Structure
-              <span className="p-2 flex justify-center items-center rounded-full text-white bg-secondary-blue text-xl font-semibold  h-8 w-8">
+              <span className="p-2 flex justify-center items-center rounded-full text-white bg-secondary-blue  font-semibold  h-8 w-8">
                 4
               </span>
             </button>
@@ -32,7 +34,7 @@ const Page = () => {
           <div className="">
             <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-6 py-[13px]">
               Keywords
-              <span className="p-2 flex justify-center items-center rounded-full text-white bg-[#FFA600] text-xl font-semibold  h-8 w-8">
+              <span className="p-2 flex justify-center items-center rounded-full text-white bg-[#FFA600]  font-semibold  h-8 w-8">
                 4
               </span>
             </button>
@@ -40,7 +42,7 @@ const Page = () => {
           <div className="">
             <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-6 py-[13px]">
               Tone
-              <span className="p-2 flex justify-center items-center rounded-full text-white bg-[#F44336] text-xl font-semibold  h-8 w-8">
+              <span className="p-2 flex justify-center items-center rounded-full text-white bg-[#F44336] font-semibold  h-8 w-8">
                 6
               </span>
             </button>
@@ -121,6 +123,27 @@ const Page = () => {
             connect and explore how we can leverage data to drive success
             together!
           </p>
+        </div>
+      </div>
+      <div className="bg-white rounded-lg p-8 mt-8 flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <span>
+            <CheckIconSvg></CheckIconSvg>
+          </span>
+          <p className="text-lg text-dark-blue leading-[164%]">
+            Profile optimization complete!{" "}
+            <span className="text-secondary-blue">18 improvements </span>
+            suggested
+          </p>
+        </div>
+        <div className="flex justify-end gap-5 items-center ">
+          {/* Copy btn */}
+          <button className="px-6 py-3.5 text-lg font-semibold rounded-[50px] bg-transparent bg-gradient-to-r from-[#21489F] to-[#0184FF] bg-clip-text border border-primary-blue cursor-pointer">
+            Copy
+          </button>
+
+          {/* Next btn */}
+          <button className="primary-btn px-7 py-3.5 text-lg font-semibold text-white">Download as DOCX</button>
         </div>
       </div>
     </section>
