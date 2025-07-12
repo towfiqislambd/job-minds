@@ -8,7 +8,10 @@ import Image from "next/image";
 
 const HeroSection = () => {
   return (
-    <section id="banner" className="relative w-full z-50 pb-[120px] h-auto overflow-hidden">
+    <section
+      id="banner"
+      className="relative w-full z-50 pb-[120px] h-auto overflow-hidden"
+    >
       {/* Background Image */}
       <Image
         src={curve.src}
@@ -23,7 +26,7 @@ const HeroSection = () => {
         <div className="flex flex-col items-center gap-y-[60px] z-10">
           <div className="flex flex-col items-center gap-y-2.5">
             <Heading
-              className="hero-heading max-w-[942px]"
+              className="text-[80px] not-italic font-bold leading-[132%] tracking-[-0.8px] text-center !text-white max-w-[942px]"
               Txt={
                 <>
                   Empower Your Career Journey{" "}
@@ -36,7 +39,9 @@ const HeroSection = () => {
               className="text-2xl font-normal leading-[164%] text-glass-gray max-w-[740px] text-center"
             />
           </div>
-          <Button className="primary-btn capitalize" Txt="Start for free" />
+          <button className="primary-btn !py-4 !px-12 !text-lg">
+            Start for free
+          </button>
         </div>
 
         {/* Frames and Slogan */}

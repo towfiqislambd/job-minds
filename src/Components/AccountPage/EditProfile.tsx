@@ -56,12 +56,12 @@ const EditProfile = () => {
         </p>
         <div className="flex justify-end gap-6">
           {/* Delete btn */}
-          <button className="px-8 py-2.5 rounded-[50px] border border-red-500 text-red-500 font-medium cursor-pointer">
+          <button className="secondary-btn !border-red-500 !text-red-500">
             Delete Account
           </button>
 
           {/* Logout btn */}
-          <button className="px-12 py-2.5 rounded-[50px] bg-red-600 font-medium text-white cursor-pointer">
+          <button className="px-12 py-2.5 rounded-[50px] !bg-red-600 font-medium text-white cursor-pointer">
             Log Out
           </button>
         </div>

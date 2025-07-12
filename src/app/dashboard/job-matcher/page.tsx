@@ -110,9 +110,7 @@ const page = () => {
 
           {/* btn */}
           <div className="flex justify-end items-center ">
-            <button className="mt-7 px-10 py-2.5 rounded-[50px] bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white cursor-pointer">
-              Analyze Job
-            </button>
+            <button className="mt-7 primary-btn">Analyze Job</button>
           </div>
         </form>
       </div>

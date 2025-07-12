@@ -1,5 +1,8 @@
-'use client'
-import { CircleActive, CircleInActive } from "@/Components/SvgContainer/SvgContainer";
+"use client";
+import {
+  CircleActive,
+  CircleInActive,
+} from "@/Components/SvgContainer/SvgContainer";
 import Heading from "@/Components/Tags/Heading/Heading";
 import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
 import React, { useState } from "react";
@@ -46,12 +49,10 @@ const FAQSection: React.FC<FAQSectionProps> = ({ data }) => {
               </span>
             </div>
             {activeIndex === index && (
-              <Paragraph
-                Txt={
-                  "Instantly generate job-specific resumes tailored to your skills and experience."
-                }
-                className=" text-2xl text-primary-gray font-normal leading-[164%] "
-              />
+              <p className="text-2xl text-primary-gray font-normal leading-[164%]">
+                Instantly generate job-specific resumes tailored to your skills
+                and experience.
+              </p>
             )}
           </div>
         ))}

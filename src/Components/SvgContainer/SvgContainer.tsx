@@ -728,7 +728,6 @@ export const CheckIconSvg = () => {
   );
 };
 
-
 export const DownloadSvg = () => {
   return (
     <svg

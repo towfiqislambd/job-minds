@@ -19,7 +19,7 @@
   --shadow-box: -1.996px 3.992px 57.884px 0px rgba(244, 250, 255, 0.11);
   --color-cream-white: #f8fafb;
   --color-secondary-black: #0e1216;
-  --color-alt-border: #EAEAEA;
+  --color-alt-border: #eaeaea;
 
   /* Container */
   --container-max-width: 1720px;
@@ -53,22 +53,16 @@ body {
 }
 
 /* Custom CSS */
-@layer components {
-  .primary-btn {
-    @apply max-w-[419px] px-12 h-auto w-auto py-3 capitalize rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] text-2xl font-normal leading-[164%] text-white;
-  }
+.primary-btn {
+  @apply px-8 py-2.5 capitalize rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] leading-[164%] text-white;
+}
 
-  .secondary-btn {
-    @apply rounded-[50px] bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] text-white text-center text-[20px] font-semibold leading-[132%] tracking-[-0.4px] px-12 py-3 cursor-pointer w-auto h-auto;
-  }
+.secondary-btn {
+  @apply px-8 py-2.5 rounded-[50px] font-medium bg-transparent text-primary-blue border border-primary-blue cursor-pointer;
+}
 
-  .nav-link {
-    @apply text-lg  font-normal leading-[155%];
-  }
-
-  .auth-heading {
-    @apply text-[56px] font-[600] leading-[164%] text-center text-dark-blue max-w-[701px];
-  }
+.auth-heading {
+  @apply text-[56px] font-[600] leading-[164%] text-center text-dark-blue max-w-[701px];
 }
 .auth-sub-heading {
   @apply text-[20px] font-[700] leading-[164%] text-center text-primary-blue;
@@ -81,44 +75,12 @@ body {
   @apply text-[80px] font-bold leading-[132%] tracking-[-0.8px] text-center  bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] bg-clip-text text-transparent;
 }
 
-.hero-heading {
-  @apply text-[80px] not-italic font-bold leading-[132%] tracking-[-0.8px] text-center !text-white;
-}
-
-.pricing-card-heading {
-  @apply text-2xl font-bold leading-[132%] tracking-[-0.24px] text-primary-blue;
-}
-
-.pricing-sub-title {
-  @apply text-[64px] font-bold leading-[132%] tracking-[-0.24px] text-dark-blue;
-}
-
-.pricing-month-sub-title {
-  @apply text-2xl font-bold leading-[164%] text-primary-gray;
-}
-
-.pricing-month-sub-title {
-  @apply text-lg text-dark-blue leading-[164%] font-[600];
-}
-
-.feataures-text {
-  @apply text-lg font-normal leading-[164%] text-dark-blue max-w-[337px];
-}
-
 .resume_input {
   @apply outline-none border rounded-lg px-4 py-2.5 border-gray-200 w-full;
 }
 
 .resume_label {
   @apply block mb-2 text-dark capitalize;
-}
-
-.cv-label {
-  @apply text-sm leading-[164%] text-secondary-black font-normal;
-}
-
-.cv-input {
-  @apply h-auto w-full rounded-[8px] border-[1px] border-solid border-[#ECEEF0] px-4 py-3 outline-none capitalize;
 }
 
 .section_title {

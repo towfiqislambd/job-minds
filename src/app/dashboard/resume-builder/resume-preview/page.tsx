@@ -29,21 +29,17 @@ const page = () => {
             e.preventDefault();
             router.back();
           }}
-          className="px-12 py-2.5 rounded-[50px] bg-transparent text-primary-blue border border-primary-blue cursor-pointer"
+          className="secondary-btn"
         >
           Back
         </button>
 
         <div className="flex justify-end gap-5 items-center">
           {/* Save btn */}
-          <button className="px-10 py-2.5 rounded-[50px] bg-transparent text-primary-blue border border-primary-blue cursor-pointer">
-            Save
-          </button>
+          <button className="secondary-btn">Save</button>
 
           {/* pdf btn */}
-          <button className="px-12 py-2.5 rounded-[50px] bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white cursor-pointer">
-            Export as pdf
-          </button>
+          <button className="primary-btn">Export as pdf</button>
         </div>
       </div>
     </div>

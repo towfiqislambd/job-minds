@@ -248,10 +248,7 @@ const Subscription = () => {
           </p>
 
           {/* Submit btn */}
-          <button
-            type="submit"
-            className="px-8 py-2.5 rounded-[50px] bg-gradient-to-r from-[#21489F] to-[#0184FF] text-white cursor-pointer"
-          >
+          <button type="submit" className="primary-btn">
             Stripe
           </button>
         </form>

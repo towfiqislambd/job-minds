@@ -1,9 +1,8 @@
 "use client";
-
 import Image from "next/image";
 import React, { useState } from "react";
-import Profile from "../../../../public/profile.svg";
-import Article from "../../../../public/Article.svg";
+import Profile from "@/assets/images/dashboard/profile.svg";
+import Article from "@/assets/images/dashboard/Article.svg";
 import { BiSend } from "react-icons/bi";
 
 const page = () => {
@@ -29,16 +28,16 @@ const page = () => {
   };
 
   return (
-    <section>
+    <>
       <h2 className="section_title">Interview Preparation Assistant</h2>
+
       <p className="section_description">
         Step up your interview skills with cool AI tips and tricks!
       </p>
-      <div className="my-10 p-8 bg-white shadow-box rounded-lg">
-        <h3 className="font-poppins text-[32px] font-semibold text-[#071431]">
-          Mock Interview Session
-        </h3>
-        <div className="mt-10 border border-[#EAEAEA] rounded-[8px]">
+
+      <div className="my-10 p-7 bg-white shadow-box rounded-lg">
+        <h3 className="section_sub_title">Mock Interview Session</h3>
+        <div className="mt-5 border border-[#EAEAEA] rounded-[8px]">
           <div className="border-b border-[#EAEAEA]">
             <div className="py-6 px-4 flex justify-between items-center">
               <div className="flex gap-x-5 items-center">
@@ -128,7 +127,7 @@ const page = () => {
               e.preventDefault();
               handleSend();
             }}
-            className="border-t border-[#EAEAEA] px-6 py-3 flex items-center gap-x-2"
+            className="border-t border-[#EAEAEA] px-6 py-3 flex items-center gap-5"
           >
             <input
               type="search"
@@ -139,7 +138,7 @@ const page = () => {
             />
             <button
               type="submit"
-              className="rounded-[30px] bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] px-7 py-[14px] text-white text-lg font-semibold shrink-0 cursor-pointer hover:shadow-2xl duration-300 ease-in-out flex gap-x-1 items-center"
+              className="primary-btn shrink-0 flex gap-1 items-center"
             >
               Send
               <BiSend />
@@ -147,15 +146,11 @@ const page = () => {
           </form>
         </div>
       </div>
-      <div className="flex justify-end items-center gap-x-3">
-        <button className="rounded-[30px] border border-[#21489F] hover:bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] px-7 py-[14px] hover:text-white text-[#0184FF] text-lg font-semibold shrink-0 cursor-pointer duration-500 ease-in-out">
-          End Session
-        </button>
-        <button className="rounded-[30px] bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] px-7 py-[14px] text-white text-lg font-semibold shrink-0 cursor-pointer hover:shadow-2xl duration-300 ease-in-out">
-          Next Question
-        </button>
+      <div className="flex justify-end items-center gap-4">
+        <button className="secondary-btn">End Session</button>
+        <button className="primary-btn">Next Question</button>
       </div>
-    </section>
+    </>
   );
 };
 

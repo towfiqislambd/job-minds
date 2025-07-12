@@ -12,6 +12,7 @@ interface PriciningCardProps {
   btnTxt: string;
   yearlyPrice?: string;
   discount?: string;
+  idx: number;
 }
 
 const PriciningCard: React.FC<PriciningCardProps> = ({
@@ -21,20 +22,31 @@ const PriciningCard: React.FC<PriciningCardProps> = ({
   btnTxt,
   yearlyPrice,
   discount,
+  idx,
 }) => {
   return (
-    <div className="h-auto w-auto bg-white border-[4px] border-transparent cursor-pointer  ease-in-out duration-300 hover:border-solid hover:border-primary-blue  gap-y-[54px]  rounded-[18px] p-[30px] flex flex-col justify-between   ">
+    <div
+      className={`h-auto w-auto bg-white border-[4px] border-transparent cursor-pointer  ease-in-out duration-300 hover:border-solid hover:border-primary-blue  gap-y-[54px]  rounded-[18px] p-[30px] flex flex-col justify-between ${
+        idx === 1 && "!border-primary-blue"
+      }`}
+    >
       <div className="flex flex-col gap-y-[54px] ">
         <div className="flex flex-col gap-y-2">
-          <Heading Variant="h4" Txt={title} className="pricing-card-heading" />
+          <Heading
+            Variant="h4"
+            Txt={title}
+            className="text-2xl font-bold leading-[132%] tracking-[-0.24px] text-primary-blue"
+          />
           <div className="flex flex-col gap-y-6 ">
             <Heading
               Variant="h5"
-              className="pricing-sub-title"
+              className="text-[64px] font-bold leading-[132%] tracking-[-0.24px] text-dark-blue"
               Txt={
                 <>
                   €{pricePerMonth}{" "}
-                  <span className="pricing-month-sub-title">/ Month</span>{" "}
+                  <span className="text-lg text-dark-blue leading-[164%] font-[600]">
+                    / Month
+                  </span>{" "}
                 </>
               }
             />
@@ -42,7 +54,7 @@ const PriciningCard: React.FC<PriciningCardProps> = ({
             {yearlyPrice && discount && (
               <div className="flex flex-row items-center gap-x-3">
                 <Heading
-                  className="pricing-month-sub-title"
+                  className="text-lg text-dark-blue leading-[164%] font-[600]"
                   Variant="h5"
                   Txt={<>€{yearlyPrice}/year</>}
                 />
@@ -61,7 +73,10 @@ const PriciningCard: React.FC<PriciningCardProps> = ({
                 <div data-aos="fade-up" data-aos-delay="100">
                   <TickMark />
                 </div>
-                <Paragraph Txt={item} className="feataures-text" />
+                <Paragraph
+                  Txt={item}
+                  className="ftext-lg font-normal leading-[164%] text-dark-blue max-w-[337px]"
+                />
               </div>
             );
           })}
