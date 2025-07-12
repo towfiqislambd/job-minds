@@ -49,7 +49,7 @@ const Page = () => {
             </p>
           )}
 
-          <button className="primary-btn" type="submit">
+          <button className="primary-btn cursor-pointer" type="submit">
             Analyze Profile
           </button>
         </form>

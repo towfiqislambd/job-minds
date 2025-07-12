@@ -22,7 +22,7 @@ const Page = () => {
         </h5>
         <div className="flex flex-wrap items-center gap-5">
           <div className="">
-            <button className="flex items-center gap-3 justify-center border border-alt-border rounded-full px-6 py-[13px]">
+            <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-6 py-[13px]">
               Structure
               <span className="p-2 flex justify-center items-center rounded-full text-white bg-secondary-blue text-xl font-semibold  h-8 w-8">
                 4
@@ -30,7 +30,7 @@ const Page = () => {
             </button>
           </div>
           <div className="">
-            <button className="flex items-center gap-3 justify-center border border-alt-border rounded-full px-6 py-[13px]">
+            <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-6 py-[13px]">
               Keywords
               <span className="p-2 flex justify-center items-center rounded-full text-white bg-[#FFA600] text-xl font-semibold  h-8 w-8">
                 4
@@ -38,7 +38,7 @@ const Page = () => {
             </button>
           </div>
           <div className="">
-            <button className="flex items-center gap-3 justify-center border border-alt-border rounded-full px-6 py-[13px]">
+            <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-6 py-[13px]">
               Tone
               <span className="p-2 flex justify-center items-center rounded-full text-white bg-[#F44336] text-xl font-semibold  h-8 w-8">
                 6
