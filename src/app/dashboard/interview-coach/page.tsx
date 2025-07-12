@@ -86,7 +86,7 @@ const Page = () => {
   };
 
   return (
-    <section>
+    <>
       <div>
         <h2 className="section_title">Interview Preparation Assistant</h2>
         <p className="section_description">
@@ -94,9 +94,8 @@ const Page = () => {
         </p>
 
         <div className="my-10 p-8 bg-white shadow-box rounded-lg">
-          <h3 className="font-poppins text-[20px] font-semibold text-[#071431]">
-            Select Your Job Role
-          </h3>
+          <h3 className="section_sub_title">Select Your Job Role</h3>
+
           <div className="flex gap-x-6 py-6 items-center">
             <div className="relative w-full">
               <input
@@ -110,10 +109,7 @@ const Page = () => {
                 <CiSearch className="fill-[#DADADA]" />
               </div>
             </div>
-            <button
-              onClick={handleGenerate}
-              className="rounded-[30px] bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] px-7 py-[14px] text-white text-lg font-semibold shrink-0 cursor-pointer hover:shadow-2xl duration-300 ease-in-out"
-            >
+            <button onClick={handleGenerate} className="primary-btn shrink-0">
               Generate Questions
             </button>
           </div>
@@ -134,8 +130,8 @@ const Page = () => {
 
         {showQuestions && (
           <div className="p-7 bg-white shadow-box rounded-lg mb-10">
-            <h2 className="section_title">Interview Questions</h2>
-            <div className="flex flex-col gap-8">
+            <h2 className="section_sub_title !mb-5">Interview Questions</h2>
+            <div className="flex flex-col gap-5">
               {questionsData.map((item, index) => {
                 const isOpen = openIndex === index;
                 return (
@@ -185,7 +181,7 @@ const Page = () => {
                                 Category : {item.category}
                               </h4>
                             </div>
-                            <button className="rounded-[30px] border border-[#21489F] hover:bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] px-7 py-[14px] hover:text-white text-[#0184FF] text-lg font-semibold shrink-0 cursor-pointer duration-500 ease-in-out">
+                            <button className="secondary-btn">
                               Save Draft
                             </button>
                           </div>
@@ -199,19 +195,14 @@ const Page = () => {
           </div>
         )}
 
-        <div className="flex justify-end items-center gap-x-3">
-          <button className="rounded-[30px] border border-[#21489F] hover:bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] px-7 py-[14px] hover:text-white text-[#0184FF] text-lg font-semibold shrink-0 cursor-pointer duration-500 ease-in-out">
-            back
-          </button>
-          <Link
-            href="/dashboard/mock-interview"
-            className="rounded-[30px] bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] px-7 py-[14px] text-white text-lg font-semibold shrink-0 cursor-pointer hover:shadow-2xl duration-300 ease-in-out"
-          >
+        <div className="flex justify-end items-center gap-5">
+          <button className="secondary-btn">back</button>
+          <Link href="/dashboard/mock-interview" className="primary-btn">
             Start Mock Interview
           </Link>
         </div>
       </div>
-    </section>
+    </>
   );
 };
 

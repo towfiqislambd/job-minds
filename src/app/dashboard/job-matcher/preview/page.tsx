@@ -80,7 +80,7 @@ const page = () => {
             e.preventDefault();
             router.back();
           }}
-          className="px-12 py-2.5 rounded-[50px] bg-transparent text-primary-blue border border-primary-blue cursor-pointer"
+          className="secondary-btn"
         >
           Back
         </button>
@@ -88,7 +88,7 @@ const page = () => {
         {/* apply change */}
         <button
           onClick={() => router.push("/dashboard/job-matcher/preview")}
-          className="px-8 py-2.5 rounded-[50px] bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white cursor-pointer"
+          className="primary-btn"
         >
           Save Documents
         </button>

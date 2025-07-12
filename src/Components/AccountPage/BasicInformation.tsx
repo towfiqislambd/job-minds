@@ -158,7 +158,7 @@ const BasicInformation = () => {
 
       <div className="flex justify-end">
         {/* Apply btn */}
-        <button className="px-8 py-2.5 rounded-[50px] bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white cursor-pointer">
+        <button className="primary-btn">
           Apply Changes
         </button>
       </div>
