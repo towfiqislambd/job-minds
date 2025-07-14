@@ -124,11 +124,11 @@ export default function DashboardLayout({
       </aside>
 
       {/* Main Content */}
-      <main className="flex-grow">
+      <main className="flex-grow overflow-x-hidden">
         {/* Header */}
         <section className="bg-white h-[84px] flex justify-between items-center px-11">
           {/* Left */}
-          <p className="flex gap-2 items-center w-[500px] 3xl:w-[660px] px-4 py-2.5 border border-[#ECEEF0] rounded-full">
+          <p className="flex gap-2 items-center w-[450px] 3xl:w-[660px] px-4 py-2.5 border border-[#ECEEF0] rounded-full">
             <SearchSvg />
             <input
               type="text"

@@ -94,7 +94,7 @@ const Page = () => {
             </p>
 
             {/* Buttons */}
-            <div className="absolute left-7 right-7 bottom-7 translate-y-5 group-hover:translate-y-1 opacity-0 group-hover:opacity-100 transition-all duration-300 flex justify-between items-center">
+            <div className="absolute left-3 3xl:left-7 right-3 3xl:right-7 bottom-7 translate-y-5 group-hover:translate-y-1 opacity-0 group-hover:opacity-100 transition-all duration-300 flex gap-3 3xl:justify-between items-center">
               {/* View btn */}
               <Button
                 Txt="View Template"
@@ -103,11 +103,11 @@ const Page = () => {
                   setPreviewResume(item);
                 }}
                 animation={false}
-                className="px-6 py-3.5 text-xs rounded-[50px] bg-transparent text-primary-blue border border-primary-blue cursor-pointer"
+                className="px-4 3xl:px-6 py-2.5 3xl:py-3.5 text-xs rounded-[50px] bg-transparent text-primary-blue border border-primary-blue cursor-pointer"
               />
               {/* Link */}
               <Link
-                className="px-6 py-3.5 text-xs rounded-[50px] bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white cursor-pointer"
+                className="px-4 3xl:px-6 py-2.5 3xl:py-3.5 text-xs rounded-[50px] bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white cursor-pointer"
                 href="/dashboard/resume-builder/collect-personal-info"
               >
                 Use This Template
