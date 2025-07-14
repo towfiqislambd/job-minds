@@ -35,7 +35,7 @@ const page = () => {
   return (
     <section className="p-7 bg-white shadow-box rounded-lg">
       {/* Section Title */}
-      <h3 className="text-dark-blue text-4xl font-semibold leading-[132%] tracking-[-0.319px] mb-7">
+      <h3 className="text-dark-blue text-[26px] 2xl:text-3xl 3xl:text-4xl font-semibold leading-[132%] tracking-[-0.319px] mb-5 2xl:mb-7">
         Resume Complication
       </h3>
 
@@ -79,17 +79,15 @@ const page = () => {
         </div>
 
         {/* Title */}
-        <h4 className="text-dark-blue text-2xl font-semibold leading-[132%] tracking-[-0.319px] mb-2">
-          Personal Summaries
-        </h4>
+        <h4 className="section_sub_title">Personal Summaries</h4>
 
         {/* Description */}
-        <p className="text-light-gray leading-[164%] mb-5">
+        <p className="section_sub_description !mb-5 !max-w-full">
           This information will be displayed publicity so be careful what you
           share
         </p>
 
-        <div className="grid grid-cols-2 gap-7">
+        <div className="grid grid-cols-2 gap-5 2xl:gap-7">
           {/* Name */}
           <div>
             <label htmlFor="name" className="resume_label">
@@ -276,7 +274,7 @@ const page = () => {
           </div>
         </div>
 
-        <div className="flex justify-end gap-5 items-center mt-7">
+        <div className="flex justify-end gap-3.5 2xl:gap-5 items-center mt-7">
           {/* Cancel btn */}
           <button
             onClick={e => {

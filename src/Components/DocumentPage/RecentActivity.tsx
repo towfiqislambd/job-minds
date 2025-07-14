@@ -47,7 +47,7 @@ const RecentActivity = () => {
       <h4 className="section_sub_title">Recent Activity</h4>
 
       {/* Map */}
-      <div className="mt-7 space-y-5">
+      <div className="mt-5 2xl:mt-7 space-y-5">
         {data?.map(({ id, title, role, time }) => (
           <div
             key={id}

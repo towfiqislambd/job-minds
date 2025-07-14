@@ -61,7 +61,7 @@ const AllDocuments = () => {
       {/* Upper Part */}
       <div className="flex justify-between items-center">
         <h4 className="section_sub_title">All Documents</h4>
-        <div className="flex gap-5 items-center">
+        <div className="flex gap-3 3xl:gap-5 items-center">
           {/* Search */}
           <p className="border rounded-full w-[250px] px-4 py-2.5 border-gray-200 flex gap-2 items-center">
             <span className="shrink-0">
@@ -85,16 +85,16 @@ const AllDocuments = () => {
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto mt-5">
-        <table className="w-full  min-w-[800px] border-separate border-spacing-y-10">
+      <div className="w-full overflow-x-auto mt-2.5 3xl:mt-5">
+        <table className="w-full border-separate border-spacing-y-10">
           <thead>
             <tr className="text-nowrap text-dark-blue text-lg capitalize">
-              <td className="font-medium">Document Type</td>
-              <td className="font-medium">Job Title & Company</td>
-              <td className="font-medium">Last Update</td>
-              <td className="font-medium">progress</td>
-              <td className="font-medium">Status</td>
-              <td className="font-medium text-center">Action</td>
+              <td className="font-medium px-4">Document Type</td>
+              <td className="font-medium px-4">Job Title & Company</td>
+              <td className="font-medium px-4">Last Update</td>
+              <td className="font-medium px-4">progress</td>
+              <td className="font-medium px-4">Status</td>
+              <td className="font-medium px-4 text-center">Action</td>
             </tr>
           </thead>
           <tbody>
@@ -104,7 +104,7 @@ const AllDocuments = () => {
                 idx
               ) => (
                 <tr key={id} className="text-nowrap">
-                  <td className="flex gap-3 items-center">
+                  <td className="px-4 flex gap-3 items-center">
                     <p className="w-11 h-11 rounded-full grid place-items-center border-2 bg-[#cce6ff] border-secondary-blue">
                       <FileSvg />
                     </p>
@@ -113,23 +113,23 @@ const AllDocuments = () => {
                     </p>
                   </td>
 
-                  <td>
+                  <td className="px-4">
                     <p className="text-secondary-black font-medium">
                       {job_title}
                     </p>
                     <p className="text-light-gray">{company}</p>
                   </td>
 
-                  <td>
+                  <td className="px-4">
                     <p className="text-secondary-black">{last_update}</p>
                   </td>
 
-                  <td className="flex gap-3 items-center">
+                  <td className="px-4 flex gap-3 items-center">
                     <div className="w-20 h-2 rounded-xl bg-green-500"></div>
                     <p className="text-secondary-black">3 of 3</p>
                   </td>
 
-                  <td>
+                  <td className="px-4">
                     <span
                       className={`capitalize px-4 py-1.5 rounded-lg ${
                         status?.toLowerCase() === "in progress"
@@ -141,7 +141,7 @@ const AllDocuments = () => {
                     </span>
                   </td>
 
-                  <td className="flex justify-center items-center relative">
+                  <td className="px-4 flex justify-center items-center relative">
                     <button
                       onClick={e => {
                         setOpen(true);
@@ -162,19 +162,31 @@ const AllDocuments = () => {
                         idx === data.length - 1 && "!-top-28"
                       }`}
                     >
-                      <button className="flex gap-2 items-center cursor-pointer">
+                      <button
+                        onClick={() => setOpen(false)}
+                        className="flex gap-2 items-center cursor-pointer"
+                      >
                         <FiEye />
                         <span>View</span>
                       </button>
-                      <button className="flex gap-2 items-center cursor-pointer">
+                      <button
+                        onClick={() => setOpen(false)}
+                        className="flex gap-2 items-center cursor-pointer"
+                      >
                         <FaRegEdit />
                         <span>Edit</span>
                       </button>
-                      <button className="flex gap-2 items-center cursor-pointer">
+                      <button
+                        onClick={() => setOpen(false)}
+                        className="flex gap-2 items-center cursor-pointer"
+                      >
                         <TbFileExport />
                         <span>Export</span>
                       </button>
-                      <button className="flex gap-2 items-center cursor-pointer text-red-500">
+                      <button
+                        onClick={() => setOpen(false)}
+                        className="flex gap-2 items-center cursor-pointer text-red-500"
+                      >
                         <FiDelete />
                         <span>Delete</span>
                       </button>

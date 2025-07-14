@@ -45,9 +45,15 @@ const CoverLetterSuggestion = () => {
 
       <div className="space-y-5">
         {data?.map(({ id, title, description }) => (
-          <div key={id} className="border p-5 rounded-lg border-gray-100">
-            <div className="flex justify-between items-center mb-1">
-              <p className="section_sub_title !text-xl">{title}</p>
+          <div key={id} className="border p-4 rounded-lg border-gray-100">
+            <div className="flex justify-between items-start gap-5">
+              <div>
+                <p className="section_sub_title !text-lg 3xl:!text-xl">
+                  {title}
+                </p>
+                <p className="text-light-gray">{description}</p>
+              </div>
+
               <p className="flex gap-3 items-center">
                 <span className="w-7.5 h-7.5 cursor-pointer grid place-items-center border rounded-full border-secondary-blue">
                   <CrossSvg />
@@ -57,8 +63,6 @@ const CoverLetterSuggestion = () => {
                 </span>
               </p>
             </div>
-
-            <p className="text-light-gray max-w-[500px]">{description}</p>
           </div>
         ))}
       </div>

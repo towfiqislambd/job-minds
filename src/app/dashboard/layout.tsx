@@ -69,7 +69,7 @@ export default function DashboardLayout({
   return (
     <section className="min-h-screen max-h-screen flex">
       {/* Sidebar */}
-      <aside className="w-72 bg-white p-7 shrink-0">
+      <aside className="w-60 2xl:w-64 3xl:w-72 bg-white p-4 2xl:p-5 3xl:p-7 shrink-0 hidden xl:block">
         {/* Logo */}
         <figure
           onClick={() => router.push("/")}
@@ -82,7 +82,7 @@ export default function DashboardLayout({
         </figure>
 
         {/* Nav Links */}
-        <ul className="space-y-5">
+        <ul className="space-y-4.5 2xl:space-y-5">
           <p className="text-light-gray font-medium">AI Tools</p>
 
           {navLinks?.map((link, idx) => {
@@ -98,7 +98,7 @@ export default function DashboardLayout({
                 <Link
                   key={link.id}
                   href={link.path}
-                  className={`flex px-5 py-3 rounded-[50px] gap-4 items-center font-medium
+                  className={`flex text-[15px] 2xl:text-base px-4 3xl:px-5 py-2.5 2xl:py-3 rounded-[50px] gap-2.5 3xl:gap-4 items-center font-medium
                      ${
                        isActive
                          ? "bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white"
@@ -124,15 +124,15 @@ export default function DashboardLayout({
       </aside>
 
       {/* Main Content */}
-      <main className="flex-grow">
+      <main className="flex-grow overflow-x-hidden">
         {/* Header */}
         <section className="bg-white h-[84px] flex justify-between items-center px-11">
           {/* Left */}
-          <p className="flex gap-2 items-center w-[660px] px-4 py-2.5 border border-[#ECEEF0] rounded-full">
+          <p className="flex gap-2 items-center w-[350px] 2xl:w-[450px] 3xl:w-[660px] px-4 py-2.5 border border-[#ECEEF0] rounded-full">
             <SearchSvg />
             <input
               type="text"
-              placeholder="Search"
+              placeholder="Search....."
               className="outline-none w-full"
             />
           </p>
@@ -149,7 +149,7 @@ export default function DashboardLayout({
         </section>
 
         {/* outlet */}
-        <section className="p-7 bg-gray-100 h-[calc(100vh-84px)] overflow-y-auto">
+        <section className="p-5 2xl:p-6 3xl:p-7 bg-gray-100 h-[calc(100vh-84px)] overflow-y-auto">
           {children}
         </section>
       </main>

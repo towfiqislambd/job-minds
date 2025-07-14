@@ -7,7 +7,7 @@ import BasicInformation from "./BasicInformation";
 
 const EditProfile = () => {
   return (
-    <section className="space-y-7">
+    <section className="space-y-5 2xl:space-y-7">
       {/* Premium Access */}
       <div className="p-7 bg-white shadow-box rounded-lg">
         <Image
@@ -54,7 +54,7 @@ const EditProfile = () => {
             I have read and agree to the Terms and Conditions.
           </label>
         </p>
-        <div className="flex justify-end gap-6">
+        <div className="flex justify-end gap-5 2xl:gap-6">
           {/* Delete btn */}
           <button className="secondary-btn !border-red-500 !text-red-500">
             Delete Account
