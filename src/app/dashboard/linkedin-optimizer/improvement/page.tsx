@@ -3,7 +3,7 @@ import { CheckIconSvg } from "@/Components/SvgContainer/SvgContainer";
 
 const Page = () => {
   return (
-    <section className="space-y-6 3xl:space-y-7">
+    <section className="space-y-5 2xl:space-y-6 3xl:space-y-7">
       <div>
         {/* Title */}
         <h3 className="section_title">LinkedIn Profile Optimizer</h3>
@@ -44,7 +44,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="flex gap-6">
+      <div className="flex flex-col 2xl:flex-row gap-5 2xl:gap-6">
         {/* Left */}
         <div className="bg-white rounded-lg p-5 3xl:p-7">
           <h5 className="section_sub_title !mb-5">Current Profile</h5>
@@ -120,7 +120,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg p-7 flex justify-between items-center">
+      <div className="bg-white rounded-lg p-7 flex gap-5 flex-col 2xl:flex-row justify-between items-center">
         <div className="flex items-center gap-2">
           <CheckIconSvg />
           <p className="text-lg text-dark-blue leading-[164%]">

@@ -9,7 +9,7 @@ const page = () => {
   return (
     <div>
       {/* Title */}
-      <h4 className="text-dark-blue text-2xl 3xl:text-3xl font-semibold leading-[132%] tracking-[-0.319px] mb-5 3xl:mb-7">
+      <h4 className="text-dark-blue text-xl 2xl:text-2xl 3xl:text-3xl font-semibold leading-[132%] tracking-[-0.319px] mb-5 3xl:mb-7">
         Check out your <span className="text-blue-500">resume</span>.
       </h4>
 

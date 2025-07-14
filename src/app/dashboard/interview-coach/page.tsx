@@ -93,7 +93,7 @@ const Page = () => {
           Step up your interview skills with cool AI tips and tricks!
         </p>
 
-        <div className="my-10 p-8 bg-white shadow-box rounded-lg">
+        <div className="my-7 2xl:my-10 p-7 bg-white shadow-box rounded-lg">
           <h3 className="section_sub_title">Select Your Job Role</h3>
 
           <div className="flex gap-x-6 py-6 items-center">
@@ -118,11 +118,9 @@ const Page = () => {
               <div
                 key={index}
                 onClick={() => handleRoleClick(role)}
-                className="bg-[#F9FAFB] rounded-[45px] px-4 py-3 text-center cursor-pointer transition-all hover:-translate-y-2 duration-300 ease-in-out shrink-0 text-nowrap w-fit"
+                className="bg-[#F9FAFB] rounded-[45px] px-3 2xl:px-4 py-2 2xl:py-3 text-center cursor-pointer transition-all hover:-translate-y-2 duration-300 ease-in-out shrink-0 text-nowrap w-fit"
               >
-                <p className="text-[14px] font-poppins font-normal text-[#071431]">
-                  {role}
-                </p>
+                <p className="text-sm font-poppins text-[#071431]">{role}</p>
               </div>
             ))}
           </div>
@@ -131,23 +129,23 @@ const Page = () => {
         {showQuestions && (
           <div className="p-7 bg-white shadow-box rounded-lg mb-10">
             <h2 className="section_sub_title !mb-5">Interview Questions</h2>
-            <div className="flex flex-col gap-5">
+            <div className="flex flex-col gap-4 2xl:gap-5">
               {questionsData.map((item, index) => {
                 const isOpen = openIndex === index;
                 return (
                   <div
                     key={index}
-                    className="border border-[#EAEAEA] rounded-[8px] p-6"
+                    className="border border-[#EAEAEA] rounded-[8px] p-5"
                   >
                     <div
                       className="flex justify-between items-center cursor-pointer"
                       onClick={() => toggleAccordion(index)}
                     >
                       <div className="flex gap-x-3 items-center">
-                        <h4 className="text-[20px] font-poppins font-normal text-[#696969]">
+                        <h4 className="text-lg 2xl:text-[20px] font-poppins font-normal text-[#696969]">
                           Q{index + 1}
                         </h4>
-                        <h3 className="text-[18px] font-poppins text-[#071431] font-semibold">
+                        <h3 className="2xl:text-lg font-poppins text-[#071431] font-medium 2xl:font-semibold">
                           {item.question}
                         </h3>
                       </div>
@@ -195,7 +193,7 @@ const Page = () => {
           </div>
         )}
 
-        <div className="flex justify-end items-center gap-5">
+        <div className="flex justify-end items-center gap-4 2xl:gap-5">
           <button className="secondary-btn">back</button>
           <Link href="/dashboard/mock-interview" className="primary-btn">
             Start Mock Interview

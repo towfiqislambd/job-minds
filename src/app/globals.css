@@ -84,11 +84,11 @@ body {
 }
 
 .section_title {
-  @apply text-dark-blue text-[26px] 3xl:text-3xl font-semibold leading-[132%] tracking-[-0.319px] mb-3;
+  @apply text-dark-blue text-2xl 2xl:text-[26px] 3xl:text-3xl font-semibold leading-[132%] tracking-[-0.319px] mb-2 2xl:mb-3;
 }
 
 .section_description {
-  @apply text-lg 3xl:text-xl text-light-gray max-w-[680px] 3xl:leading-[164%];
+  @apply text-[17px] 2xl:text-lg 3xl:text-xl text-light-gray max-w-[680px] 3xl:leading-[164%];
 }
 
 .section_sub_title {

@@ -35,7 +35,7 @@ const page = () => {
         Step up your interview skills with cool AI tips and tricks!
       </p>
 
-      <div className="my-10 p-7 bg-white shadow-box rounded-lg">
+      <div className="my-7 2xl:my-10 p-7 bg-white shadow-box rounded-lg">
         <h3 className="section_sub_title">Mock Interview Session</h3>
         <div className="mt-5 border border-[#EAEAEA] rounded-[8px]">
           <div className="border-b border-[#EAEAEA]">

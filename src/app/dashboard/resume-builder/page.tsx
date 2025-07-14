@@ -68,7 +68,7 @@ const Page = () => {
       </p>
 
       {/* Mapped Data */}
-      <div className="mt-8 grid grid-cols-3 3xl:grid-cols-4 gap-6 3xl:gap-x-6 3xl:gap-y-10">
+      <div className="mt-8 grid grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 gap-6 3xl:gap-x-6 3xl:gap-y-10">
         {data.map(item => (
           <div
             key={item.id}
@@ -84,7 +84,7 @@ const Page = () => {
             </figure>
 
             {/* Resume Name */}
-            <h3 className="text-secondary-blue text-center text-4xl 3xl:text-5xl leading-[132%] font-semibold capitalize">
+            <h3 className="text-secondary-blue text-center text-3xl 2xl:text-4xl 3xl:text-5xl leading-[132%] font-semibold capitalize">
               {item.resume_template_name}
             </h3>
 
@@ -94,7 +94,7 @@ const Page = () => {
             </p>
 
             {/* Buttons */}
-            <div className="absolute left-3 3xl:left-7 right-3 3xl:right-7 bottom-7 translate-y-5 group-hover:translate-y-1 opacity-0 group-hover:opacity-100 transition-all duration-300 flex gap-3 3xl:justify-between items-center">
+            <div className="absolute left-10 2xl:left-3 3xl:left-7 right-3 3xl:right-7 bottom-7 translate-y-5 group-hover:translate-y-1 opacity-0 group-hover:opacity-100 transition-all duration-300 flex gap-3 3xl:justify-between items-center">
               {/* View btn */}
               <Button
                 Txt="View Template"

@@ -17,7 +17,7 @@ const page = () => {
         Let AI analyze your job fit and get personalized suggestions
       </p>
 
-      <div className="grid 3xl:grid-cols-2 gap-6 items-start">
+      <div className="grid 3xl:grid-cols-2 gap-5 2xl:gap-6 items-start">
         {/* Left */}
         <div className="bg-white shadow-box rounded-lg p-7">
           <Image src={image} alt="final_preview" />
@@ -73,7 +73,7 @@ const page = () => {
       </div>
 
       {/* btns */}
-      <div className="col-span-2 flex justify-end gap-5 items-center bg-white shadow-box rounded-lg p-5 mt-7">
+      <div className="col-span-2 flex justify-end gap-5 items-center bg-white shadow-box rounded-lg p-5 mt-5 2xl:mt-7">
         {/* Back btn */}
         <button
           onClick={e => {

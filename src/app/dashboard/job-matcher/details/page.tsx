@@ -50,7 +50,7 @@ const page = () => {
         Let AI analyze your job fit and get personalized suggestions
       </p>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 2xl:grid-cols-2 gap-5 2xl:gap-6">
         {/* Detected Job Details */}
         <div className="dashboard_card">
           <h4 className="section_sub_title !mb-8">Detected Job Details</h4>
@@ -78,7 +78,7 @@ const page = () => {
         <CoverLetterSuggestion />
 
         {/* btns */}
-        <div className="col-span-2 flex justify-end gap-5 items-center bg-white shadow-box rounded-lg p-5">
+        <div className="2xl:col-span-2 flex justify-end gap-5 items-center bg-white shadow-box rounded-lg p-5">
           {/* Back btn */}
           <button
             onClick={e => {

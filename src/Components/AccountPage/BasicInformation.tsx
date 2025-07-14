@@ -28,7 +28,7 @@ const BasicInformation = () => {
       className="p-7 bg-white shadow-box rounded-lg"
     >
       <h4 className="section_sub_title">Basic Information</h4>
-      <p className="section_sub_description !mb-10">
+      <p className="section_sub_description !mb-6 2xl:!mb-10">
         This information will be displayed publicity so be careful what you
         share
       </p>
@@ -95,7 +95,7 @@ const BasicInformation = () => {
               )}
             </div>
 
-            <div className="flex gap-7">
+            <div className="flex gap-5 2xl:gap-7">
               {/* Email Address */}
               <div className="flex-1">
                 <label htmlFor="email" className="resume_label">
@@ -144,7 +144,7 @@ const BasicInformation = () => {
           </div>
         </div>
       </div>
-      <div className="my-10 border py-2 px-4 rounded-xl flex items-center justify-between border-gray-200">
+      <div className="my-7 2xl:my-10 border py-2 px-4 rounded-xl flex items-center justify-between border-gray-200">
         <div className="space-y-2">
           <h4 className="text-center text-secondary-blue text-lg mt-3 font-semibold leading-[132%] tracking-[-0.319px]">
             Antonio Renders
@@ -158,9 +158,7 @@ const BasicInformation = () => {
 
       <div className="flex justify-end">
         {/* Apply btn */}
-        <button className="primary-btn">
-          Apply Changes
-        </button>
+        <button className="primary-btn">Apply Changes</button>
       </div>
     </form>
   );

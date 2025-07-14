@@ -34,14 +34,10 @@ const Page = () => {
     <section className="p-7 bg-white shadow-box rounded-lg">
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Title */}
-        <h4 className="text-dark-blue text-2xl font-semibold leading-[132%] tracking-[-0.319px] mb-2">
-          Skills
-        </h4>
+        <h4 className="section_sub_title">Skills</h4>
 
         {/* Description */}
-        <p className="text-light-gray leading-[164%] mb-5">
-          Review Your Skills
-        </p>
+        <p className="section_sub_description !mb-5">Review Your Skills</p>
 
         {/* Add Skills */}
         <div>
@@ -85,7 +81,7 @@ const Page = () => {
           ))}
         </div>
 
-        <div className="flex justify-end gap-5 items-center mt-7">
+        <div className="flex justify-end gap-3.5 2xl:gap-5 items-center mt-7">
           {/* Cancel btn */}
           <button
             onClick={e => {
