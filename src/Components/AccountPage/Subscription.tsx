@@ -25,9 +25,9 @@ const Subscription = () => {
   };
 
   return (
-    <section className="flex gap-7 items-start">
+    <section className="flex gap-7 items-start flex-col 3xl:flex-row">
       {/* Left */}
-      <div className="flex-1 p-7 bg-white shadow-box rounded-lg">
+      <div className="w-full 3xl:flex-1 p-7 bg-white shadow-box rounded-lg">
         <h4 className="section_sub_title">Subscription Plan Details</h4>
         <p className="section_sub_description !mb-1 text-lg">Premium Access</p>
         <p className="section_sub_description text-lg">9.99 EUR / Monthly</p>
@@ -58,7 +58,7 @@ const Subscription = () => {
       </div>
 
       {/* Right */}
-      <div className="flex-1 p-7 bg-white shadow-box rounded-lg">
+      <div className="w-full 3xl:flex-1 p-7 bg-white shadow-box rounded-lg">
         <h4 className="section_sub_title">Subscription</h4>
         <p className="section_sub_description">
           Remember, this info will be public, so choose your subscriptions

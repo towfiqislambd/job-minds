@@ -33,12 +33,12 @@ const ChangePassword = () => {
       className="p-7 bg-white shadow-box rounded-lg"
     >
       <h4 className="section_sub_title">Change Password</h4>
-      <p className="section_sub_description !mb-10">
+      <p className="section_sub_description !mb-5 2xl:!mb-10">
         Remember, your password and security details can be seen by others, so
         be cautious when sharing sensitive info.
       </p>
 
-      <div className="space-y-7">
+      <div className="space-y-5 2xl:space-y-7">
         {/* Current Password */}
         <div className="relative">
           <input
@@ -70,7 +70,7 @@ const ChangePassword = () => {
           </button>
         </div>
 
-        <div className="flex gap-7">
+        <div className="flex gap-5 2xl:gap-7">
           {/* New Password */}
           <div className="flex-1 relative">
             <input

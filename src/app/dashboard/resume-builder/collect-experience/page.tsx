@@ -24,14 +24,10 @@ const page = () => {
     <section className="p-7 bg-white shadow-box rounded-lg">
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Title */}
-        <h4 className="text-dark-blue text-2xl font-semibold leading-[132%] tracking-[-0.319px] mb-2">
-          Experience
-        </h4>
+        <h4 className="section_sub_title">Experience</h4>
 
         {/* Description */}
-        <p className="text-light-gray leading-[164%] mb-5">
-          Review Your work history.
-        </p>
+        <p className="section_sub_description !mb-5">Review Your work history.</p>
 
         {/* Work Title */}
         <div>
@@ -54,7 +50,7 @@ const page = () => {
           )}
         </div>
 
-        <div className="flex justify-end gap-5 items-center mt-7">
+        <div className="flex justify-end gap-3.5 2xl:gap-5 items-center mt-7">
           {/* Back btn */}
           <button
             onClick={e => {

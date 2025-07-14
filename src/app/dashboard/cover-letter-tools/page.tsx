@@ -111,7 +111,7 @@ const page: React.FC = () => {
   };
 
   return (
-    <section className="flex flex-col gap-y-10 h-auto container ">
+    <section className="flex flex-col gap-y-7 3xl:gap-y-10">
       <div className="flex flex-col">
         <h3 className="section_title">
           Create Professional Cover Letters in Minutes
@@ -121,8 +121,8 @@ const page: React.FC = () => {
         </p>
       </div>
 
-      <div className="flex gap-6 ">
-        <form className="w-[800px] bg-white shadow-box flex flex-col gap-y-3 p-7 rounded-lg">
+      <div className="flex flex-col 3xl:flex-row gap-6">
+        <form className="w-full 3xl:w-[700px] bg-white shadow-box flex flex-col gap-y-3 p-7 rounded-lg">
           <div className="flex flex-col gap-y-2 ">
             <h4 className="section_sub_title">Job details</h4>
             <p className="section_sub_description">
@@ -198,7 +198,7 @@ const page: React.FC = () => {
               </select>
             </div>
           </div>
-          <div className="flex flex-col gap-y-10 items-center ">
+          <div className="flex flex-col gap-y-10 items-center mt-5">
             <div className="flex flex-row  gap-x-6 items-center ">
               <button className="primary-btn" onClick={handleBack}>
                 Back
@@ -216,7 +216,7 @@ const page: React.FC = () => {
           </div>
         </form>
 
-        <div className="w-full max-h-[637px] bg-white shadow-md flex flex-col gap-y-3 p-7 rounded-lg">
+        <div className="w-full grow max-h-[637px] bg-white shadow-md flex flex-col gap-y-3 p-7 rounded-lg">
           <div className="flex flex-row w-full justify-between">
             <h4 className="section_sub_title">Live Preview</h4>
 
