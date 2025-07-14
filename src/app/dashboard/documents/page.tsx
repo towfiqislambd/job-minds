@@ -18,7 +18,7 @@ const page = () => {
       </p>
 
       {/* Tabs */}
-      <div className="inline-flex gap-3 items-center mt-8 mb-10 p-2 border rounded-full border-gray-200 shadow">
+      <div className="inline-flex gap-3 items-center mt-5 3xl:mt-8 mb-7 3xl:mb-10 p-2 border rounded-full border-gray-200 shadow">
         {/* Recent Activity */}
         <button
           onClick={() => setActiveTab("recent-activity")}

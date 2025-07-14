@@ -20,7 +20,7 @@ const Page = () => {
 
   return (
     <>
-      <div className="mb-10">
+      <div className="mb-7 3xl:mb-10">
         {/* Title */}
         <h3 className="section_title">LinkedIn Profile Optimizer</h3>
 
@@ -31,7 +31,9 @@ const Page = () => {
       </div>
 
       <div className="p-7 bg-white shadow-box rounded-lg">
-        <h5 className="section_sub_title !mb-5">Paste Your LinkedIn Profile</h5>
+        <h5 className="section_sub_title !mb-3.5 3xl:!mb-5">
+          Paste Your LinkedIn Profile
+        </h5>
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <textarea

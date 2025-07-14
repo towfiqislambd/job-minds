@@ -113,7 +113,7 @@ const Page = () => {
               Generate Questions
             </button>
           </div>
-          <div className="pt-6 flex flex-wrap gap-5">
+          <div className="pt-6 flex flex-wrap gap-3 3xl:gap-5">
             {jobRoles.map((role, index) => (
               <div
                 key={index}

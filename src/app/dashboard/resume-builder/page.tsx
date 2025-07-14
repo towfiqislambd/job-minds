@@ -68,11 +68,11 @@ const Page = () => {
       </p>
 
       {/* Mapped Data */}
-      <div className="mt-8 grid grid-cols-4 gap-x-6 gap-y-10">
+      <div className="mt-8 grid grid-cols-3 3xl:grid-cols-4 gap-6 3xl:gap-x-6 3xl:gap-y-10">
         {data.map(item => (
           <div
             key={item.id}
-            className="relative group rounded-2xl border-2 border-transparent p-7 bg-white hover:bg-transparent hover:border-primary-blue transition-all duration-300 pb-[80px] shadow-[-2px_4px_58px_rgba(244,250,255,0.11)]"
+            className="relative group rounded-2xl border-2 border-transparent p-6 bg-white hover:bg-transparent hover:border-primary-blue transition-all duration-300 pb-[80px] shadow-[-2px_4px_58px_rgba(244,250,255,0.11)]"
           >
             {/* Resume Image */}
             <figure className="w-full rounded-xl h-[230px] mx-auto shadow-xl mb-5 overflow-hidden">
@@ -84,12 +84,12 @@ const Page = () => {
             </figure>
 
             {/* Resume Name */}
-            <h3 className="text-secondary-blue text-center text-5xl leading-[132%] font-semibold capitalize">
+            <h3 className="text-secondary-blue text-center text-4xl 3xl:text-5xl leading-[132%] font-semibold capitalize">
               {item.resume_template_name}
             </h3>
 
             {/* Resume Short Description */}
-            <p className="text-[#A3A3A3] text-center text-[22px] leading-[164%]">
+            <p className="text-[#A3A3A3] text-center text-xl 3xl:text-[22px] leading-[164%]">
               {item.resume_short_description}
             </p>
 

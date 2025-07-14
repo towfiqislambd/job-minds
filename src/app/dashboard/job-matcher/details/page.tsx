@@ -46,7 +46,7 @@ const page = () => {
       <h3 className="section_title">AI-Powered Job Matching</h3>
 
       {/* Description */}
-      <p className="section_description mb-8">
+      <p className="section_description mb-7 3xl:mb-8">
         Let AI analyze your job fit and get personalized suggestions
       </p>
 

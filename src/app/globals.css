@@ -37,7 +37,7 @@
   --breakpoint-lg: 768px;
   --breakpoint-xl: 1024px;
   --breakpoint-2xl: 1280px;
-  --breakpoint-3xl: 1520px;
+  --breakpoint-3xl: 1536px;
 }
 
 body {
@@ -84,15 +84,15 @@ body {
 }
 
 .section_title {
-  @apply text-dark-blue text-3xl font-semibold leading-[132%] tracking-[-0.319px] mb-3;
+  @apply text-dark-blue text-[26px] 3xl:text-3xl font-semibold leading-[132%] tracking-[-0.319px] mb-3;
 }
 
 .section_description {
-  @apply text-xl text-light-gray max-w-[680px] leading-[164%];
+  @apply text-lg 3xl:text-xl text-light-gray max-w-[680px] 3xl:leading-[164%];
 }
 
 .section_sub_title {
-  @apply text-dark-blue text-2xl font-semibold leading-[132%] tracking-[-0.319px] mb-1.5;
+  @apply text-dark-blue text-[22px] 3xl:text-2xl font-semibold leading-[132%] tracking-[-0.319px] mb-1.5;
 }
 
 .section_sub_description {

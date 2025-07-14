@@ -3,7 +3,7 @@ import { CheckIconSvg } from "@/Components/SvgContainer/SvgContainer";
 
 const Page = () => {
   return (
-    <section className="space-y-7">
+    <section className="space-y-6 3xl:space-y-7">
       <div>
         {/* Title */}
         <h3 className="section_title">LinkedIn Profile Optimizer</h3>
@@ -46,7 +46,7 @@ const Page = () => {
 
       <div className="flex gap-6">
         {/* Left */}
-        <div className="bg-white rounded-lg p-8 ">
+        <div className="bg-white rounded-lg p-5 3xl:p-7">
           <h5 className="section_sub_title !mb-5">Current Profile</h5>
           <p className="p-6 bg-cream-white rounded-lg text-dark-blue text-xs font-normal leading-[164%]">
             As a passionate Data Analyst with over three years of experience, I
@@ -83,7 +83,7 @@ const Page = () => {
         </div>
 
         {/* Right */}
-        <div className="bg-white rounded-lg p-8 ">
+        <div className="bg-white rounded-lg p-5 3xl:p-7">
           <h5 className="section_sub_title !mb-5">AI-Enhanced Profile</h5>
           <p className="p-6 bg-cream-white rounded-lg text-dark-blue text-xs font-normal leading-[164%]">
             As a passionate Data Analyst with over three years of experience, I
@@ -120,7 +120,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg p-8 flex justify-between items-center">
+      <div className="bg-white rounded-lg p-7 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <CheckIconSvg />
           <p className="text-lg text-dark-blue leading-[164%]">
@@ -129,7 +129,7 @@ const Page = () => {
             suggested
           </p>
         </div>
-        <div className="flex justify-end gap-5 items-center">
+        <div className="flex justify-end gap-3 3xl:gap-5 items-center">
           {/* Copy btn */}
           <button className="secondary-btn">Copy</button>
 

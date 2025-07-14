@@ -35,7 +35,7 @@ const page = () => {
   return (
     <section className="p-7 bg-white shadow-box rounded-lg">
       {/* Section Title */}
-      <h3 className="text-dark-blue text-4xl font-semibold leading-[132%] tracking-[-0.319px] mb-7">
+      <h3 className="text-dark-blue text-3xl 3xl:text-4xl font-semibold leading-[132%] tracking-[-0.319px] mb-7">
         Resume Complication
       </h3>
 

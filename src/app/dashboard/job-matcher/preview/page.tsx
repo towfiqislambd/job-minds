@@ -13,11 +13,11 @@ const page = () => {
       <h3 className="section_title">AI-Powered Job Matching</h3>
 
       {/* Description */}
-      <p className="section_description mb-8">
+      <p className="section_description mb-7 3xl:mb-8">
         Let AI analyze your job fit and get personalized suggestions
       </p>
 
-      <div className="grid grid-cols-2 gap-6 items-start">
+      <div className="grid 3xl:grid-cols-2 gap-6 items-start">
         {/* Left */}
         <div className="bg-white shadow-box rounded-lg p-7">
           <Image src={image} alt="final_preview" />
