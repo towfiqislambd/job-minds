@@ -23,10 +23,7 @@ const BasicInformation = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="p-7 bg-white shadow-box rounded-lg"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="dashboard_card">
       <h4 className="section_sub_title">Basic Information</h4>
       <p className="section_sub_description !mb-6 2xl:!mb-10">
         This information will be displayed publicity so be careful what you

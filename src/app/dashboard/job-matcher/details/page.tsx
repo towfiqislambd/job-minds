@@ -78,7 +78,7 @@ const page = () => {
         <CoverLetterSuggestion />
 
         {/* btns */}
-        <div className="2xl:col-span-2 flex justify-end gap-5 items-center bg-white shadow-box rounded-lg p-5">
+        <div className="2xl:col-span-2 flex justify-end gap-3 xl:gap-5 items-center dashboard_card">
           {/* Back btn */}
           <button
             onClick={e => {

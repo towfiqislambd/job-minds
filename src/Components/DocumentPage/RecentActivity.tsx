@@ -43,11 +43,11 @@ const data: activity[] = [
 
 const RecentActivity = () => {
   return (
-    <section className="p-7 bg-white shadow-box rounded-lg">
+    <section className="dashboard_card">
       <h4 className="section_sub_title">Recent Activity</h4>
 
       {/* Map */}
-      <div className="mt-5 2xl:mt-7 space-y-5">
+      <div className="mt-3 xl:mt-5 2xl:mt-7 space-y-5">
         {data?.map(({ id, title, role, time }) => (
           <div
             key={id}

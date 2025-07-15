@@ -21,13 +21,15 @@ const page = () => {
   };
 
   return (
-    <section className="p-7 bg-white shadow-box rounded-lg">
+    <section className="dashboard_card">
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Title */}
         <h4 className="section_sub_title">Experience</h4>
 
         {/* Description */}
-        <p className="section_sub_description !mb-5">Review Your work history.</p>
+        <p className="section_sub_description !mb-5">
+          Review Your work history.
+        </p>
 
         {/* Work Title */}
         <div>

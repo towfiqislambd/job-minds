@@ -127,7 +127,7 @@ const Page = () => {
         </div>
 
         {showQuestions && (
-          <div className="p-7 bg-white shadow-box rounded-lg mb-10">
+          <div className="dashboard_card mb-10">
             <h2 className="section_sub_title !mb-5">Interview Questions</h2>
             <div className="flex flex-col gap-4 2xl:gap-5">
               {questionsData.map((item, index) => {

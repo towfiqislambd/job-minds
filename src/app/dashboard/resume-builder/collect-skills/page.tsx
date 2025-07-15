@@ -31,7 +31,7 @@ const Page = () => {
   };
 
   return (
-    <section className="p-7 bg-white shadow-box rounded-lg">
+    <section className="dashboard_card">
       <form onSubmit={handleSubmit(onSubmit)}>
         {/* Title */}
         <h4 className="section_sub_title">Skills</h4>

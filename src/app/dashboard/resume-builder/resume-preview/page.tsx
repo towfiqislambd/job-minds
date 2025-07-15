@@ -22,7 +22,7 @@ const page = () => {
         />
       </div>
 
-      <div className="flex justify-between items-center bg-white shadow-box rounded-lg p-5">
+      <div className="flex justify-between items-center dashboard_card">
         {/* Back btn */}
         <button
           onClick={e => {
@@ -34,7 +34,7 @@ const page = () => {
           Back
         </button>
 
-        <div className="flex justify-end gap-5 items-center">
+        <div className="flex justify-end gap-3 xl:gap-5 items-center">
           {/* Save btn */}
           <button className="secondary-btn">Save</button>
 

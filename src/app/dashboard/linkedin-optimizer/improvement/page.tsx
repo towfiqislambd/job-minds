@@ -14,7 +14,7 @@ const Page = () => {
         </p>
       </div>
 
-      <div className="p-7 bg-white rounded-lg">
+      <div className="dashboard_card">
         <h5 className="section_sub_title !mb-5">Improvement Suggestion</h5>
         <div className="flex flex-wrap items-center gap-5">
           <div>
@@ -46,7 +46,7 @@ const Page = () => {
 
       <div className="flex flex-col 2xl:flex-row gap-5 2xl:gap-6">
         {/* Left */}
-        <div className="bg-white rounded-lg p-5 3xl:p-7">
+        <div className="dashboard_card">
           <h5 className="section_sub_title !mb-5">Current Profile</h5>
           <p className="p-6 bg-cream-white rounded-lg text-dark-blue text-xs font-normal leading-[164%]">
             As a passionate Data Analyst with over three years of experience, I
@@ -83,7 +83,7 @@ const Page = () => {
         </div>
 
         {/* Right */}
-        <div className="bg-white rounded-lg p-5 3xl:p-7">
+        <div className="dashboard_card">
           <h5 className="section_sub_title !mb-5">AI-Enhanced Profile</h5>
           <p className="p-6 bg-cream-white rounded-lg text-dark-blue text-xs font-normal leading-[164%]">
             As a passionate Data Analyst with over three years of experience, I
@@ -120,7 +120,7 @@ const Page = () => {
         </div>
       </div>
 
-      <div className="bg-white rounded-lg p-7 flex gap-5 flex-col 2xl:flex-row justify-between items-center">
+      <div className="dashboard_card flex gap-5 flex-col 2xl:flex-row justify-between items-center">
         <div className="flex items-center gap-2">
           <CheckIconSvg />
           <p className="text-lg text-dark-blue leading-[164%]">

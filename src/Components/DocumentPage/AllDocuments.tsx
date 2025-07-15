@@ -54,10 +54,7 @@ const AllDocuments = () => {
   const [popoverId, setPopoverId] = useState<number>(0);
 
   return (
-    <section
-      onClick={() => setOpen(false)}
-      className="p-7 bg-white shadow-box rounded-lg"
-    >
+    <section onClick={() => setOpen(false)} className="dashboard_card">
       {/* Upper Part */}
       <div className="flex justify-between items-center">
         <h4 className="section_sub_title">All Documents</h4>

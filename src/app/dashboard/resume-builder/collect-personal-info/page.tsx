@@ -33,9 +33,9 @@ const page = () => {
   };
 
   return (
-    <section className="p-7 bg-white shadow-box rounded-lg">
+    <section className="dashboard_card">
       {/* Section Title */}
-      <h3 className="text-dark-blue text-[26px] 2xl:text-3xl 3xl:text-4xl font-semibold leading-[132%] tracking-[-0.319px] mb-5 2xl:mb-7">
+      <h3 className="text-dark-blue text-2xl xl:text-[26px] 2xl:text-3xl 3xl:text-4xl font-semibold leading-[132%] tracking-[-0.319px] mb-5 2xl:mb-7">
         Resume Complication
       </h3>
 

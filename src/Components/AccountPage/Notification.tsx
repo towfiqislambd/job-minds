@@ -9,7 +9,7 @@ const Notification = () => {
   const [subscriptionEnabled, setSubscriptionEnabled] = useState(false);
 
   return (
-    <section className="p-7 bg-white shadow-box rounded-lg">
+    <section className="dashboard_card">
       {/* Title */}
       <h4 className="section_sub_title">Notifications & Reminders</h4>
 

@@ -57,7 +57,7 @@ const Page = () => {
   const [previewResume, setPreviewResume] = useState<ResumeItem | null>(null);
 
   return (
-    <section>
+    <>
       {/* Title */}
       <h3 className="section_title">Build a Standout Resume in Minutes</h3>
 
@@ -122,7 +122,7 @@ const Page = () => {
             onClick={() => setOpen(false)}
           ></div>
 
-          <div className="relative z-10 w-full max-w-3xl h-[calc(100vh-50px)] overflow-y-auto bg-white rounded-lg shadow-lg">
+          <div className="relative z-10 w-full max-w-2xl xl:max-w-3xl h-[calc(100vh-50px)] overflow-y-auto bg-white rounded-lg shadow-lg">
             <Image
               src={previewResume.resume_image}
               alt="preview resume"
@@ -131,7 +131,7 @@ const Page = () => {
           </div>
         </div>
       )}
-    </section>
+    </>
   );
 };
 

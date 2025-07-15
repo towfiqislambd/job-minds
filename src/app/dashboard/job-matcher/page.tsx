@@ -33,7 +33,7 @@ const page = () => {
         Let AI analyze your job fit and get personalized suggestions
       </p>
 
-      <div className="shadow-box p-7 bg-white rounded-lg">
+      <div className="dashboard_card">
         <h4 className="section_sub_title">Import Job Details</h4>
 
         <p className="section_sub_description text-lg !mt-3 !mb-7">

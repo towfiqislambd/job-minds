@@ -122,7 +122,7 @@ const page: React.FC = () => {
       </div>
 
       <div className="flex flex-col 3xl:flex-row gap-6">
-        <form className="w-full 3xl:w-[700px] bg-white shadow-box flex flex-col gap-y-3 p-7 rounded-lg">
+        <form className="w-full 3xl:w-[700px] flex flex-col gap-y-3 dashboard_card">
           <div className="flex flex-col gap-y-2 ">
             <h4 className="section_sub_title">Job details</h4>
             <p className="section_sub_description">
@@ -199,7 +199,7 @@ const page: React.FC = () => {
             </div>
           </div>
           <div className="flex flex-col gap-y-10 items-center mt-5">
-            <div className="flex flex-row  gap-x-6 items-center ">
+            <div className="flex flex-row gap-3 xl:gap-5 items-center ">
               <button className="primary-btn" onClick={handleBack}>
                 Back
               </button>
@@ -216,7 +216,7 @@ const page: React.FC = () => {
           </div>
         </form>
 
-        <div className="w-full grow max-h-[637px] bg-white shadow-md flex flex-col gap-y-3 p-7 rounded-lg">
+        <div className="w-full grow max-h-[637px] flex flex-col gap-y-3 dashboard_card">
           <div className="flex flex-row w-full justify-between">
             <h4 className="section_sub_title">Live Preview</h4>
 
@@ -247,7 +247,7 @@ const page: React.FC = () => {
             readOnly
           ></textarea>
 
-          <div className="flex gap-5 items-center mt-5">
+          <div className="flex gap-3 xl:gap-5 items-center mt-5">
             <button className="primary-btn" onClick={handleSave}>
               Save
             </button>

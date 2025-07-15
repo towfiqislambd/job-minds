@@ -45,7 +45,7 @@ const data = [
 
 const TermsOfService = () => {
   return (
-    <section className="p-7 bg-white shadow-box rounded-lg">
+    <section className="dashboard_card">
       <h4 className="section_sub_title">Terms of Service</h4>
       <p className="section_sub_description !mb-10">
         Welcome to Job Minds, your AI-powered resume and job assistant. By using

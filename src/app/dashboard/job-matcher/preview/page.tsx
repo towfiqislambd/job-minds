@@ -19,12 +19,12 @@ const page = () => {
 
       <div className="grid 3xl:grid-cols-2 gap-5 2xl:gap-6 items-start">
         {/* Left */}
-        <div className="bg-white shadow-box rounded-lg p-7">
+        <div className="dashboard_card">
           <Image src={image} alt="final_preview" />
         </div>
 
         {/* Right */}
-        <div className="bg-white shadow-box rounded-lg p-7">
+        <div className="dashboard_card">
           <h4 className="section_sub_title !mb-5">Cover Letter Preview</h4>
 
           <div className="p-5 bg-gray-100 shadow-box rounded">
@@ -73,7 +73,7 @@ const page = () => {
       </div>
 
       {/* btns */}
-      <div className="col-span-2 flex justify-end gap-5 items-center bg-white shadow-box rounded-lg p-5 mt-5 2xl:mt-7">
+      <div className="col-span-2 flex justify-end gap-3 xl:gap-5 items-center dashboard_card mt-5 2xl:mt-7">
         {/* Back btn */}
         <button
           onClick={e => {

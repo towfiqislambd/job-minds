@@ -9,7 +9,7 @@ const EditProfile = () => {
   return (
     <section className="space-y-5 2xl:space-y-7">
       {/* Premium Access */}
-      <div className="p-7 bg-white shadow-box rounded-lg">
+      <div className="dashboard_card">
         <Image
           src={profileImg}
           alt="profile image"
@@ -41,7 +41,7 @@ const EditProfile = () => {
       <ChangePassword />
 
       {/* Logout / Delete*/}
-      <div className="p-7 bg-white shadow-box rounded-lg">
+      <div className="dashboard_card">
         <h4 className="section_sub_title">Log Out OR Delete Account </h4>
         <p className="section_sub_description max-w-[644px]">
           Hey there! If you want to say goodbye to your account, just head over

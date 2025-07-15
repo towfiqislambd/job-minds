@@ -93,7 +93,7 @@ body {
 }
 
 .section_sub_title {
-  @apply text-dark-blue text-[22px] 3xl:text-2xl font-semibold leading-[132%] tracking-[-0.319px] mb-1.5;
+  @apply text-dark-blue text-xl xl:text-[22px] 3xl:text-2xl font-semibold leading-[132%] tracking-[-0.319px] mb-1.5;
 }
 
 .section_sub_description {
@@ -101,5 +101,5 @@ body {
 }
 
 .dashboard_card {
-  @apply shadow-box p-7 bg-white rounded-lg;
+  @apply p-5 xl:p-7 bg-white shadow-box rounded-lg;
 }
