@@ -68,7 +68,7 @@ const Page = () => {
       </p>
 
       {/* Mapped Data */}
-      <div className="mt-8 grid grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4 gap-6 3xl:gap-x-6 3xl:gap-y-10">
+      <div className="mt-8 grid grid-cols-2 2xl:grid-cols-3 4xl:grid-cols-4 gap-6 3xl:gap-x-6 3xl:gap-y-10">
         {data.map(item => (
           <div
             key={item.id}
@@ -82,19 +82,16 @@ const Page = () => {
                 className="w-full rounded-2xl h-fit"
               />
             </figure>
-
             {/* Resume Name */}
             <h3 className="text-secondary-blue text-center text-3xl 2xl:text-4xl 3xl:text-5xl leading-[132%] font-semibold capitalize">
               {item.resume_template_name}
             </h3>
-
             {/* Resume Short Description */}
             <p className="text-[#A3A3A3] text-center text-xl 3xl:text-[22px] leading-[164%]">
               {item.resume_short_description}
             </p>
-
             {/* Buttons */}
-            <div className="absolute left-10 2xl:left-3 3xl:left-7 right-3 3xl:right-7 bottom-7 translate-y-5 group-hover:translate-y-1 opacity-0 group-hover:opacity-100 transition-all duration-300 flex gap-3 3xl:justify-between items-center">
+            <div className="absolute left-1/2 -translate-x-1/2 translate-y-5 group-hover:translate-y-1 opacity-0 group-hover:opacity-100 transition-all duration-300 flex gap-3 3xl:justify-between items-center">
               {/* View btn */}
               <Button
                 Txt="View Template"
@@ -103,11 +100,11 @@ const Page = () => {
                   setPreviewResume(item);
                 }}
                 animation={false}
-                className="px-4 3xl:px-6 py-2.5 3xl:py-3.5 text-xs rounded-[50px] bg-transparent text-primary-blue border border-primary-blue cursor-pointer"
+                className="px-4 3xl:px-6 py-2.5 3xl:py-3.5 text-xs rounded-[50px] bg-transparent text-primary-blue border border-primary-blue cursor-pointer text-nowrap"
               />
               {/* Link */}
               <Link
-                className="px-4 3xl:px-6 py-2.5 3xl:py-3.5 text-xs rounded-[50px] bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white cursor-pointer"
+                className="px-4 3xl:px-6 py-2.5 3xl:py-3.5 text-xs rounded-[50px] bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white cursor-pointer text-nowrap"
                 href="/dashboard/resume-builder/collect-personal-info"
               >
                 Use This Template
