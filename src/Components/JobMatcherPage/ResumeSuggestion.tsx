@@ -46,7 +46,7 @@ const ResumeSuggestion = () => {
       <div className="space-y-3 lg:space-y-5">
         {data?.map(({ id, title, description }) => (
           <div key={id} className="border p-4 rounded-lg border-gray-100">
-            <div className="flex justify-between items-start gap-5">
+            <div className="flex flex-col-reverse md:flex-row justify-between items-start gap-3 md:gap-5">
               <div>
                 <p className="section_sub_title !text-base lg:!text-lg 3xl:!text-xl">
                   {title}

@@ -58,7 +58,7 @@ const AllDocuments = () => {
       {/* Upper Part */}
       <div className="flex flex-col lg:flex-row gap-3 lg:gap-0 justify-between items-center">
         <h4 className="section_sub_title">All Documents</h4>
-        <div className="flex gap-3 3xl:gap-5 items-center">
+        <div className="flex gap-3 3xl:gap-5 items-center flex-wrap-reverse justify-center">
           {/* Search */}
           <p className="border rounded-full w-[250px] px-4 py-1.5 lg:py-2 xl:py-2.5 border-gray-200 flex gap-2 items-center">
             <span className="shrink-0">

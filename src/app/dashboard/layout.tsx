@@ -72,16 +72,16 @@ export default function DashboardLayout({
   return (
     <section className="min-h-screen max-h-screen flex flex-col">
       {/* Header */}
-      <header className="bg-white h-[84px] flex justify-between items-center px-5 3xl:px-10 fixed w-full left-0 right-0 z-40">
+      <header className="bg-white h-[70px] md:h-[84px] flex justify-between items-center px-4 md:px-5 3xl:px-10 fixed w-full left-0 right-0 z-40">
         {/* Left */}
         <div className="flex gap-10 2xl:gap-24">
           {/* Logo */}
           <figure
             onClick={() => router.push("/")}
-            className="flex gap-3 items-center cursor-pointer"
+            className="flex gap-2 md:gap-3 items-center cursor-pointer"
           >
             <DashboardLogo />
-            <p className="text-2xl font-bold tracking-[-0.203px] bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] bg-clip-text text-transparent">
+            <p className="hidden sm:block text-xl md:text-2xl font-bold md:tracking-[-0.203px] bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] bg-clip-text text-transparent">
               Job Minds
             </p>
           </figure>
@@ -95,8 +95,8 @@ export default function DashboardLayout({
           </p>
         </div>
         {/* Right */}
-        <div className="flex gap-4 items-center">
-          <button className="w-10 h-10 rounded-full grid place-items-center cursor-pointer border border-[#ECEEF0]">
+        <div className="flex gap-3 md:gap-4 items-center">
+          <button className="w-9 md:w-10 h-9 md:h-10 rounded-full grid place-items-center cursor-pointer border border-[#ECEEF0]">
             <NotificationSvg />
           </button>
           <select className="border-none outline-none text-dark-blue font-medium">
@@ -105,15 +105,15 @@ export default function DashboardLayout({
           </select>
           <button
             onClick={() => setOpen(!open)}
-            className="xl:hidden w-10 h-9.5 cursor-pointer grid place-items-center rounded text-white bg-secondary-blue"
+            className="xl:hidden w-9 md:w-10 h-8.5 md:h-9.5 cursor-pointer grid place-items-center rounded text-white bg-secondary-blue"
           >
-            <FaBars className="text-2xl" />
+            <FaBars className="text-xl md:text-2xl" />
           </button>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="flex overflow-x-hidden mt-[84px] h-[calc(100vh-84px)]">
+      <main className="flex overflow-x-hidden mt-[70px] md:mt-[84px] h-[calc(100vh-70px)] md:h-[calc(100vh-84px)]">
         {/* Sidebar */}
         <aside
           className={`${
@@ -176,7 +176,7 @@ export default function DashboardLayout({
         </aside>
 
         {/* Outlet */}
-        <section className="flex-1 p-5 2xl:p-6 3xl:p-7 bg-gray-100 overflow-y-auto">
+        <section className="flex-1 p-4 md:p-5 2xl:p-6 3xl:p-7 bg-gray-100 overflow-y-auto">
           {children}
         </section>
 

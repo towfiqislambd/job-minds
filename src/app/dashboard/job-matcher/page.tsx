@@ -29,19 +29,22 @@ const page = () => {
       <h3 className="section_title">AI-Powered Job Matching</h3>
 
       {/* Description */}
-      <p className="section_description mb-7 3xl:mb-8">
+      <p className="section_description mb-5 md:mb-7 3xl:mb-8">
         Let AI analyze your job fit and get personalized suggestions
       </p>
 
       <div className="dashboard_card">
         <h4 className="section_sub_title">Import Job Details</h4>
 
-        <p className="section_sub_description text-lg !mt-3 !mb-7">
+        <p className="section_sub_description text-lg md:!mt-3 !mb-5 md:!mb-7">
           Paste a job listing URL or the full job description to get
           personalized suggestions
         </p>
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="space-y-3 md:space-y-5"
+        >
           {/* Write Job Description */}
           <div>
             <label htmlFor="job_details" className="resume_label">
@@ -77,7 +80,7 @@ const page = () => {
             >
               <div className="flex flex-col gap-3 justify-center items-center">
                 <DownloadSvg />
-                <p className="text-gray-500">
+                <p className="text-gray-500 text-sm md:text-base">
                   Click to upload your description PDF
                 </p>
               </div>

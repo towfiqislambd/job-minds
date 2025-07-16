@@ -27,7 +27,7 @@ const page = () => {
         <div className="dashboard_card">
           <h4 className="section_sub_title !mb-5">Cover Letter Preview</h4>
 
-          <div className="p-5 bg-gray-100 shadow-box rounded text-sm lg:text-base">
+          <div className="p-3 md:p-5 bg-gray-100 shadow-box rounded text-sm lg:text-base">
             <p className="">
               James Carter <br /> 123 Maple Street <br /> Springfield, IL 62701
             </p>

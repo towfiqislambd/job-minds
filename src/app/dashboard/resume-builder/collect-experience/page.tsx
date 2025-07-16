@@ -27,7 +27,7 @@ const page = () => {
         <h4 className="section_sub_title">Experience</h4>
 
         {/* Description */}
-        <p className="section_sub_description !mb-5">
+        <p className="section_sub_description !mb-3 md:!mb-5">
           Review Your work history.
         </p>
 
@@ -52,7 +52,7 @@ const page = () => {
           )}
         </div>
 
-        <div className="flex justify-end gap-3.5 2xl:gap-5 items-center mt-7">
+        <div className="flex justify-end gap-3.5 2xl:gap-5 items-center mt-5 md:mt-7">
           {/* Back btn */}
           <button
             onClick={e => {

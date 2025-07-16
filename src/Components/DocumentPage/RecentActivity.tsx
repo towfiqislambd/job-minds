@@ -51,7 +51,7 @@ const RecentActivity = () => {
         {data?.map(({ id, title, role, time }) => (
           <div
             key={id}
-            className="border border-gray-200 rounded-lg p-3 lg:px-5 lg:py-4 flex justify-between items-center"
+            className="border border-gray-200 rounded-lg p-3 lg:px-5 lg:py-4 flex flex-col md:flex-row md: md:justify-between md:items-center gap-3 md:gap-0 "
           >
             {/* Left */}
             <div className="flex gap-4 items-center">
@@ -67,7 +67,7 @@ const RecentActivity = () => {
             </div>
 
             {/* Right */}
-            <div className="flex gap-2 items-center">
+            <div className="flex gap-2 items-center justify-center md:justify-start">
               <ClockSvg />
               <p className="text-light-gray text-sm lg:text-base">{time}</p>
             </div>

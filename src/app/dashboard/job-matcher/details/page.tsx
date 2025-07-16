@@ -53,14 +53,19 @@ const page = () => {
       <div className="grid grid-cols-1 2xl:grid-cols-2 gap-5 2xl:gap-6">
         {/* Detected Job Details */}
         <div className="dashboard_card">
-          <h4 className="section_sub_title !mb-8">Detected Job Details</h4>
+          <h4 className="section_sub_title !mb-5 md:!mb-8">
+            Detected Job Details
+          </h4>
 
           <div className="space-y-4">
             {data?.map(({ id, title, description }) => (
-              <div key={id} className="flex">
-                <p className="space-y-3 text-light-gray flex-1">{title}</p>
-                <p className="flex-1">:</p>
-                <p className="text-secondary-black font-medium flex-1 text-right">
+              <div
+                key={id}
+                className="flex gap-2 md:gap-0 text-sm md:text-base"
+              >
+                <p className="space-y-3 text-light-gray md:flex-1">{title}</p>
+                <p className="md:flex-1">: </p>
+                <p className="text-secondary-black font-medium flex-1 md:text-right">
                   {description}
                 </p>
               </div>

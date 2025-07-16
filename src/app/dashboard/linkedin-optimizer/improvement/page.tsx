@@ -16,27 +16,27 @@ const Page = () => {
 
       <div className="dashboard_card">
         <h5 className="section_sub_title !mb-5">Improvement Suggestion</h5>
-        <div className="flex flex-wrap items-center gap-5">
+        <div className="flex flex-wrap items-center gap-3 md:gap-5">
           <div>
-            <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-5 py-2.5 font-medium">
+            <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-3 md:px-5 py-2 md:py-2.5 font-medium">
               Structure
-              <span className="justify-center items-center rounded-full text-white bg-secondary-blue  font-semibold h-7 w-7 grid place-items-center">
+              <span className="justify-center items-center rounded-full text-white bg-secondary-blue  font-semibold w-6 h-6 md:h-7 md:w-7 grid place-items-center">
                 4
               </span>
             </button>
           </div>
           <div>
-            <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-5 py-2.5 font-medium">
+            <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-3 md:px-5 py-2 md:py-2.5 font-medium">
               Keywords
-              <span className="bg-[#FFA600] justify-center items-center rounded-full text-white  font-semibold h-7 w-7 grid place-items-center">
+              <span className="bg-[#FFA600] justify-center items-center rounded-full text-white  font-semibold w-6 h-6 md:h-7 md:w-7 grid place-items-center">
                 4
               </span>
             </button>
           </div>
           <div className="">
-            <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-5 py-2.5 font-medium">
+            <button className="flex items-center gap-3 justify-center border text-light-gray text-sm border-alt-border rounded-full px-3 md:px-5 py-2 md:py-2.5 font-medium">
               Tone
-              <span className="bg-[#F44336] justify-center items-center rounded-full text-white  font-semibold h-7 w-7 grid place-items-center">
+              <span className="bg-[#F44336] justify-center items-center rounded-full text-white  font-semibold w-6 h-6 md:h-7 md:w-7 grid place-items-center">
                 6
               </span>
             </button>
@@ -47,8 +47,8 @@ const Page = () => {
       <div className="flex flex-col 2xl:flex-row gap-5 2xl:gap-6">
         {/* Left */}
         <div className="dashboard_card">
-          <h5 className="section_sub_title !mb-5">Current Profile</h5>
-          <p className="p-6 bg-cream-white rounded-lg text-dark-blue text-xs font-normal leading-[164%]">
+          <h5 className="section_sub_title !mb-3 md:!mb-5">Current Profile</h5>
+          <p className="p-3 md:p-6 bg-cream-white rounded-lg text-dark-blue text-xs font-normal leading-[164%]">
             As a passionate Data Analyst with over three years of experience, I
             thrive on transforming complex data into actionable insights that
             drive business success. My journey began at InsightEdge Solutions,
@@ -84,8 +84,8 @@ const Page = () => {
 
         {/* Right */}
         <div className="dashboard_card">
-          <h5 className="section_sub_title !mb-5">AI-Enhanced Profile</h5>
-          <p className="p-6 bg-cream-white rounded-lg text-dark-blue text-xs font-normal leading-[164%]">
+          <h5 className="section_sub_title !mb-3 md:!mb-5">AI-Enhanced Profile</h5>
+          <p className="p-3 md:p-6 bg-cream-white rounded-lg text-dark-blue text-xs font-normal leading-[164%]">
             As a passionate Data Analyst with over three years of experience, I
             thrive on transforming complex data into actionable insights that
             drive business success. My journey began at InsightEdge Solutions,
@@ -129,7 +129,7 @@ const Page = () => {
             suggested
           </p>
         </div>
-        <div className="flex justify-end gap-3 3xl:gap-5 items-center">
+        <div className="flex flex-wrap justify-center md:justify-end gap-3 3xl:gap-5 items-center">
           {/* Copy btn */}
           <button className="secondary-btn">Copy</button>
 

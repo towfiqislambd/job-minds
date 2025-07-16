@@ -29,7 +29,9 @@ const Subscription = () => {
       {/* Left */}
       <div className="w-full 3xl:flex-1 dashboard_card">
         <h4 className="section_sub_title">Subscription Plan Details</h4>
-        <p className="section_sub_description !mb-1 lg:text-lg">Premium Access</p>
+        <p className="section_sub_description !mb-1 lg:text-lg">
+          Premium Access
+        </p>
         <p className="section_sub_description lg:text-lg">9.99 EUR / Monthly</p>
 
         <h4 className="section_sub_title">Included Features</h4>
@@ -67,7 +69,7 @@ const Subscription = () => {
 
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div className="flex gap-5">
+          <div className="flex flex-col md:flex-row gap-5">
             {/* First Name */}
             <div className="flex-1">
               <label htmlFor="first_name" className="resume_label">
@@ -174,7 +176,7 @@ const Subscription = () => {
             )}
           </div>
 
-          <div className="flex gap-5">
+          <div className="flex flex-col md:flex-row gap-5">
             {/* City */}
             <div className="flex-1">
               <label htmlFor="city" className="resume_label">

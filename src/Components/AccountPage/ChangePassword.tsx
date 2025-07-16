@@ -53,7 +53,7 @@ const ChangePassword = () => {
           )}
 
           <button
-            className="absolute top-3 right-3 cursor-pointer"
+            className="absolute top-1.5 md:top-3 right-2 md:right-3 cursor-pointer"
             onClick={e => {
               e.preventDefault();
               setShowCurrentPassword(!showCurrentPassword);
@@ -67,7 +67,7 @@ const ChangePassword = () => {
           </button>
         </div>
 
-        <div className="flex gap-5 2xl:gap-7">
+        <div className="flex flex-col md:flex-row gap-5 2xl:gap-7">
           {/* New Password */}
           <div className="flex-1 relative">
             <input
@@ -84,7 +84,7 @@ const ChangePassword = () => {
               </p>
             )}
             <button
-              className="absolute top-3 right-3 cursor-pointer"
+              className="absolute top-1.5 md:top-3 right-2 md:right-3 cursor-pointer"
               onClick={e => {
                 e.preventDefault();
                 setShowNewPassword(!showNewPassword);
@@ -113,7 +113,7 @@ const ChangePassword = () => {
               </p>
             )}
             <button
-              className="absolute top-3 right-3 cursor-pointer"
+              className="absolute top-1.5 md:top-3 right-2 md:right-3 cursor-pointer"
               onClick={e => {
                 e.preventDefault();
                 setShowConfirmPassword(!showConfirmPassword);
@@ -129,7 +129,7 @@ const ChangePassword = () => {
         </div>
       </div>
 
-      <div className="flex justify-end mt-8">
+      <div className="flex justify-end mt-5 md:mt-8">
         {/* Apply btn */}
         <button type="submit" className="primary-btn">
           Apply Changes

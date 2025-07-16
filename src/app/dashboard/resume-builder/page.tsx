@@ -72,7 +72,7 @@ const Page = () => {
         {data.map(item => (
           <div
             key={item.id}
-            className="relative group rounded-2xl border-2 border-transparent p-6 bg-white hover:bg-transparent hover:border-primary-blue transition-all duration-300 pb-[80px] shadow-[-2px_4px_58px_rgba(244,250,255,0.11)]"
+            className="relative group rounded-2xl border-2 border-transparent p-5 bg-white hover:bg-transparent hover:border-primary-blue transition-all duration-300 pb-[80px] shadow-[-2px_4px_58px_rgba(244,250,255,0.11)]"
           >
             {/* Resume Image */}
             <figure className="w-full rounded-xl h-[230px] mx-auto shadow-xl mb-5 overflow-hidden">
@@ -122,7 +122,7 @@ const Page = () => {
             onClick={() => setOpen(false)}
           ></div>
 
-          <div className="relative z-10 w-[calc(100vw-30px)] lg:max-w-2xl xl:max-w-3xl h-[calc(100vh-50px)] overflow-y-auto bg-white rounded-lg shadow-lg">
+          <div className="relative z-10 w-[calc(100vw-30px)] lg:max-w-2xl xl:max-w-3xl max-h-[calc(100vh-50px)] overflow-y-auto bg-white rounded-lg shadow-lg">
             <Image
               src={previewResume.resume_image}
               alt="preview resume"

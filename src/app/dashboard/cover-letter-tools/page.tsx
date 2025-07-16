@@ -111,7 +111,7 @@ const page: React.FC = () => {
   };
 
   return (
-    <section className="flex flex-col gap-y-7 3xl:gap-y-10">
+    <section className="flex flex-col gap-5 md:gap-y-7 3xl:gap-y-10">
       <div className="flex flex-col">
         <h3 className="section_title">
           Create Professional Cover Letters in Minutes
@@ -122,8 +122,8 @@ const page: React.FC = () => {
       </div>
 
       <div className="flex flex-col 3xl:flex-row gap-6">
-        <form className="w-full 3xl:w-[700px] flex flex-col gap-y-3 dashboard_card">
-          <div className="flex flex-col gap-y-2 ">
+        <form className="w-full 3xl:w-[700px] flex flex-col gap-y-1 md:gap-y-3 dashboard_card">
+          <div className="flex flex-col gap-y-1 md:gap-y-2 ">
             <h4 className="section_sub_title">Job details</h4>
             <p className="section_sub_description">
               This information will be displayed publicity so be careful what
@@ -131,7 +131,7 @@ const page: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex flex-col gap-y-6">
+          <div className="flex flex-col gap-4.5 md:gap-y-6">
             <div className="relative">
               <label className="resume_label">Job Title</label>
               <input
@@ -217,7 +217,7 @@ const page: React.FC = () => {
         </form>
 
         <div className="w-full grow max-h-[637px] flex flex-col gap-y-3 dashboard_card">
-          <div className="flex flex-row w-full justify-between">
+          <div className="flex gap-3 md:gap-0 flex-col md:flex-row w-full justify-between">
             <h4 className="section_sub_title">Live Preview</h4>
 
             <div className="flex flex-row gap-3">
@@ -225,7 +225,7 @@ const page: React.FC = () => {
                 name="length"
                 value={formData.length}
                 onChange={handleInputChange}
-                className="h-auto w-auto py-3 cursor-pointer px-4 bg-cream-white rounded-[50px]"
+                className="h-auto w-auto py-2 md:py-3 cursor-pointer px-4 bg-cream-white rounded-[50px]"
               >
                 <option value="Short">Short</option>
                 <option value="Long">Long</option>
@@ -234,7 +234,7 @@ const page: React.FC = () => {
                 name="tone"
                 value={formData.tone}
                 onChange={handleInputChange}
-                className="h-auto w-auto py-3 cursor-pointer px-4 bg-cream-white rounded-[50px]"
+                className="h-auto w-auto py-2 md:py-3 cursor-pointer px-4 bg-cream-white rounded-[50px]"
               >
                 <option value="Professional">Professional</option>
                 <option value="Normal">Normal</option>

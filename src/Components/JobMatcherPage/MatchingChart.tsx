@@ -30,7 +30,7 @@ export default function MatchingChart() {
     <div className="dashboard_card">
       <h4 className="section_sub_title !mb-8">Matching</h4>
 
-      <div className="flex justify-center items-center gap-8">
+      <div className="flex justify-center items-center  md:gap-8 flex-col md:flex-row">
         {/* Left */}
         <ResponsiveContainer width={200} height={250}>
           <PieChart>

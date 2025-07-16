@@ -37,7 +37,9 @@ const Page = () => {
         <h4 className="section_sub_title">Skills</h4>
 
         {/* Description */}
-        <p className="section_sub_description !mb-5">Review Your Skills</p>
+        <p className="section_sub_description !mb-3 md:!mb-5">
+          Review Your Skills
+        </p>
 
         {/* Add Skills */}
         <div>
@@ -47,7 +49,7 @@ const Page = () => {
           <input
             id="skills"
             placeholder="Write Your Skills Here...."
-            className="resume_input !p-5"
+            className="resume_input !p-3 md:!p-5"
             value={inputValue}
             onChange={e => setInputValue(e.target.value)}
             onKeyDown={handleKeyDown}

@@ -13,10 +13,10 @@ const page = () => {
   return (
     <section className="space-y-8">
       {/* Tabs */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 2xl:gap-10">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-5 2xl:gap-10">
         <button
           onClick={() => setActiveTab("edit-profile")}
-          className={`text-[15px] 2xl:text-base text-light-gray pb-3 2xl:pb-5 border-b font-medium cursor-pointer ${
+          className={`text-sm md:text-[15px] 2xl:text-base text-light-gray pb-3 2xl:pb-5 border-b font-medium cursor-pointer ${
             activeTab === "edit-profile" ? activeClass : "border-gray-200"
           }`}
         >
@@ -24,7 +24,7 @@ const page = () => {
         </button>
         <button
           onClick={() => setActiveTab("notification")}
-          className={`text-[15px] 2xl:text-base text-light-gray pb-3 2xl:pb-5 border-b font-medium cursor-pointer ${
+          className={`text-sm md:text-[15px] 2xl:text-base text-light-gray pb-3 2xl:pb-5 border-b font-medium cursor-pointer ${
             activeTab === "notification" ? activeClass : "border-gray-200"
           }`}
         >
@@ -32,7 +32,7 @@ const page = () => {
         </button>
         <button
           onClick={() => setActiveTab("subscription")}
-          className={`text-[15px] 2xl:text-base text-light-gray pb-3 2xl:pb-5 border-b font-medium cursor-pointer ${
+          className={`text-sm md:text-[15px] 2xl:text-base text-light-gray pb-3 2xl:pb-5 border-b font-medium cursor-pointer ${
             activeTab === "subscription" ? activeClass : "border-gray-200"
           }`}
         >
@@ -40,7 +40,7 @@ const page = () => {
         </button>
         <button
           onClick={() => setActiveTab("terms-of-service")}
-          className={`text-[15px] 2xl:text-base text-light-gray pb-3 2xl:pb-5 border-b font-medium cursor-pointer ${
+          className={`text-sm md:text-[15px] 2xl:text-base text-light-gray pb-3 2xl:pb-5 border-b font-medium cursor-pointer ${
             activeTab === "terms-of-service" ? activeClass : "border-gray-200"
           }`}
         >

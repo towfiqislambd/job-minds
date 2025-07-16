@@ -96,7 +96,7 @@ const Page = () => {
         <div className="my-7 2xl:my-10 dashboard_card">
           <h3 className="section_sub_title">Select Your Job Role</h3>
 
-          <div className="flex gap-5 pt-3 lg:py-6 items-center">
+          <div className="flex flex-col md:flex-row gap-3 md:gap-5 pt-3 lg:py-6 items-center">
             <div className="relative w-full">
               <input
                 type="search"

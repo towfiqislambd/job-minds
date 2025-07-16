@@ -30,11 +30,11 @@ const page = () => {
         <h4 className="section_sub_title">Education</h4>
 
         {/* Description */}
-        <p className="section_sub_description !mb-5">
+        <p className="section_sub_description !mb-3 md:!mb-5">
           Review Your Education history.
         </p>
 
-        <div className="grid grid-cols-2 gap-5 2xl:gap-7">
+        <div className="grid md:grid-cols-2 gap-4 md:gap-5 2xl:gap-7">
           {/* Institution Name */}
           <div>
             <label htmlFor="institution_name" className="resume_label">
