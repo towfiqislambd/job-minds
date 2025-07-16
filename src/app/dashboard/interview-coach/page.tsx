@@ -170,8 +170,8 @@ const Page = () => {
                           <p className="text-[14px] font-normal font-poppins text-[#696969] py-4">
                             {item.answer}
                           </p>
-                          <div className="flex justify-between items-center mt-4">
-                            <div className="flex gap-x-4 items-center">
+                          <div className="flex flex-col lg:flex-row justify-between lg:items-center gap-3 lg:gap-0 mt-4">
+                            <div className="flex flex-col lg:flex-row gap-2 l:gap-4 items-center">
                               <h4 className="text-[14px] font-poppins font-normal text-[#696969]">
                                 Difficulty : {item.difficulty}
                               </h4>

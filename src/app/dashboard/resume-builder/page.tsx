@@ -5,6 +5,7 @@ import Button from "@/Components/Tags/Button/Button";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { RxCross2 } from "react-icons/rx";
 
 type ResumeItem = {
   id: number;
@@ -128,6 +129,12 @@ const Page = () => {
               alt="preview resume"
               className="w-full h-auto object-contain"
             />
+            <button
+              onClick={() => setOpen(false)}
+              className="absolute top-2 lg:top-3 right-2 lg:right-3 cursor-pointer hover:bg-gray-950 transition-all duration-300 w-8 lg:w-10 h-8 lg:h-10 rounded-full bg-gray-700 text-white grid place-items-center"
+            >
+              <RxCross2 className="text-lg lg:text-xl font-bold" />
+            </button>
           </div>
         </div>
       )}
