@@ -54,14 +54,14 @@ const EditProfile = () => {
             I have read and agree to the Terms and Conditions.
           </label>
         </p>
-        <div className="flex justify-end gap-5 2xl:gap-6">
+        <div className="flex justify-end gap-3 lg:gap-5 2xl:gap-6">
           {/* Delete btn */}
           <button className="secondary-btn !border-red-500 !text-red-500">
             Delete Account
           </button>
 
           {/* Logout btn */}
-          <button className="px-12 py-2.5 rounded-[50px] !bg-red-600 font-medium text-white cursor-pointer">
+          <button className="px-6 lg:px-12 py-2 lg:py-2.5 rounded-[50px] !bg-red-600 font-medium text-white cursor-pointer">
             Log Out
           </button>
         </div>

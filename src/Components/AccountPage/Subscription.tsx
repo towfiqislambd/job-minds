@@ -29,20 +29,20 @@ const Subscription = () => {
       {/* Left */}
       <div className="w-full 3xl:flex-1 dashboard_card">
         <h4 className="section_sub_title">Subscription Plan Details</h4>
-        <p className="section_sub_description !mb-1 text-lg">Premium Access</p>
-        <p className="section_sub_description text-lg">9.99 EUR / Monthly</p>
+        <p className="section_sub_description !mb-1 lg:text-lg">Premium Access</p>
+        <p className="section_sub_description lg:text-lg">9.99 EUR / Monthly</p>
 
         <h4 className="section_sub_title">Included Features</h4>
-        <ul className="mt-4 mb-7 space-y-4">
-          <li className="flex gap-3 items-center">
+        <ul className="mt-4 mb-5 lg:mb-7 space-y-3 lg:space-y-4 text-[15px] lg:text-base">
+          <li className="flex gap-2 lg:gap-3 items-center">
             <FeatherSvg />
             <span>AI-Generated Resume or Cover Letter</span>
           </li>
-          <li className="flex gap-3 items-center">
+          <li className="flex gap-2 lg:gap-3 items-center">
             <FeatherSvg />
             <span>Unlimited Resume & Cover Letter Creation</span>
           </li>
-          <li className="flex gap-3 items-center">
+          <li className="flex gap-2 lg:gap-3 items-center">
             <FeatherSvg />
             <span>AI Interview Assistant</span>
           </li>

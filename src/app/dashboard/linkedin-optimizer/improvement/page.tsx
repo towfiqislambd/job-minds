@@ -123,7 +123,7 @@ const Page = () => {
       <div className="dashboard_card flex gap-5 flex-col 2xl:flex-row justify-between items-center">
         <div className="flex items-center gap-2">
           <CheckIconSvg />
-          <p className="text-lg text-dark-blue leading-[164%]">
+          <p className="lg:text-lg text-dark-blue leading-[164%]">
             Profile optimization complete!
             <span className="text-secondary-blue"> 18 improvements </span>
             suggested

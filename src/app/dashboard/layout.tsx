@@ -123,7 +123,7 @@ export default function DashboardLayout({
           {/* Logo */}
           <figure
             onClick={() => router.push("/")}
-            className="flex xl:hidden gap-3 items-center cursor-pointer mb-10"
+            className="flex xl:hidden gap-3 items-center cursor-pointer mt-3 mb-8"
           >
             <DashboardLogo />
             <p className="text-2xl font-bold tracking-[-0.203px] bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] bg-clip-text text-transparent">

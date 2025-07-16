@@ -68,7 +68,7 @@ const Page = () => {
       </p>
 
       {/* Mapped Data */}
-      <div className="mt-8 grid grid-cols-2 2xl:grid-cols-3 4xl:grid-cols-4 gap-6 3xl:gap-x-6 3xl:gap-y-10">
+      <div className="mt-8 grid lg:grid-cols-2 2xl:grid-cols-3 4xl:grid-cols-4 gap-6 3xl:gap-x-6 3xl:gap-y-10">
         {data.map(item => (
           <div
             key={item.id}
@@ -116,13 +116,13 @@ const Page = () => {
 
       {/* Modal */}
       {open && previewResume && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-[1px]">
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-[1px]">
           <div
             className="absolute inset-0"
             onClick={() => setOpen(false)}
           ></div>
 
-          <div className="relative z-10 w-full max-w-2xl xl:max-w-3xl h-[calc(100vh-50px)] overflow-y-auto bg-white rounded-lg shadow-lg">
+          <div className="relative z-10 w-[calc(100vw-30px)] lg:max-w-2xl xl:max-w-3xl h-[calc(100vh-50px)] overflow-y-auto bg-white rounded-lg shadow-lg">
             <Image
               src={previewResume.resume_image}
               alt="preview resume"

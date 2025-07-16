@@ -29,7 +29,7 @@ const BasicInformation = () => {
         This information will be displayed publicity so be careful what you
         share
       </p>
-      <div className="flex gap-10">
+      <div className="flex flex-col lg:flex-row gap-5 lg:gap-10">
         <div className="flex-shrink-0 w-[150px]">
           <div className="relative w-fit mb-5">
             <div className="lg:w-[100px] w-16 lg:h-[100px] h-16 rounded-full bg-[#E5E7EB] flex items-center justify-center overflow-hidden">

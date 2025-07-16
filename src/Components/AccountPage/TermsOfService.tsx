@@ -47,7 +47,7 @@ const TermsOfService = () => {
   return (
     <section className="dashboard_card">
       <h4 className="section_sub_title">Terms of Service</h4>
-      <p className="section_sub_description !mb-10">
+      <p className="section_sub_description !mb-7 lg:!mb-10">
         Welcome to Job Minds, your AI-powered resume and job assistant. By using
         our mobile app or website, you agree to the following terms:
       </p>
@@ -55,8 +55,10 @@ const TermsOfService = () => {
       {/* Map */}
       {data?.map(({ id, title, description }) => (
         <div key={id}>
-          <h4 className="section_sub_title !text-lg">{title}</h4>
-          <p className="section_sub_description">{description}</p>
+          <h4 className="section_sub_title !text-base lg:!text-lg">{title}</h4>
+          <p className="section_sub_description !text-sm lg:!text-base">
+            {description}
+          </p>
         </div>
       ))}
     </section>

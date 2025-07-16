@@ -20,7 +20,7 @@ const Notification = () => {
       </p>
 
       {/* Email Notification */}
-      <div className="border border-gray-200 rounded-lg p-5 flex justify-between items-center">
+      <div className="border border-gray-200 rounded-lg p-3.5 text-sm lg:text-base lg:p-5 flex justify-between items-center">
         {/* Left */}
         <div className="flex gap-3 items-center">
           <EmailSvg />
@@ -43,7 +43,7 @@ const Notification = () => {
       </div>
 
       {/* Notification */}
-      <div className="mt-6 border border-gray-200 rounded-lg p-5 flex justify-between items-center">
+      <div className="mt-3 lg:mt-6 border border-gray-200 rounded-lg p-3.5 text-sm lg:text-base lg:p-5 flex justify-between items-center">
         {/* Left */}
         <div className="flex gap-3 items-center">
           <NotificationSvg />
@@ -65,10 +65,10 @@ const Notification = () => {
         </label>
       </div>
 
-      <p className="text-light-gray py-7">Reminders</p>
+      <p className="text-light-gray py-4 lg:py-7">Reminders</p>
 
       {/* Application deadlines */}
-      <div className="border border-gray-200 rounded-lg p-5 flex justify-between items-center">
+      <div className="border border-gray-200 rounded-lg p-3.5 text-sm lg:text-base lg:p-5 flex justify-between items-center">
         <p className="text-dark-blue font-semibold capitalize">
           Application deadlines
         </p>
@@ -85,7 +85,7 @@ const Notification = () => {
       </div>
 
       {/* Interview preparation */}
-      <div className="mt-6 border border-gray-200 rounded-lg p-5 flex justify-between items-center">
+      <div className="mt-3 lg:mt-6 border border-gray-200 rounded-lg p-3.5 text-sm lg:text-base lg:p-5 flex justify-between items-center">
         <p className="text-dark-blue font-semibold capitalize">
           Interview preparation
         </p>
@@ -103,7 +103,7 @@ const Notification = () => {
       </div>
 
       {/* Expiring subscriptions */}
-      <div className="mt-6 border border-gray-200 rounded-lg p-5 flex justify-between items-center">
+      <div className="mt-3 lg:mt-6 border border-gray-200 rounded-lg p-3.5 text-sm lg:text-base lg:p-5 flex justify-between items-center">
         <p className="text-dark-blue font-semibold capitalize">
           Expiring subscriptions
         </p>

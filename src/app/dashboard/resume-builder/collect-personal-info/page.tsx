@@ -43,7 +43,7 @@ const page = () => {
         {/* Profile Image Upload */}
         <div className="relative w-fit mb-5">
           <label htmlFor="profile-upload">
-            <div className="lg:w-[100px] w-16 lg:h-[100px] h-16 rounded-full bg-[#E5E7EB] flex items-center justify-center cursor-pointer overflow-hidden border-2 border-dashed border-gray-400 hover:border-gray-600 transition-all duration-200">
+            <div className="lg:w-[100px] w-[70px] lg:h-[100px] h-[70px] rounded-full bg-[#E5E7EB] flex items-center justify-center cursor-pointer overflow-hidden border-2 border-dashed border-gray-400 hover:border-gray-600 transition-all duration-200">
               {previewImage ? (
                 <Image
                   width={100}

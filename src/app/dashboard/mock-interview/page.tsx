@@ -39,8 +39,8 @@ const page = () => {
         <h3 className="section_sub_title">Mock Interview Session</h3>
         <div className="mt-5 border border-[#EAEAEA] rounded-[8px]">
           <div className="border-b border-[#EAEAEA]">
-            <div className="py-6 px-4 flex justify-between items-center">
-              <div className="flex gap-x-5 items-center">
+            <div className="py-4 lg:py-6 px-4 flex justify-between items-center">
+              <div className="flex gap-3 lg:gap-5 items-center">
                 <div className="bg-[#C6DFF6] h-[60px] w-[60px] rounded-full flex justify-center items-center">
                   <Image
                     src={Profile}
@@ -49,7 +49,7 @@ const page = () => {
                     width={32}
                   />
                 </div>
-                <h3 className="text-[20px] font-poppins text-[#071431] font-bold">
+                <h3 className="text-lg lg:text-[20px] font-poppins text-[#071431] font-semibold lg:font-bold">
                   Ai Interviewer
                 </h3>
               </div>
@@ -58,9 +58,9 @@ const page = () => {
               </h4>
             </div>
           </div>
-          <div className="mt-10 mb-14 px-7">
-            <div className="flex gap-x-3">
-              <div className="bg-[#C6DFF6] h-[60px] w-[60px] rounded-full flex justify-center items-center">
+          <div className="my-6 lg:mt-10 lg:mb-14 px-5 lg:px-7">
+            <div className="flex gap-3">
+              <div className="bg-[#C6DFF6] h-[60px] w-[60px] rounded-full flex justify-center items-center shrink-0">
                 <Image src={Profile} alt="profile-img" height={32} width={32} />
               </div>
               <div className="bg-[#F3F4F6] p-3 rounded-[8px] max-w-[530px] w-full">
@@ -92,7 +92,7 @@ const page = () => {
             </div>
 
             <div className="flex gap-x-3">
-              <div className="bg-[#C6DFF6] h-[60px] w-[60px] rounded-full flex justify-center items-center">
+              <div className="bg-[#C6DFF6] h-[60px] w-[60px] rounded-full flex justify-center items-center shrink-0">
                 <Image src={Profile} alt="profile-img" height={32} width={32} />
               </div>
               <div className="bg-[#F3F4F6] p-3 rounded-[8px] max-w-[530px] w-full">

@@ -55,11 +55,11 @@ body {
 
 /* Custom CSS */
 .primary-btn {
-  @apply px-8 py-2.5 capitalize rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] leading-[164%] text-white;
+  @apply px-5 lg:px-8 py-1.5 lg:py-2.5 capitalize rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] leading-[164%] text-white;
 }
 
 .secondary-btn {
-  @apply px-8 py-2.5 rounded-[50px] font-medium bg-transparent text-primary-blue border border-primary-blue cursor-pointer;
+  @apply px-5 lg:px-8 py-1.5 lg:py-2.5 rounded-[50px] font-medium bg-transparent text-primary-blue border border-primary-blue cursor-pointer;
 }
 
 .auth-heading {
@@ -85,15 +85,15 @@ body {
 }
 
 .section_title {
-  @apply text-dark-blue text-2xl 2xl:text-[26px] 3xl:text-3xl font-semibold leading-[132%] tracking-[-0.319px] mb-2 2xl:mb-3;
+  @apply text-dark-blue text-xl lg:text-2xl 2xl:text-[26px] 3xl:text-3xl font-semibold leading-[132%] tracking-[-0.319px] mb-2 2xl:mb-3;
 }
 
 .section_description {
-  @apply text-[17px] 2xl:text-lg 3xl:text-xl text-light-gray max-w-[680px] 3xl:leading-[164%];
+  @apply lg:text-[17px] 2xl:text-lg 3xl:text-xl text-light-gray max-w-[680px] 3xl:leading-[164%];
 }
 
 .section_sub_title {
-  @apply text-dark-blue text-xl xl:text-[22px] 3xl:text-2xl font-semibold leading-[132%] tracking-[-0.319px] mb-1.5;
+  @apply text-dark-blue text-lg lg:text-xl xl:text-[22px] 3xl:text-2xl font-semibold leading-[132%] tracking-[-0.319px] mb-1 lg:mb-1.5;
 }
 
 .section_sub_description {
