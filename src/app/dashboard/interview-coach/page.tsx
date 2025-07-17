@@ -93,10 +93,10 @@ const Page = () => {
           Step up your interview skills with cool AI tips and tricks!
         </p>
 
-        <div className="my-7 2xl:my-10 p-7 bg-white shadow-box rounded-lg">
+        <div className="my-7 2xl:my-10 dashboard_card">
           <h3 className="section_sub_title">Select Your Job Role</h3>
 
-          <div className="flex gap-x-6 py-6 items-center">
+          <div className="flex flex-col md:flex-row gap-3 md:gap-5 pt-3 lg:py-6 items-center">
             <div className="relative w-full">
               <input
                 type="search"
@@ -127,30 +127,30 @@ const Page = () => {
         </div>
 
         {showQuestions && (
-          <div className="p-7 bg-white shadow-box rounded-lg mb-10">
+          <div className="dashboard_card mb-7 lg:mb-10">
             <h2 className="section_sub_title !mb-5">Interview Questions</h2>
             <div className="flex flex-col gap-4 2xl:gap-5">
-              {questionsData.map((item, index) => {
+              {questionsData?.map((item, index) => {
                 const isOpen = openIndex === index;
                 return (
                   <div
                     key={index}
-                    className="border border-[#EAEAEA] rounded-[8px] p-5"
+                    className="border border-[#EAEAEA] rounded-[8px] p-3 lg:p-5"
                   >
                     <div
                       className="flex justify-between items-center cursor-pointer"
                       onClick={() => toggleAccordion(index)}
                     >
                       <div className="flex gap-x-3 items-center">
-                        <h4 className="text-lg 2xl:text-[20px] font-poppins font-normal text-[#696969]">
+                        <h4 className="lg:text-lg 2xl:text-[20px] font-poppins font-normal text-[#696969]">
                           Q{index + 1}
                         </h4>
-                        <h3 className="2xl:text-lg font-poppins text-[#071431] font-medium 2xl:font-semibold">
+                        <h3 className="text-sm lg:text-base 2xl:text-lg font-poppins text-[#071431] font-medium 2xl:font-semibold">
                           {item.question}
                         </h3>
                       </div>
                       <div
-                        className={`transition-transform duration-300 ${
+                        className={`shrink-0 transition-transform duration-300 ${
                           isOpen ? "rotate-0" : "rotate-180"
                         }`}
                       >
@@ -170,8 +170,8 @@ const Page = () => {
                           <p className="text-[14px] font-normal font-poppins text-[#696969] py-4">
                             {item.answer}
                           </p>
-                          <div className="flex justify-between items-center mt-4">
-                            <div className="flex gap-x-4 items-center">
+                          <div className="flex flex-col lg:flex-row justify-between lg:items-center gap-3 lg:gap-0 mt-4">
+                            <div className="flex flex-col lg:flex-row gap-2 l:gap-4 items-center">
                               <h4 className="text-[14px] font-poppins font-normal text-[#696969]">
                                 Difficulty : {item.difficulty}
                               </h4>

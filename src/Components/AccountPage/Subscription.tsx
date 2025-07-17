@@ -27,22 +27,24 @@ const Subscription = () => {
   return (
     <section className="flex gap-7 items-start flex-col 3xl:flex-row">
       {/* Left */}
-      <div className="w-full 3xl:flex-1 p-7 bg-white shadow-box rounded-lg">
+      <div className="w-full 3xl:flex-1 dashboard_card">
         <h4 className="section_sub_title">Subscription Plan Details</h4>
-        <p className="section_sub_description !mb-1 text-lg">Premium Access</p>
-        <p className="section_sub_description text-lg">9.99 EUR / Monthly</p>
+        <p className="section_sub_description !mb-1 lg:text-lg">
+          Premium Access
+        </p>
+        <p className="section_sub_description lg:text-lg">9.99 EUR / Monthly</p>
 
         <h4 className="section_sub_title">Included Features</h4>
-        <ul className="mt-4 mb-7 space-y-4">
-          <li className="flex gap-3 items-center">
+        <ul className="mt-4 mb-5 lg:mb-7 space-y-3 lg:space-y-4 text-[15px] lg:text-base">
+          <li className="flex gap-2 lg:gap-3 items-center">
             <FeatherSvg />
             <span>AI-Generated Resume or Cover Letter</span>
           </li>
-          <li className="flex gap-3 items-center">
+          <li className="flex gap-2 lg:gap-3 items-center">
             <FeatherSvg />
             <span>Unlimited Resume & Cover Letter Creation</span>
           </li>
-          <li className="flex gap-3 items-center">
+          <li className="flex gap-2 lg:gap-3 items-center">
             <FeatherSvg />
             <span>AI Interview Assistant</span>
           </li>
@@ -58,7 +60,7 @@ const Subscription = () => {
       </div>
 
       {/* Right */}
-      <div className="w-full 3xl:flex-1 p-7 bg-white shadow-box rounded-lg">
+      <div className="w-full 3xl:flex-1 dashboard_card">
         <h4 className="section_sub_title">Subscription</h4>
         <p className="section_sub_description">
           Remember, this info will be public, so choose your subscriptions
@@ -67,7 +69,7 @@ const Subscription = () => {
 
         {/* Form */}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div className="flex gap-5">
+          <div className="flex flex-col md:flex-row gap-5">
             {/* First Name */}
             <div className="flex-1">
               <label htmlFor="first_name" className="resume_label">
@@ -174,7 +176,7 @@ const Subscription = () => {
             )}
           </div>
 
-          <div className="flex gap-5">
+          <div className="flex flex-col md:flex-row gap-5">
             {/* City */}
             <div className="flex-1">
               <label htmlFor="city" className="resume_label">

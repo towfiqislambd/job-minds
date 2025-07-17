@@ -1,90 +1,76 @@
 "use client";
-import {
-  AppleLogo,
-  Globe,
-  GoogleLogo,
-} from "@/Components/SvgContainer/SvgContainer";
-import Button from "@/Components/Tags/Button/Button";
-import Heading from "@/Components/Tags/Heading/Heading";
-import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Controller, useForm } from "react-hook-form";
 import OTPInput from "react-otp-input";
+
+type formData = {
+  otp: string;
+};
 
 const page = () => {
   const router = useRouter();
-  const [otp, setOtp] = useState("");
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<formData>();
+
+  const onSubmit = (data: formData) => {
+    console.log(data);
+    router.push("/auth/reset-password");
+  };
+
   return (
-    <form className="w-full min-h-screen flex items-center justify-center">
-      <div className="w-auto px-[130px] h-auto py-[80px] bg-prmiray-off-blue rounded-[50px] flex flex-col gap-y-15  ">
-        <Heading
-          Txt={
-            <>
-              <span className="bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] bg-clip-text text-transparent">
-                Verify your otp
-              </span>{" "}
-            </>
-          }
-          Variant="h2"
-          className="auth-heading"
-        />
-        <div className="flex flex-col items-center gap-y-[30px] ">
-          <div className="flex flex-col gap-y-[30px]">
-            <OTPInput
-              value={otp}
-              onChange={setOtp}
-              numInputs={4}
-              renderSeparator={<span style={{ margin: "0 10px" }}>-</span>}
-              renderInput={props => (
-                <input
-                  {...props}
-                  style={{
-                    width: "112px",
-                    borderRadius: "50px",
-                    border: "1px solid var(--Colour, #0184FF)",
-                    background:
-                      "linear-gradient(90deg, rgba(33, 72, 159, 0.15) 0%, rgba(1, 132, 255, 0.15) 100%)",
-                    display: "flex",
-                    height: "74px",
-                    padding: "10px 20px",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    gap: "10px",
-                    alignSelf: "stretch",
-                    color: "#071431",
-                    textAlign: "center",
-                    fontFamily: "Poppins",
-                    fontSize: "36px",
-                    fontStyle: "normal",
-                    fontWeight: 600,
-                    lineHeight: "132%",
-                    letterSpacing: "-0.72px",
-                  }}
-                />
-              )}
-            />
-          </div>
-          <div className="flex flex-col gap-y-[30px] items-center ">
-            <Paragraph
-              className="text-[#666565] text-xl font-normal leading-[164%] capitalize "
-              Txt={
-                <>
-                  Don’t get the code?{" "}
-                  <span className="text-primary-blue">Resend.</span>
-                </>
-                
-              }
-            />
-          </div>
-          <Button
-            onClick={() => {
-              router.push("/auth/reset-password");
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-full min-h-screen flex items-center justify-center"
+    >
+      <div className="my-10 w-[calc(100%-30px)] md:w-[calc(100%-50px)] max-w-[700px] mx-auto px-5 md:px-10 py-5 md:py-12 lg:px-24 lg:py-14 bg-primary-off-blue rounded-3xl md:rounded-[50px] flex flex-col gap-y-5 md:gap-y-7 3xl:gap-y-10">
+        <h2 className="auth-heading">Verify your otp</h2>
+
+        {/* OTP Input */}
+        <div>
+          <Controller
+            name="otp"
+            control={control}
+            rules={{
+              required: "OTP is required",
+              minLength: { value: 4, message: "OTP must be 4 digits" },
             }}
-            className="primary-btn"
-            Txt={"Verify otp"}
+            render={({ field }) => (
+              <OTPInput
+                {...field}
+                value={field.value || ""}
+                onChange={field.onChange}
+                numInputs={4}
+                renderInput={props => <input {...props} />}
+                containerStyle={"flex items-center justify-center gap-6"}
+                inputStyle={`!w-[50px] md:!w-[90px] mx-auto xl:!w-[110px] !h-[50px] md:!h-[70px] xl:!h-[90px] border border-[#0184FF] md:rounded-[30px] !bg-plan-card rounded-[8px] text-lg md:text-xl lg:text-3xl font-medium text-[#071431] bg-[linear-gradient(90deg,_rgba(33,72,159,0.15)_0%,_rgba(1,132,255,0.15)_100%)]`}
+              />
+            )}
           />
-          
+          {errors.otp && (
+            <p className="text-red-500 text-center text-sm md:text-base mt-2 lg:mt-3">
+              {errors.otp.message}
+            </p>
+          )}
         </div>
+
+        {/* Resend Code */}
+        <div className="flex justify-center text-sm md:text-lg text-center gap-2">
+          <p className="text-[#666565] leading-[164%]">Don’t get the code?</p>
+          <button
+            onClick={e => e.preventDefault()}
+            className="text-primary-blue cursor-pointer"
+          >
+            Resend
+          </button>
+        </div>
+
+        {/* Sign up btn */}
+        <button type="submit" className="auth-btn">
+          Verify OTP
+        </button>
       </div>
     </form>
   );

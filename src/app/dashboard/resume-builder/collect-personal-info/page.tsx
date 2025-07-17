@@ -33,9 +33,9 @@ const page = () => {
   };
 
   return (
-    <section className="p-7 bg-white shadow-box rounded-lg">
+    <section className="dashboard_card">
       {/* Section Title */}
-      <h3 className="text-dark-blue text-[26px] 2xl:text-3xl 3xl:text-4xl font-semibold leading-[132%] tracking-[-0.319px] mb-5 2xl:mb-7">
+      <h3 className="text-dark-blue text-[19px] md:text-xl lg:text-2xl xl:text-[26px] 2xl:text-3xl 3xl:text-4xl font-semibold leading-[132%] tracking-[-0.319px] mb-3 md:mb-5 2xl:mb-7">
         Resume Complication
       </h3>
 
@@ -43,7 +43,7 @@ const page = () => {
         {/* Profile Image Upload */}
         <div className="relative w-fit mb-5">
           <label htmlFor="profile-upload">
-            <div className="lg:w-[100px] w-16 lg:h-[100px] h-16 rounded-full bg-[#E5E7EB] flex items-center justify-center cursor-pointer overflow-hidden border-2 border-dashed border-gray-400 hover:border-gray-600 transition-all duration-200">
+            <div className="lg:w-[100px] w-[70px] lg:h-[100px] h-[70px] rounded-full bg-[#E5E7EB] flex items-center justify-center cursor-pointer overflow-hidden border-2 border-dashed border-gray-400 hover:border-gray-600 transition-all duration-200">
               {previewImage ? (
                 <Image
                   width={100}
@@ -87,9 +87,9 @@ const page = () => {
           share
         </p>
 
-        <div className="grid grid-cols-2 gap-5 2xl:gap-7">
+        <div className="grid grid-cols-2 gap-4.5 md:gap-5 2xl:gap-7">
           {/* Name */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <label htmlFor="name" className="resume_label">
               Name*
             </label>
@@ -108,7 +108,7 @@ const page = () => {
           </div>
 
           {/* Email */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <label htmlFor="email" className="resume_label">
               Email*
             </label>
@@ -133,7 +133,7 @@ const page = () => {
           </div>
 
           {/* Address */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <label htmlFor="address" className="resume_label">
               Address*
             </label>
@@ -152,7 +152,7 @@ const page = () => {
           </div>
 
           {/* Phone Number */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <label htmlFor="phone" className="resume_label">
               Phone Number*
             </label>
@@ -173,7 +173,7 @@ const page = () => {
           </div>
 
           {/* Professional Title */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <label htmlFor="professional_title" className="resume_label">
               Professional Title*
             </label>
@@ -194,7 +194,7 @@ const page = () => {
           </div>
 
           {/* Whatsapp Number */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <label htmlFor="wp" className="resume_label">
               Whatsapp Number*
             </label>
@@ -274,14 +274,14 @@ const page = () => {
           </div>
         </div>
 
-        <div className="flex justify-end gap-3.5 2xl:gap-5 items-center mt-7">
+        <div className="flex justify-end gap-3.5 2xl:gap-5 items-center mt-5 md:mt-7">
           {/* Cancel btn */}
           <button
             onClick={e => {
               e.preventDefault();
               router.back();
             }}
-            className="secondary-btn !px-7"
+            className="secondary-btn md:!px-7"
           >
             Cancel
           </button>

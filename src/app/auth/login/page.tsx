@@ -1,64 +1,89 @@
 "use client";
-import Button from "@/Components/Tags/Button/Button";
-import Heading from "@/Components/Tags/Heading/Heading";
-import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 
+type formData = {
+  email: string;
+  password: string;
+};
 
 const page = () => {
+  const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<formData>();
+
+  const onSubmit = (data: formData) => {
+    console.log(data);
+    router.push("/dashboard/resume-builder");
+  };
+
   return (
-    <form className="w-full min-h-screen flex items-center justify-center">
-      <div className="w-auto px-[130px] h-auto py-[80px] bg-prmiray-off-blue rounded-[50px] flex flex-col gap-y-15  ">
-        <Heading
-          Txt={
-            <>
-              <span className="bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] bg-clip-text text-transparent">
-                Login
-              </span>{" "}
-            </>
-          }
-          Variant="h2"
-          className="auth-heading"
-        />
-        <div className="flex flex-col items-center gap-y-[30px] ">
-          <div className="flex flex-col gap-y-[30px]">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-full min-h-screen flex items-center justify-center"
+    >
+      <div className="my-10 w-[calc(100%-30px)] md:w-[calc(100%-50px)] max-w-[700px] mx-auto px-5 md:px-10 py-5 md:py-12 lg:px-24 lg:py-14 bg-primary-off-blue rounded-3xl md:rounded-[50px] flex flex-col gap-y-5 md:gap-y-7 3xl:gap-y-10">
+        <h2 className="auth-heading">Log In</h2>
+
+        <div className="flex flex-col gap-y-4 md:gap-y-5 3xl:gap-y-7">
+          {/* Email */}
+          <div>
             <input
               placeholder="Enter your email address"
               type="email"
-              className="auth-input "
+              {...register("email", { required: "Email is required" })}
+              className="auth-input"
             />
-            <div className="flex flex-col gap-y-[30px] items-end ">
-              <input
-                placeholder="Enter your Password"
-                type="password"
-                className="auth-input"
-              />
-              <Link
-                href={"/auth/verify-email"}
-                className="text-base font-normal leading-[164%] text-center text-primary-blue"
-              >
-                Forget Password?
-              </Link>
-            </div>
+            {errors.email && (
+              <span className="text-red-500 text-sm block mt-1 lg:mt-3 ps-2 lg:ps-5">
+                {errors.email.message}
+              </span>
+            )}
           </div>
-          <Link href="/dashboard/resume-builder">
-            <Button className="primary-btn" Txt={"Log In "} />
-          </Link>
-          <div className="flex flex-col gap-y-[30px] items-center ">
-            <Paragraph
-              className="text-[#666565] text-xl font-normal leading-[164%] capitalize "
-              Txt={
-                <>
-                  Don’ have an account?{" "}
-                  <Link
-                    href={"/auth/sign-up"}
-                    className="text-primary-blue cursor-pointer "
-                  >
-                    sign up
-                  </Link>
-                </>
-              }
+
+          {/* Password */}
+          <div>
+            <input
+              placeholder="Enter your Password"
+              type="password"
+              {...register("password", { required: "Password is required" })}
+              className="auth-input"
             />
+            {errors.password && (
+              <span className="text-red-500 text-sm block mt-1 lg:mt-3 ps-2 lg:ps-5">
+                {errors.password.message}
+              </span>
+            )}
+          </div>
+
+          {/* Forget Pass */}
+          <Link
+            href={"/auth/verify-email"}
+            className="text-end font-normal text-sm md:text-base leading-[164%] text-primary-blue"
+          >
+            Forget Password?
+          </Link>
+
+          {/* Sign up btn */}
+          <button type="submit" className="auth-btn">
+            Log In
+          </button>
+
+          {/* Don't have an account */}
+          <div className="flex justify-center text-sm md:text-base lg:text-lg text-center gap-2">
+            <p className="text-[#666565] leading-[164%]">
+              Don't have an account?
+            </p>
+            <Link
+              href="/auth/sign-up"
+              className="text-primary-blue cursor-pointer"
+            >
+              Sign Up
+            </Link>
           </div>
         </div>
       </div>

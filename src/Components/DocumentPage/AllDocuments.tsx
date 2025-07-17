@@ -54,16 +54,13 @@ const AllDocuments = () => {
   const [popoverId, setPopoverId] = useState<number>(0);
 
   return (
-    <section
-      onClick={() => setOpen(false)}
-      className="p-7 bg-white shadow-box rounded-lg"
-    >
+    <section onClick={() => setOpen(false)} className="dashboard_card">
       {/* Upper Part */}
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col lg:flex-row gap-3 lg:gap-0 justify-between items-center">
         <h4 className="section_sub_title">All Documents</h4>
-        <div className="flex gap-3 3xl:gap-5 items-center">
+        <div className="flex gap-3 3xl:gap-5 items-center flex-wrap-reverse justify-center">
           {/* Search */}
-          <p className="border rounded-full w-[250px] px-4 py-2.5 border-gray-200 flex gap-2 items-center">
+          <p className="border rounded-full w-[250px] px-4 py-1.5 lg:py-2 xl:py-2.5 border-gray-200 flex gap-2 items-center">
             <span className="shrink-0">
               <SearchSvg />
             </span>
@@ -75,7 +72,7 @@ const AllDocuments = () => {
           </p>
 
           {/* Filter */}
-          <button className="flex gap-2 items-center cursor-pointer px-4 py-2.5 rounded-full border border-gray-200">
+          <button className="flex gap-2 items-center cursor-pointer px-4 py-1.5 lg:py-2 xl:py-2.5 rounded-full border border-gray-200">
             <span className="shrink-0">
               <FilterSvg />
             </span>
@@ -86,15 +83,15 @@ const AllDocuments = () => {
 
       {/* Table */}
       <div className="w-full overflow-x-auto mt-2.5 3xl:mt-5">
-        <table className="w-full border-separate border-spacing-y-10">
+        <table className="w-full border-separate border-spacing-y-7 2xl:border-spacing-y-10 text-sm 2xl:text-base">
           <thead>
-            <tr className="text-nowrap text-dark-blue text-lg capitalize">
-              <td className="font-medium px-4">Document Type</td>
-              <td className="font-medium px-4">Job Title & Company</td>
-              <td className="font-medium px-4">Last Update</td>
-              <td className="font-medium px-4">progress</td>
-              <td className="font-medium px-4">Status</td>
-              <td className="font-medium px-4 text-center">Action</td>
+            <tr className="text-nowrap text-dark-blue text-base 2xl:text-lg capitalize">
+              <td className="font-medium px-3 2xl:px-4">Document Type</td>
+              <td className="font-medium px-3 2xl:px-4">Job Title & Company</td>
+              <td className="font-medium px-3 2xl:px-4">Last Update</td>
+              <td className="font-medium px-3 2xl:px-4">progress</td>
+              <td className="font-medium px-3 2xl:px-4">Status</td>
+              <td className="font-medium px-3 2xl:px-4 text-center">Action</td>
             </tr>
           </thead>
           <tbody>
@@ -104,7 +101,7 @@ const AllDocuments = () => {
                 idx
               ) => (
                 <tr key={id} className="text-nowrap">
-                  <td className="px-4 flex gap-3 items-center">
+                  <td className="px-3 2xl:px-4 flex gap-3 items-center">
                     <p className="w-11 h-11 rounded-full grid place-items-center border-2 bg-[#cce6ff] border-secondary-blue">
                       <FileSvg />
                     </p>
@@ -113,25 +110,25 @@ const AllDocuments = () => {
                     </p>
                   </td>
 
-                  <td className="px-4">
+                  <td className="px-3 2xl:px-4">
                     <p className="text-secondary-black font-medium">
                       {job_title}
                     </p>
                     <p className="text-light-gray">{company}</p>
                   </td>
 
-                  <td className="px-4">
+                  <td className="px-3 2xl:px-4">
                     <p className="text-secondary-black">{last_update}</p>
                   </td>
 
-                  <td className="px-4 flex gap-3 items-center">
+                  <td className="px-3 2xl:px-4 flex gap-3 items-center">
                     <div className="w-20 h-2 rounded-xl bg-green-500"></div>
                     <p className="text-secondary-black">3 of 3</p>
                   </td>
 
-                  <td className="px-4">
+                  <td className="px-3 2xl:px-4">
                     <span
-                      className={`capitalize px-4 py-1.5 rounded-lg ${
+                      className={`capitalize px-3 lg:px-4 py-1 lg:py-1.5 rounded-lg ${
                         status?.toLowerCase() === "in progress"
                           ? "bg-[#CD8F1E] text-[#fff]"
                           : "bg-[#DCFCE7] text-[#09A506]"
@@ -141,7 +138,7 @@ const AllDocuments = () => {
                     </span>
                   </td>
 
-                  <td className="px-4 flex justify-center items-center relative">
+                  <td className="px-3 2xl:px-4 flex justify-center items-center relative">
                     <button
                       onClick={e => {
                         setOpen(true);

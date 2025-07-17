@@ -41,17 +41,21 @@ const data = [
 const ResumeSuggestion = () => {
   return (
     <section className="dashboard_card">
-      <h4 className="section_sub_title !mb-5">Resume Suggestions</h4>
+      <h4 className="section_sub_title !mb-3 lg:!mb-5">Resume Suggestions</h4>
 
-      <div className="space-y-5">
+      <div className="space-y-3 lg:space-y-5">
         {data?.map(({ id, title, description }) => (
           <div key={id} className="border p-4 rounded-lg border-gray-100">
-            <div className="flex justify-between items-start gap-5">
+            <div className="flex flex-col-reverse md:flex-row justify-between items-start gap-3 md:gap-5">
               <div>
-                <p className="section_sub_title !text-lg 3xl:!text-xl">{title}</p>
-                <p className="text-light-gray">{description}</p>
+                <p className="section_sub_title !text-base lg:!text-lg 3xl:!text-xl">
+                  {title}
+                </p>
+                <p className="text-light-gray text-sm lg:text-base">
+                  {description}
+                </p>
               </div>
-              
+
               <p className="flex gap-3 items-center">
                 <span className="w-7.5 h-7.5 cursor-pointer grid place-items-center border rounded-full border-secondary-blue">
                   <CrossSvg />

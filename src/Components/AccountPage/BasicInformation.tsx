@@ -23,18 +23,15 @@ const BasicInformation = () => {
   };
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="p-7 bg-white shadow-box rounded-lg"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="dashboard_card">
       <h4 className="section_sub_title">Basic Information</h4>
       <p className="section_sub_description !mb-6 2xl:!mb-10">
         This information will be displayed publicity so be careful what you
         share
       </p>
-      <div className="flex gap-10">
+      <div className="flex flex-col lg:flex-row gap-5 lg:gap-10">
         <div className="flex-shrink-0 w-[150px]">
-          <div className="relative w-fit mb-5">
+          <div className="relative w-fit mb-2.5 md:mb-5">
             <div className="lg:w-[100px] w-16 lg:h-[100px] h-16 rounded-full bg-[#E5E7EB] flex items-center justify-center overflow-hidden">
               {previewImage ? (
                 <Image
@@ -56,7 +53,7 @@ const BasicInformation = () => {
             </div>
           </div>
           <label htmlFor="profile-upload">
-            <div className="cursor-pointer text-secondary-blue">
+            <div className="cursor-pointer text-secondary-blue text-sm md:text-base">
               Change Photo
             </div>
             <input
@@ -75,7 +72,7 @@ const BasicInformation = () => {
           </label>
         </div>
         <div className="flex-grow">
-          <div className="space-y-7">
+          <div className="space-y-5 md:space-y-7">
             {/* Name */}
             <div>
               <label htmlFor="name" className="resume_label">
@@ -95,7 +92,7 @@ const BasicInformation = () => {
               )}
             </div>
 
-            <div className="flex gap-5 2xl:gap-7">
+            <div className="flex flex-col md:flex-row gap-5 2xl:gap-7">
               {/* Email Address */}
               <div className="flex-1">
                 <label htmlFor="email" className="resume_label">
@@ -144,9 +141,9 @@ const BasicInformation = () => {
           </div>
         </div>
       </div>
-      <div className="my-7 2xl:my-10 border py-2 px-4 rounded-xl flex items-center justify-between border-gray-200">
+      <div className="my-5 md:my-7 2xl:my-10 border py-2 px-4 rounded-xl flex items-center justify-between border-gray-200">
         <div className="space-y-2">
-          <h4 className="text-center text-secondary-blue text-lg mt-3 font-semibold leading-[132%] tracking-[-0.319px]">
+          <h4 className="text-center text-secondary-blue text-lg font-semibold leading-[132%] tracking-[-0.319px]">
             Antonio Renders
           </h4>
           <p className="text-dark-blue font-semibold">€9.9/Month</p>
