@@ -29,13 +29,13 @@ const Page = () => {
 
   return (
     <form
-      className="w-full pt-20 pb-10 flex items-center justify-center"
+      className="w-full min-h-screen flex items-center justify-center"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="w-[700px] mx-auto px-24 h-auto py-14 bg-primary-off-blue rounded-[50px] flex flex-col gap-y-10">
+      <div className="my-10 w-[calc(100%-30px)] md:w-[calc(100%-50px)] max-w-[700px] mx-auto px-5 md:px-10 py-5 md:py-12 lg:px-24 lg:py-14 bg-primary-off-blue rounded-3xl md:rounded-[50px] flex flex-col gap-y-5 md:gap-y-7 3xl:gap-y-10">
         <h2 className="auth-heading">Sign Up</h2>
 
-        <div className="flex flex-col gap-y-7">
+        <div className="flex flex-col gap-y-4 md:gap-y-5 3xl:gap-y-7">
           {/* Name */}
           <div>
             <input
@@ -111,7 +111,10 @@ const Page = () => {
                   required: "You must agree to the terms",
                 })}
               />
-              <label htmlFor="agree" className="text-light-gray">
+              <label
+                htmlFor="agree"
+                className="text-light-gray text-sm md:text-base"
+              >
                 I have read and agree to the Terms and Conditions.
               </label>
             </p>
@@ -128,7 +131,7 @@ const Page = () => {
           </button>
 
           {/* Already have an account */}
-          <div className="flex justify-center text-center text-lg gap-2">
+          <div className="flex justify-center text-center text-sm md:text-base lg:text-lg gap-2">
             <p className="text-[#666565] leading-[164%] capitalize">
               Already Have an account?
             </p>

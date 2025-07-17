@@ -26,12 +26,12 @@ const page = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full pt-36 pb-10 flex items-center justify-center"
+      className="w-full min-h-screen flex items-center justify-center"
     >
-      <div className="w-[700px] mx-auto px-24 h-auto py-14 bg-primary-off-blue rounded-[50px] flex flex-col gap-y-10">
+      <div className="my-10 w-[calc(100%-30px)] md:w-[calc(100%-50px)] max-w-[700px] mx-auto px-5 md:px-10 py-5 md:py-12 lg:px-24 lg:py-14 bg-primary-off-blue rounded-3xl md:rounded-[50px] flex flex-col gap-y-5 md:gap-y-7 3xl:gap-y-10">
         <h2 className="auth-heading">Reset password</h2>
 
-        <div className="flex flex-col gap-y-7">
+        <div className="flex flex-col gap-y-5 3xl:gap-y-7">
           {/* New Password */}
           <div>
             <input

@@ -63,15 +63,15 @@ body {
 }
 
 .auth-btn {
-  @apply w-fit mx-auto px-12 py-3 text-lg capitalize rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] leading-[164%] text-white;
+  @apply w-fit mx-auto px-5 md:px-7 lg:px-12 py-2 lg:py-3 text-sm md:text-base lg:text-lg capitalize rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] leading-[164%] text-white;
 }
 
 .auth-heading {
-  @apply text-[42px] font-semibold leading-[164%] text-center bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] bg-clip-text !text-transparent capitalize;
+  @apply text-xl md:text-2xl lg:text-3xl 2xl:text-4xl 3xl:text-[42px] font-semibold leading-[164%] text-center bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] bg-clip-text !text-transparent capitalize;
 }
 
 .auth-input {
-  @apply rounded-[50px] border-[1px] border-solid w-full py-5 px-10 block;
+  @apply rounded-[50px] border border-gray-400 w-full py-2 md:py-3 lg:py-5 px-3 text-sm md:text-base md:px-5 lg:px-10 block;
 }
 
 .gradient-heading {

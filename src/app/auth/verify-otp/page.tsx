@@ -23,9 +23,9 @@ const page = () => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="w-full pt-36 pb-10 flex items-center justify-center"
+      className="w-full min-h-screen flex items-center justify-center"
     >
-      <div className="w-[700px] mx-auto px-24 h-auto py-14 bg-primary-off-blue rounded-[50px] flex flex-col gap-y-8">
+      <div className="my-10 w-[calc(100%-30px)] md:w-[calc(100%-50px)] max-w-[700px] mx-auto px-5 md:px-10 py-5 md:py-12 lg:px-24 lg:py-14 bg-primary-off-blue rounded-3xl md:rounded-[50px] flex flex-col gap-y-5 md:gap-y-7 3xl:gap-y-10">
         <h2 className="auth-heading">Verify your otp</h2>
 
         {/* OTP Input */}
@@ -44,8 +44,8 @@ const page = () => {
                 onChange={field.onChange}
                 numInputs={4}
                 renderInput={props => <input {...props} />}
-                containerStyle={"flex items-center gap-6"}
-                inputStyle={`!w-[110px] !h-[90px] border border-[#0184FF] rounded-[30px] !bg-plan-card rounded-[8px] text-3xl font-medium text-[#071431] bg-[linear-gradient(90deg,_rgba(33,72,159,0.15)_0%,_rgba(1,132,255,0.15)_100%)]`}
+                containerStyle={"flex items-center justify-center gap-6"}
+                inputStyle={`!w-[50px] md:!w-[90px] mx-auto xl:!w-[110px] !h-[50px] md:!h-[70px] xl:!h-[90px] border border-[#0184FF] md:rounded-[30px] !bg-plan-card rounded-[8px] text-lg md:text-xl lg:text-3xl font-medium text-[#071431] bg-[linear-gradient(90deg,_rgba(33,72,159,0.15)_0%,_rgba(1,132,255,0.15)_100%)]`}
               />
             )}
           />
@@ -57,7 +57,7 @@ const page = () => {
         </div>
 
         {/* Resend Code */}
-        <div className="flex justify-center text-lg text-center gap-2">
+        <div className="flex justify-center text-sm md:text-lg text-center gap-2">
           <p className="text-[#666565] leading-[164%]">Don’t get the code?</p>
           <button
             onClick={e => e.preventDefault()}
