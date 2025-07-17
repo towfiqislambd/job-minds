@@ -7,7 +7,7 @@ export const GoogleLogo = () => {
       viewBox="0 0 25 25"
       fill="none"
     >
-      <g clipPath="url(#clip0_1465_2306)">
+      <g clip-path="url(#clip0_1369_3378)">
         <path
           d="M24.0088 12.7247C24.0088 11.7414 23.9304 11.0239 23.7608 10.2798H12.7305V14.7178H19.205C19.0745 15.8207 18.3696 17.4816 16.8032 18.5977L16.7812 18.7463L20.2688 21.4965L20.5104 21.521C22.7295 19.4349 24.0088 16.3654 24.0088 12.7247Z"
           fill="#4285F4"
@@ -26,7 +26,7 @@ export const GoogleLogo = () => {
         />
       </g>
       <defs>
-        <clipPath id="clip0_1465_2306">
+        <clipPath id="clip0_1369_3378">
           <rect
             width="23.04"
             height="24"

@@ -30,7 +30,7 @@ const Page = () => {
         </p>
       </div>
 
-      <div className="p-7 bg-white shadow-box rounded-lg">
+      <div className="dashboard_card">
         <h5 className="section_sub_title !mb-3.5 3xl:!mb-5">
           Paste Your LinkedIn Profile
         </h5>

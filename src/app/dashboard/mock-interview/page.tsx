@@ -35,13 +35,13 @@ const page = () => {
         Step up your interview skills with cool AI tips and tricks!
       </p>
 
-      <div className="my-7 2xl:my-10 p-7 bg-white shadow-box rounded-lg">
+      <div className="my-7 2xl:my-10 dashboard_card">
         <h3 className="section_sub_title">Mock Interview Session</h3>
         <div className="mt-5 border border-[#EAEAEA] rounded-[8px]">
           <div className="border-b border-[#EAEAEA]">
-            <div className="py-6 px-4 flex justify-between items-center">
-              <div className="flex gap-x-5 items-center">
-                <div className="bg-[#C6DFF6] h-[60px] w-[60px] rounded-full flex justify-center items-center">
+            <div className="py-4 lg:py-6 px-4 flex gap-3 md:gap-0 flex-col md:flex-row md:justify-between items-center">
+              <div className="flex gap-3 lg:gap-5 items-center">
+                <div className="bg-[#C6DFF6] h-12 md:h-[60px] w-12 md:w-[60px] rounded-full flex justify-center items-center">
                   <Image
                     src={Profile}
                     alt="profile-img"
@@ -49,7 +49,7 @@ const page = () => {
                     width={32}
                   />
                 </div>
-                <h3 className="text-[20px] font-poppins text-[#071431] font-bold">
+                <h3 className="text-lg lg:text-[20px] font-poppins text-[#071431] font-semibold lg:font-bold">
                   Ai Interviewer
                 </h3>
               </div>
@@ -58,9 +58,9 @@ const page = () => {
               </h4>
             </div>
           </div>
-          <div className="mt-10 mb-14 px-7">
-            <div className="flex gap-x-3">
-              <div className="bg-[#C6DFF6] h-[60px] w-[60px] rounded-full flex justify-center items-center">
+          <div className="my-3 md:my-6 lg:mt-10 lg:mb-14 px-3 md:px-5 lg:px-7">
+            <div className="flex gap-3">
+              <div className="bg-[#C6DFF6] h-11 md:h-[60px] w-11 md:w-[60px] rounded-full flex justify-center items-center shrink-0">
                 <Image src={Profile} alt="profile-img" height={32} width={32} />
               </div>
               <div className="bg-[#F3F4F6] p-3 rounded-[8px] max-w-[530px] w-full">
@@ -76,7 +76,7 @@ const page = () => {
               </div>
             </div>
 
-            <div className="flex gap-x-3 my-6 justify-end">
+            <div className="flex gap-x-3 my-6 justify-end items-start">
               <div className="bg-[#EEF5FF] p-3 rounded-[8px] max-w-[530px] w-full">
                 <p className="text-[14px] font-poppins text-[#071431] font-normal">
                   Hello! I'll be your AI interviewer today for the Software
@@ -91,8 +91,8 @@ const page = () => {
               <Image src={Article} alt="profile-img" height={60} width={60} />
             </div>
 
-            <div className="flex gap-x-3">
-              <div className="bg-[#C6DFF6] h-[60px] w-[60px] rounded-full flex justify-center items-center">
+            <div className="flex gap-3">
+              <div className="bg-[#C6DFF6] h-11 md:h-[60px] w-11 md:w-[60px] rounded-full flex justify-center items-center shrink-0">
                 <Image src={Profile} alt="profile-img" height={32} width={32} />
               </div>
               <div className="bg-[#F3F4F6] p-3 rounded-[8px] max-w-[530px] w-full">
@@ -109,7 +109,7 @@ const page = () => {
             </div>
 
             {userMessages.map((msg, idx) => (
-              <div className="flex gap-x-3 my-6 justify-end" key={idx}>
+              <div className="flex gap-3 my-6 justify-end" key={idx}>
                 <div className="bg-[#EEF5FF] p-3 rounded-[8px] max-w-[530px] w-full">
                   <p className="text-[14px] font-poppins text-[#071431] font-normal">
                     {msg.text}
@@ -127,14 +127,14 @@ const page = () => {
               e.preventDefault();
               handleSend();
             }}
-            className="border-t border-[#EAEAEA] px-6 py-3 flex items-center gap-5"
+            className="border-t border-[#EAEAEA] px-3 md:px-6 py-2 md:py-3 flex items-center gap-3 md:gap-5"
           >
             <input
               type="search"
               placeholder="type your response"
               value={inputValue}
               onChange={e => setInputValue(e.target.value)}
-              className="py-3 pl-[30px] rounded-[8px] border-none text-[14px] font-poppins text-[#071431] font-normal outline-0 w-full"
+              className="py-3 md:pl-[30px] rounded-[8px] border-none text-[14px] font-poppins text-[#071431] font-normal outline-0 w-full"
             />
             <button
               type="submit"
@@ -146,9 +146,13 @@ const page = () => {
           </form>
         </div>
       </div>
-      <div className="flex justify-end items-center gap-4">
-        <button className="secondary-btn">End Session</button>
-        <button className="primary-btn">Next Question</button>
+      <div className="flex flex-col md:flex-row justify-end items-center gap-4">
+        <button className="secondary-btn !block md:inline !w-full md:!w-fit">
+          End Session
+        </button>
+        <button className="primary-btn !block md:inline !w-full md:!w-fit">
+          Next Question
+        </button>
       </div>
     </>
   );
