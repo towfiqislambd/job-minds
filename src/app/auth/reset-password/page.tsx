@@ -1,50 +1,77 @@
 "use client";
-import {
-  AppleLogo,
-  Globe,
-  GoogleLogo,
-} from "@/Components/SvgContainer/SvgContainer";
-import Button from "@/Components/Tags/Button/Button";
-import Heading from "@/Components/Tags/Heading/Heading";
-import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+
+type formData = {
+  password: string;
+  new_password: string;
+};
 
 const page = () => {
   const router = useRouter();
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<formData>();
+
+  const onSubmit = (data: formData) => {
+    console.log(data);
+    router.push("/");
+  };
+
+  const password = watch("password");
+
   return (
-    <form className="w-full min-h-screen flex items-center justify-center">
-      <div className="w-auto px-[130px] h-auto py-[80px] bg-prmiray-off-blue rounded-[50px] flex flex-col gap-y-15  ">
-        <Heading
-          Txt={
-            <>
-              <span className="bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] bg-clip-text text-transparent">
-                Reset password
-              </span>{" "}
-            </>
-          }
-          Variant="h2"
-          className="auth-heading"
-        />
-        <div className="flex flex-col items-center gap-y-[30px] ">
-          <div className="flex flex-col gap-y-[30px]">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-full pt-36 pb-10 flex items-center justify-center"
+    >
+      <div className="w-[700px] mx-auto px-24 h-auto py-14 bg-primary-off-blue rounded-[50px] flex flex-col gap-y-10">
+        <h2 className="auth-heading">Reset password</h2>
+
+        <div className="flex flex-col gap-y-7">
+          {/* New Password */}
+          <div>
             <input
-              placeholder="Create new password"
+              placeholder="Create New Password"
               type="password"
+              {...register("password", {
+                required: "New Password is required",
+              })}
               className="auth-input"
             />
-            <input
-              placeholder="Confirm password"
-              type="password"
-              className="auth-input"
-            />
+            {errors.password && (
+              <span className="text-red-500 text-sm block mt-3 ps-5">
+                {errors.password.message}
+              </span>
+            )}
           </div>
-          <Button
-            onClick={() => {
-              router.push("/auth/login");
-            }}
-            className="primary-btn"
-            Txt={"Reset password "}
-          />
+
+          {/* Confirm Password */}
+          <div>
+            <input
+              placeholder="Confirm New Password"
+              type="password"
+              {...register("new_password", {
+                required: "Confirm Password is required",
+                validate: value =>
+                  value === password || "Passwords do not match",
+              })}
+              className="auth-input"
+            />
+            {errors.new_password && (
+              <span className="text-red-500 text-sm block mt-3 ps-5">
+                {errors.new_password.message}
+              </span>
+            )}
+          </div>
+
+          {/* Sign up btn */}
+          <button type="submit" className="auth-btn">
+            Reset Password
+          </button>
         </div>
       </div>
     </form>

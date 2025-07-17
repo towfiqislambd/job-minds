@@ -1,80 +1,63 @@
 "use client";
-import {
-  AppleLogo,
-  Globe,
-  GoogleLogo,
-} from "@/Components/SvgContainer/SvgContainer";
-import Button from "@/Components/Tags/Button/Button";
-import Heading from "@/Components/Tags/Heading/Heading";
-import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
+import { AppleLogo, GoogleLogo } from "@/Components/SvgContainer/SvgContainer";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const page = () => {
   const router = useRouter();
   return (
-    <form className="w-full min-h-screen flex items-center justify-center">
-      <div className="w-auto px-[130px] h-auto py-[80px] bg-prmiray-off-blue rounded-[50px] flex flex-col gap-y-15  ">
-        <Heading
-          Txt={
-            <>
-              Get Hired Faster with{" "}
-              <span className="bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] bg-clip-text text-transparent">
-                Jobminds
-              </span>{" "}
-            </>
-          }
-          Variant="h2"
-          className="auth-heading"
-        />
-        <div className="flex flex-col gap-y-[30px] ">
-          <div className="flex flex-col gap-y-[30px] ">
-            <div className="h-auto w-auto px-[250px] py-4.5 bg-white rounded-[50px] cursor-pointer border-[1px] border-solid border-[#eee] flex flex-row gap-x-3  items-center   ">
-              <GoogleLogo />
-              <Paragraph Txt="Continue with Google" />
-            </div>
-            <div className="h-auto w-auto px-[250px] py-4.5 bg-white rounded-[50px] cursor-pointer border-[1px] border-solid border-[#eee] flex flex-row gap-x-3 items-center   ">
-              <AppleLogo />
-              <Paragraph Txt="Continue with Apple" />
-            </div>
+    <form className="w-full pt-36 pb-10 flex items-center justify-center">
+      <div className="w-[700px] mx-auto px-24 h-auto py-14 bg-primary-off-blue rounded-[50px] flex flex-col gap-y-10">
+        <h2 className="auth-heading !leading-[140%]">
+          Get Hired Faster with Job minds
+        </h2>
+
+        <div className="flex flex-col gap-y-7">
+          {/* Google Login */}
+          <div className="py-4.5 bg-white rounded-[50px] cursor-pointer border border-[#eee] flex gap-3 items-center justify-center">
+            <GoogleLogo />
+            <p className="leading-[140%] font-medium text-black-gray">
+              Continue with Google
+            </p>
           </div>
-          <div className="flex flex-col gap-y-[30px] items-center w-full relative ">
-            <div className="flex flex-row gap-x-[28px] items-center ">
-              <div className="h-[1px] w-[237px] bg-[#A3A3A3]" />
-              <Paragraph Txt={"Or"} className="auth-sub-heading" />
-              <div className="h-[1px] w-[237px] bg-[#A3A3A3]" />
-            </div>
-            <Button
-              onClick={e => {
-                e.preventDefault();
-                router.push("/auth/login");
-              }}
-              className="primary-btn"
-              Txt="Log In With password"
-            />
+
+          {/* Apple Login */}
+          <div className="py-4.5 bg-white rounded-[50px] cursor-pointer border border-[#eee] flex gap-3 items-center justify-center">
+            <AppleLogo />
+            <p className="leading-[140%] font-medium text-black-gray">
+              Continue with Apple
+            </p>
           </div>
-          <div className="flex flex-col gap-y-[30px] items-center ">
-            <Paragraph
-              className="text-[#666565] text-xl font-normal leading-[164%] capitalize "
-              Txt={
-                <>
-                  Don’ have an account?{" "}
-                  <Link
-                    href={"/auth/sign-up"}
-                    className="text-primary-blue cursor-pointer "
-                  >
-                    sign up
-                  </Link>
-                </>
-              }
-            />
-            <div className="w-auto cursor-pointer h-auto py-2.5 px-[27px] flex flex-row items-center gap-x-2 bg-transparent border-[1px] border-solid border-primary-blue rounded-[50px]  ">
-              <Globe />
-              <Paragraph
-                className="text-primary-blue text-xl font-normal leading-[164%] capitalize "
-                Txt="Eng"
-              />
-            </div>
+
+          {/* Or */}
+          <div className="flex gap-5 items-center">
+            <div className="border-b border-gray-400 w-full" />
+            <div className="text-lg font-semibold text-secondary-blue">OR</div>
+            <div className="border-b border-gray-400 w-full" />
+          </div>
+
+          {/* Login with password */}
+          <button
+            onClick={e => {
+              e.preventDefault();
+              router.push("/auth/login");
+            }}
+            className="auth-btn"
+          >
+            Log In With password
+          </button>
+
+          {/* Don't have an account */}
+          <div className="flex justify-center text-lg text-center gap-2">
+            <p className="text-[#666565] leading-[164%]">
+              Don't have an account?
+            </p>
+            <Link
+              href="/auth/sign-up"
+              className="text-primary-blue cursor-pointer"
+            >
+              Sign Up
+            </Link>
           </div>
         </div>
       </div>

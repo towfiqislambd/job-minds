@@ -3,7 +3,7 @@
 @theme {
   /* Colors */
   --color-primary-green: #63be60;
-  --color-prmiray-off-blue: #eef5ff;
+  --color-primary-off-blue: #eef5ff;
   --color-dark-blue: #071431;
   --color-black-gray: #212121;
   --color-primary-blue: #21489f;
@@ -62,16 +62,16 @@ body {
   @apply px-5 lg:px-8 py-1.5 lg:py-2.5 rounded-[50px] font-medium bg-transparent text-primary-blue border border-primary-blue cursor-pointer text-sm md:text-base;
 }
 
-.auth-heading {
-  @apply text-[56px] font-[600] leading-[164%] text-center text-dark-blue max-w-[701px];
+.auth-btn {
+  @apply w-fit mx-auto px-12 py-3 text-lg capitalize rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] leading-[164%] text-white;
 }
 
-.auth-sub-heading {
-  @apply text-[20px] font-[700] leading-[164%] text-center text-primary-blue;
+.auth-heading {
+  @apply text-[42px] font-semibold leading-[164%] text-center bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] bg-clip-text !text-transparent capitalize;
 }
 
 .auth-input {
-  @apply rounded-[50px] border-[1px] border-solid w-[505px] py-5 px-10;
+  @apply rounded-[50px] border-[1px] border-solid w-full py-5 px-10 block;
 }
 
 .gradient-heading {
