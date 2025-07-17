@@ -39,7 +39,7 @@ const page = () => {
               className="auth-input"
             />
             {errors.email && (
-              <span className="text-red-500 text-sm block mt-3 ps-5">
+              <span className="text-red-500 text-sm block mt-1 lg:mt-3 ps-2 lg:ps-5">
                 {errors.email.message}
               </span>
             )}
@@ -54,7 +54,7 @@ const page = () => {
               className="auth-input"
             />
             {errors.password && (
-              <span className="text-red-500 text-sm block mt-3 ps-5">
+              <span className="text-red-500 text-sm block mt-1 lg:mt-3 ps-2 lg:ps-5">
                 {errors.password.message}
               </span>
             )}

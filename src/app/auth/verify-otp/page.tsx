@@ -50,7 +50,7 @@ const page = () => {
             )}
           />
           {errors.otp && (
-            <p className="text-red-500 text-center mt-3">
+            <p className="text-red-500 text-center text-sm md:text-base mt-2 lg:mt-3">
               {errors.otp.message}
             </p>
           )}

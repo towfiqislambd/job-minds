@@ -45,7 +45,7 @@ const Page = () => {
               className="auth-input"
             />
             {errors.name && (
-              <span className="text-red-500 text-sm block mt-3 ps-5">
+              <span className="text-red-500 text-sm block mt-1 lg:mt-3 ps-2 lg:ps-5">
                 {errors.name.message}
               </span>
             )}
@@ -60,7 +60,7 @@ const Page = () => {
               className="auth-input"
             />
             {errors.email && (
-              <span className="text-red-500 text-sm block mt-3 ps-5">
+              <span className="text-red-500 text-sm block mt-1 lg:mt-3 ps-2 lg:ps-5">
                 {errors.email.message}
               </span>
             )}
@@ -75,7 +75,7 @@ const Page = () => {
               className="auth-input"
             />
             {errors.password && (
-              <span className="text-red-500 text-sm block mt-3 ps-5">
+              <span className="text-red-500 text-sm block mt-1 lg:mt-3 ps-2 lg:ps-5">
                 {errors.password.message}
               </span>
             )}
@@ -94,7 +94,7 @@ const Page = () => {
               className="auth-input"
             />
             {errors.password_confirmation && (
-              <span className="text-red-500 text-sm block mt-3 ps-5">
+              <span className="text-red-500 text-sm block mt-1 lg:mt-3 ps-2 lg:ps-5">
                 {errors.password_confirmation.message}
               </span>
             )}
@@ -119,7 +119,7 @@ const Page = () => {
               </label>
             </p>
             {errors.terms && (
-              <span className="text-red-500 text-sm block mt-1 ps-5">
+              <span className="text-red-500 text-sm block mt-1 ps-2 lg:ps-5">
                 {errors.terms.message}
               </span>
             )}
