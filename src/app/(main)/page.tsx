@@ -32,7 +32,7 @@ const data = [
 
 export default function Home() {
   return (
-    <section className="bg-[#F6F6F8] pb-[120px] z-0">
+    <section className="bg-[#F6F6F8] pb-16 md:pb-20 2xl:pb-[120px] z-0">
       <HeroSection />
       <ServiceContainer />
       <PricingSection />
