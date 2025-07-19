@@ -36,7 +36,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
       <div
         data-aos="fade-up"
         data-aos-delay="100"
-        className="relative w-full rounded-lg h-[200px] md:h-[300px] lg:flex-1 lg:aspect-[4/3]"
+        className="relative w-full rounded-lg h-[200px] md:h-[300px] lg:flex-1 lg:aspect-[4/3] 3xl:h-[500px]"
       >
         <Image
           src={bgImg}
