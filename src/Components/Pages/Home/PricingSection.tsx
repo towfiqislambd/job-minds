@@ -33,12 +33,12 @@ const pricingArr = [
 
 const PricingSection = () => {
   return (
-    <section className="pb-20 3xl:pb-[120px]">
+    <section className="pb-8 md:pb-12 xl:pb-20 3xl:pb-[120px]">
       <Container>
-        <div className="flex flex-col 2xl:items-center gap-y-5 2xl:gap-y-10">
+        <div className="flex flex-col 2xl:items-center gap-y-3 md:gap-y-5 2xl:gap-y-10">
           <Heading
             Txt={"Pricing"}
-            className="text-5xl 3xl:text-[64px] text-center font-[600] leading-[164%] capitalize text-primary-blue"
+            className="text-2xl md:text-4xl xl:text-5xl 3xl:text-[64px] text-center font-[600] leading-[164%] capitalize text-primary-blue"
           />
 
           <div className="grid xl:grid-cols-2 2xl:grid-cols-3 gap-6">

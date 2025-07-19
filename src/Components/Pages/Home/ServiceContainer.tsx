@@ -41,16 +41,19 @@ const ServiceContainer = () => {
   ];
 
   return (
-    <section id="ai-tool" className="pb-20 3xl:pb-[120px]">
+    <section
+      id="ai-tool"
+      className="-mt-10 lg:-mt-0 pb-8 md:pb-12 xl:pb-20 3xl:pb-[120px]"
+    >
       <Container>
-        <div className="flex flex-col gap-y-[60px]">
-          <div className="flex flex-col gap-y-4.5 items-center">
+        <div className="flex flex-col gap-8.5 xl:gap-y-[60px]">
+          <div className="flex flex-col gap-y-2 lg:gap-y-4.5 items-center">
             <Heading
-              className="text-blue-black max-w-[1498px] text-4xl 2xl:text-6xl 3xl:text-7xl font-medium leading-[132%] tracking-[-0.72%] text-center"
+              className="text-blue-black w-full md:w-11/12 mx-auto max-w-[1498px] text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl 3xl:text-7xl font-semibold leading-[132%] tracking-[-0.72%] text-center"
               Txt={
                 <>
                   Simplify Every Step of your Job search with{" "}
-                  <span className="gradient-headingtext-6xl text-4xl 2xl:text-6xl 3xl:text-7xl font-medium leading-[132%] tracking-[-0.8px] text-center  bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] bg-clip-text text-transparent">
+                  <span className="text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl 3xl:text-7xl font-semibold lg:leading-[132%] tracking-[-0.8px] text-center bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] bg-clip-text text-transparent">
                     Job Minds
                   </span>
                 </>
@@ -58,7 +61,7 @@ const ServiceContainer = () => {
             />
             <Paragraph
               Txt="Emotional Intelligence Integration"
-              className="text-2xl leading-[164%] font-medium text-light-gray"
+              className="text-center md:text-lg lg:text-xl xl:text-2xl xl:leading-[164%] font-medium text-light-gray"
             />
           </div>
           {ServiceContainerArr.map((item, idx) => {

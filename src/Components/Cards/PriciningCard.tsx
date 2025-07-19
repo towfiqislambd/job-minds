@@ -26,7 +26,7 @@ const PriciningCard: React.FC<PriciningCardProps> = ({
 }) => {
   return (
     <div
-      className={`w-full  bg-white border-[4px] border-transparent cursor-pointer  ease-in-out duration-300 hover:border-solid hover:border-primary-blue  gap-y-[54px]  rounded-[18px] p-6 3xl:p-[30px] flex flex-col justify-between ${
+      className={`w-full  bg-white border-[4px] border-transparent cursor-pointer  ease-in-out duration-300 hover:border-solid hover:border-primary-blue gap-7 md:gap-y-[54px] rounded-xl md:rounded-[18px] p-5 md:p-6 3xl:p-[30px] flex flex-col justify-between ${
         idx === 1 && "!border-primary-blue"
       }`}
     >
@@ -35,12 +35,12 @@ const PriciningCard: React.FC<PriciningCardProps> = ({
           <Heading
             Variant="h4"
             Txt={title}
-            className="text-2xl font-bold leading-[132%] tracking-[-0.24px] text-primary-blue"
+            className="text-xl lg:text-2xl font-bold leading-[132%] tracking-[-0.24px] text-primary-blue"
           />
           <div className="flex flex-col gap-y-5">
             <Heading
               Variant="h5"
-              className="text-5xl 3xl:text-[64px] font-bold leading-[132%] tracking-[-0.24px] text-dark-blue"
+              className="text-2xl md:text-3xl lg:text-5xl 3xl:text-[64px] font-bold leading-[132%] tracking-[-0.24px] text-dark-blue"
               Txt={
                 <>
                   €{pricePerMonth}{" "}
@@ -52,7 +52,7 @@ const PriciningCard: React.FC<PriciningCardProps> = ({
             />
 
             {yearlyPrice && discount && (
-              <div className="flex flex-row items-center gap-x-3">
+              <div className="flex items-center gap-x-3">
                 <Heading
                   className="text-lg text-dark-blue leading-[164%] font-[600]"
                   Variant="h5"
@@ -66,16 +66,16 @@ const PriciningCard: React.FC<PriciningCardProps> = ({
             )}
           </div>
         </div>
-        <div className="flex flex-col gap-y-4">
+        <div className="flex flex-col gap-y-2 md:gap-y-4">
           {features.map((item, idx) => {
             return (
-              <div key={idx} className="flex flex-row gap-x-2.5 ">
+              <div key={idx} className="flex flex-row gap-2 lg:gap-x-2.5 ">
                 <div data-aos="fade-up" data-aos-delay="100">
                   <TickMark />
                 </div>
                 <Paragraph
                   Txt={item}
-                  className="ftext-lg font-normal leading-[164%] text-dark-blue max-w-[337px]"
+                  className="text-sm md:text-base lg:text-lg font-normal leading-[164%] text-dark-blue max-w-[337px]"
                 />
               </div>
             );
@@ -84,7 +84,7 @@ const PriciningCard: React.FC<PriciningCardProps> = ({
       </div>
       <Button
         Txt={btnTxt}
-        className="primary-btn !text-lg 3xl:!text-xl !w-full "
+        className="primary-btn !text-base md:!text-lg 3xl:!text-xl !w-full "
       />
     </div>
   );
