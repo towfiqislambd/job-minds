@@ -239,8 +239,7 @@ export const CircleActive = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="23"
-      height="24"
+      className="w-5 2xl:w-[23px] h-5 2xl:h-[24px]"
       viewBox="0 0 23 24"
       fill="none"
     >
@@ -253,8 +252,7 @@ export const CircleInActive = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="23"
-      height="24"
+      className="w-5 2xl:w-[23px] h-5 2xl:h-[24px]"
       viewBox="0 0 23 24"
       fill="none"
     >

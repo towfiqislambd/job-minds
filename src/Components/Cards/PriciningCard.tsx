@@ -26,21 +26,21 @@ const PriciningCard: React.FC<PriciningCardProps> = ({
 }) => {
   return (
     <div
-      className={`h-auto w-auto bg-white border-[4px] border-transparent cursor-pointer  ease-in-out duration-300 hover:border-solid hover:border-primary-blue  gap-y-[54px]  rounded-[18px] p-[30px] flex flex-col justify-between ${
+      className={`w-full  bg-white border-[4px] border-transparent cursor-pointer  ease-in-out duration-300 hover:border-solid hover:border-primary-blue  gap-y-[54px]  rounded-[18px] p-6 3xl:p-[30px] flex flex-col justify-between ${
         idx === 1 && "!border-primary-blue"
       }`}
     >
-      <div className="flex flex-col gap-y-[54px] ">
+      <div className="flex flex-col gap-y-8">
         <div className="flex flex-col gap-y-2">
           <Heading
             Variant="h4"
             Txt={title}
             className="text-2xl font-bold leading-[132%] tracking-[-0.24px] text-primary-blue"
           />
-          <div className="flex flex-col gap-y-6 ">
+          <div className="flex flex-col gap-y-5">
             <Heading
               Variant="h5"
-              className="text-[64px] font-bold leading-[132%] tracking-[-0.24px] text-dark-blue"
+              className="text-5xl 3xl:text-[64px] font-bold leading-[132%] tracking-[-0.24px] text-dark-blue"
               Txt={
                 <>
                   €{pricePerMonth}{" "}
@@ -60,13 +60,13 @@ const PriciningCard: React.FC<PriciningCardProps> = ({
                 />
                 <Button
                   Txt={`save ${discount}%`}
-                  className=" px-2.5 bg-secondary-blue text-lg rounded-[18px] text-white h-auto w-auto py-2 font-[600] leading-[132%] "
+                  className="px-2.5 bg-secondary-blue 3xl:text-lg rounded-[18px] text-white h-auto w-auto py-1 text-sm 3xl:py-2 font-medium 3xl:font-[600] leading-[132%] "
                 />
               </div>
             )}
           </div>
         </div>
-        <div className="flex flex-col gap-y-4  ">
+        <div className="flex flex-col gap-y-4">
           {features.map((item, idx) => {
             return (
               <div key={idx} className="flex flex-row gap-x-2.5 ">
@@ -84,7 +84,7 @@ const PriciningCard: React.FC<PriciningCardProps> = ({
       </div>
       <Button
         Txt={btnTxt}
-        className="primary-btn !text-xl !w-full !px-[84px] "
+        className="primary-btn !text-lg 3xl:!text-xl !w-full "
       />
     </div>
   );

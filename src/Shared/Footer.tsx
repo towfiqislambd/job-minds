@@ -1,8 +1,8 @@
+import React from "react";
+import Link from "next/link";
 import Container from "@/Components/Common/Container";
 import Heading from "@/Components/Tags/Heading/Heading";
 import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
-import Link from "next/link";
-import React from "react";
 
 const CombinedArr = [
   {
@@ -29,30 +29,30 @@ const Footer = () => {
   return (
     <footer className="py-10 3xl:py-[57px] bg-dark-blue">
       <Container>
-        <div className="flex flex-col gap-10 3xl:gap-y-20 4xl:gap-y-[100px]">
+        <div className="flex flex-col gap-7 md:gap-10 3xl:gap-y-20 4xl:gap-y-[100px]">
           {/* Upper Part */}
-          <div className="flex flex-row items-center w-full justify-between">
+          <div className="flex flex-col lg:flex-row lg:items-center w-full lg:justify-between">
             <Heading
               Txt={"JobMinds"}
-              className="text-7xl 2xl:text-[100px] 3xl:text-[150px] text-white font-[600] leading-[164%] "
+              className="text-3xl md:text-4xl lg:text-5xl xl:text-7xl 2xl:text-[100px] 3xl:text-[150px] text-white font-[600] leading-[164%] "
               Variant="h2"
             />
             <Paragraph
               Txt={
                 "As a busy parent, finding time for myself was hard. Now I feel supported daily without feeling overwhelmed."
               }
-              className="text-lg 2xl:text-xl 3xl:text-2xl text-white font-normal leading-[164%] max-w-[467px] text-end "
+              className="text-sm md:text-base xl:text-lg 2xl:text-xl 3xl:text-2xl text-white font-normal leading-[164%] max-w-[467px] lg:text-end"
             />
           </div>
 
           {/* Lower Part */}
-          <div className="flex flex-col gap-12 3xl:gap-y-[100px] w-full">
-            <div className="flex flex-row gap-x-[70px] ">
+          <div className="flex flex-col gap-y-8 lg:gap-12 3xl:gap-y-[100px] w-full">
+            <div className="flex flex-col gap-7 md:flex-row gap-x-[70px] ">
               {CombinedArr.map(item => {
                 return (
                   <div className="flex flex-col gap-y-[15px]">
                     <Heading
-                      className="text-white text-xl 3xl:text-2xl font-[600] leading-[164%] "
+                      className="text-white lg:text-lg xl:text-xl 3xl:text-2xl font-[600] leading-[164%] "
                       Txt={item.title}
                     />
                     <div className="flex flex-col gap-y-3">
@@ -60,7 +60,7 @@ const Footer = () => {
                         return (
                           <Paragraph
                             key={idx}
-                            className="text-white 3xl:text-lg font-[600] leading-[164%] "
+                            className="text-white 3xl:text-lg font-normal text-sm lg:text-base lg:font-[600] leading-[164%] "
                             Txt={item}
                           />
                         );
@@ -76,19 +76,19 @@ const Footer = () => {
                 data-aos-delay="100"
                 className="w-full h-[1px] border-white"
               />
-              <div className="flex flex-row w-full justify-between">
-                <span className=" text-white font-[600] ">
+              <div className="flex gap-3 md:justify-center flex-wrap w-full lg:justify-between">
+                <span className=" text-white xl:font-[600]  text-sm xl:text-base">
                   2025 Jobminds Limited, All rights reserved
                 </span>
-                <div className="flex flex-row gap-x-10 ">
+                <div className="flex flex-col md:flex-row gap-3 md:gap-10">
                   <Link
-                    className=" text-white leading-[164%] font-[600] "
+                    className=" text-white leading-[164%]  text-sm xl:text-base xl:font-[600] "
                     href={"#"}
                   >
                     Trams and condition
                   </Link>
                   <Link
-                    className=" text-white leading-[164%] font-[600] "
+                    className=" text-white leading-[164%] text-sm xl:text-base xl:font-[600] "
                     href={"#"}
                   >
                     Privacy and policy

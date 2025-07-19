@@ -75,7 +75,7 @@ body {
 }
 
 .gradient-heading {
-  @apply text-[80px] font-bold leading-[132%] tracking-[-0.8px] text-center  bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] bg-clip-text text-transparent;
+  @apply text-6xl 2xl:text-7xl 3xl:text-[80px] font-bold leading-[132%] tracking-[-0.8px] text-center  bg-[linear-gradient(90deg,#21489F_0%,#0184FF_100%)] bg-clip-text text-transparent;
 }
 
 .resume_input {
