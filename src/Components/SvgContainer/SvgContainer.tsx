@@ -105,8 +105,7 @@ export const SiteLogo = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="84"
-      height="84"
+      className="w-full h-full"
       viewBox="0 0 84 84"
       fill="none"
     >
@@ -183,8 +182,7 @@ export const Notification = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="25"
+      className="w-4.5 3xl:w-6 h-4.5 3xl:h-6"
       viewBox="0 0 24 25"
       fill="none"
     >
