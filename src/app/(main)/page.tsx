@@ -26,7 +26,7 @@ const data = [
   {
     question: "Are you open to freelance or full‑time opportunities?",
     answer:
-      "Absolutely! I'm open to both freelance and full‑time roles. Feel free to get in touch.",
+      "Absolutely! I'm open to both freelance and full‑time roles. Feel free to get in touch",
   },
 ];
 
