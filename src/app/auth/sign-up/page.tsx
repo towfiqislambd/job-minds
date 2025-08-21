@@ -1,18 +1,20 @@
 "use client";
+import { useRegister } from "@/Hooks/auth_api";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 type formData = {
   name: string;
   email: string;
   password: string;
   password_confirmation: string;
-  terms: string;
+  agree_to_terms: number;
 };
 
 const Page = () => {
-  const router = useRouter();
+  const { mutateAsync: registerMutation, isPending } = useRegister();
+
   const {
     register,
     handleSubmit,
@@ -20,9 +22,8 @@ const Page = () => {
     watch,
   } = useForm<formData>();
 
-  const onSubmit = (data: formData) => {
-    console.log(data);
-    router.push("/auth/login");
+  const onSubmit = async (data: formData) => {
+    await registerMutation(data);
   };
 
   const password = watch("password");
@@ -107,8 +108,10 @@ const Page = () => {
                 id="agree"
                 type="checkbox"
                 className="scale-110"
-                {...register("terms", {
+                value="1"
+                {...register("agree_to_terms", {
                   required: "You must agree to the terms",
+                  setValueAs: v => (v ? 1 : 0),
                 })}
               />
               <label
@@ -118,16 +121,27 @@ const Page = () => {
                 I have read and agree to the Terms and Conditions.
               </label>
             </p>
-            {errors.terms && (
+            {errors.agree_to_terms && (
               <span className="text-red-500 text-sm block mt-1 ps-2 lg:ps-5">
-                {errors.terms.message}
+                {errors.agree_to_terms.message}
               </span>
             )}
           </div>
 
           {/* Sign up btn */}
-          <button type="submit" className="auth-btn">
-            Sign Up
+          <button
+            disabled={isPending}
+            type="submit"
+            className={`auth-btn ${isPending && "!cursor-not-allowed"}`}
+          >
+            {isPending ? (
+              <div className="flex gap-3 items-center">
+                <CgSpinnerTwo className="animate-spin text-xl" />
+                <span>Signing up...</span>
+              </div>
+            ) : (
+              " Sign Up"
+            )}
           </button>
 
           {/* Already have an account */}

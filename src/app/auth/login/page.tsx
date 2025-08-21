@@ -1,7 +1,8 @@
 "use client";
+import { useLogin } from "@/Hooks/auth_api";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 type formData = {
   email: string;
@@ -9,16 +10,16 @@ type formData = {
 };
 
 const page = () => {
-  const router = useRouter();
+  const { mutateAsync: loginMutation, isPending } = useLogin();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<formData>();
 
-  const onSubmit = (data: formData) => {
-    console.log(data);
-    router.push("/dashboard/resume-builder");
+  const onSubmit = async (data: formData) => {
+    await loginMutation(data);
   };
 
   return (
@@ -68,9 +69,20 @@ const page = () => {
             Forget Password?
           </Link>
 
-          {/* Sign up btn */}
-          <button type="submit" className="auth-btn">
-            Log In
+          {/* Sign in btn */}
+          <button
+            disabled={isPending}
+            type="submit"
+            className={`auth-btn ${isPending && "!cursor-not-allowed"}`}
+          >
+            {isPending ? (
+              <div className="flex gap-3 items-center">
+                <CgSpinnerTwo className="animate-spin text-xl" />
+                <span>Logging in...</span>
+              </div>
+            ) : (
+              "Log In"
+            )}
           </button>
 
           {/* Don't have an account */}
