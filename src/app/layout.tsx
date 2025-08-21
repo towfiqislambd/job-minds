@@ -5,6 +5,7 @@ import { Toaster } from "react-hot-toast";
 import AosProvider from "@/Provider/AosProvider/AosProvider";
 import QueryProvider from "@/Provider/QueryProvider/QueryProvider";
 import ReduxProvider from "@/Provider/ReduxProvider/ReduxProvider";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -28,8 +29,12 @@ export default async function RootLayout({
       <body className={`${poppins.variable} antialiased`}>
         <QueryProvider>
           <ReduxProvider>
-            <AosProvider>{children}</AosProvider>
-            <Toaster />
+            <GoogleOAuthProvider
+              clientId={`${process.env.NEXT_PUBLIC_GOOGLE_AUTH_ID}`}
+            >
+              <AosProvider>{children}</AosProvider>
+              <Toaster />
+            </GoogleOAuthProvider>
           </ReduxProvider>
         </QueryProvider>
       </body>

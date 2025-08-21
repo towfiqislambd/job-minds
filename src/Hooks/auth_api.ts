@@ -114,3 +114,22 @@ export const useResetPassword = () => {
     },
   });
 };
+
+// Google Login:
+export const useGoogleLoginFunc = () => {
+  const router = useRouter();
+  return useApi({
+    method: "post",
+    key: "google-login",
+    endpoint: "/api/social-login",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+        router.push("/dashboard");
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
