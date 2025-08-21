@@ -47,9 +47,7 @@ const page = async ({ params }: any) => {
               className="auth-input"
             />
             {errors.password && (
-              <span className="text-red-500 text-sm block mt-1 lg:mt-3 ps-2 lg:ps-5">
-                {errors.password.message}
-              </span>
+              <span className="form-error">{errors.password.message}</span>
             )}
           </div>
 
@@ -66,7 +64,7 @@ const page = async ({ params }: any) => {
               className="auth-input"
             />
             {errors.password_confirmation && (
-              <span className="text-red-500 text-sm block mt-1 lg:mt-3 ps-2 lg:ps-5">
+              <span className="form-error">
                 {errors.password_confirmation.message}
               </span>
             )}

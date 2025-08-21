@@ -49,15 +49,11 @@ const page = ({ params }: any) => {
                 numInputs={4}
                 renderInput={props => <input {...props} />}
                 containerStyle={"flex items-center justify-center gap-6"}
-                inputStyle={`!w-[50px] md:!w-[90px] mx-auto xl:!w-[110px] !h-[50px] md:!h-[70px] xl:!h-[90px] border border-[#0184FF] md:rounded-[30px] !bg-plan-card rounded-[8px] text-lg md:text-xl lg:text-3xl font-medium text-[#071431] bg-[linear-gradient(90deg,_rgba(33,72,159,0.15)_0%,_rgba(1,132,255,0.15)_100%)]`}
+                inputStyle={`!w-[50px] md:!w-[90px] mx-auto xl:!w-[110px] !h-[50px] md:!h-[70px] xl:!h-[90px] border border-[#0184FF] md:rounded-[12px] !bg-plan-card rounded-[8px] text-lg md:text-xl lg:text-3xl font-medium text-[#071431] bg-[linear-gradient(90deg,_rgba(33,72,159,0.15)_0%,_rgba(1,132,255,0.15)_100%)]`}
               />
             )}
           />
-          {errors.otp && (
-            <p className="text-red-500 text-center text-sm md:text-base mt-2 lg:mt-3">
-              {errors.otp.message}
-            </p>
-          )}
+          {errors.otp && <p className="form-error">{errors.otp.message}</p>}
         </div>
 
         {/* Resend Code */}

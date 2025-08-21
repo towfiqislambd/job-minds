@@ -1,10 +1,8 @@
 "use client";
 import { AppleLogo, GoogleLogo } from "@/Components/SvgContainer/SvgContainer";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 const page = () => {
-  const router = useRouter();
   return (
     <form className="w-full min-h-screen flex items-center justify-center">
       <div className="my-10 w-[calc(100%-30px)] md:w-[calc(100%-50px)] max-w-[700px] mx-auto px-5 md:px-10 py-5 md:py-12 lg:px-24 lg:py-14 bg-primary-off-blue rounded-3xl md:rounded-[50px] flex flex-col gap-y-5 md:gap-y-7 3xl:gap-y-10">
@@ -39,15 +37,9 @@ const page = () => {
           </div>
 
           {/* Login with password */}
-          <button
-            onClick={e => {
-              e.preventDefault();
-              router.push("/auth/login");
-            }}
-            className="auth-btn"
-          >
+          <Link href="/auth/login" className="auth-btn">
             Log In With password
-          </button>
+          </Link>
 
           {/* Don't have an account */}
           <div className="flex justify-center text-sm md:text-base lg:text-lg text-center gap-2">

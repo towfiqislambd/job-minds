@@ -105,3 +105,7 @@ body {
 .dashboard_card {
   @apply p-4 md:p-5 xl:p-7 bg-white shadow-box rounded-lg;
 }
+
+.form-error {
+  @apply text-red-500 text-sm block mt-1 lg:mt-2 ps-2 lg:ps-5;
+}
