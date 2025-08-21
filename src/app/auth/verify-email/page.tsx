@@ -1,22 +1,23 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useVerifyEmail } from "@/Hooks/auth_api";
 import { useForm } from "react-hook-form";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 type formData = {
   email: string;
 };
 
 const page = () => {
-  const router = useRouter();
+  const { mutateAsync: verifyEmailMutation, isPending } = useVerifyEmail();
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<formData>();
 
-  const onSubmit = (data: formData) => {
-    console.log(data);
-    router.push("/auth/verify-otp");
+  const onSubmit = async (data: formData) => {
+    await verifyEmailMutation(data);
   };
 
   return (
@@ -42,9 +43,20 @@ const page = () => {
           )}
         </div>
 
-        {/* Sign up btn */}
-        <button type="submit" className="auth-btn">
-          Get OTP
+        {/* verify email */}
+        <button
+          disabled={isPending}
+          type="submit"
+          className={`auth-btn ${isPending && "!cursor-not-allowed"}`}
+        >
+          {isPending ? (
+            <div className="flex gap-3 items-center">
+              <CgSpinnerTwo className="animate-spin text-xl" />
+              <span>Verifying...</span>
+            </div>
+          ) : (
+            "Get OTP"
+          )}
         </button>
       </div>
     </form>

@@ -1,14 +1,21 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useResetPassword } from "@/Hooks/auth_api";
 import { useForm } from "react-hook-form";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 type formData = {
   password: string;
-  new_password: string;
+  password_confirmation: string;
 };
 
-const page = () => {
-  const router = useRouter();
+interface Props {
+  params: { email: string };
+}
+
+const page = ({ params }: Props) => {
+  const { email } = params;
+  const { mutateAsync: verifyOtpMutation, isPending } = useResetPassword();
+
   const {
     register,
     handleSubmit,
@@ -16,9 +23,9 @@ const page = () => {
     formState: { errors },
   } = useForm<formData>();
 
-  const onSubmit = (data: formData) => {
-    console.log(data);
-    router.push("/");
+  const onSubmit = async (data: formData) => {
+    const payload = { email: decodeURIComponent(email), ...data };
+    await verifyOtpMutation(payload);
   };
 
   const password = watch("password");
@@ -54,23 +61,34 @@ const page = () => {
             <input
               placeholder="Confirm New Password"
               type="password"
-              {...register("new_password", {
+              {...register("password_confirmation", {
                 required: "Confirm Password is required",
                 validate: value =>
                   value === password || "Passwords do not match",
               })}
               className="auth-input"
             />
-            {errors.new_password && (
+            {errors.password_confirmation && (
               <span className="text-red-500 text-sm block mt-1 lg:mt-3 ps-2 lg:ps-5">
-                {errors.new_password.message}
+                {errors.password_confirmation.message}
               </span>
             )}
           </div>
 
-          {/* Sign up btn */}
-          <button type="submit" className="auth-btn">
-            Reset Password
+          {/* reset password */}
+          <button
+            disabled={isPending}
+            type="submit"
+            className={`auth-btn ${isPending && "!cursor-not-allowed"}`}
+          >
+            {isPending ? (
+              <div className="flex gap-3 items-center">
+                <CgSpinnerTwo className="animate-spin text-xl" />
+                <span>Changing...</span>
+              </div>
+            ) : (
+              "Reset Password"
+            )}
           </button>
         </div>
       </div>

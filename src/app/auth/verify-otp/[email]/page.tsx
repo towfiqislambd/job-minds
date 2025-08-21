@@ -1,23 +1,36 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useResendOTP, useVerifyOTP } from "@/Hooks/auth_api";
 import { Controller, useForm } from "react-hook-form";
+import { CgSpinnerTwo } from "react-icons/cg";
 import OTPInput from "react-otp-input";
 
 type formData = {
   otp: string;
 };
 
-const page = () => {
-  const router = useRouter();
+// interface Props {
+//   params: Promise<{ email: string }>;
+// }
+
+interface Props {
+  params: { email: string };
+}
+
+const page = ({ params }: Props) => {
+  // const { email } = use(params);
+  const { email } = params;
+  const { mutateAsync: verifyOtpMutation, isPending } = useVerifyOTP();
+  const { mutate: resendOtpMutation, isPending: isSending } = useResendOTP();
+
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<formData>();
 
-  const onSubmit = (data: formData) => {
-    console.log(data);
-    router.push("/auth/reset-password");
+  const onSubmit = async (data: formData) => {
+    const payload = { email: decodeURIComponent(email), ...data };
+    await verifyOtpMutation(payload);
   };
 
   return (
@@ -60,16 +73,30 @@ const page = () => {
         <div className="flex justify-center text-sm md:text-lg text-center gap-2">
           <p className="text-[#666565] leading-[164%]">Don’t get the code?</p>
           <button
-            onClick={e => e.preventDefault()}
+            onClick={e => {
+              e.preventDefault();
+              resendOtpMutation({ email: decodeURIComponent(email) });
+            }}
             className="text-primary-blue cursor-pointer"
           >
-            Resend
+            {isSending ? "Sending...." : "Resend"}
           </button>
         </div>
 
-        {/* Sign up btn */}
-        <button type="submit" className="auth-btn">
-          Verify OTP
+        {/* verify otp */}
+        <button
+          disabled={isPending}
+          type="submit"
+          className={`auth-btn ${isPending && "!cursor-not-allowed"}`}
+        >
+          {isPending ? (
+            <div className="flex gap-3 items-center">
+              <CgSpinnerTwo className="animate-spin text-xl" />
+              <span>Verifying...</span>
+            </div>
+          ) : (
+            "Verify OTP"
+          )}
         </button>
       </div>
     </form>
