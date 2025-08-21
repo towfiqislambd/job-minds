@@ -1,5 +1,6 @@
 "use client";
 import { useResetPassword } from "@/Hooks/auth_api";
+import { use } from "react";
 import { useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
 
@@ -8,11 +9,7 @@ type formData = {
   password_confirmation: string;
 };
 
-interface Props {
-  params: { email: string };
-}
-
-const page = ({ params }: Props) => {
+const page = async ({ params }: any) => {
   const { email } = params;
   const { mutateAsync: verifyOtpMutation, isPending } = useResetPassword();
 

@@ -8,16 +8,7 @@ type formData = {
   otp: string;
 };
 
-// interface Props {
-//   params: Promise<{ email: string }>;
-// }
-
-interface Props {
-  params: { email: string };
-}
-
-const page = ({ params }: Props) => {
-  // const { email } = use(params);
+const page = ({ params }: any) => {
   const { email } = params;
   const { mutateAsync: verifyOtpMutation, isPending } = useVerifyOTP();
   const { mutate: resendOtpMutation, isPending: isSending } = useResendOTP();
