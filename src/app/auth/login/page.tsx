@@ -10,6 +10,7 @@ type formData = {
 };
 
 const page = () => {
+  // Mutation
   const { mutateAsync: loginMutation, isPending } = useLogin();
 
   const {
@@ -65,14 +66,14 @@ const page = () => {
             Forget Password?
           </Link>
 
-          {/* Sign in btn */}
+          {/* Submit btn */}
           <button
             disabled={isPending}
             type="submit"
             className={`auth-btn ${isPending && "!cursor-not-allowed"}`}
           >
             {isPending ? (
-              <div className="flex gap-3 items-center">
+              <div className="flex gap-2 items-center">
                 <CgSpinnerTwo className="animate-spin text-xl" />
                 <span>Logging in...</span>
               </div>

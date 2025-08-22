@@ -7,7 +7,10 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import { ImSpinner9 } from "react-icons/im";
 
 const BasicInformation = () => {
+  // State
   const [previewFile, setPreviewFile] = useState("");
+
+  // Mutations
   const { mutateAsync: updateUserMutation, isPending } = useUpdateUser();
   const { mutateAsync: updateAvatarMutation, isPending: isChanging } =
     useUpdateUser();
@@ -152,15 +155,15 @@ const BasicInformation = () => {
         </button>
       </div>
 
+      {/* Submit btn */}
       <div className="flex justify-end">
-        {/* Apply btn */}
         <button
           type="submit"
           disabled={isPending}
           className={`primary-btn ${isPending && "!cursor-not-allowed"}`}
         >
           {isPending ? (
-            <div className="flex gap-3 items-center">
+            <div className="flex gap-2 items-center">
               <CgSpinnerTwo className="animate-spin text-xl" />
               <span>Changing...</span>
             </div>

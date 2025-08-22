@@ -13,6 +13,7 @@ type formData = {
 };
 
 const Page = () => {
+  // Mutation
   const { mutateAsync: registerMutation, isPending } = useRegister();
 
   const {
@@ -122,14 +123,14 @@ const Page = () => {
             )}
           </div>
 
-          {/* Sign up btn */}
+          {/* Submit btn */}
           <button
             disabled={isPending}
             type="submit"
             className={`auth-btn ${isPending && "!cursor-not-allowed"}`}
           >
             {isPending ? (
-              <div className="flex gap-3 items-center">
+              <div className="flex gap-2 items-center">
                 <CgSpinnerTwo className="animate-spin text-xl" />
                 <span>Signing up...</span>
               </div>

@@ -13,8 +13,11 @@ type FormData = {
 };
 
 const ChangePassword = () => {
+  // Mutations
   const { mutateAsync: passwordChangeMutation, isPending } =
     useChangePassword();
+
+  // States
   const [showCurrentPassword, setShowCurrentPassword] =
     useState<boolean>(false);
   const [showNewPassword, setShowNewPassword] = useState<boolean>(false);
@@ -24,12 +27,14 @@ const ChangePassword = () => {
   const {
     register,
     watch,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
     await passwordChangeMutation(data);
+    reset();
   };
 
   const password = watch("password");
@@ -58,7 +63,6 @@ const ChangePassword = () => {
               {errors.current_password.message}
             </p>
           )}
-
           <button
             className="absolute top-1.5 md:top-3 right-2 md:right-3 cursor-pointer"
             onClick={e => {
@@ -139,15 +143,15 @@ const ChangePassword = () => {
         </div>
       </div>
 
+      {/* Submit btn */}
       <div className="flex justify-end mt-5 md:mt-8">
-        {/* Apply btn */}
         <button
           disabled={isPending}
           type="submit"
           className={`primary-btn ${isPending && "!cursor-not-allowed"}`}
         >
           {isPending ? (
-            <div className="flex gap-3 items-center">
+            <div className="flex gap-2 items-center">
               <CgSpinnerTwo className="animate-spin text-xl" />
               <span>Changing...</span>
             </div>

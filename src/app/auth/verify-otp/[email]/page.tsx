@@ -10,6 +10,8 @@ type formData = {
 
 const page = ({ params }: any) => {
   const { email } = params;
+
+  // Mutations
   const { mutateAsync: verifyOtpMutation, isPending } = useVerifyOTP();
   const { mutate: resendOtpMutation, isPending: isSending } = useResendOTP();
 
@@ -56,7 +58,7 @@ const page = ({ params }: any) => {
           {errors.otp && <p className="form-error">{errors.otp.message}</p>}
         </div>
 
-        {/* Resend Code */}
+        {/* Resend Code btn */}
         <div className="flex justify-center text-sm md:text-lg text-center gap-2">
           <p className="text-[#666565] leading-[164%]">Don’t get the code?</p>
           <button
@@ -70,14 +72,14 @@ const page = ({ params }: any) => {
           </button>
         </div>
 
-        {/* verify otp */}
+        {/* Verify OTP btn */}
         <button
           disabled={isPending}
           type="submit"
           className={`auth-btn ${isPending && "!cursor-not-allowed"}`}
         >
           {isPending ? (
-            <div className="flex gap-3 items-center">
+            <div className="flex gap-2 items-center">
               <CgSpinnerTwo className="animate-spin text-xl" />
               <span>Verifying...</span>
             </div>

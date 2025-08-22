@@ -70,7 +70,7 @@ const EditProfile = () => {
             }`}
           >
             {isDeleting ? (
-              <div className="flex gap-3 items-center">
+              <div className="flex gap-2 items-center">
                 <CgSpinnerTwo className="animate-spin text-xl text-red-500" />
                 <span>Deleting...</span>
               </div>
@@ -88,7 +88,7 @@ const EditProfile = () => {
             }`}
           >
             {isPending ? (
-              <div className="flex gap-3 items-center">
+              <div className="flex gap-2 items-center">
                 <CgSpinnerTwo className="animate-spin text-xl" />
                 <span>Logging out...</span>
               </div>

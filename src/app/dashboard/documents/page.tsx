@@ -1,6 +1,6 @@
 "use client";
-import AllDocuments from "@/Components/DocumentPage/AllDocuments";
-import RecentActivity from "@/Components/DocumentPage/RecentActivity";
+import AllDocuments from "@/Components/Pages/dashboardPages/DocumentPageComponents/AllDocuments";
+import RecentActivity from "@/Components/Pages/dashboardPages/DocumentPageComponents/RecentActivity";
 import { useState } from "react";
 
 const page = () => {

@@ -1,10 +1,14 @@
 import React, { useState } from "react";
-import { FileSvg, FilterSvg, SearchSvg } from "../SvgContainer/SvgContainer";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { FiEye } from "react-icons/fi";
 import { FiDelete } from "react-icons/fi";
 import { FaRegEdit } from "react-icons/fa";
 import { TbFileExport } from "react-icons/tb";
+import {
+  FileSvg,
+  FilterSvg,
+  SearchSvg,
+} from "@/Components/SvgContainer/SvgContainer";
 
 const data = [
   {

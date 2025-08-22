@@ -6,6 +6,7 @@ import { useGoogleLoginFunc } from "@/Hooks/auth_api";
 import { useGoogleLogin } from "@react-oauth/google";
 
 const Page = () => {
+  // Mutation
   const { mutateAsync: googleLoginMutation } = useGoogleLoginFunc();
 
   // Google Login
