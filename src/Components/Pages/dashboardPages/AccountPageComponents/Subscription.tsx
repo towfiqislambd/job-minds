@@ -1,5 +1,5 @@
+import { FeatherSvg } from "@/Components/SvgContainer/SvgContainer";
 import React from "react";
-import { FeatherSvg } from "../SvgContainer/SvgContainer";
 import { useForm } from "react-hook-form";
 
 const Subscription = () => {

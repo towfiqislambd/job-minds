@@ -3,14 +3,21 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { LuEye } from "react-icons/lu";
 import { FaRegEyeSlash } from "react-icons/fa6";
+import { useChangePassword } from "@/Hooks/auth_api";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 type FormData = {
   current_password: string;
-  new_password: string;
-  confirm_password: string;
+  password: string;
+  password_confirmation: string;
 };
 
 const ChangePassword = () => {
+  // Mutations
+  const { mutateAsync: passwordChangeMutation, isPending } =
+    useChangePassword();
+
+  // States
   const [showCurrentPassword, setShowCurrentPassword] =
     useState<boolean>(false);
   const [showNewPassword, setShowNewPassword] = useState<boolean>(false);
@@ -19,13 +26,18 @@ const ChangePassword = () => {
 
   const {
     register,
+    watch,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
-    console.log(data);
+    await passwordChangeMutation(data);
+    reset();
   };
+
+  const password = watch("password");
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="dashboard_card">
@@ -51,7 +63,6 @@ const ChangePassword = () => {
               {errors.current_password.message}
             </p>
           )}
-
           <button
             className="absolute top-1.5 md:top-3 right-2 md:right-3 cursor-pointer"
             onClick={e => {
@@ -74,13 +85,13 @@ const ChangePassword = () => {
               type={showNewPassword ? "text" : "password"}
               placeholder="Enter New Password"
               className="resume_input !pr-12"
-              {...register("new_password", {
+              {...register("password", {
                 required: "New Password is required",
               })}
             />
-            {errors.new_password && (
+            {errors.password && (
               <p className="text-sm text-red-500 mt-1.5">
-                {errors.new_password.message}
+                {errors.password.message}
               </p>
             )}
             <button
@@ -97,19 +108,22 @@ const ChangePassword = () => {
               )}
             </button>
           </div>
+
           {/* Confirm Password */}
           <div className="flex-1 relative">
             <input
               type={showConfirmPassword ? "text" : "password"}
               placeholder="Confirm Password"
               className="resume_input !pr-12"
-              {...register("confirm_password", {
-                required: "Confirm Password is required",
+              {...register("password_confirmation", {
+                required: "Confirm password is required",
+                validate: value =>
+                  value === password || "Passwords do not match",
               })}
             />
-            {errors.confirm_password && (
+            {errors.password_confirmation && (
               <p className="text-sm text-red-500 mt-1.5">
-                {errors.confirm_password.message}
+                {errors.password_confirmation.message}
               </p>
             )}
             <button
@@ -129,10 +143,21 @@ const ChangePassword = () => {
         </div>
       </div>
 
+      {/* Submit btn */}
       <div className="flex justify-end mt-5 md:mt-8">
-        {/* Apply btn */}
-        <button type="submit" className="primary-btn">
-          Apply Changes
+        <button
+          disabled={isPending}
+          type="submit"
+          className={`primary-btn ${isPending && "!cursor-not-allowed"}`}
+        >
+          {isPending ? (
+            <div className="flex gap-2 items-center">
+              <CgSpinnerTwo className="animate-spin text-xl" />
+              <span>Changing...</span>
+            </div>
+          ) : (
+            "Apply Changes"
+          )}
         </button>
       </div>
     </form>

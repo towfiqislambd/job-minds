@@ -1,7 +1,11 @@
+import {
+  EmailSvg,
+  NotificationSvg,
+} from "@/Components/SvgContainer/SvgContainer";
 import React, { useState } from "react";
-import { EmailSvg, NotificationSvg } from "../SvgContainer/SvgContainer";
 
 const Notification = () => {
+  // States
   const [mailEnabled, setMailEnabled] = useState(false);
   const [notificationEnabled, setNotificationEnabled] = useState(false);
   const [applicationEnabled, setApplicationEnabled] = useState(false);

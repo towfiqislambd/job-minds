@@ -1,8 +1,7 @@
-import ServiceContainer from "@/Components/Pages/Home/ServiceContainer";
-import HeroSection from "../../Components/Pages/Home/HeroSection";
-import PricingSection from "@/Components/Pages/Home/PricingSection";
-import FAQSection from "@/Components/Pages/Home/FAQSection";
-
+import ServiceContainer from "@/Components/Pages/mainPages/ServiceContainer";
+import HeroSection from "../../Components/Pages/mainPages/HeroSection";
+import PricingSection from "@/Components/Pages/mainPages/PricingSection";
+import FAQSection from "@/Components/Pages/mainPages/FAQSection";
 const data = [
   {
     question: "What is this site about?",

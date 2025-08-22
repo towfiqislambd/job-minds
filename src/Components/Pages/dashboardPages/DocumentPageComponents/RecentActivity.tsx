@@ -1,5 +1,5 @@
+import { ClockSvg, FileSvg } from "@/Components/SvgContainer/SvgContainer";
 import React from "react";
-import { ClockSvg, FileSvg } from "../SvgContainer/SvgContainer";
 
 type activity = {
   id: number;

@@ -1,23 +1,29 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useResendOTP, useVerifyOTP } from "@/Hooks/auth_api";
 import { Controller, useForm } from "react-hook-form";
+import { CgSpinnerTwo } from "react-icons/cg";
 import OTPInput from "react-otp-input";
 
 type formData = {
   otp: string;
 };
 
-const page = () => {
-  const router = useRouter();
+const page = ({ params }: any) => {
+  const { email } = params;
+
+  // Mutations
+  const { mutateAsync: verifyOtpMutation, isPending } = useVerifyOTP();
+  const { mutate: resendOtpMutation, isPending: isSending } = useResendOTP();
+
   const {
     control,
     handleSubmit,
     formState: { errors },
   } = useForm<formData>();
 
-  const onSubmit = (data: formData) => {
-    console.log(data);
-    router.push("/auth/reset-password");
+  const onSubmit = async (data: formData) => {
+    const payload = { email: decodeURIComponent(email), ...data };
+    await verifyOtpMutation(payload);
   };
 
   return (
@@ -45,31 +51,41 @@ const page = () => {
                 numInputs={4}
                 renderInput={props => <input {...props} />}
                 containerStyle={"flex items-center justify-center gap-6"}
-                inputStyle={`!w-[50px] md:!w-[90px] mx-auto xl:!w-[110px] !h-[50px] md:!h-[70px] xl:!h-[90px] border border-[#0184FF] md:rounded-[30px] !bg-plan-card rounded-[8px] text-lg md:text-xl lg:text-3xl font-medium text-[#071431] bg-[linear-gradient(90deg,_rgba(33,72,159,0.15)_0%,_rgba(1,132,255,0.15)_100%)]`}
+                inputStyle={`!w-[50px] md:!w-[90px] mx-auto xl:!w-[110px] !h-[50px] md:!h-[70px] xl:!h-[90px] border border-[#0184FF] md:rounded-[12px] !bg-plan-card rounded-[8px] text-lg md:text-xl lg:text-3xl font-medium text-[#071431] bg-[linear-gradient(90deg,_rgba(33,72,159,0.15)_0%,_rgba(1,132,255,0.15)_100%)]`}
               />
             )}
           />
-          {errors.otp && (
-            <p className="text-red-500 text-center text-sm md:text-base mt-2 lg:mt-3">
-              {errors.otp.message}
-            </p>
-          )}
+          {errors.otp && <p className="form-error">{errors.otp.message}</p>}
         </div>
 
-        {/* Resend Code */}
+        {/* Resend Code btn */}
         <div className="flex justify-center text-sm md:text-lg text-center gap-2">
           <p className="text-[#666565] leading-[164%]">Don’t get the code?</p>
           <button
-            onClick={e => e.preventDefault()}
+            onClick={e => {
+              e.preventDefault();
+              resendOtpMutation({ email: decodeURIComponent(email) });
+            }}
             className="text-primary-blue cursor-pointer"
           >
-            Resend
+            {isSending ? "Sending...." : "Resend"}
           </button>
         </div>
 
-        {/* Sign up btn */}
-        <button type="submit" className="auth-btn">
-          Verify OTP
+        {/* Verify OTP btn */}
+        <button
+          disabled={isPending}
+          type="submit"
+          className={`auth-btn ${isPending && "!cursor-not-allowed"}`}
+        >
+          {isPending ? (
+            <div className="flex gap-2 items-center">
+              <CgSpinnerTwo className="animate-spin text-xl" />
+              <span>Verifying...</span>
+            </div>
+          ) : (
+            "Verify OTP"
+          )}
         </button>
       </div>
     </form>

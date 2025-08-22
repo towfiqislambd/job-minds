@@ -63,7 +63,7 @@ body {
 }
 
 .auth-btn {
-  @apply w-fit mx-auto px-5 md:px-7 lg:px-12 py-2 lg:py-3 text-sm md:text-base lg:text-lg capitalize rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] leading-[164%] text-white;
+  @apply w-fit mx-auto px-5 md:px-7 lg:px-12 py-2 lg:py-3 text-sm md:text-base lg:text-lg capitalize rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] leading-[164%] text-white duration-500 transition-transform hover:scale-105;
 }
 
 .auth-heading {
@@ -104,4 +104,8 @@ body {
 
 .dashboard_card {
   @apply p-4 md:p-5 xl:p-7 bg-white shadow-box rounded-lg;
+}
+
+.form-error {
+  @apply text-red-500 text-sm block mt-1 lg:mt-2 ps-2 lg:ps-5;
 }

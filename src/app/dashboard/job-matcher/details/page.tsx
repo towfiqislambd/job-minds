@@ -1,7 +1,7 @@
 "use client";
-import CoverLetterSuggestion from "@/Components/JobMatcherPage/CoverLetterSuggestion";
-import MatchingChart from "@/Components/JobMatcherPage/MatchingChart";
-import ResumeSuggestion from "@/Components/JobMatcherPage/ResumeSuggestion";
+import CoverLetterSuggestion from "@/Components/Pages/dashboardPages/JobMatcherPageComponents/CoverLetterSuggestion";
+import MatchingChart from "@/Components/Pages/dashboardPages/JobMatcherPageComponents/MatchingChart";
+import ResumeSuggestion from "@/Components/Pages/dashboardPages/JobMatcherPageComponents/ResumeSuggestion";
 import { useRouter } from "next/navigation";
 
 const data = [
