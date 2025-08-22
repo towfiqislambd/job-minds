@@ -4,8 +4,12 @@ import profileImg from "@/assets/images/dashboard/profile.jpg";
 import Image from "next/image";
 import ChangePassword from "./ChangePassword";
 import BasicInformation from "./BasicInformation";
+import { useLogout } from "@/Hooks/auth_api";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 const EditProfile = () => {
+  const { mutate: logoutMutation, isPending } = useLogout();
+
   return (
     <section className="space-y-5 2xl:space-y-7">
       {/* Premium Access */}
@@ -61,8 +65,21 @@ const EditProfile = () => {
           </button>
 
           {/* Logout btn */}
-          <button className="px-6 lg:px-12 py-2 lg:py-2.5 rounded-[50px] !bg-red-600 font-medium text-white cursor-pointer">
-            Log Out
+          <button
+            onClick={() => logoutMutation()}
+            disabled={isPending}
+            className={`px-6 lg:px-12 py-2 lg:py-2.5 rounded-[50px] !bg-red-600 font-medium text-white cursor-pointer ${
+              isPending && "!cursor-not-allowed"
+            }`}
+          >
+            {isPending ? (
+              <div className="flex gap-3 items-center">
+                <CgSpinnerTwo className="animate-spin text-xl" />
+                <span>Logging out...</span>
+              </div>
+            ) : (
+              " Log Out"
+            )}
           </button>
         </div>
       </div>
