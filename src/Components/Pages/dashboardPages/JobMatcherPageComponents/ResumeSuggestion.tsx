@@ -1,5 +1,5 @@
+import { CheckSvg, CrossSvg } from "@/Components/SvgContainer/SvgContainer";
 import React from "react";
-import { CheckSvg, CrossSvg } from "../SvgContainer/SvgContainer";
 const data = [
   {
     id: 1,

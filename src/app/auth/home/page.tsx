@@ -1,12 +1,43 @@
 "use client";
-import { AppleLogo, GoogleLogo } from "@/Components/SvgContainer/SvgContainer";
+import axios from "axios";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { AppleLogo, GoogleLogo } from "@/Components/SvgContainer/SvgContainer";
+import { useGoogleLoginFunc } from "@/Hooks/auth_api";
+import { useGoogleLogin } from "@react-oauth/google";
 
-const page = () => {
-  const router = useRouter();
+const Page = () => {
+  // Mutation
+  const { mutateAsync: googleLoginMutation } = useGoogleLoginFunc();
+
+  // Google Login
+  const handleGoogleLogin = useGoogleLogin({
+    onSuccess: async tokenResponse => {
+      const token = tokenResponse.access_token;
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_GOOGLE_URL}/oauth2/v2/userinfo`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
+
+      const updatedData = {
+        token,
+        provider: "google",
+        username: data?.name,
+        email: data?.email,
+        avatar: null,
+        // avatar: data?.picture,
+      };
+
+      await googleLoginMutation(updatedData);
+    },
+  });
+
   return (
-    <form className="w-full min-h-screen flex items-center justify-center">
+    <form
+      className="w-full min-h-screen flex items-center justify-center"
+      onSubmit={e => e.preventDefault()}
+    >
       <div className="my-10 w-[calc(100%-30px)] md:w-[calc(100%-50px)] max-w-[700px] mx-auto px-5 md:px-10 py-5 md:py-12 lg:px-24 lg:py-14 bg-primary-off-blue rounded-3xl md:rounded-[50px] flex flex-col gap-y-5 md:gap-y-7 3xl:gap-y-10">
         <h2 className="auth-heading !leading-[140%]">
           Get Hired Faster with Job minds
@@ -14,12 +45,16 @@ const page = () => {
 
         <div className="flex flex-col gap-y-4 md:gap-y-5 3xl:gap-y-7">
           {/* Google Login */}
-          <div className="py-3 md:py-4.5 bg-white rounded-[50px] cursor-pointer border border-[#eee] flex gap-3 items-center justify-center">
+          <button
+            type="button"
+            onClick={() => handleGoogleLogin()}
+            className="py-3 md:py-4.5 bg-white rounded-[50px] cursor-pointer border border-[#eee] flex gap-3 items-center justify-center"
+          >
             <GoogleLogo />
             <p className="leading-[140%] font-medium text-black-gray text-sm md:text-base">
               Continue with Google
             </p>
-          </div>
+          </button>
 
           {/* Apple Login */}
           <div className="py-3 md:py-4.5 bg-white rounded-[50px] cursor-pointer border border-[#eee] flex gap-3 items-center justify-center">
@@ -39,15 +74,9 @@ const page = () => {
           </div>
 
           {/* Login with password */}
-          <button
-            onClick={e => {
-              e.preventDefault();
-              router.push("/auth/login");
-            }}
-            className="auth-btn"
-          >
+          <Link href="/auth/login" className="auth-btn">
             Log In With password
-          </button>
+          </Link>
 
           {/* Don't have an account */}
           <div className="flex justify-center text-sm md:text-base lg:text-lg text-center gap-2">
@@ -67,4 +96,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

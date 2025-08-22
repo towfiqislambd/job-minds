@@ -1,18 +1,21 @@
 "use client";
+import { useRegister } from "@/Hooks/auth_api";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { useRouter } from "next/navigation";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 type formData = {
   name: string;
   email: string;
   password: string;
   password_confirmation: string;
-  terms: string;
+  agree_to_terms: number;
 };
 
 const Page = () => {
-  const router = useRouter();
+  // Mutation
+  const { mutateAsync: registerMutation, isPending } = useRegister();
+
   const {
     register,
     handleSubmit,
@@ -20,9 +23,8 @@ const Page = () => {
     watch,
   } = useForm<formData>();
 
-  const onSubmit = (data: formData) => {
-    console.log(data);
-    router.push("/auth/login");
+  const onSubmit = async (data: formData) => {
+    await registerMutation(data);
   };
 
   const password = watch("password");
@@ -45,9 +47,7 @@ const Page = () => {
               className="auth-input"
             />
             {errors.name && (
-              <span className="text-red-500 text-sm block mt-1 lg:mt-3 ps-2 lg:ps-5">
-                {errors.name.message}
-              </span>
+              <span className="form-error">{errors.name.message}</span>
             )}
           </div>
 
@@ -60,9 +60,7 @@ const Page = () => {
               className="auth-input"
             />
             {errors.email && (
-              <span className="text-red-500 text-sm block mt-1 lg:mt-3 ps-2 lg:ps-5">
-                {errors.email.message}
-              </span>
+              <span className="form-error">{errors.email.message}</span>
             )}
           </div>
 
@@ -75,9 +73,7 @@ const Page = () => {
               className="auth-input"
             />
             {errors.password && (
-              <span className="text-red-500 text-sm block mt-1 lg:mt-3 ps-2 lg:ps-5">
-                {errors.password.message}
-              </span>
+              <span className="form-error">{errors.password.message}</span>
             )}
           </div>
 
@@ -94,7 +90,7 @@ const Page = () => {
               className="auth-input"
             />
             {errors.password_confirmation && (
-              <span className="text-red-500 text-sm block mt-1 lg:mt-3 ps-2 lg:ps-5">
+              <span className="form-error">
                 {errors.password_confirmation.message}
               </span>
             )}
@@ -107,8 +103,10 @@ const Page = () => {
                 id="agree"
                 type="checkbox"
                 className="scale-110"
-                {...register("terms", {
+                value="1"
+                {...register("agree_to_terms", {
                   required: "You must agree to the terms",
+                  setValueAs: v => (v ? 1 : 0),
                 })}
               />
               <label
@@ -118,16 +116,27 @@ const Page = () => {
                 I have read and agree to the Terms and Conditions.
               </label>
             </p>
-            {errors.terms && (
-              <span className="text-red-500 text-sm block mt-1 ps-2 lg:ps-5">
-                {errors.terms.message}
+            {errors.agree_to_terms && (
+              <span className="form-error">
+                {errors.agree_to_terms.message}
               </span>
             )}
           </div>
 
-          {/* Sign up btn */}
-          <button type="submit" className="auth-btn">
-            Sign Up
+          {/* Submit btn */}
+          <button
+            disabled={isPending}
+            type="submit"
+            className={`auth-btn ${isPending && "!cursor-not-allowed"}`}
+          >
+            {isPending ? (
+              <div className="flex gap-2 items-center">
+                <CgSpinnerTwo className="animate-spin text-xl" />
+                <span>Signing up...</span>
+              </div>
+            ) : (
+              " Sign Up"
+            )}
           </button>
 
           {/* Already have an account */}

@@ -1,5 +1,5 @@
 "use client";
-import Container from "@/Components/Common/Container";
+import { Link } from "react-scroll";
 import {
   Notification,
   SiteLogo,
@@ -7,24 +7,14 @@ import {
   WhiteGlobe,
 } from "@/Components/SvgContainer/SvgContainer";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
-import { Link } from "react-scroll";
+import Container from "@/Components/Common/Container";
 
 const Navbar = () => {
   const router = useRouter();
-  const [isTransparent, setIsTransparent] = useState(false);
   const [open, setOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsTransparent(window.scrollY > 100);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   type publicRouteSchema = {
     label: string;
@@ -46,7 +36,7 @@ const Navbar = () => {
     },
   ];
 
-  const [activeSection, setactiveSection] = useState<string | null>(
+  const [activeSection, setActiveSection] = useState<string | null>(
     publicRoutes[0].id
   );
 
@@ -70,13 +60,13 @@ const Navbar = () => {
             <div className="relative z-10 hidden xl:flex gap-2 2xl:gap-4 3xl:gap-6 h-auto w-auto p-3 2xl:p-[15px] rounded-[70px] bg-[#293B61]/60 backdrop-blur-[100px]">
               {publicRoutes.map((item, idx) => (
                 <Link
+                  key={idx}
                   to={item.id}
                   smooth={true}
                   duration={700}
                   onClick={() => {
-                    setactiveSection(item.id);
+                    setActiveSection(item.id);
                   }}
-                  key={idx}
                   className={`flex flex-row gap-x-2 cursor-pointer px-4 py-1.5 2xl:py-2 border-[1px] items-center rounded-[50px] ${
                     item.id === activeSection
                       ? "border-white"
@@ -110,7 +100,7 @@ const Navbar = () => {
             {/* login btn */}
             <button
               onClick={() => {
-                router.push("/auth/login");
+                router.push("/auth/home");
               }}
               className="hidden xl:block primary-btn !py-2.5 2xl:!py-3 3xl:!py-3.5 !text-lg"
             >
@@ -160,7 +150,7 @@ const Navbar = () => {
               smooth={true}
               duration={700}
               onClick={() => {
-                setactiveSection(item.id);
+                setActiveSection(item.id);
                 setOpen(false);
               }}
               key={idx}
@@ -191,7 +181,7 @@ const Navbar = () => {
         {/* login btn */}
         <button
           onClick={() => {
-            router.push("/auth/login");
+            router.push("/auth/home");
           }}
           className="primary-btn mt-5 !py-2.5 block w-full"
         >
