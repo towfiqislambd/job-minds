@@ -4,11 +4,13 @@ import profileImg from "@/assets/images/dashboard/profile.jpg";
 import Image from "next/image";
 import ChangePassword from "./ChangePassword";
 import BasicInformation from "./BasicInformation";
-import { useLogout } from "@/Hooks/auth_api";
+import { useDeleteAccount, useLogout } from "@/Hooks/auth_api";
 import { CgSpinnerTwo } from "react-icons/cg";
 
 const EditProfile = () => {
   const { mutate: logoutMutation, isPending } = useLogout();
+  const { mutate: deleteAccountMutation, isPending: isDeleting } =
+    useDeleteAccount();
 
   return (
     <section className="space-y-5 2xl:space-y-7">
@@ -60,8 +62,21 @@ const EditProfile = () => {
         </p>
         <div className="flex flex-col md:flex-row md:justify-end gap-3 lg:gap-5 2xl:gap-6">
           {/* Delete btn */}
-          <button className="secondary-btn !border-red-500 !text-red-500">
-            Delete Account
+          <button
+            onClick={() => deleteAccountMutation()}
+            disabled={isDeleting}
+            className={`secondary-btn !border-red-500 !text-red-500 ${
+              isDeleting && "!cursor-not-allowed"
+            }`}
+          >
+            {isPending ? (
+              <div className="flex gap-3 items-center">
+                <CgSpinnerTwo className="animate-spin text-xl text-red-500" />
+                <span>Deleting...</span>
+              </div>
+            ) : (
+              " Delete Account"
+            )}
           </button>
 
           {/* Logout btn */}
@@ -78,7 +93,7 @@ const EditProfile = () => {
                 <span>Logging out...</span>
               </div>
             ) : (
-              " Log Out"
+              "Log Out"
             )}
           </button>
         </div>

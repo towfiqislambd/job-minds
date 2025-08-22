@@ -6,9 +6,10 @@ type ModalProps = {
   open: boolean;
   onClose: () => void;
   children: ReactNode;
+  className?: string;
 };
 
-const Modal = ({ open, onClose, children }: ModalProps) => {
+const Modal = ({ open, onClose, children, className }: ModalProps) => {
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
@@ -22,7 +23,9 @@ const Modal = ({ open, onClose, children }: ModalProps) => {
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-[1px]">
       <div className="absolute inset-0" onClick={onClose}></div>
-      <div className="relative z-10 w-full max-w-2xl max-h-[calc(100vh-50px)] overflow-y-auto p-5 bg-white rounded-lg shadow-lg">
+      <div
+        className={`relative z-10 w-full max-w-2xl max-h-[calc(100vh-50px)] overflow-y-auto p-5 bg-white rounded-lg shadow-lg ${className}`}
+      >
         {/* Modal Content */}
         {children}
 

@@ -82,6 +82,29 @@ export const useLogout = () => {
   });
 };
 
+// Delete Account
+export const useDeleteAccount = () => {
+  const router = useRouter();
+  const { clearToken } = useAuth();
+
+  return useApi({
+    method: "delete",
+    key: "delete-account",
+    isPrivate: true,
+    endpoint: "/api/users/delete",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        clearToken();
+        toast.success(data?.message);
+        router.push("/auth/login");
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
 // Verify Email
 export const useVerifyEmail = () => {
   const router = useRouter();
