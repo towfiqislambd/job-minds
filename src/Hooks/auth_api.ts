@@ -185,12 +185,45 @@ export const useGoogleLoginFunc = () => {
   return useApi({
     method: "post",
     key: "google-login",
-    // headers: { "Content-Type": "multipart/form-data" },
     endpoint: "/api/social-login",
     onSuccess: (data: any) => {
       if (data?.status) {
         toast.success(data?.message);
         router.push("/dashboard");
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
+// Change Password
+export const useChangePassword = () => {
+  return useApi({
+    method: "post",
+    key: "change-password",
+    endpoint: "/api/users/password/change",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
+// Update User Data
+export const useUpdateUser = () => {
+  return useApi({
+    method: "post",
+    key: "update-user",
+    endpoint: "/api/users/data/update",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
       }
     },
     onError: (err: any) => {

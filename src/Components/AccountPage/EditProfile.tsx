@@ -69,7 +69,7 @@ const EditProfile = () => {
               isDeleting && "!cursor-not-allowed"
             }`}
           >
-            {isPending ? (
+            {isDeleting ? (
               <div className="flex gap-3 items-center">
                 <CgSpinnerTwo className="animate-spin text-xl text-red-500" />
                 <span>Deleting...</span>
@@ -83,7 +83,7 @@ const EditProfile = () => {
           <button
             onClick={() => logoutMutation()}
             disabled={isPending}
-            className={`px-6 lg:px-12 py-2 lg:py-2.5 rounded-[50px] !bg-red-600 font-medium text-white cursor-pointer ${
+            className={`px-6 lg:px-8 py-2 lg:py-2.5 rounded-[50px] !bg-red-600 font-medium text-white cursor-pointer ${
               isPending && "!cursor-not-allowed"
             }`}
           >

@@ -1,10 +1,16 @@
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import profileImg from "@/assets/images/dashboard/profile.jpg";
+import { useUpdateUser } from "@/Hooks/auth_api";
+import { CgSpinnerTwo } from "react-icons/cg";
+import { ImSpinner9 } from "react-icons/im";
 
 const BasicInformation = () => {
-  const [previewImage, setPreviewImage] = useState("");
+  const [previewFile, setPreviewFile] = useState("");
+  const { mutateAsync: updateUserMutation, isPending } = useUpdateUser();
+  const { mutateAsync: updateAvatarMutation, isPending: isChanging } =
+    useUpdateUser();
 
   type formData = {
     name: string;
@@ -19,8 +25,14 @@ const BasicInformation = () => {
   } = useForm<formData>();
 
   const onSubmit = async (data: formData) => {
-    console.log(data);
+    await updateUserMutation(data);
   };
+
+  useEffect(() => {
+    if (previewFile) {
+      updateAvatarMutation({ avatar: "" });
+    }
+  }, [previewFile]);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="dashboard_card">
@@ -33,14 +45,8 @@ const BasicInformation = () => {
         <div className="flex-shrink-0 w-[150px]">
           <div className="relative w-fit mb-2.5 md:mb-5">
             <div className="lg:w-[100px] w-16 lg:h-[100px] h-16 rounded-full bg-[#E5E7EB] flex items-center justify-center overflow-hidden">
-              {previewImage ? (
-                <Image
-                  width={100}
-                  height={100}
-                  src={previewImage}
-                  alt="Profile Preview"
-                  className="w-full h-full object-cover"
-                />
+              {isChanging ? (
+                <ImSpinner9 className="animate-spin text-4xl text-primary-blue" />
               ) : (
                 <Image
                   width={100}
@@ -52,10 +58,14 @@ const BasicInformation = () => {
               )}
             </div>
           </div>
-          <label htmlFor="profile-upload">
-            <div className="cursor-pointer text-secondary-blue text-sm md:text-base">
-              Change Photo
-            </div>
+
+          <div>
+            <label
+              htmlFor="profile-upload"
+              className="cursor-pointer text-secondary-blue text-sm md:text-base"
+            >
+              {!isChanging && "Change Photo"}
+            </label>
             <input
               id="profile-upload"
               type="file"
@@ -63,14 +73,12 @@ const BasicInformation = () => {
               className="hidden"
               onChange={(e: any) => {
                 const file = e.target.files[0];
-                if (file) {
-                  const imageURL = URL.createObjectURL(file);
-                  setPreviewImage(imageURL);
-                }
+                setPreviewFile(file);
               }}
             />
-          </label>
+          </div>
         </div>
+
         <div className="flex-grow">
           <div className="space-y-5 md:space-y-7">
             {/* Name */}
@@ -102,21 +110,11 @@ const BasicInformation = () => {
                   type="email"
                   placeholder="info@gmail.com"
                   id="email"
-                  className="resume_input"
-                  {...register("email", {
-                    required: "Email address is required",
-                    pattern: {
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                      message: "Please enter a valid email address",
-                    },
-                  })}
+                  readOnly
+                  className="resume_input bg-gray-50"
                 />
-                {errors.email && (
-                  <p className="text-sm text-red-500 mt-1.5">
-                    {errors.email.message}
-                  </p>
-                )}
               </div>
+
               {/* Phone Number */}
               <div className="flex-1">
                 <label htmlFor="phone" className="resume_label">
@@ -141,6 +139,7 @@ const BasicInformation = () => {
           </div>
         </div>
       </div>
+
       <div className="my-5 md:my-7 2xl:my-10 border py-2 px-4 rounded-xl flex items-center justify-between border-gray-200">
         <div className="space-y-2">
           <h4 className="text-center text-secondary-blue text-lg font-semibold leading-[132%] tracking-[-0.319px]">
@@ -155,7 +154,20 @@ const BasicInformation = () => {
 
       <div className="flex justify-end">
         {/* Apply btn */}
-        <button className="primary-btn">Apply Changes</button>
+        <button
+          type="submit"
+          disabled={isPending}
+          className={`primary-btn ${isPending && "!cursor-not-allowed"}`}
+        >
+          {isPending ? (
+            <div className="flex gap-3 items-center">
+              <CgSpinnerTwo className="animate-spin text-xl" />
+              <span>Changing...</span>
+            </div>
+          ) : (
+            "Apply Changes"
+          )}
+        </button>
       </div>
     </form>
   );
