@@ -121,6 +121,7 @@ export const useGoogleLoginFunc = () => {
   return useApi({
     method: "post",
     key: "google-login",
+    // headers: { "Content-Type": "multipart/form-data" },
     endpoint: "/api/social-login",
     onSuccess: (data: any) => {
       if (data?.status) {

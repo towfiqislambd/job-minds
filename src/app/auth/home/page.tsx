@@ -1,9 +1,9 @@
 "use client";
+import axios from "axios";
+import Link from "next/link";
 import { AppleLogo, GoogleLogo } from "@/Components/SvgContainer/SvgContainer";
 import { useGoogleLoginFunc } from "@/Hooks/auth_api";
 import { useGoogleLogin } from "@react-oauth/google";
-import axios from "axios";
-import Link from "next/link";
 
 const Page = () => {
   const { mutateAsync: googleLoginMutation } = useGoogleLoginFunc();
@@ -12,28 +12,23 @@ const Page = () => {
   const handleGoogleLogin = useGoogleLogin({
     onSuccess: async tokenResponse => {
       const token = tokenResponse.access_token;
+      const { data } = await axios.get(
+        `${process.env.NEXT_PUBLIC_GOOGLE_URL}/oauth2/v2/userinfo`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
-      try {
-        const { data } = await axios.get(
-          `${process.env.NEXT_PUBLIC_GOOGLE_URL}/oauth2/v2/userinfo`,
-          {
-            headers: { Authorization: `Bearer ${token}` },
-          }
-        );
+      const updatedData = {
+        token,
+        provider: "google",
+        username: data?.name,
+        email: data?.email,
+        avatar: null,
+        // avatar: data?.picture,
+      };
 
-        const updatedData = {
-          token,
-          provider: "google",
-          username: data?.name,
-          email: data?.email,
-          avatar: null,
-          // avatar: data?.picture || null,
-        };
-
-        await googleLoginMutation(updatedData);
-      } catch (error) {
-        console.error("Error fetching user info:", error);
-      }
+      await googleLoginMutation(updatedData);
     },
   });
 
