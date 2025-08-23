@@ -7,7 +7,8 @@ import QueryProvider from "@/Provider/QueryProvider/QueryProvider";
 import ReduxProvider from "@/Provider/ReduxProvider/ReduxProvider";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import AuthProvider from "@/Provider/AuthProvider/AuthProvider";
-import UseSiteSettings from "@/Hooks/useSiteSettings";
+import { TranslationProvider } from "@/Provider/TranslationProvider/TranslationContext";
+import UseSiteSettings from "@/Hooks/UseSiteSettings";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -32,19 +33,22 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={`${poppins.variable} antialiased`}>
-        <QueryProvider>
-          <AuthProvider>
-            <ReduxProvider>
-              <GoogleOAuthProvider
-                clientId={`${process.env.NEXT_PUBLIC_GOOGLE_AUTH_ID}`}
-              >
-                <AosProvider>{children}</AosProvider>
-                <Toaster />
-                <UseSiteSettings />
-              </GoogleOAuthProvider>
-            </ReduxProvider>
-          </AuthProvider>
-        </QueryProvider>
+        <TranslationProvider>
+          <QueryProvider>
+            <AuthProvider>
+              <ReduxProvider>
+                <GoogleOAuthProvider
+                  clientId={`${process.env.NEXT_PUBLIC_GOOGLE_AUTH_ID}`}
+                >
+                  <AosProvider>{children}</AosProvider>
+                  <Toaster />
+                  <UseSiteSettings />
+                  <div id="google_translate_element" />
+                </GoogleOAuthProvider>
+              </ReduxProvider>
+            </AuthProvider>
+          </QueryProvider>
+        </TranslationProvider>
       </body>
     </html>
   );

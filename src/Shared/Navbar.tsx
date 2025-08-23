@@ -1,10 +1,5 @@
 "use client";
-import {
-  Notification,
-  SiteLogo,
-  WhiteDot,
-  WhiteGlobe,
-} from "@/Components/SvgContainer/SvgContainer";
+import { SiteLogo, WhiteDot } from "@/Components/SvgContainer/SvgContainer";
 import { Link } from "react-scroll";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -15,8 +10,12 @@ import { useSiteSettings } from "@/Hooks/auth_api";
 import Image from "next/image";
 import { Loader } from "@/Components/Loader/Loader";
 import { useFaqData, useHeroData } from "@/Hooks/cms_api";
+import { useTranslation } from "@/Provider/TranslationProvider/TranslationContext";
+import ReactFlagsSelect from "react-flags-select";
 
 const Navbar = () => {
+  const [selectedCountry, setSelectedCountry] = useState("US");
+  const { changeLanguage } = useTranslation();
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
   const { data: siteSettings, isLoading: siteDataLoading } = useSiteSettings();
@@ -119,16 +118,42 @@ const Navbar = () => {
           {/* Right */}
           <div className="flex gap-4 2xl:gap-4.5 items-center ">
             {/* Language */}
-            <div className="hidden w-auto h-auto py-2 px-4 xl:flex flex-row items-center rounded-[50px] gap-5 2xl:gap-8 3xl:gap-12 border-[1px] border-solid border-white ">
-              <div className="flex cursor-pointer flex-row items-center rounded-[50px] gap-2">
-                <WhiteGlobe />
-                <p className="text-lg 3xl:text-xl text-white font-medium leading-[150%]">
-                  Eng
-                </p>
-              </div>
-              <div className="flex cursor-pointer flex-row items-center h-auto w-auto border-[1px] border-solid border-white p-2 rounded-full  ">
-                <Notification />
-              </div>
+            <div className="hidden xl:block">
+              <ReactFlagsSelect
+                selected={selectedCountry}
+                onSelect={countryCode => {
+                  const languageMap: Record<string, string> = {
+                    US: "en",
+                    GB: "en",
+                    FR: "fr",
+                    DE: "de",
+                    IT: "it",
+                    BD: "bn",
+                    IN: "hi",
+                  };
+
+                  const langCode = languageMap[countryCode] || "en";
+                  changeLanguage(langCode);
+                  setSelectedCountry(countryCode);
+                }}
+                countries={["US", "GB", "FR", "DE", "IT", "BD", "IN"]}
+                customLabels={{
+                  US: "English",
+                  GB: "English (UK)",
+                  FR: "Français",
+                  DE: "Deutsch",
+                  IT: "Italiano",
+                  BD: "বাংলা",
+                  IN: "हिन्दी",
+                }}
+                placeholder="Select Language"
+                searchable
+                searchPlaceholder="Search..."
+                selectedSize={16}
+                optionsSize={14}
+                className="inline-block"
+                selectButtonClassName="p-2 border bg-[#0F1E3A] text-white !border-gray-700"
+              />
             </div>
 
             {/* login btn */}
@@ -208,20 +233,44 @@ const Navbar = () => {
               </p>
             </Link>
           ))}
+          {/* Language */}
+          <ReactFlagsSelect
+            selected={selectedCountry}
+            onSelect={countryCode => {
+              const languageMap: Record<string, string> = {
+                US: "en",
+                GB: "en",
+                FR: "fr",
+                DE: "de",
+                IT: "it",
+                BD: "bn",
+                IN: "hi",
+              };
+
+              const langCode = languageMap[countryCode] || "en";
+              changeLanguage(langCode);
+              setSelectedCountry(countryCode);
+            }}
+            countries={["US", "GB", "FR", "DE", "IT", "BD", "IN"]}
+            customLabels={{
+              US: "English",
+              GB: "English (UK)",
+              FR: "Français",
+              DE: "Deutsch",
+              IT: "Italiano",
+              BD: "বাংলা",
+              IN: "हिन्दी",
+            }}
+            placeholder="Select Language"
+            searchable
+            searchPlaceholder="Search..."
+            selectedSize={16}
+            optionsSize={14}
+            className="!w-full !block"
+            selectButtonClassName="p-2 border bg-[#0F1E3A] text-white !border-gray-700 "
+          />
         </div>
 
-        {/* Language */}
-        <div className="w-auto mt-5 mb-10 h-auto py-2 px-4 flex flex-row items-center justify-between rounded-[50px] gap-5 2xl:gap-8 3xl:gap-12 border-[1px] border-solid border-white ">
-          <div className="flex cursor-pointer flex-row items-center rounded-[50px] gap-2">
-            <WhiteGlobe />
-            <p className="lg:text-lg text-white font-medium leading-[150%]">
-              Eng
-            </p>
-          </div>
-          <div className="flex cursor-pointer flex-row items-center h-auto w-auto border-[1px] border-solid border-white p-2 rounded-full  ">
-            <Notification />
-          </div>
-        </div>
         {/* login btn */}
         <button
           onClick={() => {

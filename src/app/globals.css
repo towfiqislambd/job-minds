@@ -36,7 +36,7 @@
 }
 
 body {
-  @apply font-poppins;
+  @apply font-poppins !top-0;
 }
 html {
   scroll-behavior: smooth;
@@ -97,4 +97,26 @@ html {
 
 .form-error {
   @apply text-red-500 text-sm block mt-1 lg:mt-2 ps-2 lg:ps-5;
+}
+
+/* For Language */
+.goog-te-banner-frame,
+.goog-te-menu-value,
+.skiptranslate iframe,
+#google_translate_element,
+.VIpgJd-ZVi9od-aZ2wEe-OiiCO,
+#goog-gt-vt {
+  display: none !important;
+}
+
+.goog-te-menu-frame {
+  max-width: 100% !important;
+}
+
+.goog-te-menu-value span {
+  color: inherit !important;
+}
+
+.skiptranslate iframe {
+  visibility: hidden !important;
 }
