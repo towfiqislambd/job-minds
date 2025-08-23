@@ -1,12 +1,15 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import profileImg from "@/assets/images/dashboard/profile.jpg";
 import { useUpdateUser } from "@/Hooks/auth_api";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { ImSpinner9 } from "react-icons/im";
+import useAuth from "@/Hooks/useAuth";
+import { FaUser } from "react-icons/fa6";
 
 const BasicInformation = () => {
+  const { user } = useAuth();
+
   // State
   const [previewFile, setPreviewFile] = useState("");
 
@@ -15,10 +18,10 @@ const BasicInformation = () => {
   const { mutateAsync: updateAvatarMutation, isPending: isChanging } =
     useUpdateUser();
 
+  // Type
   type formData = {
     name: string;
     email: string;
-    phone: number;
   };
 
   const {
@@ -33,7 +36,10 @@ const BasicInformation = () => {
 
   useEffect(() => {
     if (previewFile) {
-      updateAvatarMutation({ avatar: "" });
+      const formData = new FormData();
+      formData.append("avatar", previewFile);
+      formData.append("name", user?.name);
+      updateAvatarMutation(formData);
     }
   }, [previewFile]);
 
@@ -47,19 +53,20 @@ const BasicInformation = () => {
       <div className="flex flex-col lg:flex-row gap-5 lg:gap-10">
         <div className="flex-shrink-0 w-[150px]">
           <div className="relative w-fit mb-2.5 md:mb-5">
-            <div className="lg:w-[100px] w-16 lg:h-[100px] h-16 rounded-full bg-[#E5E7EB] flex items-center justify-center overflow-hidden">
+            <figure className="size-16 lg:size-28 rounded-full bg-[#E5E7EB] grid place-items-center relative">
               {isChanging ? (
                 <ImSpinner9 className="animate-spin text-4xl text-primary-blue" />
-              ) : (
+              ) : user?.avatar ? (
                 <Image
-                  width={100}
-                  height={100}
-                  src={profileImg}
-                  alt="Profile Preview"
-                  className="w-full h-full object-cover"
+                  src={`${process.env.NEXT_PUBLIC_SITE_URL}/${user?.avatar}`}
+                  fill
+                  alt="profile image"
+                  className="size-full rounded-full"
                 />
+              ) : (
+                <FaUser className="text-4xl" />
               )}
-            </div>
+            </figure>
           </div>
 
           <div>
@@ -91,7 +98,8 @@ const BasicInformation = () => {
               </label>
               <input
                 type="text"
-                placeholder="Jon Done"
+                defaultValue={user?.name}
+                placeholder="Your Name"
                 id="name"
                 className="resume_input"
                 {...register("name", { required: "Name is required" })}
@@ -103,60 +111,25 @@ const BasicInformation = () => {
               )}
             </div>
 
-            <div className="flex flex-col md:flex-row gap-5 2xl:gap-7">
-              {/* Email Address */}
-              <div className="flex-1">
-                <label htmlFor="email" className="resume_label">
-                  Email Address*
-                </label>
-                <input
-                  type="email"
-                  placeholder="info@gmail.com"
-                  id="email"
-                  readOnly
-                  className="resume_input bg-gray-50"
-                />
-              </div>
-
-              {/* Phone Number */}
-              <div className="flex-1">
-                <label htmlFor="phone" className="resume_label">
-                  Phone Number*
-                </label>
-                <input
-                  type="number"
-                  placeholder="+88013435435"
-                  id="phone"
-                  className="resume_input"
-                  {...register("phone", {
-                    required: "Phone number is required",
-                  })}
-                />
-                {errors.phone && (
-                  <p className="text-sm text-red-500 mt-1.5">
-                    {errors.phone.message}
-                  </p>
-                )}
-              </div>
+            {/* Email Address */}
+            <div>
+              <label htmlFor="email" className="resume_label">
+                Email Address*
+              </label>
+              <input
+                type="email"
+                id="email"
+                readOnly
+                placeholder={user?.email}
+                className="resume_input bg-gray-50"
+              />
             </div>
           </div>
         </div>
       </div>
 
-      <div className="my-5 md:my-7 2xl:my-10 border py-2 px-4 rounded-xl flex items-center justify-between border-gray-200">
-        <div className="space-y-2">
-          <h4 className="text-center text-secondary-blue text-lg font-semibold leading-[132%] tracking-[-0.319px]">
-            Antonio Renders
-          </h4>
-          <p className="text-dark-blue font-semibold">€9.9/Month</p>
-        </div>
-        <button className="px-3 py-1 text-sm rounded-full bg-secondary-blue text-white">
-          Upgrade
-        </button>
-      </div>
-
       {/* Submit btn */}
-      <div className="flex justify-end">
+      <div className="flex justify-end mt-8">
         <button
           type="submit"
           disabled={isPending}

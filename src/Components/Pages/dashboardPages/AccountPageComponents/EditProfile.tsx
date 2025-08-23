@@ -1,13 +1,15 @@
 "use client";
 import React from "react";
-import profileImg from "@/assets/images/dashboard/profile.jpg";
+import { FaUser } from "react-icons/fa";
 import Image from "next/image";
 import ChangePassword from "./ChangePassword";
 import BasicInformation from "./BasicInformation";
 import { useDeleteAccount, useLogout } from "@/Hooks/auth_api";
 import { CgSpinnerTwo } from "react-icons/cg";
+import useAuth from "@/Hooks/useAuth";
 
 const EditProfile = () => {
+  const { user } = useAuth();
   const { mutate: logoutMutation, isPending } = useLogout();
   const { mutate: deleteAccountMutation, isPending: isDeleting } =
     useDeleteAccount();
@@ -16,17 +18,29 @@ const EditProfile = () => {
     <section className="space-y-5 2xl:space-y-7">
       {/* Premium Access */}
       <div className="dashboard_card">
-        <Image
-          src={profileImg}
-          alt="profile image"
-          className="w-28 h-28 rounded-full mx-auto"
-        />
+        {/* Info */}
+        <figure className="relative size-28 mx-auto border border-gray-50 rounded-full text-center bg-gray-200 grid place-items-center">
+          {user?.avatar ? (
+            <Image
+              src={`${process.env.NEXT_PUBLIC_SITE_URL}/${user?.avatar}`}
+              fill
+              alt="profile image"
+              className="size-full rounded-full"
+            />
+          ) : (
+            <FaUser className="text-4xl" />
+          )}
+        </figure>
+
         <h4 className="text-center text-dark-blue text-lg mt-3 font-semibold leading-[132%] tracking-[-0.319px]">
-          Antonio Renders
+          {user?.name}
         </h4>
+
         <p className="text-center text-light-gray text-sm leading-[164%] mb-5">
-          R@renders.antonio
+          {user?.email}
         </p>
+
+        {/* Upgrade */}
         <div className="border py-2 px-3 md:px-4 rounded-xl flex items-center justify-between border-gray-200">
           <div className="space-y-2">
             <h4 className="text-center text-secondary-blue text-lg font-semibold leading-[132%] tracking-[-0.319px]">

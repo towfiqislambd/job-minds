@@ -71,7 +71,7 @@ export default function DashboardLayout({
   const [open, setOpen] = useState<boolean>(false);
 
   return (
-    // <PrivateLayout>
+    <PrivateLayout>
       <section className="min-h-screen max-h-screen flex flex-col">
         {/* Header */}
         <header className="bg-white h-[70px] md:h-[84px] flex justify-between items-center px-4 md:px-5 3xl:px-10 fixed w-full left-0 right-0 z-40">
@@ -191,6 +191,6 @@ export default function DashboardLayout({
           ></div>
         </main>
       </section>
-    // </PrivateLayout>
+    </PrivateLayout>
   );
 }

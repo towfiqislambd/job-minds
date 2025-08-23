@@ -25,8 +25,7 @@ const Page = () => {
         provider: "google",
         username: data?.name,
         email: data?.email,
-        avatar: null,
-        // avatar: data?.picture,
+        avatar: data?.picture,
       };
 
       await googleLoginMutation(updatedData);

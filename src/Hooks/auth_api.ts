@@ -3,6 +3,7 @@ import useApi from "./useApi";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import useAuth from "./useAuth";
+import { useQueryClient } from "@tanstack/react-query";
 
 // Get User Data
 export const useGetUserData = (token: any) => {
@@ -182,12 +183,15 @@ export const useResetPassword = () => {
 // Google Login:
 export const useGoogleLoginFunc = () => {
   const router = useRouter();
+  const { setToken } = useAuth();
+
   return useApi({
     method: "post",
     key: "google-login",
     endpoint: "/api/social-login",
     onSuccess: (data: any) => {
       if (data?.status) {
+        setToken(data?.data?.token);
         toast.success(data?.message);
         router.push("/dashboard");
       }
@@ -202,6 +206,7 @@ export const useGoogleLoginFunc = () => {
 export const useChangePassword = () => {
   return useApi({
     method: "post",
+    isPrivate: true,
     key: "change-password",
     endpoint: "/api/users/password/change",
     onSuccess: (data: any) => {
@@ -217,13 +222,16 @@ export const useChangePassword = () => {
 
 // Update User Data
 export const useUpdateUser = () => {
+  const queryClient = useQueryClient();
   return useApi({
     method: "post",
     key: "update-user",
+    isPrivate: true,
     endpoint: "/api/users/data/update",
     onSuccess: (data: any) => {
       if (data?.status) {
         toast.success(data?.message);
+        queryClient.invalidateQueries("user" as any);
       }
     },
     onError: (err: any) => {
