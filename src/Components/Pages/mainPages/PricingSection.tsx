@@ -33,7 +33,7 @@ const pricingArr = [
 
 const PricingSection = () => {
   return (
-    <section className="pb-8 md:pb-12 xl:pb-20 3xl:pb-[120px]">
+    <section id="pricing" className="pb-8 md:pb-12 xl:pb-20 3xl:pb-[120px]">
       <Container>
         <div className="flex flex-col 2xl:items-center gap-y-3 md:gap-y-5 2xl:gap-y-10">
           <Heading

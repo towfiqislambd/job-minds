@@ -48,7 +48,7 @@ export default function useApi({
       return res.data;
     },
     enabled: method === "get" ? Boolean(enabled) : false,
-    staleTime: 10 * 1000,
+    // staleTime: 10 * 1000,
     ...options,
   });
 

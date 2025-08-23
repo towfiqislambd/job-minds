@@ -21,12 +21,6 @@
   --color-secondary-black: #0e1216;
   --color-alt-border: #eaeaea;
 
-  /* Container */
-  --container-max-width: 1720px;
-  --container-padding-x: 1rem;
-  --container-padding-y: 2rem;
-  --shadow-nav-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.08);
-
   /* Font Family */
   --font-poppins: var(--font-poppins);
 
@@ -44,13 +38,8 @@
 body {
   @apply font-poppins;
 }
-
-/* Container */
-.container {
-  max-width: var(--container-max-width);
-  padding-left: var(--container-padding-x);
-  padding-right: var(--container-padding-x);
-  margin: 0 auto;
+html {
+  scroll-behavior: smooth;
 }
 
 /* Custom CSS */

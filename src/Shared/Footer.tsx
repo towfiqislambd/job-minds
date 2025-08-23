@@ -48,9 +48,9 @@ const Footer = () => {
           {/* Lower Part */}
           <div className="flex flex-col gap-y-8 lg:gap-12 3xl:gap-y-[100px] w-full">
             <div className="flex flex-col gap-7 md:flex-row gap-x-[70px] ">
-              {CombinedArr.map(item => {
+              {CombinedArr.map((item, idx) => {
                 return (
-                  <div className="flex flex-col gap-y-[15px]">
+                  <div key={idx} className="flex flex-col gap-y-[15px]">
                     <Heading
                       className="text-white lg:text-lg xl:text-xl 3xl:text-2xl font-[600] leading-[164%] "
                       Txt={item.title}
