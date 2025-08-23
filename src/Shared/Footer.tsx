@@ -27,6 +27,7 @@ const CombinedArr = [
   },
 ];
 
+
 const Footer = () => {
   const { data: siteSettings } = useSiteSettings();
   const { data: dynamicPages } = useDynamicPages();
