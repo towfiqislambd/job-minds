@@ -9,7 +9,6 @@ import Container from "@/Components/Common/Container";
 import { useSiteSettings } from "@/Hooks/auth_api";
 import Image from "next/image";
 import { Loader } from "@/Components/Loader/Loader";
-import { useFaqData, useHeroData } from "@/Hooks/cms_api";
 import { useTranslation } from "@/Provider/TranslationProvider/TranslationContext";
 import ReactFlagsSelect from "react-flags-select";
 
@@ -18,10 +17,7 @@ const Navbar = () => {
   const { changeLanguage } = useTranslation();
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
-  const { data: siteSettings, isLoading: siteDataLoading } = useSiteSettings();
-  const { data: heroData, isLoading: heroDataLoading } = useHeroData();
-  const { data: faqData, isLoading: faqDataLoading } = useFaqData();
-  const isLoading = heroDataLoading || faqDataLoading || siteDataLoading;
+  const { data: siteSettings, isLoading } = useSiteSettings();
 
   const publicRoutes = [
     {

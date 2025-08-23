@@ -17,3 +17,12 @@ export const useFaqData = () => {
     endpoint: "/api/faq/all",
   });
 };
+
+// Dynamic Pages
+export const useDynamicPages = () => {
+  return useApi({
+    method: "get",
+    key: "dynamic-page",
+    endpoint: "/api/dynamic-pages",
+  });
+};

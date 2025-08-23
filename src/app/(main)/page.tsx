@@ -4,10 +4,34 @@ import HeroSection from "../../Components/Pages/mainPages/HeroSection";
 import PricingSection from "@/Components/Pages/mainPages/PricingSection";
 import FAQSection from "@/Components/Pages/mainPages/FAQSection";
 import { useFaqData, useHeroData } from "@/Hooks/cms_api";
+import { Loader } from "@/Components/Loader/Loader";
+import { useEffect } from "react";
 
 export default function Home() {
-  const { data: heroData } = useHeroData();
-  const { data: faqData } = useFaqData();
+  const { data: heroData, isLoading: heroDataLoading } = useHeroData();
+  const { data: faqData, isLoading: faqDataLoading } = useFaqData();
+  const isLoading = heroDataLoading || faqDataLoading;
+
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isLoading]);
+
+  if (isLoading) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <section className="bg-[#F6F6F8] pb-16 md:pb-20 2xl:pb-[120px] z-0">

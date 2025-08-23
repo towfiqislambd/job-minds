@@ -5,7 +5,7 @@ import Container from "@/Components/Common/Container";
 import Heading from "@/Components/Tags/Heading/Heading";
 import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
 import { useSiteSettings } from "@/Hooks/auth_api";
-
+import { useDynamicPages } from "@/Hooks/cms_api";
 const CombinedArr = [
   {
     title: "Ai tools",
@@ -29,6 +29,7 @@ const CombinedArr = [
 
 const Footer = () => {
   const { data: siteSettings } = useSiteSettings();
+  const { data: dynamicPages } = useDynamicPages();
 
   return (
     <footer className="py-10 3xl:py-[57px] bg-dark-blue">
@@ -84,19 +85,19 @@ const Footer = () => {
                 <span className=" text-white xl:font-[600]  text-sm xl:text-base">
                   {siteSettings?.data?.copyright_text}
                 </span>
+
                 <div className="flex flex-col md:flex-row gap-3 md:gap-10">
-                  <Link
-                    className=" text-white leading-[164%]  text-sm xl:text-base xl:font-[600] "
-                    href={"#"}
-                  >
-                    Trams and condition
-                  </Link>
-                  <Link
-                    className=" text-white leading-[164%] text-sm xl:text-base xl:font-[600] "
-                    href={"#"}
-                  >
-                    Privacy and policy
-                  </Link>
+                  {dynamicPages?.data.map((item: any) => {
+                    return (
+                      <Link
+                        key={item?.id}
+                        href={item?.page_slug}
+                        className="text-white leading-[164%] text-sm xl:text-base xl:font-semibold"
+                      >
+                        {item?.page_title}
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
             </div>
