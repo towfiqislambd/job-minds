@@ -6,8 +6,8 @@ import FAQSection from "@/Components/Pages/mainPages/FAQSection";
 import { useFaqData, useHeroData } from "@/Hooks/cms_api";
 
 export default function Home() {
-  const { data: heroData, isLoading: heroDataLoading } = useHeroData();
-  const { data: faqData, isLoading: faqDataLoading } = useFaqData();
+  const { data: heroData } = useHeroData();
+  const { data: faqData } = useFaqData();
 
   return (
     <section className="bg-[#F6F6F8] pb-16 md:pb-20 2xl:pb-[120px] z-0">

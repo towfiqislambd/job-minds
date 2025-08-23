@@ -7,6 +7,7 @@ import QueryProvider from "@/Provider/QueryProvider/QueryProvider";
 import ReduxProvider from "@/Provider/ReduxProvider/ReduxProvider";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import AuthProvider from "@/Provider/AuthProvider/AuthProvider";
+import UseSiteSettings from "@/Hooks/useSiteSettings";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -18,6 +19,9 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Job Minds",
   description: "Resume builder platform",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default async function RootLayout({
@@ -36,6 +40,7 @@ export default async function RootLayout({
               >
                 <AosProvider>{children}</AosProvider>
                 <Toaster />
+                <UseSiteSettings />
               </GoogleOAuthProvider>
             </ReduxProvider>
           </AuthProvider>

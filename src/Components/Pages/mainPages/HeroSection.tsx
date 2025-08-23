@@ -29,6 +29,7 @@ const HeroSection = ({ data }: heroDataProps) => {
             <div className="flex flex-col items-center gap-10 2xl:gap-y-[60px] z-10">
               <div className="flex flex-col items-center gap-y-3">
                 {/* Title */}
+
                 <Heading
                   className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl 2xl:text-7xl 3xl:text-[80px] not-italic font-semibold xl:font-bold leading-[150%] md:leading-[132%] tracking-[-0.8px] text-center !text-white max-w-[942px]"
                   Txt={data?.title}

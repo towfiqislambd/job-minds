@@ -1,8 +1,10 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import Container from "@/Components/Common/Container";
 import Heading from "@/Components/Tags/Heading/Heading";
 import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
+import { useSiteSettings } from "@/Hooks/auth_api";
 
 const CombinedArr = [
   {
@@ -26,6 +28,8 @@ const CombinedArr = [
 ];
 
 const Footer = () => {
+  const { data: siteSettings } = useSiteSettings();
+
   return (
     <footer className="py-10 3xl:py-[57px] bg-dark-blue">
       <Container>
@@ -78,7 +82,7 @@ const Footer = () => {
               />
               <div className="flex gap-3 md:justify-center flex-wrap w-full lg:justify-between">
                 <span className=" text-white xl:font-[600]  text-sm xl:text-base">
-                  2025 Jobminds Limited, All rights reserved
+                  {siteSettings?.data?.copyright_text}
                 </span>
                 <div className="flex flex-col md:flex-row gap-3 md:gap-10">
                   <Link

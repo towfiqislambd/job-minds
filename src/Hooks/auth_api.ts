@@ -239,3 +239,12 @@ export const useUpdateUser = () => {
     },
   });
 };
+
+// Site Settings
+export const useSiteSettings = () => {
+  return useApi({
+    method: "get",
+    key: "site-settings",
+    endpoint: "/api/site-settings",
+  });
+};

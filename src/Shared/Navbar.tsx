@@ -1,27 +1,30 @@
 "use client";
-import { Link } from "react-scroll";
 import {
   Notification,
   SiteLogo,
   WhiteDot,
   WhiteGlobe,
 } from "@/Components/SvgContainer/SvgContainer";
+import { Link } from "react-scroll";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import Container from "@/Components/Common/Container";
+import { useSiteSettings } from "@/Hooks/auth_api";
+import Image from "next/image";
+import { Loader } from "@/Components/Loader/Loader";
+import { useFaqData, useHeroData } from "@/Hooks/cms_api";
 
 const Navbar = () => {
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
+  const { data: siteSettings, isLoading: siteDataLoading } = useSiteSettings();
+  const { data: heroData, isLoading: heroDataLoading } = useHeroData();
+  const { data: faqData, isLoading: faqDataLoading } = useFaqData();
+  const isLoading = heroDataLoading || faqDataLoading || siteDataLoading;
 
-  type publicRouteSchema = {
-    label: string;
-    id: string;
-  };
-
-  const publicRoutes: publicRouteSchema[] = [
+  const publicRoutes = [
     {
       label: "Home",
       id: "banner",
@@ -40,6 +43,27 @@ const Navbar = () => {
     publicRoutes[0].id
   );
 
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isLoading]);
+
+  if (isLoading) {
+    return (
+      <div className="h-screen flex justify-center items-center">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
     <nav className="bg-[#071431] sticky top-0 z-100 w-full">
       <Container>
@@ -47,14 +71,24 @@ const Navbar = () => {
           {/* Left */}
           <div className="flex cursor-pointer gap-32 2xl:gap-52 3xl:gap-80 4xl:gap-[470px] items-center ">
             {/* Logo */}
-            <div
-              className="w-12 md:w-14 xl:w-[70px] 2xl:w-20 3xl:w-22 h-12 md:h-14 xl:h-[70px] 2xl:h-20 3xl:h-22 rounded-full"
+            <figure
+              className="size-12 md:size-14 xl:size-16 2xl:size-20 3xl:size-22 rounded-full relative"
               onClick={() => {
                 router.push("/");
               }}
             >
-              <SiteLogo />
-            </div>
+              {siteSettings?.data?.logo ? (
+                <Image
+                  src={`${process.env.NEXT_PUBLIC_SITE_URL}/${siteSettings?.data?.logo}`}
+                  alt="logo"
+                  width={100}
+                  height={100}
+                  className="size-full rounded-full object-cover"
+                />
+              ) : (
+                <SiteLogo />
+              )}
+            </figure>
 
             {/* Section Links */}
             <div className="relative z-10 hidden xl:flex gap-2 2xl:gap-4 3xl:gap-6 h-auto w-auto p-3 2xl:p-[15px] rounded-[70px] bg-[#293B61]/60 backdrop-blur-[100px]">
@@ -132,15 +166,25 @@ const Navbar = () => {
         } duration-500 transition-transform fixed top-0 z-[999] left-0 bg-[#071431] p-5 lg:p-7 shadow-lg overflow-y-auto border-r max-h-screen min-h-screen w-[250px] lg:w-[270px] xl:hidden`}
       >
         {/* Logo */}
-        <div
+        <figure
           className="w-20 h-20 mx-auto rounded-full cursor-pointer"
           onClick={() => {
             setOpen(false);
             router.push("/");
           }}
         >
-          <SiteLogo />
-        </div>
+          {siteSettings?.data?.logo ? (
+            <Image
+              src={`${process.env.NEXT_PUBLIC_SITE_URL}/${siteSettings?.data?.logo}`}
+              alt="logo"
+              width={100}
+              height={100}
+              className="size-full rounded-full object-cover"
+            />
+          ) : (
+            <SiteLogo />
+          )}
+        </figure>
 
         {/* Section Links */}
         <div className="flex flex-col mt-10 gap-5">

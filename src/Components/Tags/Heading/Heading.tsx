@@ -18,10 +18,7 @@ const Heading: React.FC<HeadingProps> = ({
     <Component
       data-aos="fade-up"
       data-aos-delay="100"
-      className={cn(
-        "defaut-design",
-        className
-      )}
+      className={cn("", className)}
     >
       {Txt}
     </Component>
