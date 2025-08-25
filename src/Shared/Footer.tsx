@@ -87,7 +87,7 @@ const Footer = () => {
                     return (
                       <Link
                         key={item?.id}
-                        href={item?.page_slug}
+                        href={`/dynamic-pages/${item?.page_slug}`}
                         className="text-white leading-[164%] text-sm xl:text-base xl:font-semibold"
                       >
                         {item?.page_title}
