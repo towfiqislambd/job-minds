@@ -1,8 +1,6 @@
-import Image from "next/image";
 import React from "react";
-import resumeImage from "@/assets/images/dashboard/preview.png";
 
-const StepFive = ({ step, setStep }: any) => {
+const StepFive = ({ step, setStep, template }: any) => {
   return (
     <div>
       {/* Title */}
@@ -10,14 +8,12 @@ const StepFive = ({ step, setStep }: any) => {
         Check out your <span className="text-blue-500">resume</span>.
       </h4>
 
-      <div className="bg-white shadow-box rounded-lg mb-5">
-        {/* Image */}
-        <Image
-          src={resumeImage}
-          alt="resume preview"
-          className="w-full h-fit"
-        />
-      </div>
+      {/* Preview Resume */}
+      <div
+        dangerouslySetInnerHTML={{
+          __html: template?.data?.html,
+        }}
+      />
 
       <div className="flex flex-col md:flex-row md:justify-between items-center gap-3 md:gap-0 dashboard_card">
         {/* Back btn */}

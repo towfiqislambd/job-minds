@@ -6,12 +6,14 @@ import StepThree from "@/Components/Pages/dashboardPages/resumeBuilderComponents
 import StepFour from "@/Components/Pages/dashboardPages/resumeBuilderComponents/StepFour";
 import { useCreateResume } from "@/Hooks/api/dashboard_api";
 import StepOne from "@/Components/Pages/dashboardPages/resumeBuilderComponents/StepOne";
+import StepFive from "@/Components/Pages/dashboardPages/resumeBuilderComponents/StepFive";
 
 const steps = [
   { component: StepOne },
   { component: StepTwo },
   { component: StepThree },
   { component: StepFour },
+  { component: StepFive },
 ];
 
 interface Props {
@@ -22,6 +24,7 @@ const page = ({ params }: Props) => {
   const { template_id } = use(params);
   const { mutateAsync: createResumeMutation } = useCreateResume(template_id);
   const [step, setStep] = useState<number>(1);
+  const [generatedTemplate, setGeneratedTemplate] = useState<any>(null);
   const onNext = () => setStep(prev => Math.min(prev + 1, steps.length));
   const onPrev = () => setStep(prev => Math.max(prev - 1, 1));
 
@@ -52,9 +55,9 @@ const page = ({ params }: Props) => {
   const CurrentStep = steps[step - 1]?.component;
 
   const onSubmit = async (data: any) => {
-    if (step < steps.length) {
+    if (step < 4) {
       setStep(step + 1);
-    } else {
+    } else if (step === 4) {
       const formData = new FormData();
 
       // Append regular fields
@@ -102,7 +105,9 @@ const page = ({ params }: Props) => {
         formData.append(`skills[${index}]`, skill);
       });
 
-      await createResumeMutation(formData);
+      const response = await createResumeMutation(formData);
+      setGeneratedTemplate(response);
+      setStep(5);
     }
   };
 
@@ -115,6 +120,7 @@ const page = ({ params }: Props) => {
           setStep={setStep}
           onNext={onNext}
           onPrev={onPrev}
+          template={generatedTemplate}
         />
       </form>
     </FormProvider>

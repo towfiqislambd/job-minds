@@ -29,9 +29,6 @@ export const useCreateResume = (id: any) => {
       "Content-Type": "multipart/form-data",
     },
     endpoint: `/api/generate/${id}/pdf`,
-    onSuccess: (data: any) => {
-      console.log(data);
-    },
     onError: (err: any) => {
       toast.error(err?.response?.data?.message);
     },
