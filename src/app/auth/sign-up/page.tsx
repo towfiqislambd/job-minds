@@ -1,5 +1,5 @@
 "use client";
-import { useRegister } from "@/Hooks/auth_api";
+import { useRegister } from "@/Hooks/api/auth_api";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";

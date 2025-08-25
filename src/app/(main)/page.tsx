@@ -3,7 +3,7 @@ import ServiceContainer from "@/Components/Pages/mainPages/ServiceContainer";
 import HeroSection from "../../Components/Pages/mainPages/HeroSection";
 import PricingSection from "@/Components/Pages/mainPages/PricingSection";
 import FAQSection from "@/Components/Pages/mainPages/FAQSection";
-import { useFaqData, useHeroData } from "@/Hooks/cms_api";
+import { useFaqData, useHeroData } from "@/Hooks/api/cms_api";
 import { Loader } from "@/Components/Loader/Loader";
 import { useEffect } from "react";
 

@@ -1,8 +1,8 @@
 "use client";
-import useApi from "./useApi";
+import useAuth from "@/Hooks/useAuth";
+import useApi from "@/Hooks/api/useApi";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import useAuth from "./useAuth";
 import { useQueryClient } from "@tanstack/react-query";
 
 // Get User Data

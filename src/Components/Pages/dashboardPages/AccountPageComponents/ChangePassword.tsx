@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { LuEye } from "react-icons/lu";
 import { FaRegEyeSlash } from "react-icons/fa6";
-import { useChangePassword } from "@/Hooks/auth_api";
+import { useChangePassword } from "@/Hooks/api/auth_api";
 import { CgSpinnerTwo } from "react-icons/cg";
 
 type FormData = {

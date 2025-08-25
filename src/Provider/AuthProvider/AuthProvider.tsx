@@ -1,7 +1,7 @@
 "use client";
 import { createContext, ReactNode, useEffect, useState } from "react";
 import useLocalStorage from "@/Hooks/useLocalStorage";
-import { useGetUserData } from "@/Hooks/auth_api";
+import { useGetUserData } from "@/Hooks/api/auth_api";
 
 interface AuthContextValue {
   loading: boolean;

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useUpdateUser } from "@/Hooks/auth_api";
+import { useUpdateUser } from "@/Hooks/api/auth_api";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { ImSpinner9 } from "react-icons/im";
 import useAuth from "@/Hooks/useAuth";

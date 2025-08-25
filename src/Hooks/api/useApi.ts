@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import { axiosSecure } from "./useAxiosSecure";
-import { axiosPublic } from "./useAxiosPublic";
+import { axiosSecure } from "@/Hooks/useAxiosSecure";
+import { axiosPublic } from "@/Hooks/useAxiosPublic";
 
 type apiProps = {
   key?: string;

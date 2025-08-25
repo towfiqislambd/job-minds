@@ -1,5 +1,5 @@
 "use client";
-import { useResetPassword } from "@/Hooks/auth_api";
+import { useResetPassword } from "@/Hooks/api/auth_api";
 import { useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
 

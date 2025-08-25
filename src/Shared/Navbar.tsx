@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import Container from "@/Components/Common/Container";
-import { useSiteSettings } from "@/Hooks/auth_api";
+import { useSiteSettings } from "@/Hooks/api/auth_api";
 import Image from "next/image";
 import { Loader } from "@/Components/Loader/Loader";
 import { useTranslation } from "@/Provider/TranslationProvider/TranslationContext";

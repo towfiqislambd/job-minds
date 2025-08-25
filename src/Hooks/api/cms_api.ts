@@ -1,4 +1,4 @@
-import useApi from "./useApi";
+import useApi from "@/Hooks/api/useApi";
 
 // Hero Section
 export const useHeroData = () => {
@@ -22,7 +22,17 @@ export const useFaqData = () => {
 export const useDynamicPages = () => {
   return useApi({
     method: "get",
-    key: "dynamic-page",
+    key: "dynamic-pages",
     endpoint: "/api/dynamic-pages",
+  });
+};
+
+// Single Dynamic Page
+export const useSingleDynamicPage = (slug: any) => {
+  return useApi({
+    method: "get",
+    enabled: !!slug,
+    key: `single-dynamic-page-${slug}`,
+    endpoint: `/api/dynamic-pages/single/${slug}`,
   });
 };

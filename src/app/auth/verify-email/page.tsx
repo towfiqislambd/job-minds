@@ -1,5 +1,5 @@
 "use client";
-import { useVerifyEmail } from "@/Hooks/auth_api";
+import { useVerifyEmail } from "@/Hooks/api/auth_api";
 import { useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
 

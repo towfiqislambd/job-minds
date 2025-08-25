@@ -4,7 +4,7 @@ import { FaUser } from "react-icons/fa";
 import Image from "next/image";
 import ChangePassword from "./ChangePassword";
 import BasicInformation from "./BasicInformation";
-import { useDeleteAccount, useLogout } from "@/Hooks/auth_api";
+import { useDeleteAccount, useLogout } from "@/Hooks/api/auth_api";
 import { CgSpinnerTwo } from "react-icons/cg";
 import useAuth from "@/Hooks/useAuth";
 

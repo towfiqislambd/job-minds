@@ -2,7 +2,7 @@
 import axios from "axios";
 import Link from "next/link";
 import { AppleLogo, GoogleLogo } from "@/Components/SvgContainer/SvgContainer";
-import { useGoogleLoginFunc } from "@/Hooks/auth_api";
+import { useGoogleLoginFunc } from "@/Hooks/api/auth_api";
 import { useGoogleLogin } from "@react-oauth/google";
 
 const Page = () => {

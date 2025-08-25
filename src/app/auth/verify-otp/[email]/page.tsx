@@ -1,5 +1,5 @@
 "use client";
-import { useResendOTP, useVerifyOTP } from "@/Hooks/auth_api";
+import { useResendOTP, useVerifyOTP } from "@/Hooks/api/auth_api";
 import { Controller, useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
 import OTPInput from "react-otp-input";
