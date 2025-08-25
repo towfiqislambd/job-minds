@@ -193,27 +193,51 @@ const StepOne = () => {
 
         {/* Whatsapp Number */}
         <div className="col-span-2 md:col-span-1">
-          <label htmlFor="wp" className="resume_label">
+          <label htmlFor="whatsapp_number" className="resume_label">
             Whatsapp Number*
           </label>
           <input
             type="number"
             placeholder="+88014604035"
-            id="wp"
+            id="whatsapp_number"
             className="resume_input"
-            {...register("wp", {
+            {...register("whatsapp_number", {
               required: "Whatsapp Number is required",
             })}
           />
-          {errors.wp && (
+          {errors.whatsapp_number && (
             <p className="text-sm text-red-500 mt-1.5">
-              {errors.wp.message as string}
+              {errors.whatsapp_number.message as string}
             </p>
           )}
         </div>
 
-        {/* Linkedin */}
-        <div className="col-span-2">
+        {/* Website (Optional) */}
+        <div className="col-span-2 md:col-span-1">
+          <label htmlFor="website" className="resume_label">
+            Website*
+          </label>
+          <input
+            type="url"
+            placeholder="https://yourwebsite.com"
+            id="website"
+            className="resume_input"
+            {...register("website", {
+              pattern: {
+                value: /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/[\w-./?%&=]*)?$/,
+                message: "Please enter a valid URL",
+              },
+            })}
+          />
+          {errors.website && (
+            <p className="text-sm text-red-500 mt-1.5">
+              {errors.website.message as string}
+            </p>
+          )}
+        </div>
+
+        {/* Linkedin (Optional) */}
+        <div className="col-span-2 md:col-span-1">
           <label htmlFor="linkedin" className="resume_label">
             Linkedin*
           </label>
@@ -223,7 +247,6 @@ const StepOne = () => {
             id="linkedin"
             className="resume_input"
             {...register("linkedin", {
-              required: "A valid link is required",
               pattern: {
                 value: /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/[\w-./?%&=]*)?$/,
                 message: "Please enter a valid URL",
@@ -238,7 +261,7 @@ const StepOne = () => {
         </div>
 
         {/* Portfolio (Optional) */}
-        <div className="col-span-2">
+        <div className="col-span-2 md:col-span-1">
           <label htmlFor="portfolio" className="resume_label">
             Portfolio (Optional)
           </label>
@@ -247,8 +270,66 @@ const StepOne = () => {
             placeholder="https://yourportfolio.com"
             id="portfolio"
             className="resume_input"
-            {...register("portfolio")}
+            {...register("portfolio", {
+              pattern: {
+                value: /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/[\w-./?%&=]*)?$/,
+                message: "Please enter a valid URL",
+              },
+            })}
           />
+          {errors.portfolio && (
+            <p className="text-sm text-red-500 mt-1.5">
+              {errors.portfolio.message as string}
+            </p>
+          )}
+        </div>
+
+        {/* Instagram (Optional) */}
+        <div className="col-span-2 md:col-span-1">
+          <label htmlFor="instagram" className="resume_label">
+            Instagram (Optional)
+          </label>
+          <input
+            type="url"
+            placeholder="https://instagram.com/username"
+            id="instagram"
+            className="resume_input"
+            {...register("instagram", {
+              pattern: {
+                value: /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/[\w-./?%&=]*)?$/,
+                message: "Please enter a valid URL",
+              },
+            })}
+          />
+          {errors.instagram && (
+            <p className="text-sm text-red-500 mt-1.5">
+              {errors.instagram.message as string}
+            </p>
+          )}
+        </div>
+
+        {/* Facebook (Optional) */}
+        <div className="col-span-2">
+          <label htmlFor="facebook" className="resume_label">
+            Facebook (Optional)
+          </label>
+          <input
+            type="url"
+            placeholder="https://facebook.com/username"
+            id="facebook"
+            className="resume_input"
+            {...register("facebook", {
+              pattern: {
+                value: /^(https?:\/\/)?([\w-]+\.)+[\w-]{2,}(\/[\w-./?%&=]*)?$/,
+                message: "Please enter a valid URL",
+              },
+            })}
+          />
+          {errors.facebook && (
+            <p className="text-sm text-red-500 mt-1.5">
+              {errors.facebook.message as string}
+            </p>
+          )}
         </div>
 
         {/* Career Objective */}

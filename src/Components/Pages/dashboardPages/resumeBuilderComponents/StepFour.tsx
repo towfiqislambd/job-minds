@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { useState, KeyboardEvent } from "react";
-import toast from "react-hot-toast";
 
 const StepFour = ({ step, setStep }: any) => {
   const [inputValue, setInputValue] = useState("");
@@ -46,7 +45,7 @@ const StepFour = ({ step, setStep }: any) => {
   return (
     <section className="dashboard_card">
       {/* Title */}
-      <h4 className="section_sub_title">Skills</h4>
+      <h3 className="section_sub_title">Skills</h3>
 
       {/* Description */}
       <p className="section_sub_description !mb-3 md:!mb-5">
@@ -102,8 +101,8 @@ const StepFour = ({ step, setStep }: any) => {
         </button>
 
         {/* Next btn */}
-        <button onClick={handleNext} type="submit" className="primary-btn">
-          Next
+        <button type="submit" className="primary-btn">
+          Submit
         </button>
       </div>
     </section>

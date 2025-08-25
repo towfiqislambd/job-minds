@@ -1,115 +1,170 @@
 import React from "react";
-import { useFormContext } from "react-hook-form";
+import { useFieldArray, useFormContext } from "react-hook-form";
+
+type Education = {
+  institution: string;
+  subject: string;
+  degree: string;
+  years: string;
+  gpa: number;
+};
+
+interface FormValues {
+  education: Education[];
+}
 
 const StepThree = ({ step, setStep }: any) => {
   const {
     register,
+    control,
     formState: { errors },
-  } = useFormContext();
+  } = useFormContext<FormValues>();
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "education",
+  });
 
   return (
     <section className="dashboard_card">
-      {/* Title */}
       <h4 className="section_sub_title">Education</h4>
-
-      {/* Description */}
       <p className="section_sub_description !mb-3 md:!mb-5">
-        Review Your Education history.
+        Review your education history. Add multiple entries if needed.
       </p>
+      {fields.map((field, index) => (
+        <div
+          key={field.id}
+          className="grid md:grid-cols-2 gap-4 md:gap-5 2xl:gap-7 border border-gray-200 p-4 rounded-xl mb-5 relative"
+        >
+          {/* Institution */}
+          <div>
+            <label className="resume_label">Institution Name*</label>
+            <input
+              type="text"
+              placeholder="Enter Your Institution Name"
+              className="resume_input"
+              {...register(`education.${index}.institution` as const, {
+                required: "Institution Name is required",
+              })}
+            />
+            {errors.education?.[index]?.institution && (
+              <p className="text-sm text-red-500 mt-1.5">
+                {errors.education[index]?.institution?.message}
+              </p>
+            )}
+          </div>
 
-      <div className="grid md:grid-cols-2 gap-4 md:gap-5 2xl:gap-7">
-        {/* Institution Name */}
-        <div>
-          <label htmlFor="institution_name" className="resume_label">
-            Institution Name*
-          </label>
-          <input
-            type="text"
-            placeholder="Enter Your Institution Name"
-            id="institution_name"
-            className="resume_input"
-            {...register("institution_name", {
-              required: "Institution Name is required",
-            })}
-          />
-          {errors.institution_name && (
-            <p className="text-sm text-red-500 mt-1.5">
-              {errors.institution_name.message as string}
-            </p>
+          {/* Subject */}
+          <div>
+            <label className="resume_label">Subject*</label>
+            <input
+              type="text"
+              placeholder="Enter Your Subject"
+              className="resume_input"
+              {...register(`education.${index}.subject` as const, {
+                required: "Subject is required",
+              })}
+            />
+            {errors.education?.[index]?.subject && (
+              <p className="text-sm text-red-500 mt-1.5">
+                {errors.education[index]?.subject?.message}
+              </p>
+            )}
+          </div>
+
+          {/* Degree */}
+          <div>
+            <label className="resume_label">Degree Title*</label>
+            <input
+              type="text"
+              placeholder="Enter Your Degree Title"
+              className="resume_input"
+              {...register(`education.${index}.degree` as const, {
+                required: "Degree Title is required",
+              })}
+            />
+            {errors.education?.[index]?.degree && (
+              <p className="text-sm text-red-500 mt-1.5">
+                {errors.education[index]?.degree?.message}
+              </p>
+            )}
+          </div>
+
+          {/* Graduation Year */}
+          <div>
+            <label className="resume_label">Graduation Year*</label>
+            <input
+              type="text"
+              placeholder="Enter Graduation Year"
+              className="resume_input"
+              {...register(`education.${index}.years`, {
+                required: "Graduation Year is required",
+              })}
+            />
+            {errors.education?.[index]?.years && (
+              <p className="text-sm text-red-500 mt-1.5">
+                {errors.education[index]?.years?.message}
+              </p>
+            )}
+          </div>
+
+          {/* CGPA */}
+          <div>
+            <label className="resume_label">CGPA*</label>
+            <input
+              type="number"
+              placeholder="Enter CGPA"
+              className="resume_input"
+              {...register(`education.${index}.gpa` as const, {
+                required: "CGPA is required",
+              })}
+            />
+            {errors.education?.[index]?.gpa && (
+              <p className="text-sm text-red-500 mt-1.5">
+                {errors.education[index]?.gpa?.message}
+              </p>
+            )}
+          </div>
+
+          {/* Remove Button */}
+          {fields.length > 1 && (
+            <button
+              type="button"
+              onClick={() => remove(index)}
+              className="absolute top-2 right-2 text-red-500 text-sm"
+            >
+              Remove
+            </button>
           )}
         </div>
+      ))}
 
-        {/* Subject */}
-        <div>
-          <label htmlFor="subject" className="resume_label">
-            Subject*
-          </label>
-          <input
-            type="text"
-            placeholder="Enter Your Subject"
-            id="subject"
-            className="resume_input"
-            {...register("subject", {
-              required: "Subject is required",
-            })}
-          />
-          {errors.subject && (
-            <p className="text-sm text-red-500 mt-1.5">
-              {errors.subject.message as string}
-            </p>
-          )}
-        </div>
+      {/* Add New Education */}
+      <button
+        type="button"
+        onClick={() =>
+          append({
+            institution: "",
+            subject: "",
+            degree: "",
+            years: "",
+            gpa: 0,
+          })
+        }
+        className="secondary-btn mt-3"
+      >
+        + Add New Education
+      </button>
 
-        {/* Degree Title */}
-        <div>
-          <label htmlFor="degree_title" className="resume_label">
-            Degree Title*
-          </label>
-          <input
-            type="text"
-            placeholder="Enter Your Degree Title"
-            id="degree_title"
-            className="resume_input"
-            {...register("degree_title", {
-              required: "Degree Title is required",
-            })}
-          />
-          {errors.degree_title && (
-            <p className="text-sm text-red-500 mt-1.5">
-              {errors.degree_title.message as string}
-            </p>
-          )}
-        </div>
-
-        {/* Graduation Year */}
-        <div>
-          <label htmlFor="graduation_year" className="resume_label">
-            Graduation Year*
-          </label>
-          <input
-            type="number"
-            placeholder="Enter Graduation Year"
-            id="graduation_year"
-            className="resume_input"
-            {...register("graduation_year", {
-              required: "Graduation Year is required",
-            })}
-          />
-          {errors.graduation_year && (
-            <p className="text-sm text-red-500 mt-1.5">
-              {errors.graduation_year.message as string}
-            </p>
-          )}
-        </div>
-      </div>
-
+      {/* Navigation Buttons */}
       <div className="flex justify-end gap-3.5 2xl:gap-5 items-center mt-7">
-        {/* Cancel btn */}
-        <button onClick={() => setStep(step - 1)} className="secondary-btn">
+        <button
+          type="button"
+          onClick={() => setStep(step - 1)}
+          className="secondary-btn"
+        >
           Back
         </button>
-
-        {/* Next btn */}
         <button type="submit" className="primary-btn">
           Next
         </button>
