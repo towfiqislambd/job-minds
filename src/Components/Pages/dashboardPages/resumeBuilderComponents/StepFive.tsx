@@ -1,11 +1,8 @@
-"use client";
 import Image from "next/image";
+import React from "react";
 import resumeImage from "@/assets/images/dashboard/preview.png";
-import { useRouter } from "next/navigation";
 
-const page = () => {
-  const router = useRouter();
-
+const StepFive = ({ step, setStep }: any) => {
   return (
     <div>
       {/* Title */}
@@ -24,13 +21,7 @@ const page = () => {
 
       <div className="flex flex-col md:flex-row md:justify-between items-center gap-3 md:gap-0 dashboard_card">
         {/* Back btn */}
-        <button
-          onClick={e => {
-            e.preventDefault();
-            router.back();
-          }}
-          className="secondary-btn"
-        >
+        <button onClick={() => setStep(step - 1)} className="secondary-btn">
           Back
         </button>
 
@@ -46,4 +37,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default StepFive;

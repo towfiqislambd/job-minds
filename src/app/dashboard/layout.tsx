@@ -139,13 +139,9 @@ export default function DashboardLayout({
 
               {navLinks?.map((link, idx) => {
                 const isActive = pathname === link.path;
-                const isCreating =
-                  pathname ===
-                    "/dashboard/resume-builder/collect-personal-info" ||
-                  pathname === "/dashboard/resume-builder/collect-education" ||
-                  pathname === "/dashboard/resume-builder/collect-experience" ||
-                  pathname === "/dashboard/resume-builder/collect-skills" ||
-                  pathname === "/dashboard/resume-builder/resume-preview";
+                const isCreating = pathname.startsWith(
+                  "/dashboard/resume-builder"
+                );
                 return (
                   <div key={idx}>
                     <Link
@@ -188,7 +184,7 @@ export default function DashboardLayout({
             className={`fixed inset-0 bg-black/30 backdrop-blur-[3px] transition-opacity duration-300 xl:hidden z-50 ${
               open ? "opacity-100" : "opacity-0 pointer-events-none"
             }`}
-          ></div>
+          />
         </main>
       </section>
     </PrivateLayout>
