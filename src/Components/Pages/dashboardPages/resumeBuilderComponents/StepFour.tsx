@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { useState, KeyboardEvent } from "react";
+import { CgSpinnerTwo } from "react-icons/cg";
 
-const StepFour = ({ step, setStep }: any) => {
+const StepFour = ({ step, setStep, isPending }: any) => {
   const [inputValue, setInputValue] = useState("");
   const [skills, setSkills] = useState<string[]>([]);
 
@@ -100,9 +101,20 @@ const StepFour = ({ step, setStep }: any) => {
           Back
         </button>
 
-        {/* Next btn */}
-        <button type="submit" className="primary-btn">
-          Submit
+        {/* Submit btn */}
+        <button
+          disabled={isPending}
+          type="submit"
+          className={`primary-btn ${isPending && "!cursor-not-allowed"}`}
+        >
+          {isPending ? (
+            <div className="flex gap-2 items-center">
+              <CgSpinnerTwo className="animate-spin text-xl" />
+              <span>Submitting....</span>
+            </div>
+          ) : (
+            "Submit"
+          )}
         </button>
       </div>
     </section>

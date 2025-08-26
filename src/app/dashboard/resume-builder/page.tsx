@@ -64,12 +64,12 @@ const Page = () => {
               </figure>
 
               {/* Template Name */}
-              <h3 className="text-secondary-blue text-center text-3xl 2xl:text-4xl 3xl:text-5xl leading-[132%] font-semibold capitalize">
+              <h3 className="text-secondary-blue text-center text-3xl leading-[132%] font-semibold capitalize">
                 {template_name}
               </h3>
 
-              {/* Title */}
-              <p className="text-[#A3A3A3] text-center text-xl 3xl:text-[22px] leading-[164%]">
+              {/* Short Description */}
+              <p className="text-[#A3A3A3] text-center text-xl leading-[164%]">
                 {title}
               </p>
 

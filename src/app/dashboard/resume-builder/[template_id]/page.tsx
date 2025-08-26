@@ -22,7 +22,8 @@ interface Props {
 
 const page = ({ params }: Props) => {
   const { template_id } = use(params);
-  const { mutateAsync: createResumeMutation } = useCreateResume(template_id);
+  const { mutateAsync: createResumeMutation, isPending } =
+    useCreateResume(template_id);
   const [step, setStep] = useState<number>(1);
   const [generatedTemplate, setGeneratedTemplate] = useState<any>(null);
   const onNext = () => setStep(prev => Math.min(prev + 1, steps.length));
@@ -121,6 +122,7 @@ const page = ({ params }: Props) => {
           onNext={onNext}
           onPrev={onPrev}
           template={generatedTemplate}
+          isPending={isPending}
         />
       </form>
     </FormProvider>

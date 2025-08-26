@@ -20,15 +20,34 @@ export const useSingleResumeTemplate = (id: any) => {
   });
 };
 
-// Add Resume Template
+// Create Resume Template
 export const useCreateResume = (id: any) => {
   return useApi({
     method: "post",
+    isPrivate: true,
     key: "create-resume-template",
     headers: {
       "Content-Type": "multipart/form-data",
     },
     endpoint: `/api/generate/${id}/pdf`,
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
+// Generate Cover Letter
+export const useGenerateCoverLetter = () => {
+  return useApi({
+    method: "post",
+    key: "generate-cover-letter",
+    isPrivate: true,
+    endpoint: "/api/generate-cover-letter",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+      }
+    },
     onError: (err: any) => {
       toast.error(err?.response?.data?.message);
     },

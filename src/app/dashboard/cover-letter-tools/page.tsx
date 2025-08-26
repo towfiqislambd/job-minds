@@ -1,117 +1,45 @@
 "use client";
+import { useGenerateCoverLetter } from "@/Hooks/api/dashboard_api";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 interface FormData {
-  jobTitle: string;
-  companyName: string;
-  department: string;
+  job_title: string;
+  company_name: string;
+  company_address: string;
+  position: string;
+  job_description: string;
   education: string;
-  keySkills: string;
-  length: "Short" | "Long";
-  tone: "Professional" | "Normal";
+  skills: string;
+  experience: string;
+  length: "short" | "long";
+  tone: "professional" | "normal";
 }
 
-const page: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
-    jobTitle: "",
-    companyName: "",
-    department: "",
-    education: "",
-    keySkills: "",
-    length: "Short",
-    tone: "Professional",
-  });
+const Page = () => {
+  const [preview, setPreview] = useState<any>(null);
+  const { mutateAsync: generateCoverLetterMutation, isPending } =
+    useGenerateCoverLetter();
 
-  const [preview, setPreview] = useState<string>("");
-  const [isGenerated, setIsGenerated] = useState<boolean>(false);
+  const {
+    register,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>();
 
-  const handleInputChange = (
-    e: React.ChangeEvent<
-      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
-    >
-  ) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const generateCoverLetter = () => {
-    const {
-      jobTitle,
-      companyName,
-      department,
-      education,
-      keySkills,
-      length,
-      tone,
-    } = formData;
-    const date = new Date().toLocaleDateString();
-    const salutation =
-      tone === "Professional" ? `Dear Hiring Manager,` : `Hello,`;
-    const intro = `I am excited to apply for the ${jobTitle} position at ${companyName}${
-      department ? ` in the ${department} department` : ""
-    }. With my background and skills, I am confident in my ability to contribute to your team.`;
-    const bodyShort = `My education in ${
-      education || "my field"
-    } has equipped me with a strong foundation. Additionally, my skills in ${
-      keySkills || "various areas"
-    } allow me to excel in this role. I am eager to bring my expertise to ${companyName} and contribute to your success.`;
-    const bodyLong = `My educational background includes ${
-      education || "a comprehensive study in my field"
-    }, which has provided me with a robust foundation to tackle complex challenges. Over the course of my academic and professional journey, I have honed my skills in ${
-      keySkills || "multiple disciplines"
-    }, enabling me to deliver high-quality results. I am particularly drawn to ${companyName}'s innovative approach and am excited about the opportunity to contribute to your team’s success through dedication and collaboration.`;
-    const closing =
-      tone === "Professional"
-        ? `Thank you for considering my application. I look forward to the possibility of discussing how I can contribute to ${companyName}. Please feel free to contact me at your convenience.\n\nSincerely,\n[Your Name]`
-        : `Thanks for reviewing my application. I’m excited about the chance to join ${companyName} and would love to talk more about this opportunity.\n\nBest regards,\n[Your Name]`;
-
-    const coverLetter =
-      length === "Short"
-        ? `${date}\n\n${salutation}\n\n${intro}\n\n${bodyShort}\n\n${closing}`
-        : `${date}\n\n${salutation}\n\n${intro}\n\n${bodyLong}\n\n${closing}`;
-
-    setPreview(coverLetter);
-    setIsGenerated(true);
-  };
-
-  const handleBack = () => {
-    setFormData({
-      jobTitle: "",
-      companyName: "",
-      department: "",
-      education: "",
-      keySkills: "",
-      length: "Short",
-      tone: "Professional",
+  const onSubmit = async (data: FormData) => {
+    await generateCoverLetterMutation(data, {
+      onSuccess: (data: any) => {
+        setPreview(data?.data);
+      },
     });
-    setPreview("");
-    setIsGenerated(false);
-  };
-
-  const handleSave = () => {
-    alert(
-      "Cover letter saved! (Note: This is a frontend-only simulation. Backend integration required for actual saving.)"
-    );
-  };
-
-  const handleDownload = () => {
-    if (!preview) {
-      alert("Please generate a cover letter first.");
-      return;
-    }
-    const blob = new Blob([preview], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `Cover_Letter_${formData.jobTitle || "Job"}_${
-      formData.companyName || "Company"
-    }.txt`;
-    a.click();
-    URL.revokeObjectURL(url);
   };
 
   return (
     <section className="flex flex-col gap-5 md:gap-y-7 3xl:gap-y-10">
+      {/* Upper Part */}
       <div className="flex flex-col">
         <h3 className="section_title">
           Create Professional Cover Letters in Minutes
@@ -121,139 +49,288 @@ const page: React.FC = () => {
         </p>
       </div>
 
+      {/* Lower Part */}
       <div className="flex flex-col 3xl:flex-row gap-6">
-        <form className="w-full 3xl:w-[700px] flex flex-col gap-y-1 md:gap-y-3 dashboard_card">
-          <div className="flex flex-col gap-y-1 md:gap-y-2 ">
+        {/* Left - Collecting Data */}
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full 3xl:w-[700px] flex flex-col gap-y-1 md:gap-y-3 dashboard_card"
+        >
+          <div className="flex flex-col gap-y-1 md:gap-y-2">
             <h4 className="section_sub_title">Job details</h4>
             <p className="section_sub_description">
-              This information will be displayed publicity so be careful what
-              you share
+              This information will be displayed publicly so be careful what you
+              share
             </p>
           </div>
 
           <div className="flex flex-col gap-4.5 md:gap-y-6">
-            <div className="relative">
-              <label className="resume_label">Job Title</label>
+            {/* Job Title */}
+            <div>
+              <label htmlFor="job_title" className="resume_label">
+                Job Title*
+              </label>
               <input
-                name="jobTitle"
-                value={formData.jobTitle}
-                onChange={handleInputChange}
+                type="text"
+                id="job_title"
                 placeholder="Web developer"
                 className="resume_input"
-                type="text"
+                {...register("job_title", {
+                  required: "Job title is required",
+                })}
               />
+              {errors.job_title && (
+                <p className="text-sm text-red-500 mt-1">
+                  {errors.job_title.message}
+                </p>
+              )}
             </div>
-            <div className="relative">
-              <label className="resume_label">Company Name</label>
+
+            {/* Company Name */}
+            <div>
+              <label htmlFor="company_name" className="resume_label">
+                Company Name*
+              </label>
               <input
-                name="companyName"
-                value={formData.companyName}
-                onChange={handleInputChange}
+                type="text"
+                id="company_name"
                 placeholder="Google"
                 className="resume_input"
-                type="text"
+                {...register("company_name", {
+                  required: "Company name is required",
+                })}
               />
+              {errors.company_name && (
+                <p className="text-sm text-red-500 mt-1">
+                  {errors.company_name.message}
+                </p>
+              )}
             </div>
-            <div className="relative">
-              <label className="resume_label">Department (optional)</label>
+
+            {/* Company Address */}
+            <div>
+              <label htmlFor="company_address" className="resume_label">
+                Company Address*
+              </label>
               <input
-                name="department"
-                value={formData.department}
-                onChange={handleInputChange}
-                placeholder="Mern stack"
-                className="resume_input"
                 type="text"
-              />
-            </div>
-            <div className="relative">
-              <label className="resume_label">Education</label>
-              <textarea
-                name="education"
-                value={formData.education}
-                onChange={handleInputChange}
-                placeholder="List your educational background..."
-                className="resume_input !h-[114px] "
-              ></textarea>
-            </div>
-            <div className="relative">
-              <label className="resume_label">Key skills</label>
-              <textarea
-                name="keySkills"
-                value={formData.keySkills}
-                onChange={handleInputChange}
-                placeholder="Describe your key skills"
-                className="resume_input !h-[114px] "
-              ></textarea>
-            </div>
-            <div className="relative">
-              <label className="resume_label">Letter Length</label>
-              <select
-                name="length"
-                value={formData.length}
-                onChange={handleInputChange}
+                id="company_address"
+                placeholder="Google"
                 className="resume_input"
+                {...register("company_address", {
+                  required: "Company Address is required",
+                })}
+              />
+              {errors.company_address && (
+                <p className="text-sm text-red-500 mt-1">
+                  {errors.company_address.message}
+                </p>
+              )}
+            </div>
+
+            {/* Position */}
+            <div>
+              <label htmlFor="position" className="resume_label">
+                Position*
+              </label>
+              <input
+                type="text"
+                id="position"
+                placeholder="Senior SEO Expert"
+                className="resume_input"
+                {...register("position", {
+                  required: "Position is required",
+                })}
+              />
+              {errors.position && (
+                <p className="text-sm text-red-500 mt-1">
+                  {errors.position.message}
+                </p>
+              )}
+            </div>
+
+            {/* Job Description */}
+            <div>
+              <label htmlFor="job_description" className="resume_label">
+                Job Description*
+              </label>
+              <textarea
+                id="job_description"
+                placeholder="Describe about the job..."
+                className="resume_input !h-[100px]"
+                {...register("job_description", {
+                  required: "Job description is required",
+                })}
+              ></textarea>
+              {errors.job_description && (
+                <p className="text-sm text-red-500 mt-1">
+                  {errors.job_description.message}
+                </p>
+              )}
+            </div>
+
+            {/* Education */}
+            <div>
+              <label htmlFor="education" className="resume_label">
+                Education*
+              </label>
+              <textarea
+                id="education"
+                placeholder="List your educational background..."
+                className="resume_input !h-[100px]"
+                {...register("education", {
+                  required: "Education is required",
+                })}
+              ></textarea>
+              {errors.education && (
+                <p className="text-sm text-red-500 mt-1">
+                  {errors.education.message}
+                </p>
+              )}
+            </div>
+
+            {/* Key skills */}
+            <div>
+              <label htmlFor="skills" className="resume_label">
+                Key Skills*
+              </label>
+              <textarea
+                id="skills"
+                placeholder="Describe your key skills"
+                className="resume_input !h-[100px]"
+                {...register("skills", {
+                  required: "Key skills are required",
+                })}
+              ></textarea>
+              {errors.skills && (
+                <p className="text-sm text-red-500 mt-1">
+                  {errors.skills.message}
+                </p>
+              )}
+            </div>
+
+            {/* Experience */}
+            <div>
+              <label htmlFor="experience" className="resume_label">
+                Experience*
+              </label>
+              <textarea
+                id="experience"
+                placeholder="Describe your experience"
+                className="resume_input !h-[100px]"
+                {...register("experience", {
+                  required: "Experience is required",
+                })}
+              ></textarea>
+              {errors.experience && (
+                <p className="text-sm text-red-500 mt-1">
+                  {errors.experience.message}
+                </p>
+              )}
+            </div>
+
+            {/* Letter Length */}
+            <div>
+              <label htmlFor="length" className="resume_label">
+                Letter Length*
+              </label>
+              <select
+                id="length"
+                className="resume_input"
+                {...register("length", {
+                  required: "Letter length is required",
+                })}
               >
+                <option value="">Select Length</option>
                 <option value="Short">Short</option>
                 <option value="Long">Long</option>
               </select>
+              {errors.length && (
+                <p className="text-sm text-red-500 mt-1">
+                  {errors.length.message}
+                </p>
+              )}
+            </div>
+
+            {/* Letter Type */}
+            <div>
+              <label htmlFor="tone" className="resume_label">
+                Letter Type*
+              </label>
+              <select
+                id="tone"
+                className="resume_input"
+                {...register("tone", {
+                  required: "Letter type is required",
+                })}
+              >
+                <option value="">Select Type</option>
+                <option value="professional">Professional</option>
+                <option value="normal">Normal</option>
+              </select>
+              {errors.tone && (
+                <p className="text-sm text-red-500 mt-1">
+                  {errors.tone.message}
+                </p>
+              )}
             </div>
           </div>
+
           <div className="flex flex-col gap-y-10 items-center mt-5">
             <div className="flex flex-row gap-3 xl:gap-5 items-center ">
-              <button className="primary-btn" onClick={handleBack}>
-                Back
-              </button>
               <button
+                type="button"
+                onClick={() => reset()}
                 className="primary-btn"
-                onClick={e => {
-                  e.preventDefault();
-                  generateCoverLetter();
-                }}
               >
-                {isGenerated ? "Re-generate" : "Generate"}
+                Reset
+              </button>
+
+              <button
+                disabled={isPending}
+                type="submit"
+                className={`primary-btn ${isPending && "!cursor-not-allowed"}`}
+              >
+                {isPending ? (
+                  <div className="flex gap-2 items-center">
+                    <CgSpinnerTwo className="animate-spin text-xl" />
+                    <span>Generating....</span>
+                  </div>
+                ) : (
+                  "Generate"
+                )}
               </button>
             </div>
           </div>
         </form>
 
-        <div className="w-full grow max-h-[637px] flex flex-col gap-y-3 dashboard_card">
-          <div className="flex gap-3 md:gap-0 flex-col md:flex-row w-full justify-between">
-            <h4 className="section_sub_title">Live Preview</h4>
-
-            <div className="flex flex-row gap-3">
-              <select
-                name="length"
-                value={formData.length}
-                onChange={handleInputChange}
-                className="h-auto w-auto py-2 md:py-3 cursor-pointer px-4 bg-cream-white rounded-[50px]"
-              >
-                <option value="Short">Short</option>
-                <option value="Long">Long</option>
-              </select>
-              <select
-                name="tone"
-                value={formData.tone}
-                onChange={handleInputChange}
-                className="h-auto w-auto py-2 md:py-3 cursor-pointer px-4 bg-cream-white rounded-[50px]"
-              >
-                <option value="Professional">Professional</option>
-                <option value="Normal">Normal</option>
-              </select>
+        {/* Right - Preview */}
+        <div className="w-full grow max-h-[637px] overflow-y-auto flex flex-col gap-y-3 dashboard_card">
+          <h4 className="section_sub_title">Live Preview</h4>
+          {isPending ? (
+            <div className="w-full h-[517px] p-6 bg-[#F8FAFB] space-y-6 animate-pulse">
+              <div className="h-4 w-32 bg-gray-200 rounded" />
+              <div className="h-4 w-40 bg-gray-200 rounded" />
+              <div className="h-14 w-2/3 bg-gray-200 rounded" />
+              <div className="h-20 w-full bg-gray-200 rounded" />
+              <div className="h-14 w-full bg-gray-200 rounded" />
+              <div className="h-4 w-28 bg-gray-200 rounded" />
+              <div className="h-4 w-36 bg-gray-200 rounded" />
             </div>
-          </div>
-          <textarea
-            className="w-full outline-none h-[517px] p-6 bg-[#F8FAFB]"
-            value={preview}
-            readOnly
-          ></textarea>
+          ) : preview ? (
+            <div
+              dangerouslySetInnerHTML={{
+                __html: preview,
+              }}
+              className="w-full outline-none h-[517px] p-6 bg-[#F8FAFB]"
+            />
+          ) : (
+            <div className="w-full outline-none h-[517px] p-6 bg-[#F8FAFB]" />
+          )}
 
           <div className="flex gap-3 xl:gap-5 items-center mt-5">
-            <button className="primary-btn" onClick={handleSave}>
-              Save
-            </button>
-            <button className="primary-btn" onClick={handleDownload}>
-              Download
-            </button>
+            <button className="primary-btn">Save</button>
+            <button className="primary-btn">Download</button>
           </div>
         </div>
       </div>
@@ -261,4 +338,4 @@ const page: React.FC = () => {
   );
 };
 
-export default page;
+export default Page;
