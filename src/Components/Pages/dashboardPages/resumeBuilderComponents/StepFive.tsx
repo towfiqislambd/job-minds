@@ -1,5 +1,4 @@
 import React from "react";
-
 const StepFive = ({ step, setStep, template }: any) => {
   return (
     <div>
@@ -9,11 +8,17 @@ const StepFive = ({ step, setStep, template }: any) => {
       </h4>
 
       {/* Preview Resume */}
-      <div
-        dangerouslySetInnerHTML={{
-          __html: template?.data?.html,
-        }}
+      <iframe
+        srcDoc={template}
+        className="w-full h-[1000px] border-none"
+        title="Resume Preview"
       />
+
+      {/* <iframe
+        src={`${process.env.NEXT_PUBLIC_SITE_URL}/${template}`}
+        className="w-full h-[600px]"
+        title="PDF Preview"
+      /> */}
 
       <div className="flex flex-col md:flex-row md:justify-between items-center gap-3 md:gap-0 dashboard_card">
         {/* Back btn */}
@@ -26,7 +31,7 @@ const StepFive = ({ step, setStep, template }: any) => {
           <button className="secondary-btn">Save</button>
 
           {/* pdf btn */}
-          <button className="primary-btn">Export as pdf</button>
+          <button className="primary-btn lowercase">Export as pdf</button>
         </div>
       </div>
     </div>
