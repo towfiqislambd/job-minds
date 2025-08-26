@@ -2,15 +2,15 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import Profile from "@/assets/images/dashboard/profile.svg";
-import Article from "@/assets/images/dashboard/Article.svg";
 import { BiSend } from "react-icons/bi";
 import { useAiInterviewer } from "@/Hooks/api/dashboard_api";
 import toast from "react-hot-toast";
 import { CgSpinnerTwo } from "react-icons/cg";
 
 const page = () => {
-  const { mutate: aiInterviewMutation, isPending } = useAiInterviewer();
   const [search, setSearch] = useState<string>("");
+  const [messages, setMessages] = useState<string>("");
+  const { mutate: aiInterviewMutation, isPending } = useAiInterviewer();
 
   const handleSend = (e: any) => {
     e.preventDefault();
@@ -21,10 +21,11 @@ const page = () => {
       { user_input: search },
       {
         onSuccess: (data: any) => {
-          console.log(data);
+          setMessages(data?.data);
         },
       }
     );
+    e.target.reset();
   };
 
   return (
@@ -78,17 +79,9 @@ const page = () => {
                 </figure>
 
                 {/* Right */}
-                <div className="bg-[#F3F4F6] p-3 rounded-[8px] max-w-[530px] w-full">
-                  <p className="text-[14px] font-poppins text-[#071431] font-normal">
-                    Hello! I'll be your AI interviewer today for the Software
-                    Engineer position. Let's start with a common question: Can
-                    you explain your experience with React.js and component
-                    lifecycle management?
-                  </p>
-                  <h5 className="text-[14px] font-poppins font-normal text-[#696969] pt-2">
-                    2:34 PM
-                  </h5>
-                </div>
+                <p className="bg-[#F3F4F6] p-3 rounded-[8px] max-w-[530px] text-[14px] font-poppins text-[#071431] w-full">
+                  {messages}
+                </p>
               </div>
             ))}
           </div>
@@ -99,7 +92,7 @@ const page = () => {
             className="border-t border-[#EAEAEA] px-3 md:px-6 py-2 md:py-3 flex items-center gap-3 md:gap-5"
           >
             <input
-              type="search"
+              type="text"
               placeholder="Type your message"
               onChange={e => setSearch(e.target.value)}
               className="py-3 md:pl-[30px] rounded-[8px] border-none text-[14px] font-poppins text-[#071431] font-normal outline-0 w-full"
