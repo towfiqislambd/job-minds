@@ -89,3 +89,16 @@ export const useDownloadCoverLetter = () => {
     },
   });
 };
+
+// AI Interviewer
+export const useAiInterviewer = () => {
+  return useApi({
+    method: "post",
+    key: "ai-interviewer",
+    isPrivate: true,
+    endpoint: "/api/ai-interviewer",
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
