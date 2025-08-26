@@ -1,8 +1,15 @@
 "use client";
-import { useGenerateCoverLetter } from "@/Hooks/api/dashboard_api";
+import {
+  useDownloadCoverLetter,
+  useGenerateCoverLetter,
+  useSaveCoverLetter,
+} from "@/Hooks/api/dashboard_api";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { CgSpinnerTwo } from "react-icons/cg";
+import { MdContentCopy } from "react-icons/md";
+import { IoDocumentTextOutline } from "react-icons/io5";
 
 interface FormData {
   job_title: string;
@@ -18,9 +25,17 @@ interface FormData {
 }
 
 const Page = () => {
+  // States
   const [preview, setPreview] = useState<any>(null);
+  const [letter, setLetter] = useState<any>(null);
+
+  // Mutations
   const { mutateAsync: generateCoverLetterMutation, isPending } =
     useGenerateCoverLetter();
+  const { mutate: saveCoverLetterMutation, isPending: isSaving } =
+    useSaveCoverLetter();
+  const { mutate: downloadCoverLetterMutation, isPending: isDownloading } =
+    useDownloadCoverLetter();
 
   const {
     register,
@@ -32,9 +47,39 @@ const Page = () => {
   const onSubmit = async (data: FormData) => {
     await generateCoverLetterMutation(data, {
       onSuccess: (data: any) => {
-        setPreview(data?.data);
+        setPreview(data.data.replace(/\n/g, "<br />"));
+        setLetter(data?.data);
       },
     });
+  };
+
+  // Func for save
+  const handleSave = () => {
+    if (!letter) {
+      return toast.error("Please generate a cover letter first");
+    }
+    saveCoverLetterMutation({ cover_letter: letter });
+  };
+
+  // Func for download doc
+  const handleDownload = () => {
+    if (!letter) {
+      return toast.error("Please generate a cover letter first");
+    }
+    downloadCoverLetterMutation({ cover_letter: letter });
+  };
+
+  // Func for copy to clipboard
+  const handleCopyToClipboard = () => {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = preview;
+    tempDiv.querySelectorAll("br").forEach(br => (br.outerHTML = "\n"));
+    tempDiv.querySelectorAll("p").forEach(p => {
+      p.outerHTML = `${p.innerText}\n\n`;
+    });
+    const formattedText = tempDiv.innerText || tempDiv.textContent || "";
+    navigator.clipboard.writeText(formattedText);
+    toast.success("Copied to clipboard");
   };
 
   return (
@@ -305,7 +350,7 @@ const Page = () => {
         </form>
 
         {/* Right - Preview */}
-        <div className="w-full grow max-h-[637px] overflow-y-auto flex flex-col gap-y-3 dashboard_card">
+        <div className="w-full grow max-h-[637px] flex flex-col gap-y-3 dashboard_card">
           <h4 className="section_sub_title">Live Preview</h4>
           {isPending ? (
             <div className="w-full h-[517px] p-6 bg-[#F8FAFB] space-y-6 animate-pulse">
@@ -318,19 +363,57 @@ const Page = () => {
               <div className="h-4 w-36 bg-gray-200 rounded" />
             </div>
           ) : preview ? (
-            <div
-              dangerouslySetInnerHTML={{
-                __html: preview,
-              }}
-              className="w-full outline-none h-[517px] p-6 bg-[#F8FAFB]"
-            />
+            <div className="w-full outline-none h-[517px] p-6 bg-[#F8FAFB] overflow-y-auto relative">
+              <div dangerouslySetInnerHTML={{ __html: preview }} />
+
+              <button
+                className="absolute top-5 right-5 size-10 border border-gray-300 rounded-full grid place-items-center cursor-pointer"
+                onClick={handleCopyToClipboard}
+              >
+                <MdContentCopy className="text-lg text-gray-500" />
+              </button>
+            </div>
           ) : (
-            <div className="w-full outline-none h-[517px] p-6 bg-[#F8FAFB]" />
+            <div className="w-full outline-none h-[517px] p-6 bg-[#F8FAFB] flex justify-center items-center flex-col gap-3">
+              <IoDocumentTextOutline className="text-7xl text-gray-500" />
+              <p className="text-gray-500 font-medium">Generate Cover Letter</p>
+            </div>
           )}
 
           <div className="flex gap-3 xl:gap-5 items-center mt-5">
-            <button className="primary-btn">Save</button>
-            <button className="primary-btn">Download</button>
+            {/* Save btn */}
+            <button
+              disabled={isSaving}
+              className={`primary-btn ${isSaving && "!cursor-not-allowed"}`}
+              onClick={handleSave}
+            >
+              {isSaving ? (
+                <div className="flex gap-2 items-center">
+                  <CgSpinnerTwo className="animate-spin text-xl" />
+                  <span>Saving....</span>
+                </div>
+              ) : (
+                "Save"
+              )}
+            </button>
+
+            {/* Download btn */}
+            <button
+              disabled={isDownloading}
+              className={`primary-btn ${
+                isDownloading && "!cursor-not-allowed"
+              }`}
+              onClick={handleDownload}
+            >
+              {isDownloading ? (
+                <div className="flex gap-2 items-center">
+                  <CgSpinnerTwo className="animate-spin text-xl" />
+                  <span>Downloading....</span>
+                </div>
+              ) : (
+                "Download"
+              )}
+            </button>
           </div>
         </div>
       </div>

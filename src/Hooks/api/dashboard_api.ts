@@ -53,3 +53,39 @@ export const useGenerateCoverLetter = () => {
     },
   });
 };
+
+// Save Cover Letter
+export const useSaveCoverLetter = () => {
+  return useApi({
+    method: "post",
+    key: "save-cover-letter",
+    isPrivate: true,
+    endpoint: "/api/saved-cover-letters",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
+// Download Cover Letter
+export const useDownloadCoverLetter = () => {
+  return useApi({
+    method: "post",
+    key: "download-cover-letter",
+    isPrivate: true,
+    endpoint: "/api/download-cover-letter",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
