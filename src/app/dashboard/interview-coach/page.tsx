@@ -4,133 +4,156 @@ import { CiSearch } from "react-icons/ci";
 import { IoIosArrowUp } from "react-icons/io";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import toast from "react-hot-toast";
+import {
+  useDraftInterviewQuestions,
+  useInterviewAssistant,
+} from "@/Hooks/api/dashboard_api";
+import { CgSpinnerTwo } from "react-icons/cg";
+import { useRouter } from "next/navigation";
+
+type JobQuestion = {
+  question: string;
+  answer: string;
+  difficulty: string;
+  category: string;
+};
 
 const initialRoles = [
-  "User Experience (UX)",
-  "User Experience (UX)",
-  "User Experience Design (UED)",
-  "Adobe XD",
-  "User Interface (UI)",
-  "Interaction Design (IxD)",
-  "Interaction Design (IxD)",
-  "Adobe XD",
-  "User Experience (UX)",
-  "User Experience (UX)",
-  "User Experience Design (UED)",
-  "Adobe XD",
-  "User Interface (UI)",
-  "Interaction Design (IxD)",
-  "Interaction Design (IxD)",
-  "Adobe XD",
-];
-
-const questionsData = [
-  {
-    question: "Can you describe your experience with system design?",
-    answer:
-      "Answer : I have extensive experience in system design, particularly in architecting scalable, efficient, and maintainable software solutions. My approach begins with a clear understanding of business requirements, followed by selecting appropriate technologies and designing the system’s components, data flow, and interactions. I focus heavily on modularity, fault tolerance, and future scalability, whether it's for monolithic systems, microservices, or event-driven architectures. I’ve worked on designing both backend infrastructures and full-stack platforms, ensuring security, performance optimization, and smooth integration with third-party services. Throughout, I collaborate closely with stakeholders and development teams to ensure the design meets user needs and aligns with long-term business goals.",
-    difficulty: "Medium",
-    category: "Technical",
-  },
-  {
-    question: "How do you prioritize tasks in a project?",
-    answer:
-      "Answer : Answer : I have extensive experience in system design, particularly in architecting scalable, efficient, and maintainable software solutions. My approach begins with a clear understanding of business requirements, followed by selecting appropriate technologies and designing the system’s components, data flow, and interactions. I focus heavily on modularity, fault tolerance, and future scalability, whether it's for monolithic systems, microservices, or event-driven architectures. I’ve worked on designing both backend infrastructures and full-stack platforms, ensuring security, performance optimization, and smooth integration with third-party services. Throughout, I collaborate closely with stakeholders and development teams to ensure the design meets user needs and aligns with long-term business goals.",
-    difficulty: "Easy",
-    category: "Behavioral",
-  },
-  {
-    question:
-      "What are some challenges you faced while developing a new feature?",
-    answer:
-      "Answer : Answer : I have extensive experience in system design, particularly in architecting scalable, efficient, and maintainable software solutions. My approach begins with a clear understanding of business requirements, followed by selecting appropriate technologies and designing the system’s components, data flow, and interactions. I focus heavily on modularity, fault tolerance, and future scalability, whether it's for monolithic systems, microservices, or event-driven architectures. I’ve worked on designing both backend infrastructures and full-stack platforms, ensuring security, performance optimization, and smooth integration with third-party services. Throughout, I collaborate closely with stakeholders and development teams to ensure the design meets user needs and aligns with long-term business goals.",
-    difficulty: "Easy",
-    category: "Behavioral",
-  },
-  {
-    question: "How do you prioritize tasks when working on multiple projects?",
-    answer:
-      "Answer : Answer : I have extensive experience in system design, particularly in architecting scalable, efficient, and maintainable software solutions. My approach begins with a clear understanding of business requirements, followed by selecting appropriate technologies and designing the system’s components, data flow, and interactions. I focus heavily on modularity, fault tolerance, and future scalability, whether it's for monolithic systems, microservices, or event-driven architectures. I’ve worked on designing both backend infrastructures and full-stack platforms, ensuring security, performance optimization, and smooth integration with third-party services. Throughout, I collaborate closely with stakeholders and development teams to ensure the design meets user needs and aligns with long-term business goals.",
-    difficulty: "Easy",
-    category: "Behavioral",
-  },
-  {
-    question:
-      "Can you explain a time when you had to troubleshoot a production issue?",
-    answer:
-      "Answer : Answer : I have extensive experience in system design, particularly in architecting scalable, efficient, and maintainable software solutions. My approach begins with a clear understanding of business requirements, followed by selecting appropriate technologies and designing the system’s components, data flow, and interactions. I focus heavily on modularity, fault tolerance, and future scalability, whether it's for monolithic systems, microservices, or event-driven architectures. I’ve worked on designing both backend infrastructures and full-stack platforms, ensuring security, performance optimization, and smooth integration with third-party services. Throughout, I collaborate closely with stakeholders and development teams to ensure the design meets user needs and aligns with long-term business goals.",
-    difficulty: "Easy",
-    category: "Behavioral",
-  },
+  "Web Developer",
+  "SEO Expert",
+  "Graphic Designer",
+  "Content Writer",
+  "Web Designer",
+  "UI/UX Designer",
+  "Software Quality Assurance (SQA)",
+  "IT Expert",
+  "Backend Developer",
+  "Telesales Executive",
+  "Business Analytics",
+  "Senior Software Engineer",
+  "Data Analytics",
+  "Video Editor",
 ];
 
 const Page = () => {
+  // Hook
+  const router = useRouter();
+
+  // Mutation
+  const { mutate: interviewAssistantMutation, isPending } =
+    useInterviewAssistant();
+  const { mutate: draftQuestionMutation, isPending: isDrafting } =
+    useDraftInterviewQuestions();
+
+  // States
+  const [jobData, setJobData] = useState<JobQuestion[]>([]);
   const [jobRoles, setJobRoles] = useState<string[]>(initialRoles);
-  const [selectedRole, setSelectedRole] = useState("");
-  const [showQuestions, setShowQuestions] = useState(false);
+  const [selectedRole, setSelectedRole] = useState<string>("");
+  const [showQuestions, setShowQuestions] = useState<boolean>(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleRoleClick = (role: string) => {
     setSelectedRole(role);
   };
 
-  const handleGenerate = () => {
-    if (selectedRole && !jobRoles.includes(selectedRole)) {
-      setJobRoles(prev => [...prev, selectedRole]);
-    }
-    setShowQuestions(true);
-  };
-
   const toggleAccordion = (index: number) => {
     setOpenIndex(prev => (prev === index ? null : index));
   };
 
+  // Func for generate interview questions
+  const handleGenerateQuestions = () => {
+    if (!selectedRole) {
+      return toast.error("Please enter your job role");
+    }
+
+    if (!jobRoles.includes(selectedRole)) {
+      setJobRoles(prev => [...prev, selectedRole]);
+    }
+
+    interviewAssistantMutation(
+      { role: selectedRole },
+      {
+        onSuccess: (data: any) => {
+          setJobData(data?.data?.questions);
+        },
+      }
+    );
+    setShowQuestions(true);
+  };
+
   return (
     <>
-      <div>
-        <h2 className="section_title">Interview Preparation Assistant</h2>
-        <p className="section_description">
-          Step up your interview skills with cool AI tips and tricks!
-        </p>
+      <h2 className="section_title">Interview Preparation Assistant</h2>
 
-        <div className="my-7 2xl:my-10 dashboard_card">
-          <h3 className="section_sub_title">Select Your Job Role</h3>
+      <p className="section_description">
+        Step up your interview skills with cool AI tips and tricks!
+      </p>
 
-          <div className="flex flex-col md:flex-row gap-3 md:gap-5 pt-3 lg:py-6 items-center">
-            <div className="relative w-full">
-              <input
-                type="search"
-                placeholder="Enter or select your job role"
-                value={selectedRole}
-                onChange={e => setSelectedRole(e.target.value)}
-                className="py-3 pl-[30px] rounded-[8px] border border-[#ECEEF0] text-[14px] font-poppins text-[#071431] font-normal outline-0 w-full"
-              />
-              <div className="absolute top-[15px] left-2">
-                <CiSearch className="fill-[#DADADA]" />
-              </div>
+      <div className="my-7 2xl:my-10 dashboard_card">
+        <h3 className="section_sub_title">Select Your Job Role</h3>
+
+        <div className="flex flex-col md:flex-row gap-3 md:gap-5 pt-3 lg:py-6 items-center">
+          {/* Search input */}
+          <div className="relative w-full">
+            <input
+              type="search"
+              placeholder="Enter or select your job role"
+              value={selectedRole}
+              onChange={e => setSelectedRole(e.target.value)}
+              className="py-3 pl-[30px] rounded-[8px] border border-[#ECEEF0] text-[14px] font-poppins text-[#071431] font-normal outline-0 w-full"
+            />
+            <div className="absolute top-[15px] left-2">
+              <CiSearch className="fill-[#DADADA]" />
             </div>
-            <button onClick={handleGenerate} className="primary-btn shrink-0">
-              Generate Questions
-            </button>
           </div>
-          <div className="pt-6 flex flex-wrap gap-3 3xl:gap-5">
-            {jobRoles.map((role, index) => (
-              <div
-                key={index}
-                onClick={() => handleRoleClick(role)}
-                className="bg-[#F9FAFB] rounded-[45px] px-3 2xl:px-4 py-2 2xl:py-3 text-center cursor-pointer transition-all hover:-translate-y-2 duration-300 ease-in-out shrink-0 text-nowrap w-fit"
-              >
-                <p className="text-sm font-poppins text-[#071431]">{role}</p>
+
+          {/* Submit btn */}
+          <button
+            disabled={isPending}
+            onClick={handleGenerateQuestions}
+            className={`primary-btn shrink-0 ${
+              isPending && "!cursor-not-allowed"
+            }`}
+          >
+            {isPending ? (
+              <div className="flex gap-2 items-center">
+                <CgSpinnerTwo className="animate-spin text-xl" />
+                <span>Generating....</span>
               </div>
-            ))}
-          </div>
+            ) : (
+              "Generate Questions"
+            )}
+          </button>
         </div>
 
-        {showQuestions && (
-          <div className="dashboard_card mb-7 lg:mb-10">
-            <h2 className="section_sub_title !mb-5">Interview Questions</h2>
-            <div className="flex flex-col gap-4 2xl:gap-5">
-              {questionsData?.map((item, index) => {
+        {/* Default roles */}
+        <div className="pt-6 flex flex-wrap gap-3 3xl:gap-5">
+          {jobRoles.map((role, index) => (
+            <div
+              key={index}
+              onClick={() => handleRoleClick(role)}
+              className="bg-[#F9FAFB] rounded-[45px] px-3 2xl:px-4 py-2 2xl:py-3 text-center cursor-pointer transition-all hover:-translate-y-2 duration-300 ease-in-out shrink-0 text-nowrap w-fit"
+            >
+              <p className="text-sm font-poppins text-[#071431]">{role}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Map */}
+      {showQuestions && (
+        <div className="dashboard_card mb-7 lg:mb-10">
+          <h2 className="section_sub_title !mb-5">Interview Questions</h2>
+          <div className="flex flex-col gap-4 2xl:gap-5">
+            {isPending ? (
+              <div className="space-y-4">
+                <div className="rounded-[8px] p-3 lg:p-5 animate-pulse bg-gray-100 w-1/3" />
+                <div className="rounded-[8px] p-3 lg:p-5 animate-pulse bg-gray-100 w-2/3" />
+                <div className="rounded-[8px] p-3 lg:p-5 animate-pulse bg-gray-100" />
+              </div>
+            ) : (
+              jobData?.map((item, index) => {
                 const isOpen = openIndex === index;
                 return (
                   <div
@@ -146,7 +169,7 @@ const Page = () => {
                           Q{index + 1}
                         </h4>
                         <h3 className="text-sm lg:text-base 2xl:text-lg font-poppins text-[#071431] font-medium 2xl:font-semibold">
-                          {item.question}
+                          {item?.question}
                         </h3>
                       </div>
                       <div
@@ -179,8 +202,31 @@ const Page = () => {
                                 Category : {item.category}
                               </h4>
                             </div>
-                            <button className="secondary-btn">
-                              Save Draft
+
+                            {/* Draft btn */}
+                            <button
+                              disabled={isDrafting}
+                              className={`secondary-btn ${
+                                isDrafting && "!cursor-not-allowed"
+                              }`}
+                              onClick={() => {
+                                const data = {
+                                  question: item?.question,
+                                  answer: item?.answer,
+                                  job_title: selectedRole,
+                                  difficulty_level: item.difficulty,
+                                };
+                                draftQuestionMutation(data);
+                              }}
+                            >
+                              {isDrafting ? (
+                                <div className="flex gap-2 items-center">
+                                  <CgSpinnerTwo className="animate-spin text-xl" />
+                                  <span>Saving....</span>
+                                </div>
+                              ) : (
+                                " Save Draft"
+                              )}
                             </button>
                           </div>
                         </motion.div>
@@ -188,17 +234,20 @@ const Page = () => {
                     </AnimatePresence>
                   </div>
                 );
-              })}
-            </div>
+              })
+            )}
           </div>
-        )}
-
-        <div className="flex justify-end items-center gap-4 2xl:gap-5">
-          <button className="secondary-btn">back</button>
-          <Link href="/dashboard/mock-interview" className="primary-btn">
-            Start Mock Interview
-          </Link>
         </div>
+      )}
+
+      <div className="flex justify-end items-center gap-4 2xl:gap-5">
+        <button onClick={() => router.back()} className="secondary-btn">
+          back
+        </button>
+
+        <Link href="/dashboard/mock-interview" className="primary-btn">
+          Start Mock Interview
+        </Link>
       </div>
     </>
   );

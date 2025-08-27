@@ -72,6 +72,24 @@ export const useSaveCoverLetter = () => {
   });
 };
 
+// Save Resume Template
+export const useSaveResumeTemplate = () => {
+  return useApi({
+    method: "post",
+    key: "save-resume-template",
+    isPrivate: true,
+    endpoint: "/api/save-resume",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
 // Download Cover Letter
 export const useDownloadCoverLetter = () => {
   return useApi({
@@ -97,6 +115,42 @@ export const useAiInterviewer = () => {
     key: "ai-interviewer",
     isPrivate: true,
     endpoint: "/api/ai-interviewer",
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
+// Interview Assistant
+export const useInterviewAssistant = () => {
+  return useApi({
+    method: "post",
+    key: "interview-assistant",
+    isPrivate: true,
+    endpoint: "/api/interview-preparation-assistant",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
+// Draft Interview Question
+export const useDraftInterviewQuestions = () => {
+  return useApi({
+    method: "post",
+    key: "draft-interview-questions",
+    isPrivate: true,
+    endpoint: "/api/interview-question-draft",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+      }
+    },
     onError: (err: any) => {
       toast.error(err?.response?.data?.message);
     },

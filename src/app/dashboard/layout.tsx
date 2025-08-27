@@ -139,9 +139,7 @@ export default function DashboardLayout({
 
               {navLinks?.map((link, idx) => {
                 const isActive = pathname === link.path;
-                const isCreating = pathname.startsWith(
-                  "/dashboard/resume-builder"
-                );
+
                 return (
                   <div key={idx}>
                     <Link
@@ -155,7 +153,10 @@ export default function DashboardLayout({
                          : "text-light-gray"
                      }
                   ${
-                    idx === 0 && isCreating
+                    (idx === 0 &&
+                      pathname.startsWith("/dashboard/resume-builder")) ||
+                    (idx === 3 &&
+                      pathname.startsWith("/dashboard/mock-interview"))
                       ? "bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white"
                       : "text-light-gray"
                   }
