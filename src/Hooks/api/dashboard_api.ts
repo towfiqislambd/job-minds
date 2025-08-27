@@ -1,4 +1,5 @@
 import useApi from "@/Hooks/api/useApi";
+import { useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 // All Resume Template
@@ -110,14 +111,28 @@ export const useDownloadCoverLetter = () => {
 
 // AI Interviewer
 export const useAiInterviewer = () => {
+  const queryClient = useQueryClient();
   return useApi({
     method: "post",
     key: "ai-interviewer",
     isPrivate: true,
     endpoint: "/api/ai-interviewer",
+    onSuccess: () => {
+      queryClient.invalidateQueries("ai-chat-history" as any);
+    },
     onError: (err: any) => {
       toast.error(err?.response?.data?.message);
     },
+  });
+};
+
+// AI Chat History
+export const useAiChatHistory = () => {
+  return useApi({
+    method: "get",
+    key: "ai-chat-history",
+    isPrivate: true,
+    endpoint: "/api/chat-history",
   });
 };
 

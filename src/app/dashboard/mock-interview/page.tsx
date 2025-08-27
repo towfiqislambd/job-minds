@@ -3,28 +3,32 @@ import Image from "next/image";
 import React, { useState } from "react";
 import Profile from "@/assets/images/dashboard/profile.svg";
 import { BiSend } from "react-icons/bi";
-import { useAiInterviewer } from "@/Hooks/api/dashboard_api";
+import { useAiChatHistory, useAiInterviewer } from "@/Hooks/api/dashboard_api";
 import toast from "react-hot-toast";
 import { CgSpinnerTwo } from "react-icons/cg";
+import useAuth from "@/Hooks/useAuth";
+import { FaUser } from "react-icons/fa";
+import { AiSvg } from "@/Components/SvgContainer/SvgContainer";
+import { LuBotMessageSquare } from "react-icons/lu";
 
 const page = () => {
+  // Hook
+  const { user } = useAuth();
+
+  // State
   const [search, setSearch] = useState<string>("");
-  const [messages, setMessages] = useState<string>("");
+
+  // Mutations
+  const { data: allChats, isLoading } = useAiChatHistory();
   const { mutate: aiInterviewMutation, isPending } = useAiInterviewer();
 
+  // Func for send message
   const handleSend = (e: any) => {
     e.preventDefault();
     if (!search) {
       return toast.error("Please write something");
     }
-    aiInterviewMutation(
-      { user_input: search },
-      {
-        onSuccess: (data: any) => {
-          setMessages(data?.data);
-        },
-      }
-    );
+    aiInterviewMutation({ user_input: search });
     e.target.reset();
   };
 
@@ -58,34 +62,91 @@ const page = () => {
               </div>
             </div>
           </div>
+          {/* All Messages */}
+          <div className="my-3 md:my-6 lg:mt-10 lg:mb-14 px-3 md:px-5 lg:px-7">
+            {isLoading ? (
+              Array.from({ length: 6 }).map((_, idx) => (
+                <div
+                  key={idx}
+                  className={`flex ${
+                    idx % 2 === 0 ? "justify-end" : "justify-start"
+                  }`}
+                >
+                  <div
+                    className={`flex gap-5 animate-pulse ${
+                      idx % 2 === 0 ? "flex-row-reverse" : "flex-row"
+                    }`}
+                  >
+                    <div className="size-12 rounded-full bg-gray-200 shrink-0" />
+                    <div className="flex flex-col gap-2">
+                      <div
+                        className={`h-4 w-32 bg-gray-200 rounded-md ${
+                          idx % 2 === 0 ? "self-end" : "self-start"
+                        }`}
+                      />
+                      <div className="h-4 w-48 bg-gray-200 rounded-md" />
+                    </div>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="space-y-5">
+                {allChats?.data.length === 0 ? (
+                  <div className="flex flex-col gap-2 justify-center items-center">
+                    <LuBotMessageSquare className="text-5xl text-gray-500" />
+                    <p className="font-medium text-primary-gray">
+                      Start Chatting With AI Interviewer
+                    </p>
+                  </div>
+                ) : (
+                  allChats?.data?.map(({ id, sender, message }: any) => (
+                    <div
+                      key={id}
+                      className={`flex ${
+                        sender === "user" ? "justify-end" : "justify-start"
+                      }`}
+                    >
+                      <div
+                        className={`flex gap-3 items-start ${
+                          sender === "user" ? "flex-row-reverse" : "flex-row"
+                        }`}
+                      >
+                        {/* Author Image */}
+                        <figure
+                          className={`${
+                            sender === "user" ? "bg-gray-200" : "bg-[#C6DFF6]"
+                          } size-12 rounded-full flex justify-center items-center shrink-0 relative`}
+                        >
+                          {sender === "user" ? (
+                            user?.avatar ? (
+                              <Image
+                                src={`${process.env.NEXT_PUBLIC_SITE_URL}/${user?.avatar}`}
+                                alt="profile-img"
+                                fill
+                                className="rounded-full size-full object-cover"
+                              />
+                            ) : (
+                              <FaUser className="text-lg text-gray-500" />
+                            )
+                          ) : (
+                            <AiSvg />
+                          )}
+                        </figure>
 
-          {/* Messages */}
-          <div className="my-3 md:my-6 lg:mt-10 lg:mb-14 px-3 md:px-5 lg:px-7 ">
-            {Array.from({ length: 5 }).map((item, idx) => (
-              <div
-                key={idx}
-                className={`flex gap-3 ${
-                  idx % 2 === 0 ? "justify-end" : "justify-start"
-                }`}
-              >
-                {/* Left */}
-                <figure className="bg-[#C6DFF6] h-11 md:h-[60px] w-11 md:w-[60px] rounded-full flex justify-center items-center shrink-0">
-                  <Image
-                    src={Profile}
-                    alt="profile-img"
-                    height={32}
-                    width={32}
-                  />
-                </figure>
-
-                {/* Right */}
-                <p className="bg-[#F3F4F6] p-3 rounded-[8px] max-w-[530px] text-[14px] font-poppins text-[#071431] w-full">
-                  {messages}
-                </p>
+                        {/* Chats */}
+                        <p
+                          className={`bg-[#F3F4F6] px-3 py-2.5 rounded-[8px] text-sm text-gray-700 leading-[164%] w-fit max-w-[500px]`}
+                        >
+                          {message}
+                        </p>
+                      </div>
+                    </div>
+                  ))
+                )}
               </div>
-            ))}
+            )}
           </div>
-
+          {/* EEF5FF */}
           {/* Form */}
           <form
             onSubmit={handleSend}
