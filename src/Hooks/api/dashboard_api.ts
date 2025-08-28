@@ -171,3 +171,33 @@ export const useDraftInterviewQuestions = () => {
     },
   });
 };
+
+// All Recent Activities
+export const useAllRecentActivities = () => {
+  return useApi({
+    method: "get",
+    key: "all-recent-activity",
+    isPrivate: true,
+    endpoint: "/api/all-recent-activities",
+  });
+};
+
+// All Documents
+export const useAllDocuments = () => {
+  return useApi({
+    method: "get",
+    key: "all-documents",
+    isPrivate: true,
+    endpoint: "/api/all-documents",
+  });
+};
+
+// All Drafts
+export const useAllDrafts = () => {
+  return useApi({
+    method: "get",
+    key: "all-drafts",
+    isPrivate: true,
+    endpoint: "/api/all-drafts",
+  });
+};

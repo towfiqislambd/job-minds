@@ -93,7 +93,6 @@ const AllDocuments = () => {
               <td className="font-medium px-3 2xl:px-4">Document Type</td>
               <td className="font-medium px-3 2xl:px-4">Job Title & Company</td>
               <td className="font-medium px-3 2xl:px-4">Last Update</td>
-              <td className="font-medium px-3 2xl:px-4">progress</td>
               <td className="font-medium px-3 2xl:px-4">Status</td>
               <td className="font-medium px-3 2xl:px-4 text-center">Action</td>
             </tr>
@@ -123,11 +122,6 @@ const AllDocuments = () => {
 
                   <td className="px-3 2xl:px-4">
                     <p className="text-secondary-black">{last_update}</p>
-                  </td>
-
-                  <td className="px-3 2xl:px-4 flex gap-3 items-center">
-                    <div className="w-20 h-2 rounded-xl bg-green-500"></div>
-                    <p className="text-secondary-black">3 of 3</p>
                   </td>
 
                   <td className="px-3 2xl:px-4">
@@ -169,13 +163,6 @@ const AllDocuments = () => {
                       >
                         <FiEye />
                         <span>View</span>
-                      </button>
-                      <button
-                        onClick={() => setOpen(false)}
-                        className="flex gap-2 items-center cursor-pointer"
-                      >
-                        <FaRegEdit />
-                        <span>Edit</span>
                       </button>
                       <button
                         onClick={() => setOpen(false)}
