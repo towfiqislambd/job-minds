@@ -87,12 +87,14 @@ export default function DashboardLayout({
                 Job Minds
               </p>
             </figure>
+
             <p className="hidden xl:flex gap-2 items-center w-[350px] 2xl:w-[450px] 3xl:w-[660px] px-4 py-2.5 border border-[#ECEEF0] rounded-full">
               <SearchSvg />
               <input
                 type="text"
                 placeholder="Search....."
                 className="outline-none w-full"
+                onClick={() => router.push("/dashboard/documents")}
               />
             </p>
           </div>

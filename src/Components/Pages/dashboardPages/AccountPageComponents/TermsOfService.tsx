@@ -1,66 +1,41 @@
-import React from "react";
-const data = [
-  {
-    id: 1,
-    title: "What We Offer",
-    description:
-      "Job Minds provides tools to build resumes, write cover letters, improve LinkedIn profiles, prep for interviews, and match job listings.",
-  },
-  {
-    id: 2,
-    title: "Accounts",
-    description:
-      "Keep yo ur login secure. Don’t misuse the app or upload harmful content.",
-  },
-  {
-    id: 3,
-    title: "Plans & Payments",
-    description:
-      "Free plan includes 1 resume & 1 cover letter. Paid plans offer more access. Payments via Stripe or PayPal",
-  },
-  {
-    id: 4,
-    title: "Termination",
-    description:
-      "We may suspend accounts for violations. You can delete your account anytime.",
-  },
-  {
-    id: 5,
-    title: "Content Rights",
-    description:
-      "JYou own what you upload. We own our templates and tools. We use your data only to improve the service.",
-  },
-  {
-    id: 6,
-    title: "Privacy",
-    description: "We protect your data. See our Privacy Policy for details.",
-  },
-  {
-    id: 6,
-    title: "No Guarantees",
-    description:
-      "We don’t promise job offers. The service is provided “as is.”",
-  },
-];
+"use client";
+import { Loader } from "@/Components/Loader/Loader";
+import { useSingleDynamicPage } from "@/Hooks/api/cms_api";
+import React, { useEffect } from "react";
 
 const TermsOfService = () => {
+  const { data: termsData, isLoading } = useSingleDynamicPage(
+    "terms-and-conditions"
+  );
+
+  useEffect(() => {
+    if (isLoading) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isLoading]);
+
+  if (isLoading) {
+    return (
+      <div className="h-[70vh] flex justify-center items-center">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
     <section className="dashboard_card">
-      <h4 className="section_sub_title">Terms of Service</h4>
-      <p className="section_sub_description !mb-7 lg:!mb-10">
-        Welcome to Job Minds, your AI-powered resume and job assistant. By using
-        our mobile app or website, you agree to the following terms:
-      </p>
-
-      {/* Map */}
-      {data?.map(({ id, title, description }) => (
-        <div key={id}>
-          <h4 className="section_sub_title !text-base lg:!text-lg">{title}</h4>
-          <p className="section_sub_description !text-sm lg:!text-base">
-            {description}
-          </p>
-        </div>
-      ))}
+      <div
+        dangerouslySetInnerHTML={{
+          __html: termsData?.data?.page_content,
+        }}
+        className="[&_ul]:list-disc [&_ul]:pl-5 [&_ol]:pl-5 [&_ol]:list-decimal"
+      />
     </section>
   );
 };

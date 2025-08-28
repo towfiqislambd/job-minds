@@ -63,7 +63,7 @@ const page = () => {
           className="my-4 px-3 md:px-5 lg:px-7 grow overflow-y-auto"
         >
           {isLoading ? (
-            Array.from({ length: 6 }).map((_, idx) => (
+            Array.from({ length: 9 }).map((_, idx) => (
               <div
                 key={idx}
                 className={`flex ${
@@ -88,10 +88,10 @@ const page = () => {
               </div>
             ))
           ) : (
-            <div className="space-y-5">
+            <div className="space-y-5 flex flex-col h-full">
               {allChats?.data.length === 0 ? (
-                <div className="flex flex-col gap-2 justify-center items-center">
-                  <LuBotMessageSquare className="text-5xl text-gray-500" />
+                <div className="flex-1 flex flex-col gap-3 justify-center items-center">
+                  <LuBotMessageSquare className="text-6xl text-gray-500" />
                   <p className="font-medium text-primary-gray">
                     Start Chatting With AI Interviewer
                   </p>

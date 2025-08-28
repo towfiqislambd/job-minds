@@ -6,13 +6,13 @@ import RecentActivity from "@/Components/Pages/dashboardPages/DocumentPageCompon
 import { useAllRecentActivities } from "@/Hooks/api/dashboard_api";
 import { useEffect, useState } from "react";
 const tabData = [
-  { id: 1, label: "Recent Activity", path: "recent-activity" },
-  { id: 2, label: "All Documents", path: "all-documents" },
+  { id: 1, label: "All Documents", path: "all-documents" },
+  { id: 2, label: "Recent Activity", path: "recent-activity" },
   { id: 3, label: "Draft", path: "draft" },
 ];
 
 const page = () => {
-  const [activeTab, setActiveTab] = useState<string>("recent-activity");
+  const [activeTab, setActiveTab] = useState<string>("all-documents");
   const { data: allRecentActivities, isLoading: recentDataLoading } =
     useAllRecentActivities();
 

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { FiEye } from "react-icons/fi";
 import { FiDelete } from "react-icons/fi";
-import { FaRegEdit } from "react-icons/fa";
 import { TbFileExport } from "react-icons/tb";
 import {
   FileSvg,
@@ -54,11 +53,20 @@ const data = [
 ];
 
 const AllDocuments = () => {
+  const [openFilter, setOpenFilter] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [popoverId, setPopoverId] = useState<number>(0);
 
   return (
-    <section onClick={() => setOpen(false)} className="dashboard_card">
+    <section className="dashboard_card">
+      <div
+        onClick={() => {
+          setOpen(false);
+          setOpenFilter(false);
+        }}
+        className="absolute inset-0"
+      />
+
       {/* Upper Part */}
       <div className="flex flex-col lg:flex-row gap-3 lg:gap-0 justify-between items-center">
         <h4 className="section_sub_title">All Documents</h4>
@@ -76,11 +84,126 @@ const AllDocuments = () => {
           </p>
 
           {/* Filter */}
-          <button className="flex gap-2 items-center cursor-pointer px-4 py-1.5 lg:py-2 xl:py-2.5 rounded-full border border-gray-200">
+          <button
+            onClick={() => setOpenFilter(!openFilter)}
+            className="flex gap-2 items-center cursor-pointer px-4 py-1.5 lg:py-2 xl:py-2.5 rounded-full border border-gray-200 relative"
+          >
             <span className="shrink-0">
               <FilterSvg />
             </span>
             <span className="text-light-gray">Filter</span>
+
+            {openFilter && (
+              <div
+                onClick={e => e.stopPropagation()}
+                className="absolute top-14 right-0 w-[250px] bg-white shadow-lg border border-gray-50 rounded-lg p-5 z-50"
+              >
+                <div className="flex justify-between items-center font-medium text-secondary-black">
+                  <h3>Filters</h3>
+                  <button className="cursor-pointer">Reset</button>
+                </div>
+
+                <hr className="text-gray-300 my-3" />
+
+                <div className="space-y-3 text-sm text-secondary-gray">
+                  <h3 className="font-medium text-left text-secondary-black text-base">
+                    Document Type
+                  </h3>
+
+                  <p className="flex gap-2 items-center">
+                    <input
+                      type="radio"
+                      id="all"
+                      name="document_type"
+                      className="scale-125"
+                    />
+                    <label htmlFor="all">All</label>
+                  </p>
+
+                  <p className="flex gap-2 items-center">
+                    <input
+                      type="radio"
+                      id="resume"
+                      name="document_type"
+                      className="scale-125"
+                    />
+                    <label htmlFor="resume">Resume</label>
+                  </p>
+
+                  <p className="flex gap-2 items-center">
+                    <input
+                      type="radio"
+                      id="cover_letter"
+                      name="document_type"
+                      className="scale-125"
+                    />
+                    <label htmlFor="cover_letter">Cover Letter</label>
+                  </p>
+
+                  <p className="flex gap-2 items-center">
+                    <input
+                      type="radio"
+                      id="job_match"
+                      name="document_type"
+                      className="scale-125"
+                    />
+                    <label htmlFor="job_match">Job Match</label>
+                  </p>
+                </div>
+
+                <hr className="text-gray-300 my-4" />
+
+                <div className="space-y-3 text-sm text-secondary-gray mb-5">
+                  <h3 className="font-medium text-left text-secondary-black text-base">
+                    Progress Status
+                  </h3>
+
+                  <p className="flex gap-2 items-center">
+                    <input
+                      type="radio"
+                      id="all"
+                      name="progress_status"
+                      className="scale-125"
+                    />
+                    <label htmlFor="all">All</label>
+                  </p>
+
+                  <p className="flex gap-2 items-center">
+                    <input
+                      type="radio"
+                      id="incomplete"
+                      name="progress_status"
+                      className="scale-125"
+                    />
+                    <label htmlFor="incomplete">Incomplete</label>
+                  </p>
+
+                  <p className="flex gap-2 items-center">
+                    <input
+                      type="radio"
+                      id="progress"
+                      name="progress_status"
+                      className="scale-125"
+                    />
+                    <label htmlFor="progress">In Progress</label>
+                  </p>
+
+                  <p className="flex gap-2 items-center">
+                    <input
+                      type="radio"
+                      id="complete"
+                      name="progress_status"
+                      className="scale-125"
+                    />
+                    <label htmlFor="complete">Complete</label>
+                  </p>
+                </div>
+
+                <button className="block w-full bg-secondary-blue text-white font-medium rounded-lg cursor-pointer transition-transform hover:scale-105 duration-300 py-3">
+                  Apply Filters
+                </button>
+              </div>
+            )}
           </button>
         </div>
       </div>
