@@ -3,7 +3,10 @@ import { Loader } from "@/Components/Loader/Loader";
 import AllDocuments from "@/Components/Pages/dashboardPages/DocumentPageComponents/AllDocuments";
 import Draft from "@/Components/Pages/dashboardPages/DocumentPageComponents/Draft";
 import RecentActivity from "@/Components/Pages/dashboardPages/DocumentPageComponents/RecentActivity";
-import { useAllRecentActivities } from "@/Hooks/api/dashboard_api";
+import {
+  useAllDocuments,
+  useAllRecentActivities,
+} from "@/Hooks/api/dashboard_api";
 import { useEffect, useState } from "react";
 const tabData = [
   { id: 1, label: "All Documents", path: "all-documents" },
@@ -15,8 +18,10 @@ const page = () => {
   const [activeTab, setActiveTab] = useState<string>("all-documents");
   const { data: allRecentActivities, isLoading: recentDataLoading } =
     useAllRecentActivities();
+  const { data: allDocuments, isLoading: documentDataLoading } =
+    useAllDocuments();
 
-  const isLoading = recentDataLoading;
+  const isLoading = recentDataLoading || documentDataLoading;
 
   useEffect(() => {
     if (isLoading) {
@@ -71,7 +76,9 @@ const page = () => {
       {activeTab === "recent-activity" && (
         <RecentActivity data={allRecentActivities?.data} />
       )}
-      {activeTab === "all-documents" && <AllDocuments />}
+      {activeTab === "all-documents" && (
+        <AllDocuments data={allDocuments?.data} />
+      )}
       {activeTab === "draft" && <Draft />}
     </>
   );

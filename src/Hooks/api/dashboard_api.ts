@@ -143,11 +143,6 @@ export const useInterviewAssistant = () => {
     key: "interview-assistant",
     isPrivate: true,
     endpoint: "/api/interview-preparation-assistant",
-    onSuccess: (data: any) => {
-      if (data?.status) {
-        toast.success(data?.message);
-      }
-    },
     onError: (err: any) => {
       toast.error(err?.response?.data?.message);
     },

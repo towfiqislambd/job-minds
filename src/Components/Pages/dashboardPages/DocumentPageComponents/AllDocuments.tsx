@@ -3,56 +3,27 @@ import { HiOutlineDotsVertical } from "react-icons/hi";
 import { FiEye } from "react-icons/fi";
 import { FiDelete } from "react-icons/fi";
 import { TbFileExport } from "react-icons/tb";
+import moment from "moment";
+
 import {
   FileSvg,
   FilterSvg,
   SearchSvg,
 } from "@/Components/SvgContainer/SvgContainer";
 
-const data = [
-  {
-    id: 1,
-    document_type: "Resume",
-    job_title: "Software Engineer",
-    company: "Tech Innovations",
-    last_update: "Jan 15, 2024",
-    status: "Completed",
-  },
-  {
-    id: 2,
-    document_type: "Cover Letter",
-    job_title: "Software Engineer",
-    company: "Tech Innovations",
-    last_update: "Jan 15, 2024",
-    status: "Completed",
-  },
-  {
-    id: 3,
-    document_type: "Job match",
-    job_title: "Software Engineer",
-    company: "Tech Innovations",
-    last_update: "Jan 15, 2024",
-    status: "In Progress",
-  },
-  {
-    id: 4,
-    document_type: "Interview Question",
-    job_title: "Software Engineer",
-    company: "Tech Innovations",
-    last_update: "Jan 15, 2024",
-    status: "Completed",
-  },
-  {
-    id: 5,
-    document_type: "Resume",
-    job_title: "Software Engineer",
-    company: "Tech Innovations",
-    last_update: "Jan 15, 2024",
-    status: "In Progress",
-  },
-];
+type documentItem = {
+  id: number;
+  title: string;
+  document_type: string;
+  last_update: string;
+  status: string;
+};
 
-const AllDocuments = () => {
+interface documentData {
+  data: documentItem[];
+}
+
+const AllDocuments = ({ data }: documentData) => {
   const [openFilter, setOpenFilter] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [popoverId, setPopoverId] = useState<number>(0);
@@ -147,16 +118,6 @@ const AllDocuments = () => {
                     />
                     <label htmlFor="cover_letter">Cover Letter</label>
                   </p>
-
-                  <p className="flex gap-2 items-center">
-                    <input
-                      type="radio"
-                      id="job_match"
-                      name="document_type"
-                      className="scale-125"
-                    />
-                    <label htmlFor="job_match">Job Match</label>
-                  </p>
                 </div>
 
                 <hr className="text-gray-300 my-4" />
@@ -179,31 +140,21 @@ const AllDocuments = () => {
                   <p className="flex gap-2 items-center">
                     <input
                       type="radio"
-                      id="incomplete"
-                      name="progress_status"
-                      className="scale-125"
-                    />
-                    <label htmlFor="incomplete">Incomplete</label>
-                  </p>
-
-                  <p className="flex gap-2 items-center">
-                    <input
-                      type="radio"
-                      id="progress"
-                      name="progress_status"
-                      className="scale-125"
-                    />
-                    <label htmlFor="progress">In Progress</label>
-                  </p>
-
-                  <p className="flex gap-2 items-center">
-                    <input
-                      type="radio"
                       id="complete"
                       name="progress_status"
                       className="scale-125"
                     />
-                    <label htmlFor="complete">Complete</label>
+                    <label htmlFor="complete">Completed</label>
+                  </p>
+
+                  <p className="flex gap-2 items-center">
+                    <input
+                      type="radio"
+                      id="exported"
+                      name="progress_status"
+                      className="scale-125"
+                    />
+                    <label htmlFor="exported">Exported</label>
                   </p>
                 </div>
 
@@ -222,7 +173,7 @@ const AllDocuments = () => {
           <thead>
             <tr className="text-nowrap text-dark-blue text-base 2xl:text-lg capitalize">
               <td className="font-medium px-3 2xl:px-4">Document Type</td>
-              <td className="font-medium px-3 2xl:px-4">Job Title & Company</td>
+              <td className="font-medium px-3 2xl:px-4">Title</td>
               <td className="font-medium px-3 2xl:px-4">Last Update</td>
               <td className="font-medium px-3 2xl:px-4">Status</td>
               <td className="font-medium px-3 2xl:px-4 text-center">Action</td>
@@ -230,35 +181,32 @@ const AllDocuments = () => {
           </thead>
           <tbody>
             {data?.map(
-              (
-                { id, document_type, job_title, company, last_update, status },
-                idx
-              ) => (
+              ({ id, document_type, title, last_update, status }, idx) => (
                 <tr key={id} className="text-nowrap">
                   <td className="px-3 2xl:px-4 flex gap-3 items-center">
                     <p className="w-11 h-11 rounded-full grid place-items-center border-2 bg-[#cce6ff] border-secondary-blue">
                       <FileSvg />
                     </p>
-                    <p className="text-secondary-black font-medium">
+                    <p className="text-secondary-black font-medium capitalize">
                       {document_type}
                     </p>
                   </td>
 
                   <td className="px-3 2xl:px-4">
-                    <p className="text-secondary-black font-medium">
-                      {job_title}
-                    </p>
-                    <p className="text-light-gray">{company}</p>
+                    <p className="text-secondary-black font-medium">{title}</p>
                   </td>
 
                   <td className="px-3 2xl:px-4">
-                    <p className="text-secondary-black">{last_update}</p>
+                    <p className="text-secondary-black">
+                      {" "}
+                      {moment(last_update).format("ll")}
+                    </p>
                   </td>
 
                   <td className="px-3 2xl:px-4">
                     <span
                       className={`capitalize px-3 lg:px-4 py-1 lg:py-1.5 rounded-lg ${
-                        status?.toLowerCase() === "in progress"
+                        status?.toLowerCase() === "exported"
                           ? "bg-[#CD8F1E] text-[#fff]"
                           : "bg-[#DCFCE7] text-[#09A506]"
                       }`}
