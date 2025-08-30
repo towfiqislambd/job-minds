@@ -1,13 +1,8 @@
 "use client";
-import { Loader } from "@/Components/Loader/Loader";
 import AllDocuments from "@/Components/Pages/dashboardPages/DocumentPageComponents/AllDocuments";
 import Draft from "@/Components/Pages/dashboardPages/DocumentPageComponents/Draft";
 import RecentActivity from "@/Components/Pages/dashboardPages/DocumentPageComponents/RecentActivity";
-import {
-  useAllDocuments,
-  useAllRecentActivities,
-} from "@/Hooks/api/dashboard_api";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 const tabData = [
   { id: 1, label: "All Documents", path: "all-documents" },
   { id: 2, label: "Recent Activity", path: "recent-activity" },
@@ -15,40 +10,7 @@ const tabData = [
 ];
 
 const page = () => {
-  const [searchDoc, setSearchDoc] = useState<string>("");
-  const [searchDraft, setSearchDraft] = useState<string>("");
-  const [docType, setDocType] = useState<string>("");
-  const [status, setStatus] = useState<string>("");
   const [activeTab, setActiveTab] = useState<string>("all-documents");
-
-  const { data: allDocuments, isLoading: documentDataLoading } =
-    useAllDocuments(searchDoc, docType, status);
-
-  const { data: allRecentActivities, isLoading: recentDataLoading } =
-    useAllRecentActivities();
-
-  const isLoading = recentDataLoading || documentDataLoading;
-
-  useEffect(() => {
-    if (isLoading) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    // Cleanup on unmount
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isLoading]);
-
-  if (isLoading) {
-    return (
-      <div className="h-[80vh] flex justify-center items-center">
-        <Loader />
-      </div>
-    );
-  }
 
   return (
     <>
@@ -79,20 +41,9 @@ const page = () => {
       </div>
 
       {/* Content */}
-      {activeTab === "all-documents" && (
-        <AllDocuments
-          data={allDocuments?.data}
-          setSearchDoc={setSearchDoc}
-          setDocType={setDocType}
-          setStatus={setStatus}
-        />
-      )}
-
-      {activeTab === "recent-activity" && (
-        <RecentActivity data={allRecentActivities?.data} />
-      )}
-
-      {activeTab === "draft" && <Draft setSearchDraft={setSearchDraft} />}
+      {activeTab === "all-documents" && <AllDocuments />}
+      {activeTab === "recent-activity" && <RecentActivity />}
+      {activeTab === "draft" && <Draft />}
     </>
   );
 };

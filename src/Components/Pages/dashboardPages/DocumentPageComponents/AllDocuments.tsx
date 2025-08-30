@@ -4,12 +4,14 @@ import { FiEye } from "react-icons/fi";
 import { FiDelete } from "react-icons/fi";
 import { TbFileExport } from "react-icons/tb";
 import moment from "moment";
-
 import {
   FileSvg,
   FilterSvg,
   SearchSvg,
 } from "@/Components/SvgContainer/SvgContainer";
+import { useAllDocuments } from "@/Hooks/api/dashboard_api";
+import { AiOutlineFileUnknown } from "react-icons/ai";
+import { GrPowerReset } from "react-icons/gr";
 
 type documentItem = {
   id: number;
@@ -19,24 +21,21 @@ type documentItem = {
   status: string;
 };
 
-interface documentProps {
-  data: documentItem[];
-  setSearchDoc: any;
-  setDocType: any;
-  setStatus: any;
-}
-
-const AllDocuments = ({
-  data,
-  setSearchDoc,
-  setDocType,
-  setStatus,
-}: documentProps) => {
+const AllDocuments = () => {
+  const [searchDoc, setSearchDoc] = useState<string>("");
+  const [docType, setDocType] = useState<string>("");
+  const [status, setStatus] = useState<string>("");
   const [openFilter, setOpenFilter] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [popoverId, setPopoverId] = useState<number>(0);
   const [tempDocumentType, setTempDocumentType] = useState<string>("");
   const [tempStatus, setTempStatus] = useState<string>("");
+
+  const { data: allDocuments, isLoading } = useAllDocuments(
+    searchDoc,
+    docType,
+    status
+  );
 
   const handleApplyChange = () => {
     setDocType(tempDocumentType);
@@ -70,6 +69,7 @@ const AllDocuments = ({
             </span>
             <input
               type="text"
+              value={searchDoc}
               placeholder="Search by document"
               className="w-full border-none outline-none"
               onChange={e => setSearchDoc(e.target.value)}
@@ -82,12 +82,12 @@ const AllDocuments = ({
               e.stopPropagation();
               setOpenFilter(!openFilter);
             }}
-            className="flex gap-2 items-center cursor-pointer px-4 py-1.5 lg:py-2 xl:py-2.5 rounded-full border border-gray-200 relative"
+            className="flex gap-2 items-center cursor-pointer px-4 py-1.5 lg:py-2 xl:py-2.5 rounded-full border-gray-200 relative duration-500 transition-all hover:bg-black hover:text-white border hover:border-transparent text-light-gray"
           >
             <span className="shrink-0">
               <FilterSvg />
             </span>
-            <span className="text-light-gray">Filter</span>
+            <span>Filter</span>
 
             {openFilter && (
               <div
@@ -96,12 +96,6 @@ const AllDocuments = ({
               >
                 <div className="flex justify-between items-center font-medium text-secondary-black">
                   <h3>Filters</h3>
-                  <button
-                    onClick={() => setOpenFilter(false)}
-                    className="cursor-pointer"
-                  >
-                    Reset
-                  </button>
                 </div>
 
                 <hr className="text-gray-300 my-3" />
@@ -201,109 +195,169 @@ const AllDocuments = ({
               </div>
             )}
           </button>
+
+          {/* Reset */}
+          <button
+            onClick={() => {
+              setSearchDoc("");
+              setDocType("");
+              setStatus("");
+            }}
+            className="px-4 py-2.5 rounded-full duration-500 transition-all hover:bg-black hover:text-white border hover:border-transparent border-gray-300 cursor-pointer text-gray-500 flex gap-2 items-center"
+          >
+            <GrPowerReset />
+            <span>Reset</span>
+          </button>
         </div>
       </div>
 
       {/* Table */}
-      <div className="w-full overflow-x-auto mt-2.5 3xl:mt-5">
-        <table className="w-full border-separate border-spacing-y-7 2xl:border-spacing-y-10 text-sm 2xl:text-base">
-          <thead>
-            <tr className="text-nowrap text-dark-blue text-base 2xl:text-lg capitalize">
-              <td className="font-medium px-3 2xl:px-4">Document Type</td>
-              <td className="font-medium px-3 2xl:px-4">Title</td>
-              <td className="font-medium px-3 2xl:px-4">Last Update</td>
-              <td className="font-medium px-3 2xl:px-4">Status</td>
-              <td className="font-medium px-3 2xl:px-4 text-center">Action</td>
+      {isLoading ? (
+        <table className="w-full border-separate border-spacing-y-8 text-sm 2xl:text-base">
+          {Array.from({ length: 4 }).map((_, idx) => (
+            <tr key={idx} className="text-nowrap animate-pulse">
+              <td className="px-3 2xl:px-4 flex gap-3 items-center">
+                <div className="w-11 h-11 rounded-full bg-gray-200" />
+                <div className="h-4 w-24 bg-gray-200 rounded" />
+              </td>
+
+              <td className="px-3 2xl:px-4">
+                <div className="h-4 w-32 bg-gray-200 rounded" />
+              </td>
+
+              <td className="px-3 2xl:px-4">
+                <div className="h-4 w-20 bg-gray-200 rounded" />
+              </td>
+
+              <td className="px-3 2xl:px-4">
+                <div className="h-6 w-16 bg-gray-200 rounded-lg" />
+              </td>
+
+              <td className="px-3 2xl:px-4 flex justify-center items-center">
+                <div className="h-6 w-6 bg-gray-200 rounded" />
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {data?.map(
-              ({ id, document_type, title, last_update, status }, idx) => (
-                <tr key={id} className="text-nowrap">
-                  <td className="px-3 2xl:px-4 flex gap-3 items-center">
-                    <p className="w-11 h-11 rounded-full grid place-items-center border-2 bg-[#cce6ff] border-secondary-blue">
-                      <FileSvg />
-                    </p>
-                    <p className="text-secondary-black font-medium capitalize">
-                      {document_type}
-                    </p>
-                  </td>
-
-                  <td className="px-3 2xl:px-4">
-                    <p className="text-secondary-black font-medium">{title}</p>
-                  </td>
-
-                  <td className="px-3 2xl:px-4">
-                    <p className="text-secondary-black">
-                      {" "}
-                      {moment(last_update).format("ll")}
-                    </p>
-                  </td>
-
-                  <td className="px-3 2xl:px-4">
-                    <span
-                      className={`capitalize px-3 lg:px-4 py-1 lg:py-1.5 rounded-lg ${
-                        status?.toLowerCase() === "exported"
-                          ? "bg-[#CD8F1E] text-[#fff]"
-                          : "bg-[#DCFCE7] text-[#09A506]"
-                      }`}
-                    >
-                      {status}
-                    </span>
-                  </td>
-
-                  <td className="px-3 2xl:px-4 flex justify-center items-center relative">
-                    <button
-                      onClick={e => {
-                        setOpen(!open);
-                        setPopoverId(id);
-                        e.stopPropagation();
-                      }}
-                      className="cursor-pointer"
-                    >
-                      <HiOutlineDotsVertical className="text-xl" />
-                    </button>
-
-                    {/* Popover */}
-                    <div
-                      onClick={e => e.stopPropagation()}
-                      className={`${
-                        open && id === popoverId ? "block" : "hidden"
-                      } absolute top-5 right-20 p-3 border border-gray-100 bg-white rounded-lg shadow-lg space-y-2.5 z-40 w-[105px] text-sm ${
-                        idx === data.length - 1 && "!-top-28"
-                      }`}
-                    >
-                      <button
-                        onClick={() => setOpen(false)}
-                        className="flex gap-2 items-center cursor-pointer"
-                      >
-                        <FiEye />
-                        <span>View</span>
-                      </button>
-
-                      <button
-                        onClick={() => setOpen(false)}
-                        className="flex gap-2 items-center cursor-pointer"
-                      >
-                        <TbFileExport />
-                        <span>Export</span>
-                      </button>
-
-                      <button
-                        onClick={() => setOpen(false)}
-                        className="flex gap-2 items-center cursor-pointer text-red-500"
-                      >
-                        <FiDelete />
-                        <span>Delete</span>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              )
-            )}
-          </tbody>
+          ))}
         </table>
-      </div>
+      ) : allDocuments?.data?.length > 0 ? (
+        <div className="w-full overflow-x-auto mt-2.5 3xl:mt-5">
+          <table className="w-full border-separate border-spacing-y-7 2xl:border-spacing-y-10 text-sm 2xl:text-base">
+            <thead>
+              <tr className="text-nowrap text-dark-blue text-base 2xl:text-lg capitalize">
+                <td className="font-medium px-3 2xl:px-4">Document Type</td>
+                <td className="font-medium px-3 2xl:px-4">Title</td>
+                <td className="font-medium px-3 2xl:px-4">Last Update</td>
+                <td className="font-medium px-3 2xl:px-4">Status</td>
+                <td className="font-medium px-3 2xl:px-4 text-center">
+                  Action
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              {allDocuments?.data?.map(
+                (
+                  {
+                    id,
+                    document_type,
+                    title,
+                    last_update,
+                    status,
+                  }: documentItem,
+                  idx: number
+                ) => (
+                  <tr key={id} className="text-nowrap">
+                    <td className="px-3 2xl:px-4 flex gap-3 items-center">
+                      <p className="w-11 h-11 rounded-full grid place-items-center border-2 bg-[#cce6ff] border-secondary-blue">
+                        <FileSvg />
+                      </p>
+                      <p className="text-secondary-black font-medium capitalize">
+                        {document_type}
+                      </p>
+                    </td>
+
+                    <td className="px-3 2xl:px-4">
+                      <p className="text-secondary-black font-medium">
+                        {title}
+                      </p>
+                    </td>
+
+                    <td className="px-3 2xl:px-4">
+                      <p className="text-secondary-black">
+                        {" "}
+                        {moment(last_update).format("ll")}
+                      </p>
+                    </td>
+
+                    <td className="px-3 2xl:px-4">
+                      <span
+                        className={`capitalize px-3 lg:px-4 py-1 lg:py-1.5 rounded-lg ${
+                          status?.toLowerCase() === "exported"
+                            ? "bg-[#CD8F1E] text-[#fff]"
+                            : "bg-[#DCFCE7] text-[#09A506]"
+                        }`}
+                      >
+                        {status}
+                      </span>
+                    </td>
+
+                    <td className="px-3 2xl:px-4 flex justify-center items-center relative">
+                      <button
+                        onClick={e => {
+                          setOpen(!open);
+                          setPopoverId(id);
+                          e.stopPropagation();
+                        }}
+                        className="cursor-pointer"
+                      >
+                        <HiOutlineDotsVertical className="text-xl" />
+                      </button>
+
+                      {/* Popover */}
+                      <div
+                        onClick={e => e.stopPropagation()}
+                        className={`${
+                          open && id === popoverId ? "block" : "hidden"
+                        } absolute top-5 right-20 p-3 border border-gray-100 bg-white rounded-lg shadow-lg space-y-2.5 z-40 w-[105px] text-sm ${
+                          idx === allDocuments?.data.length - 1 && "!-top-28"
+                        }`}
+                      >
+                        <button
+                          onClick={() => setOpen(false)}
+                          className="flex gap-2 items-center cursor-pointer"
+                        >
+                          <FiEye />
+                          <span>View</span>
+                        </button>
+
+                        <button
+                          onClick={() => setOpen(false)}
+                          className="flex gap-2 items-center cursor-pointer"
+                        >
+                          <TbFileExport />
+                          <span>Export</span>
+                        </button>
+
+                        <button
+                          onClick={() => setOpen(false)}
+                          className="flex gap-2 items-center cursor-pointer text-red-500"
+                        >
+                          <FiDelete />
+                          <span>Delete</span>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                )
+              )}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <div className="flex flex-col justify-center items-center gap-4 text-center py-20">
+          <AiOutlineFileUnknown className="text-5xl text-gray-500" />
+          <p className="font-medium text-gray-600">No documents found!!</p>
+        </div>
+      )}
     </section>
   );
 };

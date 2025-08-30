@@ -193,6 +193,9 @@ export const useAllDocuments = (
       document_type,
       status,
     },
+    options: {
+      retry: false,
+    },
   });
 };
 
