@@ -19,14 +19,30 @@ type documentItem = {
   status: string;
 };
 
-interface documentData {
+interface documentProps {
   data: documentItem[];
+  setSearchDoc: any;
+  setDocType: any;
+  setStatus: any;
 }
 
-const AllDocuments = ({ data }: documentData) => {
+const AllDocuments = ({
+  data,
+  setSearchDoc,
+  setDocType,
+  setStatus,
+}: documentProps) => {
   const [openFilter, setOpenFilter] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
   const [popoverId, setPopoverId] = useState<number>(0);
+  const [tempDocumentType, setTempDocumentType] = useState<string>("");
+  const [tempStatus, setTempStatus] = useState<string>("");
+
+  const handleApplyChange = () => {
+    setDocType(tempDocumentType);
+    setStatus(tempStatus);
+    setOpenFilter(false);
+  };
 
   useEffect(() => {
     const handleWindowClick = () => {
@@ -48,14 +64,15 @@ const AllDocuments = ({ data }: documentData) => {
         <h4 className="section_sub_title">All Documents</h4>
         <div className="flex gap-3 3xl:gap-5 items-center flex-wrap-reverse justify-center">
           {/* Search */}
-          <p className="border rounded-full w-[250px] px-4 py-1.5 lg:py-2 xl:py-2.5 border-gray-200 flex gap-2 items-center">
+          <p className="border rounded-full w-[350px] px-4 py-1.5 lg:py-2 xl:py-2.5 border-gray-200 flex gap-2 items-center">
             <span className="shrink-0">
               <SearchSvg />
             </span>
             <input
               type="text"
-              placeholder="Search something"
+              placeholder="Search by document"
               className="w-full border-none outline-none"
+              onChange={e => setSearchDoc(e.target.value)}
             />
           </p>
 
@@ -79,7 +96,12 @@ const AllDocuments = ({ data }: documentData) => {
               >
                 <div className="flex justify-between items-center font-medium text-secondary-black">
                   <h3>Filters</h3>
-                  <button className="cursor-pointer">Reset</button>
+                  <button
+                    onClick={() => setOpenFilter(false)}
+                    className="cursor-pointer"
+                  >
+                    Reset
+                  </button>
                 </div>
 
                 <hr className="text-gray-300 my-3" />
@@ -95,6 +117,8 @@ const AllDocuments = ({ data }: documentData) => {
                       id="all"
                       name="document_type"
                       className="scale-125"
+                      value=""
+                      onChange={e => setTempDocumentType(e.target.value)}
                     />
                     <label htmlFor="all">All</label>
                   </p>
@@ -105,6 +129,8 @@ const AllDocuments = ({ data }: documentData) => {
                       id="resume"
                       name="document_type"
                       className="scale-125"
+                      value="resume"
+                      onChange={e => setTempDocumentType(e.target.value)}
                     />
                     <label htmlFor="resume">Resume</label>
                   </p>
@@ -115,6 +141,8 @@ const AllDocuments = ({ data }: documentData) => {
                       id="cover_letter"
                       name="document_type"
                       className="scale-125"
+                      value="Cover letter"
+                      onChange={e => setTempDocumentType(e.target.value)}
                     />
                     <label htmlFor="cover_letter">Cover Letter</label>
                   </p>
@@ -130,11 +158,13 @@ const AllDocuments = ({ data }: documentData) => {
                   <p className="flex gap-2 items-center">
                     <input
                       type="radio"
-                      id="all"
+                      id="all_status"
                       name="progress_status"
                       className="scale-125"
+                      value=""
+                      onChange={e => setTempStatus(e.target.value)}
                     />
-                    <label htmlFor="all">All</label>
+                    <label htmlFor="all_status">All</label>
                   </p>
 
                   <p className="flex gap-2 items-center">
@@ -143,6 +173,8 @@ const AllDocuments = ({ data }: documentData) => {
                       id="complete"
                       name="progress_status"
                       className="scale-125"
+                      value="completed"
+                      onChange={e => setTempStatus(e.target.value)}
                     />
                     <label htmlFor="complete">Completed</label>
                   </p>
@@ -153,12 +185,17 @@ const AllDocuments = ({ data }: documentData) => {
                       id="exported"
                       name="progress_status"
                       className="scale-125"
+                      value="exported"
+                      onChange={e => setTempStatus(e.target.value)}
                     />
                     <label htmlFor="exported">Exported</label>
                   </p>
                 </div>
 
-                <button className="block w-full bg-secondary-blue text-white font-medium rounded-lg cursor-pointer transition-transform hover:scale-105 duration-300 py-3">
+                <button
+                  onClick={handleApplyChange}
+                  className="block w-full bg-secondary-blue text-white font-medium rounded-lg cursor-pointer transition-transform hover:scale-105 duration-300 py-3"
+                >
                   Apply Filters
                 </button>
               </div>
@@ -232,7 +269,7 @@ const AllDocuments = ({ data }: documentData) => {
                       onClick={e => e.stopPropagation()}
                       className={`${
                         open && id === popoverId ? "block" : "hidden"
-                      } absolute top-5 right-16 p-3 border border-gray-100 bg-white rounded-lg shadow-lg space-y-2.5 z-40 w-28 text-sm ${
+                      } absolute top-5 right-20 p-3 border border-gray-100 bg-white rounded-lg shadow-lg space-y-2.5 z-40 w-[105px] text-sm ${
                         idx === data.length - 1 && "!-top-28"
                       }`}
                     >

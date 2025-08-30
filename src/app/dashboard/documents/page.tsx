@@ -15,11 +15,17 @@ const tabData = [
 ];
 
 const page = () => {
+  const [searchDoc, setSearchDoc] = useState<string>("");
+  const [searchDraft, setSearchDraft] = useState<string>("");
+  const [docType, setDocType] = useState<string>("");
+  const [status, setStatus] = useState<string>("");
   const [activeTab, setActiveTab] = useState<string>("all-documents");
+
+  const { data: allDocuments, isLoading: documentDataLoading } =
+    useAllDocuments(searchDoc, docType, status);
+
   const { data: allRecentActivities, isLoading: recentDataLoading } =
     useAllRecentActivities();
-  const { data: allDocuments, isLoading: documentDataLoading } =
-    useAllDocuments();
 
   const isLoading = recentDataLoading || documentDataLoading;
 
@@ -73,13 +79,20 @@ const page = () => {
       </div>
 
       {/* Content */}
+      {activeTab === "all-documents" && (
+        <AllDocuments
+          data={allDocuments?.data}
+          setSearchDoc={setSearchDoc}
+          setDocType={setDocType}
+          setStatus={setStatus}
+        />
+      )}
+
       {activeTab === "recent-activity" && (
         <RecentActivity data={allRecentActivities?.data} />
       )}
-      {activeTab === "all-documents" && (
-        <AllDocuments data={allDocuments?.data} />
-      )}
-      {activeTab === "draft" && <Draft />}
+
+      {activeTab === "draft" && <Draft setSearchDraft={setSearchDraft} />}
     </>
   );
 };

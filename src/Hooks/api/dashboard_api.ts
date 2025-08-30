@@ -178,12 +178,21 @@ export const useAllRecentActivities = () => {
 };
 
 // All Documents
-export const useAllDocuments = () => {
+export const useAllDocuments = (
+  search?: string,
+  document_type?: string,
+  status?: string
+) => {
   return useApi({
     method: "get",
     key: "all-documents",
     isPrivate: true,
     endpoint: "/api/all-documents",
+    params: {
+      search,
+      document_type,
+      status,
+    },
   });
 };
 

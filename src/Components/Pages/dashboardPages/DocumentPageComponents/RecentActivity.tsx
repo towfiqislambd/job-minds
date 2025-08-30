@@ -10,11 +10,11 @@ type activityItem = {
   created_at: string;
 };
 
-interface activityData {
+interface activityProps {
   data: activityItem[];
 }
 
-const RecentActivity = ({ data }: activityData) => {
+const RecentActivity = ({ data }: activityProps) => {
   return (
     <section className="dashboard_card">
       <h4 className="section_sub_title">Recent Activity</h4>

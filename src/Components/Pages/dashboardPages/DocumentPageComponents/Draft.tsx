@@ -28,7 +28,7 @@ const data = [
   },
 ];
 
-const Draft = () => {
+const Draft = ({ setSearchDraft }: any) => {
   return (
     <section className="dashboard_card">
       {/* Upper Part */}
@@ -36,15 +36,16 @@ const Draft = () => {
         <h4 className="section_sub_title">All Draft</h4>
 
         {/* Search */}
-        <p className="border rounded-full w-[250px] px-4 py-1.5 lg:py-2 xl:py-2.5 border-gray-200 flex gap-2 items-center">
+        <p className="border rounded-full w-[300px] px-4 py-1.5 lg:py-2 xl:py-2.5 border-gray-200 flex gap-2 items-center">
           <span className="shrink-0">
             <SearchSvg />
           </span>
 
           <input
             type="text"
-            placeholder="Search something"
+            placeholder="Search by job title"
             className="w-full border-none outline-none"
+            onChange={e => setSearchDraft(e.target.value)}
           />
         </p>
       </div>
