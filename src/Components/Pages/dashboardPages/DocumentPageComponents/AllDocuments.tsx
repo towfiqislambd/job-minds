@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 import { FiEye } from "react-icons/fi";
 import { FiDelete } from "react-icons/fi";
@@ -57,16 +57,21 @@ const AllDocuments = () => {
   const [open, setOpen] = useState<boolean>(false);
   const [popoverId, setPopoverId] = useState<number>(0);
 
+  useEffect(() => {
+    const handleWindowClick = () => {
+      setOpen(false);
+      setOpenFilter(false);
+    };
+
+    window.addEventListener("click", handleWindowClick);
+
+    return () => {
+      window.removeEventListener("click", handleWindowClick);
+    };
+  }, []);
+
   return (
     <section className="dashboard_card">
-      <div
-        onClick={() => {
-          setOpen(false);
-          setOpenFilter(false);
-        }}
-        className="absolute inset-0"
-      />
-
       {/* Upper Part */}
       <div className="flex flex-col lg:flex-row gap-3 lg:gap-0 justify-between items-center">
         <h4 className="section_sub_title">All Documents</h4>
@@ -85,7 +90,10 @@ const AllDocuments = () => {
 
           {/* Filter */}
           <button
-            onClick={() => setOpenFilter(!openFilter)}
+            onClick={e => {
+              e.stopPropagation();
+              setOpenFilter(!openFilter);
+            }}
             className="flex gap-2 items-center cursor-pointer px-4 py-1.5 lg:py-2 xl:py-2.5 rounded-full border border-gray-200 relative"
           >
             <span className="shrink-0">
@@ -262,7 +270,7 @@ const AllDocuments = () => {
                   <td className="px-3 2xl:px-4 flex justify-center items-center relative">
                     <button
                       onClick={e => {
-                        setOpen(true);
+                        setOpen(!open);
                         setPopoverId(id);
                         e.stopPropagation();
                       }}
@@ -276,7 +284,7 @@ const AllDocuments = () => {
                       onClick={e => e.stopPropagation()}
                       className={`${
                         open && id === popoverId ? "block" : "hidden"
-                      } absolute top-5 right-16 p-3 border border-gray-100 bg-white rounded-lg shadow-lg space-y-2.5 z-50 w-28 text-sm ${
+                      } absolute top-5 right-16 p-3 border border-gray-100 bg-white rounded-lg shadow-lg space-y-2.5 z-40 w-28 text-sm ${
                         idx === data.length - 1 && "!-top-28"
                       }`}
                     >
@@ -287,6 +295,7 @@ const AllDocuments = () => {
                         <FiEye />
                         <span>View</span>
                       </button>
+
                       <button
                         onClick={() => setOpen(false)}
                         className="flex gap-2 items-center cursor-pointer"
@@ -294,6 +303,7 @@ const AllDocuments = () => {
                         <TbFileExport />
                         <span>Export</span>
                       </button>
+
                       <button
                         onClick={() => setOpen(false)}
                         className="flex gap-2 items-center cursor-pointer text-red-500"

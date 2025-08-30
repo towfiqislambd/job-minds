@@ -94,7 +94,7 @@ export default function DashboardLayout({
                 type="text"
                 placeholder="Search....."
                 className="outline-none w-full"
-                onClick={() => router.push("/dashboard/documents")}
+                // onClick={() => router.push("/dashboard/documents")}
               />
             </p>
           </div>

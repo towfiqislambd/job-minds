@@ -108,7 +108,7 @@ const page = ({ params }: Props) => {
 
       const response = await createResumeMutation(formData);
       // setGeneratedTemplate(response?.data?.pdf);
-      setGeneratedTemplate(response?.data?.html);
+      setGeneratedTemplate(response?.data?.pdf);
       setStep(5);
     }
   };

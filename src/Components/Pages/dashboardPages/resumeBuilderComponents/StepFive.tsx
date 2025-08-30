@@ -12,17 +12,17 @@ const StepFive = ({ step, setStep, template }: any) => {
       </h4>
 
       {/* Preview Resume */}
-      <iframe
+      {/* <iframe
         srcDoc={template}
         className="w-full h-[1000px] border-none"
         title="Resume Preview"
-      />
-
-      {/* <iframe
-        src={`${process.env.NEXT_PUBLIC_SITE_URL}/${template}`}
-        className="w-full h-[600px]"
-        title="PDF Preview"
       /> */}
+
+      <iframe
+        src={`${process.env.NEXT_PUBLIC_SITE_URL}/${template}`}
+        className="w-full h-[1000px]"
+        title="PDF Preview"
+      />
 
       <div className="flex flex-col md:flex-row md:justify-between items-center gap-3 md:gap-0 dashboard_card">
         {/* Back btn */}
