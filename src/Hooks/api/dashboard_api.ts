@@ -167,6 +167,25 @@ export const useDraftInterviewQuestions = () => {
   });
 };
 
+// Remove From Draft
+export const useRemoveFromDraft = (draft_id: string | null) => {
+  return useApi({
+    method: "post",
+    key: "remove-from-draft",
+    isPrivate: true,
+    endpoint: `/api/delete-draft/${draft_id}`,
+    enabled: !!draft_id,
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
 // All Recent Activities
 export const useAllRecentActivities = (page?: number) => {
   return useApi({
@@ -212,6 +231,48 @@ export const useAllDrafts = (search?: string) => {
     params: { search },
     options: {
       retry: false,
+    },
+  });
+};
+
+// Delete Document
+export const useDeleteDocument = (document_id: number | null) => {
+  return useApi({
+    method: "post",
+    key: "delete-document",
+    isPrivate: true,
+    endpoint: `/api/delete-document/${document_id}`,
+    enabled: !!document_id,
+    onSuccess: (data: any) => {
+      const queryClient = useQueryClient();
+      queryClient.invalidateQueries("all-documents" as any);
+      if (data?.status) {
+        toast.success(data?.message);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
+// Export Document
+export const useExportDocument = (document_id: number | null) => {
+  return useApi({
+    method: "post",
+    key: "export-document",
+    isPrivate: true,
+    endpoint: `/api/export-document/${document_id}`,
+    enabled: !!document_id,
+    onSuccess: (data: any) => {
+      const queryClient = useQueryClient();
+      queryClient.invalidateQueries("all-documents" as any);
+      if (data?.status) {
+        toast.success(data?.message);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
     },
   });
 };

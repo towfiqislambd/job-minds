@@ -1,15 +1,18 @@
 "use client";
 import React, { useState } from "react";
 import { SearchSvg } from "@/Components/SvgContainer/SvgContainer";
-import { useAllDrafts } from "@/Hooks/api/dashboard_api";
+import { useAllDrafts, useRemoveFromDraft } from "@/Hooks/api/dashboard_api";
 import { AiOutlineFileUnknown } from "react-icons/ai";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, number } from "framer-motion";
 import { IoIosArrowUp } from "react-icons/io";
 
 const Draft = () => {
+  const [draftId, setDraftId] = useState<string | null>(null);
   const [searchDraft, setSearchDraft] = useState<string>("");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const { data: draftsData, isLoading } = useAllDrafts(searchDraft);
+  const { mutate: removeDraftMutation, isPending } =
+    useRemoveFromDraft(draftId);
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(prev => (prev === index ? null : index));
@@ -103,7 +106,15 @@ const Draft = () => {
                           Difficulty Level: {item.difficulty_level}
                         </h4>
 
-                        <button className="text-sm text-red-400 font-medium cursor-pointer hover:underline">
+                        <button
+                          onClick={() => {
+                            setDraftId(item?.id);
+                            if (draftId) {
+                              removeDraftMutation();
+                            }
+                          }}
+                          className="text-sm text-red-400 font-medium cursor-pointer hover:underline"
+                        >
                           Remove from draft
                         </button>
                       </div>

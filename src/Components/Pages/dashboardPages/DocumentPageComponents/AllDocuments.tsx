@@ -9,7 +9,11 @@ import {
   FilterSvg,
   SearchSvg,
 } from "@/Components/SvgContainer/SvgContainer";
-import { useAllDocuments } from "@/Hooks/api/dashboard_api";
+import {
+  useAllDocuments,
+  useDeleteDocument,
+  useExportDocument,
+} from "@/Hooks/api/dashboard_api";
 import { AiOutlineFileUnknown } from "react-icons/ai";
 import { GrPowerReset } from "react-icons/gr";
 
@@ -22,6 +26,7 @@ type documentItem = {
 };
 
 const AllDocuments = () => {
+  const [documentId, setDocumentId] = useState<number | null>(null);
   const [activePage, setActivePage] = useState<number>(1);
   const [searchDoc, setSearchDoc] = useState<string>("");
   const [docType, setDocType] = useState<string>("");
@@ -31,6 +36,11 @@ const AllDocuments = () => {
   const [popoverId, setPopoverId] = useState<number>(0);
   const [tempDocumentType, setTempDocumentType] = useState<string>("");
   const [tempStatus, setTempStatus] = useState<string>("");
+  const { mutate: deleteDocumentMutation, isPending } =
+    useDeleteDocument(documentId);
+
+  const { mutate: exportDocumentMutation, isPending: isExporting } =
+    useExportDocument(documentId);
 
   const { data: allDocuments, isLoading } = useAllDocuments(
     searchDoc,
@@ -293,7 +303,7 @@ const AllDocuments = () => {
                         onClick={e => e.stopPropagation()}
                         className={`${
                           open && id === popoverId ? "block" : "hidden"
-                        } absolute top-5 right-20 p-3 border border-gray-100 bg-white rounded-lg shadow-lg space-y-2.5 z-40 w-[105px] text-sm ${
+                        } absolute top-5 right-20 p-3 border border-gray-100 bg-white rounded-lg shadow-lg space-y-2.5 z-40 w-[120px] text-sm ${
                           idx === allDocuments?.data.length - 1 && "!-top-28"
                         }`}
                       >
@@ -306,19 +316,31 @@ const AllDocuments = () => {
                         </button>
 
                         <button
-                          onClick={() => setOpen(false)}
+                          onClick={() => {
+                            setDocumentId(id);
+                            setOpen(!isExporting);
+                            if (documentId) {
+                              exportDocumentMutation(documentId);
+                            }
+                          }}
                           className="flex gap-2 items-center cursor-pointer"
                         >
                           <TbFileExport />
-                          <span>Export</span>
+                          <span>{isExporting ? "Exporting" : "Export"}</span>
                         </button>
 
                         <button
-                          onClick={() => setOpen(false)}
+                          onClick={() => {
+                            setDocumentId(id);
+                            setOpen(!isPending);
+                            if (documentId) {
+                              deleteDocumentMutation(documentId);
+                            }
+                          }}
                           className="flex gap-2 items-center cursor-pointer text-red-500"
                         >
                           <FiDelete />
-                          <span>Delete</span>
+                          <span>{isPending ? "Deleting" : "Delete"}</span>
                         </button>
                       </div>
                     </td>
