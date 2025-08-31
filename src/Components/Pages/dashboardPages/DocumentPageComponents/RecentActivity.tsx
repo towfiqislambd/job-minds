@@ -1,8 +1,8 @@
-import React from "react";
 import moment from "moment";
+import React, { useState } from "react";
 import { AiOutlineFileUnknown } from "react-icons/ai";
-import { ClockSvg, FileSvg } from "@/Components/SvgContainer/SvgContainer";
 import { useAllRecentActivities } from "@/Hooks/api/dashboard_api";
+import { ClockSvg, FileSvg } from "@/Components/SvgContainer/SvgContainer";
 
 type activityItem = {
   id: number;
@@ -12,7 +12,9 @@ type activityItem = {
 };
 
 const RecentActivity = () => {
-  const { data: allRecentActivities, isLoading } = useAllRecentActivities();
+  const [activePage, setActivePage] = useState<number>(1);
+  const { data: allRecentActivities, isLoading } =
+    useAllRecentActivities(activePage);
 
   return (
     <section className="dashboard_card">
@@ -40,8 +42,8 @@ const RecentActivity = () => {
               </div>
             </div>
           ))
-        ) : allRecentActivities?.data?.length > 0 ? (
-          allRecentActivities?.data?.map(
+        ) : allRecentActivities?.data?.data?.length > 0 ? (
+          allRecentActivities?.data?.data?.map(
             ({ id, title, type, created_at }: activityItem) => (
               <div
                 key={id}
@@ -79,6 +81,25 @@ const RecentActivity = () => {
           </div>
         )}
       </div>
+
+      {/* Pagination */}
+      {!isLoading && (
+        <div className="mt-5 flex justify-center items-center gap-2 flex-wrap">
+          {allRecentActivities?.data?.links.map((item: any, idx: number) => (
+            <button
+              key={idx}
+              onClick={() => item.url && setActivePage(item.url.split("=")[1])}
+              className={`px-3 py-1 rounded border transition-all duration-200 
+        ${
+          item.active ? "bg-primary-blue text-white" : "bg-white text-gray-700"
+        } 
+        ${!item.url ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
+              disabled={!item.url}
+              dangerouslySetInnerHTML={{ __html: item.label }}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 };

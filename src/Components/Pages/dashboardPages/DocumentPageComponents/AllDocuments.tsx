@@ -22,6 +22,7 @@ type documentItem = {
 };
 
 const AllDocuments = () => {
+  const [activePage, setActivePage] = useState<number>(1);
   const [searchDoc, setSearchDoc] = useState<string>("");
   const [docType, setDocType] = useState<string>("");
   const [status, setStatus] = useState<string>("");
@@ -34,12 +35,14 @@ const AllDocuments = () => {
   const { data: allDocuments, isLoading } = useAllDocuments(
     searchDoc,
     docType,
-    status
+    status,
+    activePage
   );
 
   const handleApplyChange = () => {
     setDocType(tempDocumentType);
     setStatus(tempStatus);
+    setActivePage(1);
     setOpenFilter(false);
   };
 
@@ -105,85 +108,57 @@ const AllDocuments = () => {
                     Document Type
                   </h3>
 
-                  <p className="flex gap-2 items-center">
-                    <input
-                      type="radio"
-                      id="all"
-                      name="document_type"
-                      className="scale-125"
-                      value=""
-                      onChange={e => setTempDocumentType(e.target.value)}
-                    />
-                    <label htmlFor="all">All</label>
-                  </p>
-
-                  <p className="flex gap-2 items-center">
-                    <input
-                      type="radio"
-                      id="resume"
-                      name="document_type"
-                      className="scale-125"
-                      value="resume"
-                      onChange={e => setTempDocumentType(e.target.value)}
-                    />
-                    <label htmlFor="resume">Resume</label>
-                  </p>
-
-                  <p className="flex gap-2 items-center">
-                    <input
-                      type="radio"
-                      id="cover_letter"
-                      name="document_type"
-                      className="scale-125"
-                      value="Cover letter"
-                      onChange={e => setTempDocumentType(e.target.value)}
-                    />
-                    <label htmlFor="cover_letter">Cover Letter</label>
-                  </p>
+                  {/* Document Type */}
+                  {[
+                    { id: "all", label: "All", value: "" },
+                    { id: "resume", label: "Resume", value: "Resume" },
+                    {
+                      id: "cover_letter",
+                      label: "Cover Letter",
+                      value: "Cover Letter",
+                    },
+                  ].map(option => (
+                    <p key={option.id} className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        id={option.id}
+                        name="document_type"
+                        className="scale-125"
+                        value={option.value}
+                        checked={tempDocumentType === option.value}
+                        onChange={e => setTempDocumentType(e.target.value)}
+                      />
+                      <label htmlFor={option.id}>{option.label}</label>
+                    </p>
+                  ))}
                 </div>
 
                 <hr className="text-gray-300 my-4" />
 
+                {/* Progress Status */}
                 <div className="space-y-3 text-sm text-secondary-gray mb-5">
                   <h3 className="font-medium text-left text-secondary-black text-base">
                     Progress Status
                   </h3>
 
-                  <p className="flex gap-2 items-center">
-                    <input
-                      type="radio"
-                      id="all_status"
-                      name="progress_status"
-                      className="scale-125"
-                      value=""
-                      onChange={e => setTempStatus(e.target.value)}
-                    />
-                    <label htmlFor="all_status">All</label>
-                  </p>
-
-                  <p className="flex gap-2 items-center">
-                    <input
-                      type="radio"
-                      id="complete"
-                      name="progress_status"
-                      className="scale-125"
-                      value="completed"
-                      onChange={e => setTempStatus(e.target.value)}
-                    />
-                    <label htmlFor="complete">Completed</label>
-                  </p>
-
-                  <p className="flex gap-2 items-center">
-                    <input
-                      type="radio"
-                      id="exported"
-                      name="progress_status"
-                      className="scale-125"
-                      value="exported"
-                      onChange={e => setTempStatus(e.target.value)}
-                    />
-                    <label htmlFor="exported">Exported</label>
-                  </p>
+                  {[
+                    { id: "all_status", label: "All", value: "" },
+                    { id: "complete", label: "Completed", value: "Completed" },
+                    { id: "exported", label: "Exported", value: "Exported" },
+                  ].map(option => (
+                    <p key={option.id} className="flex gap-2 items-center">
+                      <input
+                        type="radio"
+                        id={option.id}
+                        name="progress_status"
+                        className="scale-125"
+                        value={option.value}
+                        checked={tempStatus === option.value}
+                        onChange={e => setTempStatus(e.target.value)}
+                      />
+                      <label htmlFor={option.id}>{option.label}</label>
+                    </p>
+                  ))}
                 </div>
 
                 <button
@@ -215,31 +190,33 @@ const AllDocuments = () => {
       {isLoading ? (
         <table className="w-full border-separate border-spacing-y-8 text-sm 2xl:text-base">
           {Array.from({ length: 4 }).map((_, idx) => (
-            <tr key={idx} className="text-nowrap animate-pulse">
-              <td className="px-3 2xl:px-4 flex gap-3 items-center">
-                <div className="w-11 h-11 rounded-full bg-gray-200" />
-                <div className="h-4 w-24 bg-gray-200 rounded" />
-              </td>
+            <tbody key={idx}>
+              <tr className="text-nowrap animate-pulse">
+                <td className="px-3 2xl:px-4 flex gap-3 items-center">
+                  <div className="w-11 h-11 rounded-full bg-gray-200" />
+                  <div className="h-4 w-24 bg-gray-200 rounded" />
+                </td>
 
-              <td className="px-3 2xl:px-4">
-                <div className="h-4 w-32 bg-gray-200 rounded" />
-              </td>
+                <td className="px-3 2xl:px-4">
+                  <div className="h-4 w-32 bg-gray-200 rounded" />
+                </td>
 
-              <td className="px-3 2xl:px-4">
-                <div className="h-4 w-20 bg-gray-200 rounded" />
-              </td>
+                <td className="px-3 2xl:px-4">
+                  <div className="h-4 w-20 bg-gray-200 rounded" />
+                </td>
 
-              <td className="px-3 2xl:px-4">
-                <div className="h-6 w-16 bg-gray-200 rounded-lg" />
-              </td>
+                <td className="px-3 2xl:px-4">
+                  <div className="h-6 w-16 bg-gray-200 rounded-lg" />
+                </td>
 
-              <td className="px-3 2xl:px-4 flex justify-center items-center">
-                <div className="h-6 w-6 bg-gray-200 rounded" />
-              </td>
-            </tr>
+                <td className="px-3 2xl:px-4 flex justify-center items-center">
+                  <div className="h-6 w-6 bg-gray-200 rounded" />
+                </td>
+              </tr>
+            </tbody>
           ))}
         </table>
-      ) : allDocuments?.data?.length > 0 ? (
+      ) : allDocuments?.data?.data?.length > 0 ? (
         <div className="w-full overflow-x-auto mt-2.5 3xl:mt-5">
           <table className="w-full border-separate border-spacing-y-7 2xl:border-spacing-y-10 text-sm 2xl:text-base">
             <thead>
@@ -254,7 +231,7 @@ const AllDocuments = () => {
               </tr>
             </thead>
             <tbody>
-              {allDocuments?.data?.map(
+              {allDocuments?.data?.data?.map(
                 (
                   {
                     id,
@@ -283,7 +260,6 @@ const AllDocuments = () => {
 
                     <td className="px-3 2xl:px-4">
                       <p className="text-secondary-black">
-                        {" "}
                         {moment(last_update).format("ll")}
                       </p>
                     </td>
@@ -303,7 +279,7 @@ const AllDocuments = () => {
                     <td className="px-3 2xl:px-4 flex justify-center items-center relative">
                       <button
                         onClick={e => {
-                          setOpen(!open);
+                          setOpen(true);
                           setPopoverId(id);
                           e.stopPropagation();
                         }}
@@ -356,6 +332,25 @@ const AllDocuments = () => {
         <div className="flex flex-col justify-center items-center gap-4 text-center py-20">
           <AiOutlineFileUnknown className="text-5xl text-gray-500" />
           <p className="font-medium text-gray-600">No documents found!!</p>
+        </div>
+      )}
+
+      {/* Pagination */}
+      {!isLoading && (
+        <div className="mt-5 flex justify-center items-center gap-2 flex-wrap">
+          {allDocuments?.data?.links.map((item: any, idx: number) => (
+            <button
+              key={idx}
+              onClick={() => item.url && setActivePage(item.url.split("=")[1])}
+              className={`px-3 py-1 rounded border transition-all duration-200 
+        ${
+          item.active ? "bg-primary-blue text-white" : "bg-white text-gray-700"
+        } 
+        ${!item.url ? "opacity-50 cursor-not-allowed" : "cursor-pointer"}`}
+              disabled={!item.url}
+              dangerouslySetInnerHTML={{ __html: item.label }}
+            />
+          ))}
         </div>
       )}
     </section>

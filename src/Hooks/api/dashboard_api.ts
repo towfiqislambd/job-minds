@@ -168,12 +168,13 @@ export const useDraftInterviewQuestions = () => {
 };
 
 // All Recent Activities
-export const useAllRecentActivities = () => {
+export const useAllRecentActivities = (page?: number) => {
   return useApi({
     method: "get",
     key: "all-recent-activity",
     isPrivate: true,
     endpoint: "/api/all-recent-activities",
+    params: { page },
   });
 };
 
@@ -181,7 +182,8 @@ export const useAllRecentActivities = () => {
 export const useAllDocuments = (
   search?: string,
   document_type?: string,
-  status?: string
+  status?: string,
+  page?: number
 ) => {
   return useApi({
     method: "get",
@@ -192,6 +194,7 @@ export const useAllDocuments = (
       search,
       document_type,
       status,
+      page,
     },
     options: {
       retry: false,
@@ -200,11 +203,15 @@ export const useAllDocuments = (
 };
 
 // All Drafts
-export const useAllDrafts = () => {
+export const useAllDrafts = (search?: string) => {
   return useApi({
     method: "get",
     key: "all-drafts",
     isPrivate: true,
     endpoint: "/api/all-drafts",
+    params: { search },
+    options: {
+      retry: false,
+    },
   });
 };

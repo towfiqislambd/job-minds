@@ -145,6 +145,7 @@ const Page = () => {
       {showQuestions && (
         <div className="dashboard_card mb-7 lg:mb-10">
           <h2 className="section_sub_title !mb-5">Interview Questions</h2>
+
           <div className="flex flex-col gap-4 2xl:gap-5">
             {isPending ? (
               <div className="space-y-4">
