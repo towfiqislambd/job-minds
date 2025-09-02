@@ -38,6 +38,7 @@
 body {
   @apply font-poppins !top-0;
 }
+
 html {
   scroll-behavior: smooth;
 }
@@ -119,4 +120,19 @@ html {
 
 .skiptranslate iframe {
   visibility: hidden !important;
+}
+
+/* For Custom Scrollbar */
+.notification_scrollbar::-webkit-scrollbar {
+  width: 5px;
+}
+
+.notification_scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.notification_scrollbar::-webkit-scrollbar-thumb {
+  background: #025497c3;
+  border-radius: 10px;
 }

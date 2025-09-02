@@ -16,6 +16,7 @@ import {
 } from "@/Hooks/api/dashboard_api";
 import { AiOutlineFileUnknown } from "react-icons/ai";
 import { GrPowerReset } from "react-icons/gr";
+import useAuth from "@/Hooks/useAuth";
 
 type documentItem = {
   id: number;
@@ -26,6 +27,7 @@ type documentItem = {
 };
 
 const AllDocuments = () => {
+  const { search } = useAuth();
   const [documentId, setDocumentId] = useState<number | null>(null);
   const [activePage, setActivePage] = useState<number>(1);
   const [searchDoc, setSearchDoc] = useState<string>("");
@@ -43,7 +45,7 @@ const AllDocuments = () => {
     useExportDocument(documentId);
 
   const { data: allDocuments, isLoading } = useAllDocuments(
-    searchDoc,
+    searchDoc || search,
     docType,
     status,
     activePage

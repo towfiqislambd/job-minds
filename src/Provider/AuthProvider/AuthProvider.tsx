@@ -9,6 +9,8 @@ interface AuthContextValue {
   token: string | null;
   setToken: (token: string | null) => void;
   clearToken: () => void;
+  setSearch: any;
+  search: string;
 }
 
 export const AuthContextProvider = createContext<AuthContextValue | any>(null);
@@ -16,6 +18,7 @@ export const AuthContextProvider = createContext<AuthContextValue | any>(null);
 export default function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState<boolean>(false);
   const [user, setUser] = useState<any>(null);
+  const [search, setSearch] = useState<string>("");
   const [token, setToken, clearToken] = useLocalStorage("token", null);
   const { data: userData, isLoading: loadingUserData } = useGetUserData(token);
 
@@ -46,6 +49,8 @@ export default function AuthProvider({ children }: { children: ReactNode }) {
     token,
     setToken,
     clearToken,
+    setSearch,
+    search,
   };
 
   return (

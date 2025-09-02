@@ -1,5 +1,6 @@
 "use client";
 import {
+  AlertSvg,
   DashboardLogo,
   DFive,
   DFour,
@@ -11,11 +12,17 @@ import {
   NotificationSvg,
   SearchSvg,
 } from "@/Components/SvgContainer/SvgContainer";
+import useAuth from "@/Hooks/useAuth";
 import PrivateLayout from "@/Private/PrivateLayout";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa6";
+import ReactFlagsSelect from "react-flags-select";
+import { useTranslation } from "@/Provider/TranslationProvider/TranslationContext";
+import { RxCross2 } from "react-icons/rx";
+import { MdOutlineNotificationsActive } from "react-icons/md";
+
 const navLinks = [
   {
     id: 1,
@@ -61,14 +68,93 @@ const navLinks = [
   },
 ];
 
+const notificationData = [
+  {
+    id: 1,
+    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
+    title: "New Property Alert!",
+    duration: "2 second ago",
+  },
+  {
+    id: 2,
+    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
+    title: "New Property Alert!",
+    duration: "2 days ago",
+  },
+  {
+    id: 3,
+    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
+    title: "New Property Alert!",
+    duration: "1/11/2025",
+  },
+  {
+    id: 4,
+    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
+    title: "New Property Alert!",
+    duration: "5 second ago",
+  },
+  {
+    id: 5,
+    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
+    title: "New Property Alert!",
+    duration: "5 hours ago",
+  },
+  {
+    id: 6,
+    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
+    title: "New Property Alert!",
+    duration: "2 second ago",
+  },
+  {
+    id: 7,
+    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
+    title: "New Property Alert!",
+    duration: "3 days ago",
+  },
+  {
+    id: 8,
+    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
+    title: "New Property Alert!",
+    duration: "4 second ago",
+  },
+  {
+    id: 9,
+    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
+    title: "New Property Alert!",
+    duration: "2 minutes ago",
+  },
+  {
+    id: 10,
+    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
+    title: "New Property Alert!",
+    duration: "8 second ago",
+  },
+];
+
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const { changeLanguage } = useTranslation();
+  const [selectedCountry, setSelectedCountry] = useState("US");
+  const { setSearch } = useAuth();
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
+  const [notification, setNotification] = useState<boolean>(false);
+
+  useEffect(() => {
+    const handleWindowClick = () => {
+      setNotification(false);
+    };
+
+    window.addEventListener("click", handleWindowClick);
+
+    return () => {
+      window.removeEventListener("click", handleWindowClick);
+    };
+  }, []);
 
   return (
     <PrivateLayout>
@@ -94,19 +180,113 @@ export default function DashboardLayout({
                 type="text"
                 placeholder="Search....."
                 className="outline-none w-full"
-                // onClick={() => router.push("/dashboard/documents")}
+                onChange={e => {
+                  // router.push("/dashboard/documents");
+                  setSearch(e.target.value);
+                }}
               />
             </p>
           </div>
+
           {/* Right */}
           <div className="flex gap-3 md:gap-4 items-center">
-            <button className="w-9 md:w-10 h-9 md:h-10 rounded-full grid place-items-center cursor-pointer border border-[#ECEEF0]">
-              <NotificationSvg />
-            </button>
-            <select className="border-none outline-none text-dark-blue font-medium">
-              <option value="">English</option>
-              <option value="">Arabic</option>
-            </select>
+            {/* Notification */}
+            <div className="relative">
+              {/* btn */}
+              <button
+                onClick={e => {
+                  e.stopPropagation();
+                  setNotification(!notification);
+                }}
+                className="w-9 md:w-10 h-9 md:h-10 rounded-full grid place-items-center cursor-pointer border border-[#ECEEF0]"
+              >
+                <NotificationSvg />
+              </button>
+
+              {/* Contents */}
+              <div
+                onClick={e => e.stopPropagation()}
+                className={`${
+                  notification ? "block" : "hidden"
+                } absolute bg-slate-50 top-16 right-0 max-h-[420px] w-[280px] md:w-[320px] rounded-lg shadow-2xl overflow-y-scroll notification_scrollbar z-[999]`}
+              >
+                <div className="flex justify-between px-4 py-2 sticky top-0 border-b bg-slate-50 border-gray-200">
+                  <h3 className="text-xl font-semibold text-headingTextColor">
+                    Notifications
+                  </h3>
+                  <button
+                    onClick={() => setNotification(!notification)}
+                    className="cursor-pointer"
+                  >
+                    <RxCross2 className="text-lg" />
+                  </button>
+                </div>
+
+                <div className="p-5 space-y-4">
+                  {notificationData?.length > 0 ? (
+                    notificationData?.map(notification => (
+                      <div
+                        key={notification.id}
+                        className="flex items-center gap-3"
+                      >
+                        <figure className="size-10 rounded-full border border-gray-100 grid place-items-center bg-blue-50">
+                          <MdOutlineNotificationsActive className="text-xl text-secondary-blue" />
+                        </figure>
+                        <div>
+                          <p className="font-medium text-sm">
+                            {notification?.title}
+                          </p>
+                          <span className="text-gray-400 text-sm">
+                            {/* {moment(notification?.created_at).fromNow()} */}
+                            {notification?.duration}
+                          </span>
+                        </div>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-center "></p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Language */}
+            <ReactFlagsSelect
+              selected={selectedCountry}
+              onSelect={countryCode => {
+                const languageMap: Record<string, string> = {
+                  US: "en",
+                  GB: "en",
+                  FR: "fr",
+                  DE: "de",
+                  IT: "it",
+                  BD: "bn",
+                  IN: "hi",
+                };
+
+                const langCode = languageMap[countryCode] || "en";
+                changeLanguage(langCode);
+                setSelectedCountry(countryCode);
+              }}
+              countries={["US", "GB", "FR", "DE", "IT", "BD", "IN"]}
+              customLabels={{
+                US: "English",
+                GB: "English (UK)",
+                FR: "Français",
+                DE: "Deutsch",
+                IT: "Italiano",
+                BD: "বাংলা",
+                IN: "हिन्दी",
+              }}
+              placeholder="Select Language"
+              searchable
+              searchPlaceholder="Search..."
+              selectedSize={16}
+              optionsSize={14}
+              className="inline-block"
+              selectButtonClassName="p-2 !border-0 bg-[#0F1E3A] text-white"
+            />
+
             <button
               onClick={() => setOpen(!open)}
               className="xl:hidden w-9 md:w-10 h-8.5 md:h-9.5 cursor-pointer grid place-items-center rounded text-white bg-secondary-blue"
