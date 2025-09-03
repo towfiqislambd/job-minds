@@ -1,9 +1,28 @@
-import { useSaveResumeTemplate } from "@/Hooks/api/dashboard_api";
+import { useExportPdf, useSaveResumeTemplate } from "@/Hooks/api/dashboard_api";
 import React from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 const StepFive = ({ step, setStep, template }: any) => {
   const { mutate: saveResumeMutation, isPending } = useSaveResumeTemplate();
-  const pdfFile = `${process.env.NEXT_PUBLIC_SITE_URL}/${template?.pdf}`;
+  const { mutate: downloadInvoice, isPending: isDownloading } = useExportPdf();
+
+  const handleDownload = () => {
+    downloadInvoice(template, {
+      onSuccess: (blob: any) => {
+        console.log(blob);
+        const url = window.URL.createObjectURL(new Blob([blob]));
+        const link = document.createElement("a");
+        link.href = url;
+        link.setAttribute("download", `resume.pdf`);
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        window.URL.revokeObjectURL(url);
+      },
+      onError: (error: any) => {
+        console.error("Failed to download invoice:", error);
+      },
+    });
+  };
 
   return (
     <>
@@ -19,12 +38,6 @@ const StepFive = ({ step, setStep, template }: any) => {
         title="Resume Preview"
       />
 
-      {/* <iframe
-        src={`${process.env.NEXT_PUBLIC_SITE_URL}/${template}`}
-        className="w-full h-[1000px]"
-        title="PDF Preview"
-      /> */}
-
       <div className="flex flex-col md:flex-row md:justify-between items-center gap-3 md:gap-0 dashboard_card">
         {/* Back btn */}
         <button onClick={() => setStep(step - 1)} className="secondary-btn">
@@ -36,7 +49,7 @@ const StepFive = ({ step, setStep, template }: any) => {
           <button
             type="submit"
             disabled={isPending}
-            onClick={() => saveResumeMutation({ html: template })}
+            onClick={() => saveResumeMutation({ html: template?.html })}
             className={`secondary-btn ${isPending && "!cursor-not-allowed"}`}
           >
             {isPending ? (
@@ -50,13 +63,8 @@ const StepFive = ({ step, setStep, template }: any) => {
           </button>
 
           {/* pdf btn */}
-          <button
-            className="primary-btn lowercase"
-            onClick={() => {
-              window.open(pdfFile, "_blank");
-            }}
-          >
-            Export as pdf
+          <button onClick={handleDownload} className="primary-btn lowercase">
+            {isDownloading ? "Exporting...." : "Export as pdf"}
           </button>
         </div>
       </div>

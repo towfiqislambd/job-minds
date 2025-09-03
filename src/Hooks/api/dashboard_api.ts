@@ -75,6 +75,7 @@ export const useSaveCoverLetter = () => {
 
 // Save Resume Template
 export const useSaveResumeTemplate = () => {
+  const queryClient = useQueryClient();
   return useApi({
     method: "post",
     key: "save-resume-template",
@@ -83,6 +84,7 @@ export const useSaveResumeTemplate = () => {
     onSuccess: (data: any) => {
       if (data?.status) {
         toast.success(data?.message);
+        queryClient.invalidateQueries("all-documents" as any);
       }
     },
     onError: (err: any) => {
@@ -276,3 +278,24 @@ export const useExportDocument = (document_id: number | null) => {
     },
   });
 };
+
+// Export pdf
+export const useExportPdf = () => {
+  return useApi({
+    method: "post",
+    key: "export-pdf",
+    isPrivate: true,
+    endpoint: "api/export-resume/pdf",
+  });
+};
+
+// export const useDownloadInvoice = () => {
+//   return useMutation({
+//     mutationFn: appointment_id =>
+//       axiosSecure
+//         .get(`api/online-store/appointments/${appointment_id}/invoice`, {
+//           responseType: "blob",
+//         })
+//         .then(res => res.data),
+//   });
+// };

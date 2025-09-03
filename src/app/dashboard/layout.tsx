@@ -182,7 +182,7 @@ export default function DashboardLayout({
                 className="outline-none w-full"
                 onChange={e => {
                   // router.push("/dashboard/documents");
-                  setSearch(e.target.value);
+                  // setSearch(e.target.value);
                 }}
               />
             </p>

@@ -1,5 +1,6 @@
 import React from "react";
 import { useFieldArray, useFormContext } from "react-hook-form";
+import toast from "react-hot-toast";
 
 type Education = {
   institution: string;
@@ -17,6 +18,7 @@ const StepThree = ({ step, setStep }: any) => {
   const {
     register,
     control,
+    trigger,
     formState: { errors },
   } = useFormContext<FormValues>();
 
@@ -24,6 +26,18 @@ const StepThree = ({ step, setStep }: any) => {
     control,
     name: "education",
   });
+
+  const handleNext = async () => {
+    const isValid = await trigger("education");
+    if (fields.length < 1) {
+      toast.error("Please add at least one education");
+      return;
+    }
+
+    if (isValid) {
+      setStep(step + 1);
+    }
+  };
 
   return (
     <section className="dashboard_card">
@@ -165,7 +179,7 @@ const StepThree = ({ step, setStep }: any) => {
         >
           Back
         </button>
-        <button type="submit" className="primary-btn">
+        <button type="button" onClick={handleNext} className="primary-btn">
           Next
         </button>
       </div>
