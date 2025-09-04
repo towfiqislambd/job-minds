@@ -286,16 +286,8 @@ export const useExportPdf = () => {
     key: "export-pdf",
     isPrivate: true,
     endpoint: "api/export-resume/pdf",
+    config: {
+      responseType: "blob",
+    },
   });
 };
-
-// export const useDownloadInvoice = () => {
-//   return useMutation({
-//     mutationFn: appointment_id =>
-//       axiosSecure
-//         .get(`api/online-store/appointments/${appointment_id}/invoice`, {
-//           responseType: "blob",
-//         })
-//         .then(res => res.data),
-//   });
-// };

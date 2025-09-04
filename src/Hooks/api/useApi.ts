@@ -10,6 +10,7 @@ type apiProps = {
   onSuccess?: any;
   onError?: any;
   options?: any;
+  config?: any;
   params?: any;
   headers?: any;
   enabled?: boolean;
@@ -25,6 +26,7 @@ export default function useApi({
   params,
   headers,
   options,
+  config,
   enabled = true,
 }: apiProps): any {
   const axiosInstance = (isPrivate ? axiosSecure : axiosPublic) as any;
@@ -34,6 +36,7 @@ export default function useApi({
     mutationFn: async data => {
       const res = await axiosInstance[method](endpoint, data, {
         headers: headers,
+        ...config,
       });
       return res?.data;
     },

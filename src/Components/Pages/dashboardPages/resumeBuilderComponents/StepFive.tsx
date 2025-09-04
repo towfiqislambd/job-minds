@@ -63,8 +63,20 @@ const StepFive = ({ step, setStep, template }: any) => {
           </button>
 
           {/* pdf btn */}
-          <button onClick={handleDownload} className="primary-btn lowercase">
-            {isDownloading ? "Exporting...." : "Export as pdf"}
+          <button
+            onClick={handleDownload}
+            disabled={isDownloading}
+            className={`primary-btn !normal-case ${
+              isDownloading && "opacity-80 !cursor-not-allowed"
+            }`}
+          >
+            {isDownloading ? (
+              <>
+                <span className="inline-block animate-spin">⏳</span> Exporting
+              </>
+            ) : (
+              "Export as pdf"
+            )}
           </button>
         </div>
       </div>
