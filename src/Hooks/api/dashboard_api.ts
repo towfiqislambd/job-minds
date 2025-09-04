@@ -153,6 +153,7 @@ export const useDraftInterviewQuestions = () => {
 
 // Remove From Draft
 export const useRemoveFromDraft = (draft_id: string | null) => {
+  const queryClient = useQueryClient();
   return useApi({
     method: "post",
     key: "remove-from-draft",
@@ -162,6 +163,7 @@ export const useRemoveFromDraft = (draft_id: string | null) => {
     onSuccess: (data: any) => {
       if (data?.status) {
         toast.success(data?.message);
+        queryClient.invalidateQueries("all-drafts" as any);
       }
     },
     onError: (err: any) => {

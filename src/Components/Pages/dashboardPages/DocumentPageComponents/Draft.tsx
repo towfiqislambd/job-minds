@@ -3,13 +3,17 @@ import React, { useState } from "react";
 import { SearchSvg } from "@/Components/SvgContainer/SvgContainer";
 import { useAllDrafts, useRemoveFromDraft } from "@/Hooks/api/dashboard_api";
 import { AiOutlineFileUnknown } from "react-icons/ai";
-import { motion, AnimatePresence, number } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { IoIosArrowUp } from "react-icons/io";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 const Draft = () => {
+  // States
   const [draftId, setDraftId] = useState<string | null>(null);
   const [searchDraft, setSearchDraft] = useState<string>("");
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  // Mutations & Queries
   const { data: draftsData, isLoading } = useAllDrafts(searchDraft);
   const { mutate: removeDraftMutation, isPending } =
     useRemoveFromDraft(draftId);
@@ -107,15 +111,31 @@ const Draft = () => {
                         </h4>
 
                         <button
+                          disabled={isPending}
                           onClick={() => {
                             setDraftId(item?.id);
                             if (draftId) {
                               removeDraftMutation();
                             }
                           }}
-                          className="text-sm text-red-400 font-medium cursor-pointer hover:underline"
+                          className={`text-sm text-red-400 font-medium group ${
+                            isPending
+                              ? "cursor-not-allowed opacity-90"
+                              : "cursor-pointer"
+                          }`}
                         >
-                          Remove from draft
+                          {isPending ? (
+                            <div className="flex gap-2 items-center">
+                              <span className="inline-block animate-spin">
+                                ⏳
+                              </span>
+                              <span>Removing form draft....</span>
+                            </div>
+                          ) : (
+                            <span className="group-hover:underline">
+                              Remove from draft
+                            </span>
+                          )}
                         </button>
                       </div>
                     </div>

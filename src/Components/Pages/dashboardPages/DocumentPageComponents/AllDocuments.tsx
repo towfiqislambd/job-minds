@@ -24,10 +24,15 @@ type documentItem = {
   document_type: string;
   last_update: string;
   status: string;
+  file_type: string;
+  document_file: string;
 };
 
 const AllDocuments = () => {
+  // Hooks
   const { search } = useAuth();
+
+  // States
   const [documentId, setDocumentId] = useState<number | null>(null);
   const [activePage, setActivePage] = useState<number>(1);
   const [searchDoc, setSearchDoc] = useState<string>("");
@@ -38,12 +43,14 @@ const AllDocuments = () => {
   const [popoverId, setPopoverId] = useState<number>(0);
   const [tempDocumentType, setTempDocumentType] = useState<string>("");
   const [tempStatus, setTempStatus] = useState<string>("");
+
+  // Mutations
   const { mutate: deleteDocumentMutation, isPending } =
     useDeleteDocument(documentId);
-
   const { mutate: exportDocumentMutation, isPending: isExporting } =
     useExportDocument(documentId);
 
+  // Queries
   const { data: allDocuments, isLoading } = useAllDocuments(
     searchDoc || search,
     docType,
@@ -56,6 +63,13 @@ const AllDocuments = () => {
     setStatus(tempStatus);
     setActivePage(1);
     setOpenFilter(false);
+  };
+
+  // Func for view pdf
+  const handleView = (document_file: string) => {
+    setOpen(false);
+    const file = `${process.env.NEXT_PUBLIC_SITE_URL}/${document_file}`;
+    window.open(file);
   };
 
   useEffect(() => {
@@ -251,6 +265,8 @@ const AllDocuments = () => {
                     title,
                     last_update,
                     status,
+                    file_type,
+                    document_file,
                   }: documentItem,
                   idx: number
                 ) => (
@@ -309,14 +325,18 @@ const AllDocuments = () => {
                           idx === allDocuments?.data.length - 1 && "!-top-28"
                         }`}
                       >
-                        <button
-                          onClick={() => setOpen(false)}
-                          className="flex gap-2 items-center cursor-pointer"
-                        >
-                          <FiEye />
-                          <span>View</span>
-                        </button>
+                        {/* View btn */}
+                        {file_type === "pdf" && (
+                          <button
+                            onClick={() => handleView(document_file)}
+                            className="flex gap-2 items-center cursor-pointer"
+                          >
+                            <FiEye />
+                            <span>View</span>
+                          </button>
+                        )}
 
+                        {/* Export btn */}
                         <button
                           onClick={() => {
                             setDocumentId(id);
@@ -331,6 +351,7 @@ const AllDocuments = () => {
                           <span>{isExporting ? "Exporting" : "Export"}</span>
                         </button>
 
+                        {/* Delete btn */}
                         <button
                           onClick={() => {
                             setDocumentId(id);
