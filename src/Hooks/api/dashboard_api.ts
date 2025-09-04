@@ -286,3 +286,13 @@ export const useDownloadCoverLetter = () => {
     },
   });
 };
+
+// All Job Roles
+export const useInitialJobRoles = () => {
+  return useApi({
+    method: "get",
+    key: "all-job-roles",
+    isPrivate: true,
+    endpoint: "/api/all-job-roles",
+  });
+};

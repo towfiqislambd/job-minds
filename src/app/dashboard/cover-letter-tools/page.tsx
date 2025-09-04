@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { MdContentCopy } from "react-icons/md";
 import { IoDocumentTextOutline } from "react-icons/io5";
+import { MdOutlineMarkEmailUnread } from "react-icons/md";
 
 interface FormData {
   job_title: string;
@@ -47,7 +48,7 @@ const Page = () => {
   const onSubmit = async (data: FormData) => {
     await generateCoverLetterMutation(data, {
       onSuccess: (data: any) => {
-        setPreview(data.data.replace(/\n/g, "<br />"));
+        setPreview(data.data?.content?.replace(/\n/g, "<br />"));
         setLetter(data?.data);
       },
     });
@@ -58,7 +59,7 @@ const Page = () => {
     if (!letter) {
       return toast.error("Please generate a cover letter first");
     }
-    saveCoverLetterMutation({ cover_letter: letter });
+    saveCoverLetterMutation({ cover_letter: letter?.content });
   };
 
   // Func for download docx
@@ -68,7 +69,7 @@ const Page = () => {
     }
 
     downloadCoverLetterMutation(
-      { cover_letter: letter },
+      { cover_letter: letter?.content },
       {
         onSuccess: (blob: any) => {
           const file = new Blob([blob], {
@@ -101,6 +102,17 @@ const Page = () => {
     const formattedText = tempDiv.innerText || tempDiv.textContent || "";
     navigator.clipboard.writeText(formattedText);
     toast.success("Copied to clipboard");
+  };
+
+  // Function for send email
+  const handleSendEmail = () => {
+    const subject = encodeURIComponent(
+      `Application for the post of ${letter?.job_position}`
+    );
+    const body = encodeURIComponent(letter?.content);
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&su=${subject}&body=${body}`;
+
+    window.open(gmailUrl, "_blank");
   };
 
   return (
@@ -393,11 +405,20 @@ const Page = () => {
             <div className="w-full outline-none h-[517px] p-6 bg-[#F8FAFB] overflow-y-auto relative">
               <div dangerouslySetInnerHTML={{ __html: preview }} />
 
+              {/* Copy to clipboard */}
               <button
                 className="absolute top-5 right-5 size-10 border border-gray-300 rounded-full grid place-items-center cursor-pointer"
                 onClick={handleCopyToClipboard}
               >
                 <MdContentCopy className="text-lg text-gray-500" />
+              </button>
+
+              {/* Send email */}
+              <button
+                onClick={handleSendEmail}
+                className="absolute top-5 right-[70px] size-10 border border-gray-300 rounded-full grid place-items-center cursor-pointer"
+              >
+                <MdOutlineMarkEmailUnread className="text-lg text-gray-500" />
               </button>
             </div>
           ) : (

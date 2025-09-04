@@ -7,6 +7,7 @@ import Link from "next/link";
 import toast from "react-hot-toast";
 import {
   useDraftInterviewQuestions,
+  useInitialJobRoles,
   useInterviewAssistant,
 } from "@/Hooks/api/dashboard_api";
 import { CgSpinnerTwo } from "react-icons/cg";
@@ -39,6 +40,8 @@ const initialRoles = [
 const Page = () => {
   // Hook
   const router = useRouter();
+
+  const { data: initialJobRoles, isLoading } = useInitialJobRoles();
 
   // Mutation
   const { mutate: interviewAssistantMutation, isPending } =

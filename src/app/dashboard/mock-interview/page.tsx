@@ -16,20 +16,49 @@ const page = () => {
   const { user } = useAuth();
   const chatContainerRef = useRef<HTMLDivElement>(null);
 
-  // State
-  const [search, setSearch] = useState<string>("");
-
-  // Mutations
+  // Mutations & Queries
   const { data: allChats, isLoading } = useAiChatHistory();
   const { mutate: aiInterviewMutation, isPending } = useAiInterviewer();
+
+  // State
+  const [search, setSearch] = useState<string>("");
+  const [chats, setChats] = useState<any[]>([]);
+
+  useEffect(() => {
+    if (allChats?.data) {
+      setChats(allChats?.data);
+    }
+  }, [allChats?.data]);
 
   // Func for send message
   const handleSend = (e: any) => {
     e.preventDefault();
     if (!search) {
-      return toast.error("Please write something");
+      return toast.error("Please write something!");
     }
-    aiInterviewMutation({ user_input: search });
+    const tempId = `temp-${Date.now()}`;
+
+    const tempMessage = {
+      id: tempId,
+      sender: "user",
+      message: search,
+      status: "sending",
+    };
+    setChats(prev => [...prev, tempMessage]);
+
+    aiInterviewMutation(
+      { user_input: search },
+      {
+        onSuccess: (data: any) => {
+          setChats(prev =>
+            prev.map(msg =>
+              msg.id === tempId ? { ...msg, ...data.data, status: "sent" } : msg
+            )
+          );
+        },
+      }
+    );
+    setSearch("");
     e.target.reset();
   };
 
@@ -39,7 +68,7 @@ const page = () => {
       chatContainerRef.current.scrollTop =
         chatContainerRef.current.scrollHeight;
     }
-  }, [allChats?.data]);
+  }, [chats]);
 
   return (
     <div className="dashboard_card">
@@ -89,7 +118,7 @@ const page = () => {
             ))
           ) : (
             <div className="space-y-5 flex flex-col h-full">
-              {allChats?.data.length === 0 ? (
+              {chats?.length === 0 ? (
                 <div className="flex-1 flex flex-col gap-3 justify-center items-center">
                   <LuBotMessageSquare className="text-6xl text-gray-500" />
                   <p className="font-medium text-primary-gray">
@@ -97,7 +126,7 @@ const page = () => {
                   </p>
                 </div>
               ) : (
-                allChats?.data?.map(({ id, sender, message }: any) => (
+                chats?.map(({ id, sender, message, status }: any) => (
                   <div
                     key={id}
                     className={`flex ${
@@ -133,7 +162,9 @@ const page = () => {
 
                       {/* Chats */}
                       <p
-                        className={`bg-[#F3F4F6] px-3 py-2.5 rounded-[8px] text-sm text-gray-700 leading-[164%] w-fit max-w-[500px]`}
+                        className={`${
+                          status === "sending" ? "opacity-65" : "opacity-100"
+                        } bg-gray-100 px-3 py-2.5 rounded-[8px] text-sm text-gray-700 leading-[164%] w-fit max-w-[500px]`}
                       >
                         {message}
                       </p>
