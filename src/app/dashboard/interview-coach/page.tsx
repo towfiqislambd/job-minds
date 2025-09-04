@@ -12,6 +12,7 @@ import {
 } from "@/Hooks/api/dashboard_api";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { useRouter } from "next/navigation";
+import { Loader } from "@/Components/Loader/Loader";
 
 type JobQuestion = {
   question: string;
@@ -20,30 +21,12 @@ type JobQuestion = {
   category: string;
 };
 
-const initialRoles = [
-  "Web Developer",
-  "SEO Expert",
-  "Graphic Designer",
-  "Content Writer",
-  "Web Designer",
-  "UI/UX Designer",
-  "Software Quality Assurance (SQA)",
-  "IT Expert",
-  "Backend Developer",
-  "Telesales Executive",
-  "Business Analytics",
-  "Senior Software Engineer",
-  "Data Analytics",
-  "Video Editor",
-];
-
 const Page = () => {
   // Hook
   const router = useRouter();
 
+  // Mutation & Queries
   const { data: initialJobRoles, isLoading } = useInitialJobRoles();
-
-  // Mutation
   const { mutate: interviewAssistantMutation, isPending } =
     useInterviewAssistant();
   const { mutate: draftQuestionMutation, isPending: isDrafting } =
@@ -51,7 +34,6 @@ const Page = () => {
 
   // States
   const [jobData, setJobData] = useState<JobQuestion[]>([]);
-  const [jobRoles, setJobRoles] = useState<string[]>(initialRoles);
   const [selectedRole, setSelectedRole] = useState<string>("");
   const [showQuestions, setShowQuestions] = useState<boolean>(false);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
@@ -70,10 +52,6 @@ const Page = () => {
       return toast.error("Please enter your job role");
     }
 
-    if (!jobRoles.includes(selectedRole)) {
-      setJobRoles(prev => [...prev, selectedRole]);
-    }
-
     interviewAssistantMutation(
       { role: selectedRole },
       {
@@ -84,6 +62,14 @@ const Page = () => {
     );
     setShowQuestions(true);
   };
+
+  if (isLoading) {
+    return (
+      <div className="h-[80vh] flex justify-center items-center">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <>
@@ -132,13 +118,15 @@ const Page = () => {
 
         {/* Default roles */}
         <div className="pt-6 flex flex-wrap gap-3 3xl:gap-5">
-          {jobRoles.map((role, index) => (
+          {initialJobRoles?.data.map((role: any, index: number) => (
             <div
               key={index}
-              onClick={() => handleRoleClick(role)}
+              onClick={() => handleRoleClick(role?.name)}
               className="bg-[#F9FAFB] rounded-[45px] px-3 2xl:px-4 py-2 2xl:py-3 text-center cursor-pointer transition-all hover:-translate-y-2 duration-300 ease-in-out shrink-0 text-nowrap w-fit"
             >
-              <p className="text-sm font-poppins text-[#071431]">{role}</p>
+              <p className="text-sm font-poppins text-[#071431]">
+                {role?.name}
+              </p>
             </div>
           ))}
         </div>
