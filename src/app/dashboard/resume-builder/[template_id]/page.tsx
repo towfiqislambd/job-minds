@@ -7,6 +7,7 @@ import StepTwo from "@/Components/Pages/dashboardPages/resumeBuilderComponents/S
 import StepThree from "@/Components/Pages/dashboardPages/resumeBuilderComponents/StepThree";
 import StepFour from "@/Components/Pages/dashboardPages/resumeBuilderComponents/StepFour";
 import StepFive from "@/Components/Pages/dashboardPages/resumeBuilderComponents/StepFive";
+import toast from "react-hot-toast";
 
 const steps = [
   { component: StepOne },
@@ -59,6 +60,10 @@ const page = ({ params }: Props) => {
     if (step < 4) {
       setStep(step + 1);
     } else if (step === 4) {
+      if (data.skills.length === 0) {
+        toast.error("Please add your skills");
+        return;
+      }
       const formData = new FormData();
 
       // Append regular fields
@@ -101,7 +106,7 @@ const page = ({ params }: Props) => {
           exp.description || ""
         );
       });
-
+      
       data.skills?.forEach((skill: string, index: number) => {
         formData.append(`skills[${index}]`, skill);
       });

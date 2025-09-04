@@ -6,8 +6,7 @@ import { CgSpinnerTwo } from "react-icons/cg";
 const StepFour = ({ step, setStep, isPending }: any) => {
   const [inputValue, setInputValue] = useState("");
   const [skills, setSkills] = useState<string[]>([]);
-
-  const { trigger, getValues, setValue } = useFormContext();
+  const { getValues, setValue } = useFormContext();
 
   useEffect(() => {
     const savedSkills = getValues("skills");
@@ -33,14 +32,6 @@ const StepFour = ({ step, setStep, isPending }: any) => {
 
   const removeSkill = (index: number) => {
     setSkills(prev => prev.filter((_, i) => i !== index));
-  };
-
-  const handleNext = async (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    const isValid = await trigger("skills");
-    if (isValid && skills.length > 0) {
-      setStep(step + 1);
-    }
   };
 
   return (
@@ -103,8 +94,8 @@ const StepFour = ({ step, setStep, isPending }: any) => {
 
         {/* Submit btn */}
         <button
-          disabled={isPending}
           type="submit"
+          disabled={isPending}
           className={`primary-btn ${isPending && "!cursor-not-allowed"}`}
         >
           {isPending ? (

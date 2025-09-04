@@ -61,12 +61,33 @@ const Page = () => {
     saveCoverLetterMutation({ cover_letter: letter });
   };
 
-  // Func for download doc
+  // Func for download docx
   const handleDownload = () => {
     if (!letter) {
       return toast.error("Please generate a cover letter first");
     }
-    downloadCoverLetterMutation({ cover_letter: letter });
+
+    downloadCoverLetterMutation(
+      { cover_letter: letter },
+      {
+        onSuccess: (blob: any) => {
+          const file = new Blob([blob], {
+            type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          });
+          const url = window.URL.createObjectURL(file);
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", `cover-letter.docx`);
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(url);
+        },
+        onError: (error: any) => {
+          console.error("Failed to download docx:", error);
+        },
+      }
+    );
   };
 
   // Func for copy to clipboard
@@ -325,7 +346,11 @@ const Page = () => {
             <div className="flex flex-row gap-3 xl:gap-5 items-center ">
               <button
                 type="button"
-                onClick={() => reset()}
+                onClick={() => {
+                  reset();
+                  setLetter(null);
+                  setPreview(null);
+                }}
                 className="primary-btn"
               >
                 Reset
@@ -341,6 +366,8 @@ const Page = () => {
                     <CgSpinnerTwo className="animate-spin text-xl" />
                     <span>Generating....</span>
                   </div>
+                ) : letter ? (
+                  "Re-generate"
                 ) : (
                   "Generate"
                 )}
@@ -401,13 +428,13 @@ const Page = () => {
             <button
               disabled={isDownloading}
               className={`primary-btn ${
-                isDownloading && "!cursor-not-allowed"
+                isDownloading && "!opacity-80 !cursor-not-allowed"
               }`}
               onClick={handleDownload}
             >
               {isDownloading ? (
                 <div className="flex gap-2 items-center">
-                  <CgSpinnerTwo className="animate-spin text-xl" />
+                  <span className="inline-block animate-spin">⏳</span>
                   <span>Downloading....</span>
                 </div>
               ) : (

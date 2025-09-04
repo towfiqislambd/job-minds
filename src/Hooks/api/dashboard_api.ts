@@ -93,24 +93,6 @@ export const useSaveResumeTemplate = () => {
   });
 };
 
-// Download Cover Letter
-export const useDownloadCoverLetter = () => {
-  return useApi({
-    method: "post",
-    key: "download-cover-letter",
-    isPrivate: true,
-    endpoint: "/api/download-cover-letter",
-    onSuccess: (data: any) => {
-      if (data?.status) {
-        toast.success(data?.message);
-      }
-    },
-    onError: (err: any) => {
-      toast.error(err?.response?.data?.message);
-    },
-  });
-};
-
 // AI Interviewer
 export const useAiInterviewer = () => {
   const queryClient = useQueryClient();
@@ -286,6 +268,19 @@ export const useExportPdf = () => {
     key: "export-pdf",
     isPrivate: true,
     endpoint: "api/export-resume/pdf",
+    config: {
+      responseType: "blob",
+    },
+  });
+};
+
+// Download Cover Letter
+export const useDownloadCoverLetter = () => {
+  return useApi({
+    method: "post",
+    key: "download-cover-letter",
+    isPrivate: true,
+    endpoint: "/api/download-cover-letter",
     config: {
       responseType: "blob",
     },

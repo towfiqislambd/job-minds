@@ -3,12 +3,11 @@ import React from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 const StepFive = ({ step, setStep, template }: any) => {
   const { mutate: saveResumeMutation, isPending } = useSaveResumeTemplate();
-  const { mutate: downloadInvoice, isPending: isDownloading } = useExportPdf();
+  const { mutate: downloadPdf, isPending: isDownloading } = useExportPdf();
 
   const handleDownload = () => {
-    downloadInvoice(template, {
+    downloadPdf(template, {
       onSuccess: (blob: any) => {
-        console.log(blob);
         const url = window.URL.createObjectURL(new Blob([blob]));
         const link = document.createElement("a");
         link.href = url;
@@ -19,7 +18,7 @@ const StepFive = ({ step, setStep, template }: any) => {
         window.URL.revokeObjectURL(url);
       },
       onError: (error: any) => {
-        console.error("Failed to download invoice:", error);
+        console.error("Failed to download pdf:", error);
       },
     });
   };
