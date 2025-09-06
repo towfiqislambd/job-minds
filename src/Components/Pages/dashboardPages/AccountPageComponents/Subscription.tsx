@@ -3,11 +3,13 @@ import { Loader } from "@/Components/Loader/Loader";
 import { FeatherSvg } from "@/Components/SvgContainer/SvgContainer";
 import { useDetailPricing, useGetPricing } from "@/Hooks/api/cms_api";
 import { usePurchasePlan } from "@/Hooks/api/dashboard_api";
+import useAuth from "@/Hooks/useAuth";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
 
 const Subscription = ({ package_id }: any) => {
+  const { user } = useAuth();
   const { data: detailPricingData, isLoading } = useDetailPricing(package_id);
   const { mutateAsync: purchasePlanMutation, isPending } =
     usePurchasePlan(package_id);
@@ -17,11 +19,6 @@ const Subscription = ({ package_id }: any) => {
     first_name: string;
     surname: string;
     email: string;
-    phone: number;
-    country: string;
-    city: string;
-    state: string;
-    zip_code: number;
     is_terms_conditions: boolean;
     payment_method: string;
   };
@@ -91,7 +88,10 @@ const Subscription = ({ package_id }: any) => {
               <h4 className="section_sub_title">Included Features</h4>
               <ul className="mt-4 mb-5 lg:mb-7 space-y-3 lg:space-y-4 text-[15px] lg:text-base">
                 {detailPricingData?.data?.features?.map((item: any) => (
-                  <li className="flex gap-2 lg:gap-3 items-center">
+                  <li
+                    key={item?.id}
+                    className="flex gap-2 lg:gap-3 items-center"
+                  >
                     <FeatherSvg />
                     <span>{item?.feature_name}</span>
                   </li>
@@ -173,7 +173,9 @@ const Subscription = ({ package_id }: any) => {
                   type="email"
                   placeholder="Enter Your Email Address"
                   id="email"
-                  className="resume_input"
+                  readOnly
+                  value={user?.email}
+                  className="resume_input bg-gray-50"
                   {...register("email", {
                     required: "Email Address is required",
                   })}
@@ -183,113 +185,6 @@ const Subscription = ({ package_id }: any) => {
                     {errors.email.message}
                   </p>
                 )}
-              </div>
-
-              {/* Phone Number */}
-              <div className="flex-1">
-                <label htmlFor="phone" className="resume_label">
-                  Phone Number*
-                </label>
-                <input
-                  type="number"
-                  placeholder="Enter Your Phone Number"
-                  id="phone"
-                  className="resume_input"
-                  {...register("phone", {
-                    required: "Phone Number is required",
-                  })}
-                />
-                {errors.phone && (
-                  <p className="text-sm text-red-500 mt-1.5">
-                    {errors.phone.message}
-                  </p>
-                )}
-              </div>
-
-              {/* Country */}
-              <div className="flex-1">
-                <label htmlFor="country" className="resume_label">
-                  Country*
-                </label>
-                <input
-                  type="text"
-                  placeholder="Enter Your Country"
-                  id="country"
-                  className="resume_input"
-                  {...register("country", {
-                    required: "Country is required",
-                  })}
-                />
-                {errors.country && (
-                  <p className="text-sm text-red-500 mt-1.5">
-                    {errors.country.message}
-                  </p>
-                )}
-              </div>
-
-              <div className="flex flex-col md:flex-row gap-5">
-                {/* City */}
-                <div className="flex-1">
-                  <label htmlFor="city" className="resume_label">
-                    City*
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter City"
-                    id="city"
-                    className="resume_input"
-                    {...register("city", {
-                      required: "City is required",
-                    })}
-                  />
-                  {errors.city && (
-                    <p className="text-sm text-red-500 mt-1.5">
-                      {errors.city.message}
-                    </p>
-                  )}
-                </div>
-
-                {/* State */}
-                <div className="flex-1">
-                  <label htmlFor="sur_name" className="resume_label">
-                    State*
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="Enter State"
-                    id="state"
-                    className="resume_input"
-                    {...register("state", {
-                      required: "State is required",
-                    })}
-                  />
-                  {errors.state && (
-                    <p className="text-sm text-red-500 mt-1.5">
-                      {errors.state.message}
-                    </p>
-                  )}
-                </div>
-
-                {/* ZIP Code */}
-                <div className="flex-1">
-                  <label htmlFor="zip_code" className="resume_label">
-                    ZIP Code*
-                  </label>
-                  <input
-                    type="number"
-                    placeholder="Enter ZIP Code"
-                    id="zip_code"
-                    className="resume_input"
-                    {...register("zip_code", {
-                      required: "ZIP Code is required",
-                    })}
-                  />
-                  {errors.zip_code && (
-                    <p className="text-sm text-red-500 mt-1.5">
-                      {errors.zip_code.message}
-                    </p>
-                  )}
-                </div>
               </div>
 
               {/* Payment Method */}

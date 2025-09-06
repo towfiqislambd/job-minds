@@ -1,18 +1,19 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import Image from "next/image";
 import ChangePassword from "./ChangePassword";
 import BasicInformation from "./BasicInformation";
-import { useDeleteAccount, useLogout } from "@/Hooks/api/auth_api";
+import { useLogout } from "@/Hooks/api/auth_api";
 import { CgSpinnerTwo } from "react-icons/cg";
 import useAuth from "@/Hooks/useAuth";
+import DeleteAccountModal from "@/Components/Modals/DeleteAccountModal";
+import Modal from "@/Components/Common/Modal";
 
 const EditProfile = () => {
+  const [open, setOpen] = useState<boolean>(false);
   const { user } = useAuth();
   const { mutate: logoutMutation, isPending } = useLogout();
-  const { mutate: deleteAccountMutation, isPending: isDeleting } =
-    useDeleteAccount();
 
   return (
     <section className="space-y-5 2xl:space-y-7">
@@ -77,20 +78,10 @@ const EditProfile = () => {
         <div className="flex flex-col md:flex-row md:justify-end gap-3 lg:gap-5 2xl:gap-6">
           {/* Delete btn */}
           <button
-            onClick={() => deleteAccountMutation()}
-            disabled={isDeleting}
-            className={`secondary-btn !border-red-500 !text-red-500 ${
-              isDeleting && "!cursor-not-allowed"
-            }`}
+            onClick={() => setOpen(true)}
+            className={`secondary-btn !border-red-500 !text-red-500`}
           >
-            {isDeleting ? (
-              <div className="flex gap-2 items-center">
-                <CgSpinnerTwo className="animate-spin text-xl text-red-500" />
-                <span>Deleting...</span>
-              </div>
-            ) : (
-              " Delete Account"
-            )}
+            Delete Account
           </button>
 
           {/* Logout btn */}
@@ -112,6 +103,11 @@ const EditProfile = () => {
           </button>
         </div>
       </div>
+
+      {/* Modals */}
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <DeleteAccountModal setOpen={setOpen} />
+      </Modal>
     </section>
   );
 };

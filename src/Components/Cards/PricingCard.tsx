@@ -96,7 +96,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
         onClick={() => handleGetStarted(id)}
         className={`primary-btn !text-base md:!text-lg 3xl:!text-xl !w-full ${
           user?.subscription?.subscription_type === type &&
-          "opacity-80 !cursor-not-allowed"
+          "opacity-70 !cursor-not-allowed"
         }`}
       >
         Get Started

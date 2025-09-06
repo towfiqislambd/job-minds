@@ -41,6 +41,7 @@ const PricingSection = ({ data }: pricingData) => {
                   price={item?.price}
                   interval={item?.interval}
                   features={item?.features}
+                  type={item?.type}
                 />
               );
             })}
