@@ -71,6 +71,10 @@ const Page = () => {
 
   // Func for copy to clipboard
   const handleCopyToClipboard = () => {
+    if (!doc) {
+      return toast.error("Please generate linkedin optimizer");
+    }
+
     const tempDiv = document.createElement("div");
     tempDiv.innerHTML = doc;
     tempDiv.querySelectorAll("p").forEach(p => {
