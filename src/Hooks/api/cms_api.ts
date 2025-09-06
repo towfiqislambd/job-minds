@@ -36,3 +36,12 @@ export const useSingleDynamicPage = (slug: any) => {
     endpoint: `/api/dynamic-pages/single/${slug}`,
   });
 };
+
+// Get Pricing
+export const useGetPricing = () => {
+  return useApi({
+    method: "get",
+    key: "get-pricing",
+    endpoint: "/api/subscription-plans",
+  });
+};

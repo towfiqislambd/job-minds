@@ -57,6 +57,7 @@ export const useGenerateCoverLetter = () => {
 
 // Save Cover Letter
 export const useSaveCoverLetter = () => {
+  const queryClient = useQueryClient();
   return useApi({
     method: "post",
     key: "save-cover-letter",
@@ -65,6 +66,7 @@ export const useSaveCoverLetter = () => {
     onSuccess: (data: any) => {
       if (data?.status) {
         toast.success(data?.message);
+        queryClient.invalidateQueries("all-documents" as any);
       }
     },
     onError: (err: any) => {
@@ -223,6 +225,7 @@ export const useAllDrafts = (search?: string) => {
 
 // Delete Document
 export const useDeleteDocument = (document_id: number | null) => {
+  const queryClient = useQueryClient();
   return useApi({
     method: "post",
     key: "delete-document",
@@ -230,7 +233,6 @@ export const useDeleteDocument = (document_id: number | null) => {
     endpoint: `/api/delete-document/${document_id}`,
     enabled: !!document_id,
     onSuccess: (data: any) => {
-      const queryClient = useQueryClient();
       queryClient.invalidateQueries("all-documents" as any);
       if (data?.status) {
         toast.success(data?.message);
@@ -244,21 +246,18 @@ export const useDeleteDocument = (document_id: number | null) => {
 
 // Export Document
 export const useExportDocument = (document_id: number | null) => {
+  const queryClient = useQueryClient();
   return useApi({
     method: "post",
     key: "export-document",
     isPrivate: true,
-    endpoint: `/api/export-document/${document_id}`,
     enabled: !!document_id,
-    onSuccess: (data: any) => {
-      const queryClient = useQueryClient();
-      queryClient.invalidateQueries("all-documents" as any);
-      if (data?.status) {
-        toast.success(data?.message);
-      }
+    endpoint: `/api/export-document/${document_id}`,
+    config: {
+      responseType: "blob",
     },
-    onError: (err: any) => {
-      toast.error(err?.response?.data?.message);
+    onSuccess: () => {
+      queryClient.invalidateQueries("all-documents" as any);
     },
   });
 };

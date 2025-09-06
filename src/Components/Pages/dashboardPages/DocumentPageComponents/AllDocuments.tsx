@@ -1,9 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { HiOutlineDotsVertical } from "react-icons/hi";
-import { FiEye } from "react-icons/fi";
-import { FiDelete } from "react-icons/fi";
-import { TbFileExport } from "react-icons/tb";
 import moment from "moment";
+import useAuth from "@/Hooks/useAuth";
 import {
   FileSvg,
   FilterSvg,
@@ -14,9 +10,13 @@ import {
   useDeleteDocument,
   useExportDocument,
 } from "@/Hooks/api/dashboard_api";
-import { AiOutlineFileUnknown } from "react-icons/ai";
+import { FiEye } from "react-icons/fi";
+import { FiDelete } from "react-icons/fi";
 import { GrPowerReset } from "react-icons/gr";
-import useAuth from "@/Hooks/useAuth";
+import { TbFileExport } from "react-icons/tb";
+import React, { useEffect, useState } from "react";
+import { AiOutlineFileUnknown } from "react-icons/ai";
+import { HiOutlineDotsVertical } from "react-icons/hi";
 
 type documentItem = {
   id: number;
@@ -70,6 +70,44 @@ const AllDocuments = () => {
     setOpen(false);
     const file = `${process.env.NEXT_PUBLIC_SITE_URL}/${document_file}`;
     window.open(file);
+  };
+
+  // Func for export documents
+  const handleExport = (document_id: number, file_type: string) => {
+    setDocumentId(document_id);
+
+    if (documentId && file_type === "pdf") {
+      exportDocumentMutation(null, {
+        onSuccess: (blob: any) => {
+          const url = window.URL.createObjectURL(new Blob([blob]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", `resume.pdf`);
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(url);
+        },
+      });
+    }
+
+    if (documentId && file_type === "docx") {
+      exportDocumentMutation(null, {
+        onSuccess: (blob: any) => {
+          const file = new Blob([blob], {
+            type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          });
+          const url = window.URL.createObjectURL(file);
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", `cover-letter.docx`);
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(url);
+        },
+      });
+    }
   };
 
   useEffect(() => {
@@ -338,14 +376,11 @@ const AllDocuments = () => {
 
                         {/* Export btn */}
                         <button
-                          onClick={() => {
-                            setDocumentId(id);
-                            setOpen(!isExporting);
-                            if (documentId) {
-                              exportDocumentMutation(documentId);
-                            }
-                          }}
-                          className="flex gap-2 items-center cursor-pointer"
+                          disabled={isExporting}
+                          onClick={() => handleExport(id, file_type)}
+                          className={`flex gap-2 items-center cursor-pointer ${
+                            isExporting && "!cursor-not-allowed"
+                          }`}
                         >
                           <TbFileExport />
                           <span>{isExporting ? "Exporting" : "Export"}</span>
@@ -355,9 +390,8 @@ const AllDocuments = () => {
                         <button
                           onClick={() => {
                             setDocumentId(id);
-                            setOpen(!isPending);
                             if (documentId) {
-                              deleteDocumentMutation(documentId);
+                              deleteDocumentMutation();
                             }
                           }}
                           className="flex gap-2 items-center cursor-pointer text-red-500"

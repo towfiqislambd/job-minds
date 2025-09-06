@@ -1,37 +1,26 @@
-import PriciningCard from "@/Components/Cards/PriciningCard";
+import PricingCard from "@/Components/Cards/PricingCard";
 import Container from "@/Components/Common/Container";
 import Heading from "@/Components/Tags/Heading/Heading";
-const pricingArr = [
-  {
-    title: "Free",
-    pricePerMonth: "00",
-    features: ["1 Free Cover Letter", "1 Free Resume"],
-    btnTxt: "Get Started for Free",
-  },
-  {
-    title: "Premium Access",
-    pricePerMonth: "9.99",
-    features: [
-      "AI-Generated Resume or Cover Letter",
-      "Unlimited Resume & Cover Letter Creation",
-      "AI Interview Assistant",
-    ],
-    btnTxt: "Upgrade to Premium",
-    yearlyPrice: "99",
-    discount: "19",
-  },
-  {
-    title: "Pay As You Go",
-    pricePerMonth: "2.99",
-    features: [
-      " AI-Generated Resume or Cover Letter",
-      "Instant Download (PDF/DOCX)",
-    ],
-    btnTxt: "Get Started for Free",
-  },
-];
 
-const PricingSection = () => {
+type featherItem = {
+  feature_name: string;
+};
+
+type pricingItem = {
+  id: number;
+  name: string;
+  type: string;
+  description: string;
+  price: string;
+  interval: string;
+  features: featherItem[];
+};
+
+interface pricingData {
+  data: pricingItem[];
+}
+
+const PricingSection = ({ data }: pricingData) => {
   return (
     <section id="pricing" className="pb-8 md:pb-12 xl:pb-20 3xl:pb-[120px]">
       <Container>
@@ -42,17 +31,16 @@ const PricingSection = () => {
           />
 
           <div className="grid xl:grid-cols-2 2xl:grid-cols-3 gap-6">
-            {pricingArr.map((item, idx) => {
+            {data?.map((item, idx) => {
               return (
-                <PriciningCard
+                <PricingCard
                   idx={idx}
-                  key={idx}
-                  title={item.title}
-                  pricePerMonth={item.pricePerMonth}
-                  yearlyPrice={item.yearlyPrice}
-                  features={item.features}
-                  discount={item.discount}
-                  btnTxt={item.btnTxt}
+                  id={item?.id}
+                  key={item?.id}
+                  package_name={item?.name}
+                  price={item?.price}
+                  interval={item?.interval}
+                  features={item?.features}
                 />
               );
             })}
