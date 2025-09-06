@@ -5,6 +5,7 @@ import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
 import { TickMark } from "../SvgContainer/SvgContainer";
 import useAuth from "@/Hooks/useAuth";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 interface PricingCardProps {
   package_name: string;
@@ -32,7 +33,9 @@ const PricingCard: React.FC<PricingCardProps> = ({
 
   const handleGetStarted = (id: number) => {
     if (!user) {
-      return router.push("/auth/login");
+      toast.error("Please login first");
+      router.push("/auth/login");
+      return;
     } else {
       router.push(`/dashboard/accounts?package_id=${id}`);
     }

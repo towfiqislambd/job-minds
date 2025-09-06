@@ -397,3 +397,34 @@ export const useExpiringSubscription = () => {
     },
   });
 };
+
+// Linkedin Optimizer
+export const useLinkedinOptimizer = () => {
+  return useApi({
+    method: "post",
+    key: "linkedin-optimizer",
+    isPrivate: true,
+    endpoint: "/api/linkedin-profile-optimizer",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
+// Export Document
+export const useDownloadDoc = () => {
+  return useApi({
+    method: "post",
+    key: "download-doc",
+    isPrivate: true,
+    endpoint: "/api/download-linkedin-profile-summary",
+    config: {
+      responseType: "blob",
+    },
+  });
+};

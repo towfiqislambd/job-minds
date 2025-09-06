@@ -42,7 +42,7 @@ const Page = () => {
           Get Hired Faster with Job minds
         </h2>
 
-        <div className="flex flex-col gap-y-4 md:gap-y-5 3xl:gap-y-7">
+        <div className="flex flex-col gap-y-4 md:gap-y-5 3xl:gap-y-6">
           {/* Google Login */}
           <button
             type="button"
@@ -87,6 +87,16 @@ const Page = () => {
               className="text-primary-blue cursor-pointer"
             >
               Sign Up
+            </Link>
+          </div>
+
+          {/* Back to home */}
+          <div className="flex justify-center text-center -mt-2">
+            <Link
+              href="/"
+              className="text-primary-blue cursor-pointer underline"
+            >
+              Back to home
             </Link>
           </div>
         </div>
