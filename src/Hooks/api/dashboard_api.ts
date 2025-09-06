@@ -317,3 +317,83 @@ export const usePurchasePlan = (plan_id: number) => {
     },
   });
 };
+
+// Normal Notification
+export const useNormalNotification = () => {
+  const queryClient = useQueryClient();
+  return useApi({
+    method: "post",
+    key: "normal-notification",
+    isPrivate: true,
+    endpoint: "/api/update-notification",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        queryClient.invalidateQueries("user" as any);
+        toast.success(data?.message);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
+// Email Notification
+export const useEmailNotification = () => {
+  const queryClient = useQueryClient();
+  return useApi({
+    method: "post",
+    key: "email-notification",
+    isPrivate: true,
+    endpoint: "/api/update-email-notification",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        queryClient.invalidateQueries("user" as any);
+        toast.success(data?.message);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
+// Application Deadline
+export const useApplicationDeadline = () => {
+  const queryClient = useQueryClient();
+  return useApi({
+    method: "post",
+    key: "application-deadline",
+    isPrivate: true,
+    endpoint: "/api/update-application-deadline",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        queryClient.invalidateQueries("user" as any);
+        toast.success(data?.message);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
+// Expiring Subscription
+export const useExpiringSubscription = () => {
+  const queryClient = useQueryClient();
+  return useApi({
+    method: "post",
+    key: "expiring-subscription",
+    isPrivate: true,
+    endpoint: "/api/update-expiring-subscription",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        queryClient.invalidateQueries("user" as any);
+        toast.success(data?.message);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
