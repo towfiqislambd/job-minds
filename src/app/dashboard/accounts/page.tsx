@@ -1,9 +1,10 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import EditProfile from "@/Components/Pages/dashboardPages/AccountPageComponents/EditProfile";
 import Subscription from "@/Components/Pages/dashboardPages/AccountPageComponents/Subscription";
 import TermsOfService from "@/Components/Pages/dashboardPages/AccountPageComponents/TermsOfService";
 import Notification from "@/Components/Pages/dashboardPages/AccountPageComponents/Notification";
+import { useSearchParams } from "next/navigation";
 const tabData = [
   { id: 1, label: "Edit profile", path: "edit-profile" },
   { id: 2, label: "Notification Settings", path: "notification" },
@@ -12,7 +13,15 @@ const tabData = [
 ];
 
 const page = () => {
+  const searchParams = useSearchParams();
+  const package_id = searchParams.get("package_id");
   const [activeTab, setActiveTab] = useState<string>("edit-profile");
+
+  useEffect(() => {
+    if (package_id) {
+      setActiveTab("subscription");
+    }
+  }, [package_id]);
 
   return (
     <section className="space-y-8">
@@ -36,7 +45,7 @@ const page = () => {
       {/* Content */}
       {activeTab === "edit-profile" && <EditProfile />}
       {activeTab === "notification" && <Notification />}
-      {activeTab === "subscription" && <Subscription />}
+      {activeTab === "subscription" && <Subscription package_id={package_id} />}
       {activeTab === "terms-of-service" && <TermsOfService />}
     </section>
   );

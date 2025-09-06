@@ -45,3 +45,13 @@ export const useGetPricing = () => {
     endpoint: "/api/subscription-plans",
   });
 };
+
+// Detail Pricing
+export const useDetailPricing = (plan_id: number) => {
+  return useApi({
+    method: "get",
+    enabled: !!plan_id,
+    key: `detail-pricing-${plan_id}`,
+    endpoint: `/api/subscription-plan/${plan_id}`,
+  });
+};

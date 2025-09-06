@@ -13,6 +13,8 @@ interface PricingCardProps {
   features: any[];
   idx: number;
   id: number;
+  type?: string;
+  has_border?: boolean;
 }
 
 const PricingCard: React.FC<PricingCardProps> = ({
@@ -22,6 +24,8 @@ const PricingCard: React.FC<PricingCardProps> = ({
   interval,
   features,
   idx,
+  type,
+  has_border = true,
 }) => {
   const router = useRouter();
   const { user } = useAuth();
@@ -29,22 +33,31 @@ const PricingCard: React.FC<PricingCardProps> = ({
   const handleGetStarted = (id: number) => {
     if (!user) {
       return router.push("/auth/login");
+    } else {
+      router.push(`/dashboard/accounts?package_id=${id}`);
     }
   };
 
   return (
     <div
       className={`w-full  bg-white border-[4px] border-transparent  ease-in-out duration-300 hover:border-solid hover:border-primary-blue gap-7 md:gap-y-[54px] rounded-xl md:rounded-[18px] p-5 md:p-6 3xl:p-[30px] flex flex-col justify-between ${
-        idx === 1 && "!border-primary-blue"
+        (has_border && idx) === 1 && "!border-primary-blue"
       }`}
     >
       <div className="flex flex-col gap-y-8">
         <div className="flex flex-col gap-y-2">
-          <Heading
-            Variant="h3"
-            Txt={package_name}
-            className="text-xl lg:text-2xl font-bold leading-[132%] tracking-[-0.24px] text-primary-blue capitalize"
-          />
+          <div className="flex gap-3 items-center">
+            <Heading
+              Variant="h3"
+              Txt={package_name}
+              className="text-xl lg:text-2xl font-bold leading-[132%] tracking-[-0.24px] text-primary-blue capitalize"
+            />
+            {user?.subscription?.subscription_type === type && (
+              <p className="px-3 py-1.5 rounded-full bg-green-600 text-white text-sm">
+                Purchased
+              </p>
+            )}
+          </div>
           <div className="flex flex-col gap-y-5">
             <Heading
               Variant="h5"
@@ -79,8 +92,12 @@ const PricingCard: React.FC<PricingCardProps> = ({
       </div>
 
       <button
+        disabled={user?.subscription?.subscription_type === type}
         onClick={() => handleGetStarted(id)}
-        className="primary-btn !text-base md:!text-lg 3xl:!text-xl !w-full "
+        className={`primary-btn !text-base md:!text-lg 3xl:!text-xl !w-full ${
+          user?.subscription?.subscription_type === type &&
+          "opacity-80 !cursor-not-allowed"
+        }`}
       >
         Get Started
       </button>

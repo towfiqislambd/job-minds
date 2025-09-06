@@ -1,261 +1,393 @@
+import PricingCard from "@/Components/Cards/PricingCard";
+import { Loader } from "@/Components/Loader/Loader";
 import { FeatherSvg } from "@/Components/SvgContainer/SvgContainer";
+import { useDetailPricing, useGetPricing } from "@/Hooks/api/cms_api";
+import { usePurchasePlan } from "@/Hooks/api/dashboard_api";
 import React from "react";
 import { useForm } from "react-hook-form";
+import { CgSpinnerTwo } from "react-icons/cg";
 
-const Subscription = () => {
+const Subscription = ({ package_id }: any) => {
+  const { data: detailPricingData, isLoading } = useDetailPricing(package_id);
+  const { mutateAsync: purchasePlanMutation, isPending } =
+    usePurchasePlan(package_id);
+  const { data: pricingData, isLoading: pricingDataLoading } = useGetPricing();
+
   type formData = {
     first_name: string;
-    sur_name: string;
+    surname: string;
     email: string;
     phone: number;
     country: string;
     city: string;
     state: string;
     zip_code: number;
+    is_terms_conditions: boolean;
+    payment_method: string;
   };
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<formData>();
 
   const onSubmit = async (data: formData) => {
-    console.log(data);
+    const payload = {
+      ...data,
+      is_terms_conditions: data.is_terms_conditions ? 1 : 0,
+      success_redirect_url: `${window.location.origin}/dashboard/resume-builder`,
+      cancel_redirect_url: `${window.location.origin}/dashboard/accounts?package_id=${package_id}`,
+    };
+    await purchasePlanMutation(payload);
+    reset();
   };
 
+  if (pricingDataLoading) {
+    return (
+      <div className="h-[70vh] flex justify-center items-center">
+        <Loader />
+      </div>
+    );
+  }
+
   return (
-    <section className="flex gap-7 items-start flex-col 3xl:flex-row">
-      {/* Left */}
-      <div className="w-full 3xl:flex-1 dashboard_card">
-        <h4 className="section_sub_title">Subscription Plan Details</h4>
-        <p className="section_sub_description !mb-1 lg:text-lg">
-          Premium Access
-        </p>
-        <p className="section_sub_description lg:text-lg">9.99 EUR / Monthly</p>
-
-        <h4 className="section_sub_title">Included Features</h4>
-        <ul className="mt-4 mb-5 lg:mb-7 space-y-3 lg:space-y-4 text-[15px] lg:text-base">
-          <li className="flex gap-2 lg:gap-3 items-center">
-            <FeatherSvg />
-            <span>AI-Generated Resume or Cover Letter</span>
-          </li>
-          <li className="flex gap-2 lg:gap-3 items-center">
-            <FeatherSvg />
-            <span>Unlimited Resume & Cover Letter Creation</span>
-          </li>
-          <li className="flex gap-2 lg:gap-3 items-center">
-            <FeatherSvg />
-            <span>AI Interview Assistant</span>
-          </li>
-        </ul>
-
-        <h4 className="section_sub_title">Purchase Summary</h4>
-        <p className="flex justify-between items-center">
-          <span className="section_sub_description !mb-0 font-medium">
-            Total Due
-          </span>
-          <span className="font-semibold">9.99 EUR</span>
-        </p>
-      </div>
-
-      {/* Right */}
-      <div className="w-full 3xl:flex-1 dashboard_card">
-        <h4 className="section_sub_title">Subscription</h4>
-        <p className="section_sub_description">
-          Remember, this info will be public, so choose your subscriptions
-          wisely.
-        </p>
-
-        {/* Form */}
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div className="flex flex-col md:flex-row gap-5">
-            {/* First Name */}
-            <div className="flex-1">
-              <label htmlFor="first_name" className="resume_label">
-                First Name*
-              </label>
-              <input
-                type="text"
-                placeholder="Enter Your First Name"
-                id="first_name"
-                className="resume_input"
-                {...register("first_name", {
-                  required: "First Name is required",
-                })}
-              />
-              {errors.first_name && (
-                <p className="text-sm text-red-500 mt-1.5">
-                  {errors.first_name.message}
-                </p>
-              )}
-            </div>
-
-            {/* Surname */}
-            <div className="flex-1">
-              <label htmlFor="sur_name" className="resume_label">
-                Surname*
-              </label>
-              <input
-                type="text"
-                placeholder="Enter Your Surname"
-                id="sur_name"
-                className="resume_input"
-                {...register("sur_name", {
-                  required: "Surname is required",
-                })}
-              />
-              {errors.sur_name && (
-                <p className="text-sm text-red-500 mt-1.5">
-                  {errors.sur_name.message}
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* Email Address */}
-          <div className="flex-1">
-            <label htmlFor="sur_name" className="resume_label">
-              Email Address*
-            </label>
-            <input
-              type="email"
-              placeholder="Enter Your Email Address"
-              id="email"
-              className="resume_input"
-              {...register("email", {
-                required: "Email Address is required",
-              })}
-            />
-            {errors.email && (
-              <p className="text-sm text-red-500 mt-1.5">
-                {errors.email.message}
+    <>
+      {package_id ? (
+        <section className="flex gap-7 items-start flex-col 3xl:flex-row">
+          {/* Left */}
+          {isLoading ? (
+            <div className="w-full 3xl:flex-1 dashboard_card animate-pulse">
+              <div className="h-6 bg-gray-300 rounded w-1/3 mb-4" />
+              <div className="h-4 bg-gray-300 rounded w-1/2 mb-2" />
+              <div className="h-4 bg-gray-300 rounded w-1/4 mb-6" />
+              <div className="h-6 bg-gray-300 rounded w-1/3 mb-4" />
+              <ul className="mt-4 mb-5 lg:mb-7 space-y-3 lg:space-y-4">
+                {[...Array(3)].map((_, i) => (
+                  <li key={i} className="flex gap-2 lg:gap-3 items-center">
+                    <div className="h-6 w-4 bg-gray-300 rounded" />
+                    <div className="h-5 bg-gray-300 rounded w-2/3" />
+                  </li>
+                ))}
+              </ul>
+              <div className="h-6 bg-gray-300 rounded w-1/3 mb-4" />
+              <p className="flex justify-between items-center">
+                <span className="h-5 bg-gray-300 rounded w-1/4" />
+                <span className="h-5 bg-gray-300 rounded w-1/6" />
               </p>
-            )}
-          </div>
-
-          {/* Phone Number */}
-          <div className="flex-1">
-            <label htmlFor="phone" className="resume_label">
-              Phone Number*
-            </label>
-            <input
-              type="number"
-              placeholder="Enter Your Phone Number"
-              id="phone"
-              className="resume_input"
-              {...register("phone", {
-                required: "Phone Number is required",
-              })}
-            />
-            {errors.phone && (
-              <p className="text-sm text-red-500 mt-1.5">
-                {errors.phone.message}
+            </div>
+          ) : (
+            <div className="w-full 3xl:flex-1 dashboard_card">
+              <h4 className="section_sub_title">Subscription Plan Details</h4>
+              <p className="section_sub_description !mb-1 lg:text-lg">
+                {detailPricingData?.data?.name}
               </p>
-            )}
-          </div>
-
-          {/* Country */}
-          <div className="flex-1">
-            <label htmlFor="country" className="resume_label">
-              Country*
-            </label>
-            <input
-              type="text"
-              placeholder="Enter Your Country"
-              id="country"
-              className="resume_input"
-              {...register("country", {
-                required: "Country is required",
-              })}
-            />
-            {errors.country && (
-              <p className="text-sm text-red-500 mt-1.5">
-                {errors.country.message}
+              <p className="section_sub_description lg:text-lg">
+                {detailPricingData?.data?.price} EUR /
+                {detailPricingData?.data?.interval}
               </p>
-            )}
+
+              <h4 className="section_sub_title">Included Features</h4>
+              <ul className="mt-4 mb-5 lg:mb-7 space-y-3 lg:space-y-4 text-[15px] lg:text-base">
+                {detailPricingData?.data?.features?.map((item: any) => (
+                  <li className="flex gap-2 lg:gap-3 items-center">
+                    <FeatherSvg />
+                    <span>{item?.feature_name}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <h4 className="section_sub_title">Purchase Summary</h4>
+              <p className="flex justify-between items-center">
+                <span className="section_sub_description !mb-0 font-medium">
+                  Total Due
+                </span>
+                <span className="font-semibold">
+                  {detailPricingData?.data?.price} EUR
+                </span>
+              </p>
+            </div>
+          )}
+
+          {/* Right */}
+          <div className="w-full 3xl:flex-1 dashboard_card">
+            <h4 className="section_sub_title">Subscription</h4>
+            <p className="section_sub_description">
+              Remember, this info will be public, so choose your subscriptions
+              wisely.
+            </p>
+
+            {/* Form */}
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <div className="flex flex-col md:flex-row gap-5">
+                {/* First Name */}
+                <div className="flex-1">
+                  <label htmlFor="first_name" className="resume_label">
+                    First Name*
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Enter Your First Name"
+                    id="first_name"
+                    className="resume_input"
+                    {...register("first_name", {
+                      required: "First Name is required",
+                    })}
+                  />
+                  {errors.first_name && (
+                    <p className="text-sm text-red-500 mt-1.5">
+                      {errors.first_name.message}
+                    </p>
+                  )}
+                </div>
+
+                {/* Surname */}
+                <div className="flex-1">
+                  <label htmlFor="surname" className="resume_label">
+                    Surname*
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Enter Your Surname"
+                    id="surname"
+                    className="resume_input"
+                    {...register("surname", {
+                      required: "Surname is required",
+                    })}
+                  />
+                  {errors.surname && (
+                    <p className="text-sm text-red-500 mt-1.5">
+                      {errors.surname.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {/* Email Address */}
+              <div className="flex-1">
+                <label htmlFor="sur_name" className="resume_label">
+                  Email Address*
+                </label>
+                <input
+                  type="email"
+                  placeholder="Enter Your Email Address"
+                  id="email"
+                  className="resume_input"
+                  {...register("email", {
+                    required: "Email Address is required",
+                  })}
+                />
+                {errors.email && (
+                  <p className="text-sm text-red-500 mt-1.5">
+                    {errors.email.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Phone Number */}
+              <div className="flex-1">
+                <label htmlFor="phone" className="resume_label">
+                  Phone Number*
+                </label>
+                <input
+                  type="number"
+                  placeholder="Enter Your Phone Number"
+                  id="phone"
+                  className="resume_input"
+                  {...register("phone", {
+                    required: "Phone Number is required",
+                  })}
+                />
+                {errors.phone && (
+                  <p className="text-sm text-red-500 mt-1.5">
+                    {errors.phone.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Country */}
+              <div className="flex-1">
+                <label htmlFor="country" className="resume_label">
+                  Country*
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter Your Country"
+                  id="country"
+                  className="resume_input"
+                  {...register("country", {
+                    required: "Country is required",
+                  })}
+                />
+                {errors.country && (
+                  <p className="text-sm text-red-500 mt-1.5">
+                    {errors.country.message}
+                  </p>
+                )}
+              </div>
+
+              <div className="flex flex-col md:flex-row gap-5">
+                {/* City */}
+                <div className="flex-1">
+                  <label htmlFor="city" className="resume_label">
+                    City*
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Enter City"
+                    id="city"
+                    className="resume_input"
+                    {...register("city", {
+                      required: "City is required",
+                    })}
+                  />
+                  {errors.city && (
+                    <p className="text-sm text-red-500 mt-1.5">
+                      {errors.city.message}
+                    </p>
+                  )}
+                </div>
+
+                {/* State */}
+                <div className="flex-1">
+                  <label htmlFor="sur_name" className="resume_label">
+                    State*
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Enter State"
+                    id="state"
+                    className="resume_input"
+                    {...register("state", {
+                      required: "State is required",
+                    })}
+                  />
+                  {errors.state && (
+                    <p className="text-sm text-red-500 mt-1.5">
+                      {errors.state.message}
+                    </p>
+                  )}
+                </div>
+
+                {/* ZIP Code */}
+                <div className="flex-1">
+                  <label htmlFor="zip_code" className="resume_label">
+                    ZIP Code*
+                  </label>
+                  <input
+                    type="number"
+                    placeholder="Enter ZIP Code"
+                    id="zip_code"
+                    className="resume_input"
+                    {...register("zip_code", {
+                      required: "ZIP Code is required",
+                    })}
+                  />
+                  {errors.zip_code && (
+                    <p className="text-sm text-red-500 mt-1.5">
+                      {errors.zip_code.message}
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              {/* Payment Method */}
+              <div className="flex flex-col">
+                <h4 className="resume_label">Select Payment Method*</h4>
+                <label className="flex gap-2 items-center mb-1.5 text-[15px] text-gray-700 font-medium">
+                  <input
+                    type="radio"
+                    value="stripe"
+                    className="scale-110"
+                    {...register("payment_method", {
+                      required: "Please select a payment method",
+                    })}
+                  />
+                  Stripe
+                </label>
+                <label className="flex gap-2 items-center text-[15px] text-black-gray font-medium">
+                  <input
+                    type="radio"
+                    value="paypal"
+                    className="scale-110"
+                    {...register("payment_method", {
+                      required: "Please select a payment method",
+                    })}
+                  />
+                  Paypal
+                </label>
+                {errors.payment_method && (
+                  <p className="text-sm text-red-500 mt-1.5">
+                    {errors.payment_method.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Terms and Conditions */}
+              <div>
+                <div className="flex gap-2 items-center">
+                  <input
+                    id="is_terms_conditions"
+                    type="checkbox"
+                    className="scale-110"
+                    {...register("is_terms_conditions", {
+                      validate: value =>
+                        value || "You must agree to the Terms and Conditions",
+                    })}
+                  />
+                  <label
+                    htmlFor="is_terms_conditions"
+                    className="text-light-gray text-sm"
+                  >
+                    I have read and agree to the Terms and Conditions.
+                  </label>
+                </div>
+                {errors.is_terms_conditions && (
+                  <p className="text-sm text-red-500 mt-1.5">
+                    {errors.is_terms_conditions.message}
+                  </p>
+                )}
+              </div>
+
+              {/* Submit btn */}
+              <button
+                type="submit"
+                disabled={isPending}
+                className={`primary-btn ${isPending && "!cursor-not-allowed"}`}
+              >
+                {isPending ? (
+                  <div className="flex gap-2 items-center">
+                    <CgSpinnerTwo className="animate-spin text-xl" />
+                    <span>Confirming....</span>
+                  </div>
+                ) : (
+                  "Confirm"
+                )}
+              </button>
+            </form>
           </div>
-
-          <div className="flex flex-col md:flex-row gap-5">
-            {/* City */}
-            <div className="flex-1">
-              <label htmlFor="city" className="resume_label">
-                City*
-              </label>
-              <input
-                type="text"
-                placeholder="Enter City"
-                id="city"
-                className="resume_input"
-                {...register("city", {
-                  required: "City is required",
-                })}
+        </section>
+      ) : (
+        <div className="grid xl:grid-cols-2 2xl:grid-cols-3 gap-6">
+          {pricingData?.data?.map((item: any, idx: number) => {
+            return (
+              <PricingCard
+                idx={idx}
+                id={item?.id}
+                key={item?.id}
+                package_name={item?.name}
+                price={item?.price}
+                interval={item?.interval}
+                features={item?.features}
+                type={item?.type}
+                has_border={false}
               />
-              {errors.city && (
-                <p className="text-sm text-red-500 mt-1.5">
-                  {errors.city.message}
-                </p>
-              )}
-            </div>
-
-            {/* State */}
-            <div className="flex-1">
-              <label htmlFor="sur_name" className="resume_label">
-                State*
-              </label>
-              <input
-                type="text"
-                placeholder="Enter State"
-                id="state"
-                className="resume_input"
-                {...register("state", {
-                  required: "State is required",
-                })}
-              />
-              {errors.state && (
-                <p className="text-sm text-red-500 mt-1.5">
-                  {errors.state.message}
-                </p>
-              )}
-            </div>
-
-            {/* ZIP Code */}
-            <div className="flex-1">
-              <label htmlFor="zip_code" className="resume_label">
-                ZIP Code*
-              </label>
-              <input
-                type="number"
-                placeholder="Enter ZIP Code"
-                id="zip_code"
-                className="resume_input"
-                {...register("zip_code", {
-                  required: "ZIP Code is required",
-                })}
-              />
-              {errors.zip_code && (
-                <p className="text-sm text-red-500 mt-1.5">
-                  {errors.zip_code.message}
-                </p>
-              )}
-            </div>
-          </div>
-
-          {/* Terms and condition */}
-          <p className="flex gap-2 items-center">
-            <input id="agree" type="checkbox" className="scale-110" />
-            <label htmlFor="agree" className="text-light-gray text-sm">
-              I have read and agree to the Terms and Conditions.
-            </label>
-          </p>
-
-          {/* Submit btn */}
-          <button type="submit" className="primary-btn">
-            Stripe
-          </button>
-        </form>
-      </div>
-    </section>
+            );
+          })}
+        </div>
+      )}
+    </>
   );
 };
 

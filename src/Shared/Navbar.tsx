@@ -11,8 +11,10 @@ import Image from "next/image";
 import { Loader } from "@/Components/Loader/Loader";
 import { useTranslation } from "@/Provider/TranslationProvider/TranslationContext";
 import ReactFlagsSelect from "react-flags-select";
+import useAuth from "@/Hooks/useAuth";
 
 const Navbar = () => {
+  const { user } = useAuth();
   const [selectedCountry, setSelectedCountry] = useState("US");
   const { changeLanguage } = useTranslation();
   const router = useRouter();
@@ -152,15 +154,25 @@ const Navbar = () => {
               />
             </div>
 
-            {/* login btn */}
-            <button
-              onClick={() => {
-                router.push("/auth/home");
-              }}
-              className="hidden xl:block primary-btn !py-2.5 2xl:!py-3 3xl:!py-3.5 !text-lg"
-            >
-              Log In
-            </button>
+            {user ? (
+              <button
+                onClick={() => {
+                  router.push("/dashboard");
+                }}
+                className="hidden xl:block primary-btn !py-2.5 2xl:!py-3 3xl:!py-3.5 !text-lg"
+              >
+                Dashboard
+              </button>
+            ) : (
+              <button
+                onClick={() => {
+                  router.push("/auth/home");
+                }}
+                className="hidden xl:block primary-btn !py-2.5 2xl:!py-3 3xl:!py-3.5 !text-lg"
+              >
+                Log In
+              </button>
+            )}
 
             <button
               onClick={() => setOpen(!open)}

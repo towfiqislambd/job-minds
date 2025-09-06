@@ -297,3 +297,23 @@ export const useInitialJobRoles = () => {
     endpoint: "/api/all-job-roles",
   });
 };
+
+// Purchase Plan
+export const usePurchasePlan = (plan_id: number) => {
+  return useApi({
+    method: "post",
+    key: "purchase-plan",
+    isPrivate: true,
+    enabled: !!plan_id,
+    endpoint: `/api/subscription-plan/${plan_id}/payment`,
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+        window.location.href = data?.data?.url;
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
