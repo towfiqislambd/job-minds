@@ -2,43 +2,55 @@
 import CoverLetterSuggestion from "@/Components/Pages/dashboardPages/JobMatcherPageComponents/CoverLetterSuggestion";
 import MatchingChart from "@/Components/Pages/dashboardPages/JobMatcherPageComponents/MatchingChart";
 import ResumeSuggestion from "@/Components/Pages/dashboardPages/JobMatcherPageComponents/ResumeSuggestion";
-import { useRouter } from "next/navigation";
-
-const data = [
-  {
-    id: 1,
-    title: "Job Details",
-    description: "Senior Frontend Developer",
-  },
-  {
-    id: 2,
-    title: "Company",
-    description: "Tech Solutions Inc.",
-  },
-  {
-    id: 3,
-    title: "Location",
-    description: "San Francisco, CA",
-  },
-  {
-    id: 4,
-    title: "Interview Date",
-    description: " March 15, 2023",
-  },
-  {
-    id: 5,
-    title: "Employment Type",
-    description: "Full-time",
-  },
-  {
-    id: 6,
-    title: "Experience Level",
-    description: "Senior (5+ years)",
-  },
-];
+import { useRouter, useSearchParams } from "next/navigation";
 
 const page = () => {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const rawData = searchParams.get("data");
+  const jobData = rawData ? JSON.parse(decodeURIComponent(rawData)) : null;
+  console.log(jobData?.matched);
+
+  const jobDetails = [
+    {
+      id: 1,
+      title: "Position Name",
+      description: jobData?.job?.position_name
+        ? jobData?.job?.position_name
+        : "N/A",
+    },
+    {
+      id: 2,
+      title: "Company",
+      description: jobData?.job?.company_name
+        ? jobData?.job?.company_name
+        : "N/A",
+    },
+    {
+      id: 3,
+      title: "Location",
+      description: jobData?.job?.location ? jobData?.job?.location : "N/A",
+    },
+    {
+      id: 4,
+      title: "Deadline",
+      description: jobData?.job?.deadline ? jobData?.job?.deadline : "N/A",
+    },
+    {
+      id: 5,
+      title: "Employment Type",
+      description: jobData?.job?.employment_type
+        ? jobData?.job?.employment_type
+        : "N/A",
+    },
+    {
+      id: 6,
+      title: "Experience Level",
+      description: jobData?.job?.experience_level
+        ? jobData?.job?.experience_level
+        : "N/A",
+    },
+  ];
 
   return (
     <>
@@ -58,7 +70,7 @@ const page = () => {
           </h4>
 
           <div className="space-y-4">
-            {data?.map(({ id, title, description }) => (
+            {jobDetails?.map(({ id, title, description }) => (
               <div
                 key={id}
                 className="flex gap-2 md:gap-0 text-sm md:text-base"
@@ -74,7 +86,7 @@ const page = () => {
         </div>
 
         {/* Matching */}
-        <MatchingChart />
+        <MatchingChart data={jobData?.matched} />
 
         {/* Resume Suggestions */}
         <ResumeSuggestion />

@@ -416,7 +416,7 @@ export const useLinkedinOptimizer = () => {
   });
 };
 
-// Export Document
+// Download Doc
 export const useDownloadDoc = () => {
   return useApi({
     method: "post",
@@ -425,6 +425,24 @@ export const useDownloadDoc = () => {
     endpoint: "/api/download-linkedin-profile-summary",
     config: {
       responseType: "blob",
+    },
+  });
+};
+
+// Job Matching
+export const useJobMatching = () => {
+  return useApi({
+    method: "post",
+    key: "job-matching",
+    isPrivate: true,
+    endpoint: "/api/job-matching",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
     },
   });
 };

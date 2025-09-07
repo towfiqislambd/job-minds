@@ -56,7 +56,7 @@ const Page = () => {
           const url = window.URL.createObjectURL(file);
           const link = document.createElement("a");
           link.href = url;
-          link.setAttribute("download", `linkedin_optimizer.docx`);
+          link.setAttribute("download", `linkedin-optimizer.docx`);
           document.body.appendChild(link);
           link.click();
           document.body.removeChild(link);
@@ -97,7 +97,7 @@ const Page = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-10">
+      <div className="grid grid-cols-2 gap-7">
         {/* Left - Input */}
         <div className="dashboard_card">
           <h5 className="section_sub_title !mb-3.5 3xl:!mb-5">

@@ -1,17 +1,20 @@
 "use client";
 import { DownloadSvg } from "@/Components/SvgContainer/SvgContainer";
+import { useJobMatching } from "@/Hooks/api/dashboard_api";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 type formData = {
-  job_details: string;
-  photo: string;
+  job_description: string;
+  file: FileList;
 };
 
 const page = () => {
   const router = useRouter();
-  const [imageFile, setImageFile] = useState<string>("");
+  const { mutateAsync: jobMatchingMutation, isPending } = useJobMatching();
+  const [imageFile, setImageFile] = useState<File | null>(null);
 
   const {
     register,
@@ -20,9 +23,16 @@ const page = () => {
   } = useForm<formData>();
 
   const onSubmit = async (data: formData) => {
-    console.log(data);
-    router.push("/dashboard/job-matcher/details");
+    if (!imageFile) return;
+    const formData = new FormData();
+    formData.append("job_description", data.job_description);
+    formData.append("file", imageFile);
+    const response = await jobMatchingMutation(formData);
+    const jobData = response?.data;
+    const encodedData = encodeURIComponent(JSON.stringify(jobData));
+    router.push(`/dashboard/job-matcher/details?data=${encodedData}`);
   };
+
   return (
     <>
       {/* Title */}
@@ -47,21 +57,21 @@ const page = () => {
         >
           {/* Write Job Description */}
           <div>
-            <label htmlFor="job_details" className="resume_label">
+            <label htmlFor="job_description" className="resume_label">
               Job Details
             </label>
             <textarea
               rows={4}
-              placeholder="Paste job description or URL here....... "
-              id="job_details"
+              placeholder="Paste job description here....... "
+              id="job_description"
               className="resume_input"
-              {...register("job_details", {
+              {...register("job_description", {
                 required: "Job Description is required",
               })}
             ></textarea>
-            {errors.job_details && (
+            {errors.job_description && (
               <p className="text-sm text-red-500 mt-1">
-                {errors.job_details.message}
+                {errors.job_description.message}
               </p>
             )}
           </div>
@@ -72,28 +82,28 @@ const page = () => {
             <p className="border-b border-gray-200 flex-1"></p>
           </div>
 
-          {/* Upload Job Description */}
+          {/* Upload PDF */}
           <div>
             <label
-              htmlFor="upload_job_desc"
+              htmlFor="file"
               className="border block w-full hover:bg-gray-100 duration-200 transition-all rounded-lg border-gray-200 text-center cursor-pointer py-10"
             >
               <div className="flex flex-col gap-3 justify-center items-center">
                 <DownloadSvg />
                 <p className="text-gray-500 text-sm md:text-base">
-                  Click to upload your description PDF
+                  Click to upload your resume as PDF
                 </p>
               </div>
 
               <input
                 type="file"
                 className="hidden"
-                id="upload_job_desc"
+                id="file"
                 accept="application/pdf"
-                {...register("photo", {
-                  required: "Photo is required",
+                {...register("file", {
+                  required: "PDF is required",
                   onChange: e => {
-                    const file = e.target.files[0].name;
+                    const file = e.target.files[0];
                     if (file) {
                       setImageFile(file);
                     }
@@ -101,19 +111,31 @@ const page = () => {
                 })}
               />
             </label>
-            {errors.photo && (
+            {errors.file && (
               <p className="text-sm text-red-500 mt-1.5">
-                {errors.photo.message}
+                {errors.file.message}
               </p>
             )}
             {imageFile && (
-              <p className="text-sm text-green-500 mt-3">{imageFile}</p>
+              <p className="text-sm text-green-500 mt-3">{imageFile?.name}</p>
             )}
           </div>
 
-          {/* btn */}
+          {/* Analyze btn */}
           <div className="flex justify-end items-center mt-7">
-            <button className="primary-btn">Analyze Job</button>
+            <button
+              disabled={isPending}
+              className={`primary-btn ${isPending && "!cursor-not-allowed"}`}
+            >
+              {isPending ? (
+                <div className="flex gap-2 items-center">
+                  <CgSpinnerTwo className="animate-spin text-xl" />
+                  <span>Analyzing Job....</span>
+                </div>
+              ) : (
+                "Analyze Job"
+              )}
+            </button>
           </div>
         </form>
       </div>
