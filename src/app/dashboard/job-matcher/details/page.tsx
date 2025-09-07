@@ -9,8 +9,6 @@ const page = () => {
   const searchParams = useSearchParams();
   const rawData = searchParams.get("data");
   const jobData = rawData ? JSON.parse(decodeURIComponent(rawData)) : null;
-  console.log(jobData?.matched);
-
   const jobDetails = [
     {
       id: 1,
@@ -89,10 +87,10 @@ const page = () => {
         <MatchingChart data={jobData?.matched} />
 
         {/* Resume Suggestions */}
-        <ResumeSuggestion />
+        <ResumeSuggestion data={jobData?.improvement_suggestions} />
 
         {/* Cover Letter Suggestions */}
-        <CoverLetterSuggestion />
+        <CoverLetterSuggestion data={jobData?.cover_letter?.content} />
 
         {/* btns */}
         <div className="2xl:col-span-2 flex justify-end gap-3 xl:gap-5 items-center dashboard_card">

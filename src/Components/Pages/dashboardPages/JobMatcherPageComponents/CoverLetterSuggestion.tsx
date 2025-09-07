@@ -1,74 +1,41 @@
-import { CheckSvg, CrossSvg } from "@/Components/SvgContainer/SvgContainer";
 import React from "react";
-const data = [
-  {
-    id: 1,
-    title: "Enhance Data Analytics",
-    description:
-      "Proficiency in data analysis tools and techniques is essential.",
-  },
-  {
-    id: 2,
-    title: "Master Machine Learning",
-    description:
-      "Understanding machine learning algorithms is a key requirement.",
-  },
-  {
-    id: 3,
-    title: "Develop Mobile Applications",
-    description: "Experience in mobile app development is highly valued.",
-  },
-  {
-    id: 4,
-    title: "Implement Cybersecurity Measures",
-    description:
-      "Strong skills in creating user-friendly interfaces and enhancing user experience.",
-  },
-  {
-    id: 5,
-    title: "Master Agile Methodologies",
-    description:
-      "Experience with agile frameworks to improve project efficiency and collaboration.",
-  },
-  {
-    id: 6,
-    title: "Optimize Machine Learning Models",
-    description:
-      "Ability to refine and enhance machine learning algorithms for better performance.",
-  },
-];
+import toast from "react-hot-toast";
+import { MdContentCopy } from "react-icons/md";
 
-const CoverLetterSuggestion = () => {
+const CoverLetterSuggestion = ({ data }: any) => {
+  // Func for copy to clipboard
+  const handleCopyToClipboard = () => {
+    const tempDiv = document.createElement("div");
+    tempDiv.innerHTML = data;
+    tempDiv.querySelectorAll("br").forEach(br => (br.outerHTML = "\n"));
+    tempDiv.querySelectorAll("p").forEach(p => {
+      p.outerHTML = `${p.innerText}\n\n`;
+    });
+    const formattedText = tempDiv.innerText || tempDiv.textContent || "";
+    navigator.clipboard.writeText(formattedText);
+    toast.success("Copied to clipboard");
+  };
+
   return (
-    <section className="dashboard_card">
+    <section className="dashboard_card self-start">
       <h4 className="section_sub_title !mb-3 lg:!mb-5">
-        Cover Letter Suggestions
+        Suggested Cover Letter
       </h4>
 
-      <div className="space-y-3 lg:space-y-5">
-        {data?.map(({ id, title, description }) => (
-          <div key={id} className="border p-4 rounded-lg border-gray-100">
-            <div className="flex flex-col-reverse md:flex-row justify-between items-start gap-3 md:gap-5">
-              <div>
-                <p className="section_sub_title !text-base lg:!text-lg 3xl:!text-xl">
-                  {title}
-                </p>
-                <p className="text-light-gray text-sm lg:text-base">
-                  {description}
-                </p>
-              </div>
+      <div className="w-full outline-none p-6 bg-[#F8FAFB] overflow-y-auto text-gray-800 text-[15px] leading-[170%] relative rounded-lg max-h-[500px]">
+        <div
+          dangerouslySetInnerHTML={{
+            __html: data?.replace(/\n/g, "<br />"),
+          }}
+        />
 
-              <p className="flex gap-3 items-center">
-                <span className="w-7.5 h-7.5 cursor-pointer grid place-items-center border rounded-full border-secondary-blue">
-                  <CrossSvg />
-                </span>
-                <span className="w-7.5 h-7.5 cursor-pointer grid place-items-center border rounded-full border-secondary-blue">
-                  <CheckSvg />
-                </span>
-              </p>
-            </div>
-          </div>
-        ))}
+        {/* Copy to clipboard */}
+        <button
+          className="absolute top-5 right-5 size-9 border border-gray-300 rounded-full grid place-items-center cursor-pointer"
+          onClick={handleCopyToClipboard}
+        >
+          <MdContentCopy className="text-gray-500" />
+        </button>
       </div>
     </section>
   );
