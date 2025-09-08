@@ -438,3 +438,41 @@ export const useJobMatching = () => {
     },
   });
 };
+
+// Job Matcher Apply Changes
+export const useApplyChangesJobMatcher = () => {
+  return useApi({
+    method: "post",
+    key: "apply-changes-job-matchers",
+    isPrivate: true,
+    endpoint: "/api/apply-changes",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
+// Save Resume Template
+export const useSaveLinkedinOptimizer = () => {
+  const queryClient = useQueryClient();
+  return useApi({
+    method: "post",
+    key: "save-linkedin-optimizer",
+    isPrivate: true,
+    endpoint: "/api/save-linkedin-profile-summary",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+        queryClient.invalidateQueries("all-documents" as any);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};

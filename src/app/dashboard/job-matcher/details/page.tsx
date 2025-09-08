@@ -2,12 +2,19 @@
 import CoverLetterSuggestion from "@/Components/Pages/dashboardPages/JobMatcherPageComponents/CoverLetterSuggestion";
 import MatchingChart from "@/Components/Pages/dashboardPages/JobMatcherPageComponents/MatchingChart";
 import ResumeSuggestion from "@/Components/Pages/dashboardPages/JobMatcherPageComponents/ResumeSuggestion";
+import { useApplyChangesJobMatcher } from "@/Hooks/api/dashboard_api";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 const page = () => {
+  const { mutateAsync: applyChangesMutation, isPending } =
+    useApplyChangesJobMatcher();
   const router = useRouter();
   const [jobData, setJobData] = useState<any>({});
+  const [improvement_suggestions, setImprovementSuggestions] = useState<any>(
+    []
+  );
   useEffect(() => {
     const storedData = sessionStorage.getItem("jobData");
     if (storedData) {
@@ -56,6 +63,19 @@ const page = () => {
     },
   ];
 
+  const data = {
+    html: jobData?.html,
+    resume_data: jobData?.resume_data,
+    improvement_suggestions: improvement_suggestions,
+  };
+
+  const handleApplyChanges = async () => {
+    const response = await applyChangesMutation(data);
+    const htmlData = response?.data?.html;
+    sessionStorage.setItem("htmlData", JSON.stringify(htmlData));
+    router.push("/dashboard/job-matcher/preview");
+  };
+
   return (
     <>
       {/* Title */}
@@ -93,7 +113,10 @@ const page = () => {
         <MatchingChart data={jobData?.matched} />
 
         {/* Resume Suggestions */}
-        <ResumeSuggestion data={jobData?.improvement_suggestions} />
+        <ResumeSuggestion
+          setImprovementSuggestions={setImprovementSuggestions}
+          data={jobData?.improvement_suggestions}
+        />
 
         {/* Cover Letter Suggestions */}
         <CoverLetterSuggestion data={jobData?.cover_letter?.content} />
@@ -113,10 +136,18 @@ const page = () => {
 
           {/* Apply change btn */}
           <button
-            onClick={() => router.push("/dashboard/job-matcher/preview")}
-            className="primary-btn"
+            disabled={isPending}
+            onClick={handleApplyChanges}
+            className={`primary-btn ${isPending && "!cursor-not-allowed"}`}
           >
-            Apply Changes
+            {isPending ? (
+              <div className="flex gap-2 items-center">
+                <CgSpinnerTwo className="animate-spin text-xl" />
+                <span>Please wait...</span>
+              </div>
+            ) : (
+              " Apply Changes"
+            )}
           </button>
         </div>
       </div>

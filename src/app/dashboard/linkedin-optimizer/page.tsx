@@ -2,12 +2,14 @@
 import {
   useDownloadDoc,
   useLinkedinOptimizer,
+  useSaveLinkedinOptimizer,
 } from "@/Hooks/api/dashboard_api";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { IoDocumentTextOutline } from "react-icons/io5";
+import { MdContentCopy } from "react-icons/md";
 
 type formData = {
   profile_summary: string;
@@ -22,6 +24,8 @@ const Page = () => {
   const { mutateAsync: submitDataMutation, isPending } = useLinkedinOptimizer();
   const { mutate: downloadDocMutation, isPending: isDownloading } =
     useDownloadDoc();
+  const { mutate: saveMutation, isPending: isSaving } =
+    useSaveLinkedinOptimizer();
 
   const {
     register,
@@ -38,6 +42,14 @@ const Page = () => {
         setDoc(data?.data?.optimized_profile_summary);
       },
     });
+  };
+
+  // Func for save
+  const handleSave = () => {
+    if (!doc) {
+      return toast.error("Please generate linkedin optimizer first");
+    }
+    saveMutation({ profile_summary: doc });
   };
 
   // Func for download docx
@@ -72,7 +84,7 @@ const Page = () => {
   // Func for copy to clipboard
   const handleCopyToClipboard = () => {
     if (!doc) {
-      return toast.error("Please generate linkedin optimizer");
+      return toast.error("Please generate linkedin optimizer first");
     }
 
     const tempDiv = document.createElement("div");
@@ -140,12 +152,22 @@ const Page = () => {
 
         {/* Right - Output */}
         <div className="dashboard_card">
-          <h5 className="section_sub_title !mb-3.5 3xl:!mb-5">
-            AI-Enhanced Profile
-          </h5>
+          <div className="flex justify-between">
+            <h5 className="section_sub_title !mb-3.5 3xl:!mb-5">
+              AI-Enhanced Profile
+            </h5>
+
+            {/* Copy to clipboard */}
+            <button
+              className="size-9 border border-gray-300 rounded-full grid place-items-center cursor-pointer"
+              onClick={handleCopyToClipboard}
+            >
+              <MdContentCopy className="text text-gray-500" />
+            </button>
+          </div>
 
           <div>
-            <p className="h-[430px] rounded-lg bg-gray-50 overflow-y-auto p-5 leading-[164%] text-sm text-gray-700">
+            <div className="h-[430px] rounded-lg bg-gray-50 overflow-y-auto p-5 leading-[164%] text-sm text-gray-700 relative">
               {isPending ? (
                 <div className="w-full h-full bg-[#F8FAFB] space-y-6 animate-pulse">
                   <div className="h-4 w-40 bg-gray-200 rounded" />
@@ -166,12 +188,23 @@ const Page = () => {
                   </p>
                 </div>
               )}
-            </p>
+            </div>
 
             <div className="flex flex-wrap justify-center md:justify-end gap-3 3xl:gap-5 items-center mt-5">
               {/* Copy btn */}
-              <button onClick={handleCopyToClipboard} className="secondary-btn">
-                Copy
+              <button
+                disabled={isSaving}
+                className={`secondary-btn ${isSaving && "!cursor-not-allowed"}`}
+                onClick={handleSave}
+              >
+                {isSaving ? (
+                  <div className="flex gap-2 items-center">
+                    <CgSpinnerTwo className="animate-spin text-xl" />
+                    <span>Saving....</span>
+                  </div>
+                ) : (
+                  "Save"
+                )}
               </button>
 
               {/* Download btn */}

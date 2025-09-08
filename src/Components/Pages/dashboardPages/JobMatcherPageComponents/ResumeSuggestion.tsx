@@ -7,9 +7,26 @@ type improvementItem = {
 
 interface improvementProps {
   data: improvementItem[];
+  setImprovementSuggestions: any;
 }
 
-const ResumeSuggestion = ({ data }: improvementProps) => {
+const ResumeSuggestion = ({
+  data,
+  setImprovementSuggestions,
+}: improvementProps) => {
+  const handleCheckboxChange = (item: improvementItem, checked: boolean) => {
+    setImprovementSuggestions((prev: any) => {
+      if (checked) {
+        if (!prev.some((p: any) => p.title === item.title)) {
+          return [...prev, item];
+        }
+        return prev;
+      } else {
+        return prev.filter((p: any) => p.title !== item.title);
+      }
+    });
+  };
+
   return (
     <section className="dashboard_card">
       <h4 className="section_sub_title !mb-3 lg:!mb-5">Resume Suggestions</h4>
@@ -28,7 +45,16 @@ const ResumeSuggestion = ({ data }: improvementProps) => {
               </div>
 
               <p className=" shrink-0 cursor-pointer grid place-items-center">
-                <input type="checkbox" className="scale-125" />
+                <input
+                  type="checkbox"
+                  className="scale-125"
+                  onChange={e =>
+                    handleCheckboxChange(
+                      { title, suggestions },
+                      e.target.checked
+                    )
+                  }
+                />
               </p>
             </div>
           </div>

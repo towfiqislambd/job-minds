@@ -287,7 +287,7 @@ const AllDocuments = () => {
               <tr className="text-nowrap text-dark-blue text-base 2xl:text-lg capitalize">
                 <td className="font-medium px-3 2xl:px-4">Document Type</td>
                 <td className="font-medium px-3 2xl:px-4">Title</td>
-                <td className="font-medium px-3 2xl:px-4">Last Update</td>
+                <td className="font-medium px-3 2xl:px-4">Date</td>
                 <td className="font-medium px-3 2xl:px-4">Status</td>
                 <td className="font-medium px-3 2xl:px-4 text-center">
                   Action
