@@ -105,7 +105,7 @@ const page = () => {
             Back
           </button>
 
-          {/* apply change */}
+          {/* Apply change btn */}
           <button
             onClick={() => router.push("/dashboard/job-matcher/preview")}
             className="primary-btn"

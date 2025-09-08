@@ -1,20 +1,22 @@
 import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 import Heading from "../Tags/Heading/Heading";
 import Paragraph from "../Tags/Paragraph/Paragraph";
-import Button from "../Tags/Button/Button";
-import Image from "next/image";
 
 interface ServiceCardProps {
   title: string;
-  descreption: string;
+  description: string;
   btnTxt: string;
+  btnUrl: string;
   bgImg: string;
 }
 
 const ServiceCard: React.FC<ServiceCardProps> = ({
   title,
-  descreption,
+  description,
   btnTxt,
+  btnUrl,
   bgImg,
 }) => {
   return (
@@ -25,11 +27,15 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           className="text-lg md:text-xl xl:text-2xl 2xl:text-3xl 3xl:text-4xl font-[600] leading-[150%] 3xl:leading-[132%] text-text-blue "
           Txt={title}
         />
+
         <Paragraph
           className="xl:text-xl 3xl:text-2xl font-normal leading-[164%] text-light-gray "
-          Txt={descreption}
+          Txt={description}
         />
-        <Button Txt={btnTxt} className="secondary-btn" />
+
+        <Link className="secondary-btn !w-fit" href={btnUrl}>
+          {btnTxt}
+        </Link>
       </div>
 
       {/* Right */}

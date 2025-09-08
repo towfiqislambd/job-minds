@@ -203,7 +203,7 @@ export default function DashboardLayout({
                 <NotificationSvg />
               </button>
 
-              {/* Contents */}
+              {/* Notification Modal */}
               <div
                 onClick={e => e.stopPropagation()}
                 className={`${

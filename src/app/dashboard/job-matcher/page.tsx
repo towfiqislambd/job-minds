@@ -47,8 +47,7 @@ const page = () => {
         <h4 className="section_sub_title">Import Job Details</h4>
 
         <p className="section_sub_description text-lg md:!mt-3 !mb-5 md:!mb-7">
-          Paste a job listing URL or the full job description to get
-          personalized suggestions
+          Paste the full job description to get personalized suggestions
         </p>
 
         <form
@@ -61,7 +60,7 @@ const page = () => {
               Job Details
             </label>
             <textarea
-              rows={4}
+              rows={7}
               placeholder="Paste job description here....... "
               id="job_description"
               className="resume_input"
@@ -86,7 +85,7 @@ const page = () => {
           <div>
             <label
               htmlFor="file"
-              className="border block w-full hover:bg-gray-100 duration-200 transition-all rounded-lg border-gray-200 text-center cursor-pointer py-10"
+              className="border block w-full hover:bg-gray-100 duration-200 transition-all rounded-lg border-gray-100 text-center cursor-pointer py-10 bg-gray-50"
             >
               <div className="flex flex-col gap-3 justify-center items-center">
                 <DownloadSvg />

@@ -76,7 +76,7 @@ const page = () => {
 
       <div className="mt-5 border border-[#EAEAEA] rounded-[8px] h-[calc(100vh-250px)] flex flex-col justify-between">
         {/* Upper Part */}
-        <div className="border-b border-[#EAEAEA] sticky top-0 z-50 bg-white py-3.5 px-4 flex gap-3 lg:gap-5 items-center rounded-t-[8px]">
+        <div className="border-b border-[#EAEAEA] sticky top-0 z-30 bg-white py-3.5 px-4 flex gap-3 lg:gap-5 items-center rounded-t-[8px]">
           <figure className="bg-[#C6DFF6] size-14 rounded-full flex justify-center items-center">
             <Image src={Profile} alt="profile-img" height={32} width={32} />
           </figure>
