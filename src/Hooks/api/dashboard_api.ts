@@ -23,6 +23,7 @@ export const useSingleResumeTemplate = (id: any) => {
 
 // Create Resume Template
 export const useCreateResume = (id: any) => {
+  const queryClient = useQueryClient();
   return useApi({
     method: "post",
     isPrivate: true,
@@ -34,11 +35,15 @@ export const useCreateResume = (id: any) => {
     onError: (err: any) => {
       toast.error(err?.response?.data?.message);
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries("all-recent-activity" as any);
+    },
   });
 };
 
 // Generate Cover Letter
 export const useGenerateCoverLetter = () => {
+  const queryClient = useQueryClient();
   return useApi({
     method: "post",
     key: "generate-cover-letter",
@@ -47,6 +52,7 @@ export const useGenerateCoverLetter = () => {
     onSuccess: (data: any) => {
       if (data?.status) {
         toast.success(data?.message);
+        queryClient.invalidateQueries("all-recent-activity" as any);
       }
     },
     onError: (err: any) => {
@@ -67,6 +73,7 @@ export const useSaveCoverLetter = () => {
       if (data?.status) {
         toast.success(data?.message);
         queryClient.invalidateQueries("all-documents" as any);
+        queryClient.invalidateQueries("all-recent-activity" as any);
       }
     },
     onError: (err: any) => {
@@ -87,6 +94,7 @@ export const useSaveResumeTemplate = () => {
       if (data?.status) {
         toast.success(data?.message);
         queryClient.invalidateQueries("all-documents" as any);
+        queryClient.invalidateQueries("all-recent-activity" as any);
       }
     },
     onError: (err: any) => {
@@ -137,6 +145,7 @@ export const useInterviewAssistant = () => {
 
 // Draft Interview Question
 export const useDraftInterviewQuestions = () => {
+  const queryClient = useQueryClient();
   return useApi({
     method: "post",
     key: "draft-interview-questions",
@@ -145,6 +154,8 @@ export const useDraftInterviewQuestions = () => {
     onSuccess: (data: any) => {
       if (data?.status) {
         toast.success(data?.message);
+        queryClient.invalidateQueries("all-drafts" as any);
+        queryClient.invalidateQueries("all-recent-activity" as any);
       }
     },
     onError: (err: any) => {
@@ -264,6 +275,7 @@ export const useExportDocument = (document_id: number | null) => {
 
 // Export pdf
 export const useExportPdf = () => {
+  const queryClient = useQueryClient();
   return useApi({
     method: "post",
     key: "export-pdf",
@@ -272,11 +284,16 @@ export const useExportPdf = () => {
     config: {
       responseType: "blob",
     },
+    onSuccess: () => {
+      queryClient.invalidateQueries("all-documents" as any);
+      queryClient.invalidateQueries("all-recent-activity" as any);
+    },
   });
 };
 
 // Download Cover Letter
 export const useDownloadCoverLetter = () => {
+  const queryClient = useQueryClient();
   return useApi({
     method: "post",
     key: "download-cover-letter",
@@ -284,6 +301,9 @@ export const useDownloadCoverLetter = () => {
     endpoint: "/api/download-cover-letter",
     config: {
       responseType: "blob",
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("all-recent-activity" as any);
     },
   });
 };
@@ -400,16 +420,21 @@ export const useExpiringSubscription = () => {
 
 // Linkedin Optimizer
 export const useLinkedinOptimizer = () => {
+  const queryClient = useQueryClient();
   return useApi({
     method: "post",
     key: "linkedin-optimizer",
     isPrivate: true,
     endpoint: "/api/linkedin-profile-optimizer",
+    onSuccess: () => {
+      queryClient.invalidateQueries("all-recent-activity" as any);
+    },
   });
 };
 
 // Download Doc
 export const useDownloadDoc = () => {
+  const queryClient = useQueryClient();
   return useApi({
     method: "post",
     key: "download-doc",
@@ -417,6 +442,9 @@ export const useDownloadDoc = () => {
     endpoint: "/api/download-linkedin-profile-summary",
     config: {
       responseType: "blob",
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("all-recent-activity" as any);
     },
   });
 };
@@ -469,6 +497,7 @@ export const useSaveLinkedinOptimizer = () => {
       if (data?.status) {
         toast.success(data?.message);
         queryClient.invalidateQueries("all-documents" as any);
+        queryClient.invalidateQueries("all-recent-activity" as any);
       }
     },
     onError: (err: any) => {

@@ -181,6 +181,11 @@ const AllDocuments = () => {
                       label: "Cover Letter",
                       value: "Cover Letter",
                     },
+                    {
+                      id: "profile_summary",
+                      label: "Profile Summary",
+                      value: "profile summary",
+                    },
                   ].map(option => (
                     <p key={option.id} className="flex gap-2 items-center">
                       <input
@@ -360,7 +365,8 @@ const AllDocuments = () => {
                         className={`${
                           open && id === popoverId ? "block" : "hidden"
                         } absolute top-5 right-20 p-3 border border-gray-100 bg-white rounded-lg shadow-lg space-y-2.5 z-40 w-[120px] text-sm ${
-                          idx === allDocuments?.data.length - 1 && "!-top-28"
+                          idx === allDocuments?.data?.data?.length - 1 &&
+                          "!-top-28"
                         }`}
                       >
                         {/* View btn */}

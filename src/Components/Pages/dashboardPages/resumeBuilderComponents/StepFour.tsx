@@ -101,10 +101,10 @@ const StepFour = ({ step, setStep, isPending }: any) => {
           {isPending ? (
             <div className="flex gap-2 items-center">
               <CgSpinnerTwo className="animate-spin text-xl" />
-              <span>Submitting....</span>
+              <span>Generating....</span>
             </div>
           ) : (
-            "Submit"
+            "Generate Resume"
           )}
         </button>
       </div>

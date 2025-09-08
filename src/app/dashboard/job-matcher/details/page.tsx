@@ -5,6 +5,7 @@ import ResumeSuggestion from "@/Components/Pages/dashboardPages/JobMatcherPageCo
 import { useApplyChangesJobMatcher } from "@/Hooks/api/dashboard_api";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { CgSpinnerTwo } from "react-icons/cg";
 
 const page = () => {
@@ -70,6 +71,10 @@ const page = () => {
   };
 
   const handleApplyChanges = async () => {
+    console.log(improvement_suggestions);
+    if (improvement_suggestions.length === 0) {
+      return toast.error("Please select resume suggestions!");
+    }
     const response = await applyChangesMutation(data);
     const htmlData = response?.data?.html;
     sessionStorage.setItem("htmlData", JSON.stringify(htmlData));
