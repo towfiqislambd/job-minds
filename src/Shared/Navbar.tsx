@@ -6,20 +6,26 @@ import { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import Container from "@/Components/Common/Container";
-import { useSiteSettings } from "@/Hooks/api/auth_api";
+import { useLogout, useSiteSettings } from "@/Hooks/api/auth_api";
 import Image from "next/image";
 import { Loader } from "@/Components/Loader/Loader";
 import { useTranslation } from "@/Provider/TranslationProvider/TranslationContext";
 import ReactFlagsSelect from "react-flags-select";
 import useAuth from "@/Hooks/useAuth";
+import { FaUser } from "react-icons/fa";
+import { MdLogout } from "react-icons/md";
+import { IoSettingsOutline } from "react-icons/io5";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 const Navbar = () => {
   const { user } = useAuth();
+  const [openPopup, setOpenPopup] = useState(false);
   const [selectedCountry, setSelectedCountry] = useState("US");
   const { changeLanguage } = useTranslation();
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
   const { data: siteSettings, isLoading } = useSiteSettings();
+  const { mutate: logoutMutation, isPending } = useLogout();
 
   const publicRoutes = [
     {
@@ -52,6 +58,18 @@ const Navbar = () => {
       document.body.style.overflow = "";
     };
   }, [isLoading]);
+
+  useEffect(() => {
+    const handleWindowClick = () => {
+      setOpenPopup(false);
+    };
+
+    window.addEventListener("click", handleWindowClick);
+
+    return () => {
+      window.removeEventListener("click", handleWindowClick);
+    };
+  }, []);
 
   if (isLoading) {
     return (
@@ -155,14 +173,100 @@ const Navbar = () => {
             </div>
 
             {user ? (
-              <button
-                onClick={() => {
-                  router.push("/dashboard");
+              <div
+                onClick={e => {
+                  e.stopPropagation();
+                  setOpenPopup(!openPopup);
                 }}
-                className="hidden xl:block primary-btn !py-2.5 2xl:!py-3 3xl:!py-3.5 !text-lg"
+                className="relative"
               >
-                Dashboard
-              </button>
+                {/* Figure Image */}
+                <figure className="size-10 lg:size-12 bg-primary-blue rounded-full cursor-pointer relative grid place-items-center">
+                  {user?.avatar ? (
+                    <Image
+                      src={`${process.env.NEXT_PUBLIC_SITE_URL}/${user?.avatar}`}
+                      alt="user"
+                      fill
+                      className="size-full rounded-full object-cover"
+                    />
+                  ) : (
+                    <p className="text-lg lg:text-[22px] font-medium text-white rounded-full">
+                      {user?.name.slice(0, 1)}
+                    </p>
+                  )}
+                </figure>
+
+                {/* Account Modal */}
+                <div
+                  className={`bg-gray-200 z-50 rounded-xl w-64 lg:w-[270px] absolute right-0 top-full mt-2 shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-4 md:p-5 transition-all duration-300 ${
+                    openPopup
+                      ? "opacity-100 scale-100"
+                      : "opacity-0 scale-95 pointer-events-none"
+                  }`}
+                >
+                  <div className="flex gap-3 md:gap-4 items-center mb-4 lg:mb-5">
+                    <figure className="size-10 lg:size-12 bg-primary-blue rounded-full cursor-pointer relative grid place-items-center">
+                      {user?.avatar ? (
+                        <Image
+                          src={`${process.env.NEXT_PUBLIC_SITE_URL}/${user?.avatar}`}
+                          alt="user"
+                          fill
+                          className="size-full rounded-full object-cover"
+                        />
+                      ) : (
+                        <p className="text-lg lg:text-[22px] font-medium text-white rounded-full">
+                          {user?.name.slice(0, 1)}
+                        </p>
+                      )}
+                    </figure>
+
+                    <div>
+                      <h3 className="font-semibold truncate">{user?.name}</h3>
+                      <p className="text-gray-500 text-sm truncate">
+                        {user?.email}
+                      </p>
+                    </div>
+                  </div>
+
+                  <hr className="text-gray-300" />
+
+                  <div className="mt-4 font-medium flex gap-2.5 lg:gap-4 flex-col text-gray-700 text-sm lg:text-[15px]">
+                    <button
+                      onClick={() => router.push("/dashboard")}
+                      className="w-fit flex gap-2 items-center cursor-pointer"
+                    >
+                      <FaUser className="text-gray-700" />
+                      Dashboard
+                    </button>
+                    <button
+                      onClick={() => router.push("/dashboard/accounts")}
+                      className="w-fit flex gap-2 items-center cursor-pointer"
+                    >
+                      <IoSettingsOutline className="text-gray-700" />
+                      Settings
+                    </button>
+                    <button
+                      disabled={isPending}
+                      onClick={() => logoutMutation()}
+                      className={`text-left text-red-500 w-fit flex gap-2 items-center ${
+                        isPending ? "!cursor-not-allowed" : "cursor-pointer"
+                      }`}
+                    >
+                      {isPending ? (
+                        <div className="flex gap-2 items-center">
+                          <CgSpinnerTwo className="animate-spin text-xl" />
+                          <span>Signing out...</span>
+                        </div>
+                      ) : (
+                        <p className="flex gap-1 items-center">
+                          <MdLogout />
+                          Sign Out
+                        </p>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              </div>
             ) : (
               <button
                 onClick={() => {
