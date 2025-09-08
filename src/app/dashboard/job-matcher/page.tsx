@@ -29,8 +29,8 @@ const page = () => {
     formData.append("file", imageFile);
     const response = await jobMatchingMutation(formData);
     const jobData = response?.data;
-    const encodedData = encodeURIComponent(JSON.stringify(jobData));
-    router.push(`/dashboard/job-matcher/details?data=${encodedData}`);
+    sessionStorage.setItem("jobData", JSON.stringify(jobData));
+    router.push(`/dashboard/job-matcher/details`);
   };
 
   return (

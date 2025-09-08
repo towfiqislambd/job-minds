@@ -2,13 +2,19 @@
 import CoverLetterSuggestion from "@/Components/Pages/dashboardPages/JobMatcherPageComponents/CoverLetterSuggestion";
 import MatchingChart from "@/Components/Pages/dashboardPages/JobMatcherPageComponents/MatchingChart";
 import ResumeSuggestion from "@/Components/Pages/dashboardPages/JobMatcherPageComponents/ResumeSuggestion";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 const page = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const rawData = searchParams.get("data");
-  const jobData = rawData ? JSON.parse(decodeURIComponent(rawData)) : null;
+  const [jobData, setJobData] = useState<any>({});
+  useEffect(() => {
+    const storedData = sessionStorage.getItem("jobData");
+    if (storedData) {
+      setJobData(JSON.parse(storedData));
+    }
+  }, []);
+
   const jobDetails = [
     {
       id: 1,

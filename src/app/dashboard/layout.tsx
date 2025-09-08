@@ -159,7 +159,7 @@ export default function DashboardLayout({
   return (
     <PrivateLayout>
       <section className="min-h-screen max-h-screen flex flex-col">
-        {/* Header */}
+        {/* Dashboard Header */}
         <header className="bg-white h-[70px] md:h-[84px] flex justify-between items-center px-4 md:px-5 3xl:px-10 fixed w-full left-0 right-0 z-40">
           {/* Left */}
           <div className="flex gap-10 2xl:gap-24">
@@ -329,16 +329,14 @@ export default function DashboardLayout({
                       href={link.path}
                       onClick={() => setOpen(false)}
                       className={`flex text-[15px] 2xl:text-base px-4 3xl:px-5 py-2.5 2xl:py-3 rounded-[50px] gap-2.5 3xl:gap-4 items-center font-medium
-                     ${
-                       isActive
-                         ? "bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white"
-                         : "text-light-gray"
-                     }
                   ${
                     (idx === 0 &&
                       pathname.startsWith("/dashboard/resume-builder")) ||
+                    (idx === 2 &&
+                      pathname.startsWith("/dashboard/job-matcher")) ||
                     (idx === 3 &&
-                      pathname.startsWith("/dashboard/mock-interview"))
+                      pathname.startsWith("/dashboard/mock-interview")) ||
+                    isActive
                       ? "bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white"
                       : "text-light-gray"
                   }

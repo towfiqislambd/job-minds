@@ -405,14 +405,6 @@ export const useLinkedinOptimizer = () => {
     key: "linkedin-optimizer",
     isPrivate: true,
     endpoint: "/api/linkedin-profile-optimizer",
-    onSuccess: (data: any) => {
-      if (data?.status) {
-        toast.success(data?.message);
-      }
-    },
-    onError: (err: any) => {
-      toast.error(err?.response?.data?.message);
-    },
   });
 };
 
