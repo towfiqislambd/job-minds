@@ -50,10 +50,10 @@ const ServiceContainer = () => {
       className="-mt-10 lg:-mt-0 pb-8 md:pb-12 xl:pb-20 3xl:pb-[120px]"
     >
       <Container>
-        <div className="flex flex-col gap-8.5 xl:gap-y-[60px]">
+        <div className="flex flex-col gap-5 lg:gap-8.5 xl:gap-y-10 3xl:gap-y-[60px]">
           <div className="flex flex-col gap-y-2 lg:gap-y-4.5 items-center">
             <Heading
-              className="text-blue-black w-full md:w-11/12 mx-auto max-w-[1298px] text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl 3xl:text-6xl font-semibold leading-[132%] tracking-[-0.72%] text-center"
+              className="text-blue-black w-full md:w-11/12 mx-auto max-w-[1298px] text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-[45px] 3xl:text-6xl font-semibold leading-[132%] tracking-[-0.72%] text-center"
               Txt={
                 <>
                   Simplify Every Step of your Job search with

@@ -12,7 +12,7 @@ const Paragraph: React.FC<ParagraphProps> = ({ Txt, className }) => {
       data-aos="fade-up"
       data-aos-delay="100"
       className={cn(
-        "text-base leading-[140%] font-[600] text-black-gray tracking-[0.2]",
+        "text-base leading-[140%] font-[600]text-black-gray tracking-[0.2]",
         className
       )}
     >

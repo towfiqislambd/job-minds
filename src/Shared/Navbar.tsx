@@ -82,12 +82,12 @@ const Navbar = () => {
   return (
     <nav className="bg-[#071431] sticky top-0 z-100 w-full">
       <Container>
-        <div className="py-4 3xl:py-5 flex justify-between items-center">
+        <div className="py-3.5 flex justify-between items-center">
           {/* Left */}
           <div className="flex cursor-pointer gap-32 2xl:gap-52 3xl:gap-80 4xl:gap-[470px] items-center ">
             {/* Logo */}
             <figure
-              className="size-12 md:size-14 xl:size-16 2xl:size-20 3xl:size-22 rounded-full relative"
+              className="size-12 md:size-14 xl:size-16 2xl:size-20 rounded-full relative"
               onClick={() => {
                 router.push("/");
               }}
@@ -116,9 +116,9 @@ const Navbar = () => {
                   onClick={() => {
                     setActiveSection(item.id);
                   }}
-                  className={`flex flex-row gap-x-2 cursor-pointer px-4 py-1.5 2xl:py-2 border-[1px] items-center rounded-[50px] ${
+                  className={`flex flex-row gap-x-2 cursor-pointer px-4 py-1.5  border-[1px] items-center rounded-[50px] ${
                     item.id === activeSection
-                      ? "border-white"
+                      ? "border-gray-400"
                       : "border-transparent"
                   }`}
                 >
@@ -132,9 +132,9 @@ const Navbar = () => {
           </div>
 
           {/* Right */}
-          <div className="flex gap-4 2xl:gap-4.5 items-center">
+          <div className="flex gap-3 md:gap-4 2xl:gap-4.5 items-center">
             {/* Language */}
-            <div className="hidden xl:block">
+            <div>
               <ReactFlagsSelect
                 selected={selectedCountry}
                 onSelect={countryCode => {
@@ -168,117 +168,119 @@ const Navbar = () => {
                 selectedSize={16}
                 optionsSize={14}
                 className="inline-block"
-                selectButtonClassName="p-2 border bg-[#0F1E3A] text-white !border-gray-700"
+                selectButtonClassName="mt-1 !px-1 !py-[2px] md:!py-1.5 md:!px-2.5 border bg-[#0F1E3A] text-white !border-gray-700"
               />
             </div>
 
-            {user ? (
-              <div
-                onClick={e => {
-                  e.stopPropagation();
-                  setOpenPopup(!openPopup);
-                }}
-                className="relative"
-              >
-                {/* Figure Image */}
-                <figure className="size-10 lg:size-12 bg-primary-blue rounded-full cursor-pointer relative grid place-items-center">
-                  {user?.avatar ? (
-                    <Image
-                      src={`${process.env.NEXT_PUBLIC_SITE_URL}/${user?.avatar}`}
-                      alt="user"
-                      fill
-                      className="size-full rounded-full object-cover"
-                    />
-                  ) : (
-                    <p className="text-lg lg:text-[22px] font-medium text-white rounded-full">
-                      {user?.name.slice(0, 1)}
-                    </p>
-                  )}
-                </figure>
-
-                {/* Account Modal */}
+            <div className="hidden xl:block">
+              {user ? (
                 <div
-                  className={`bg-gray-200 z-50 rounded-xl w-64 lg:w-[270px] absolute right-0 top-full mt-2 shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-4 md:p-5 transition-all duration-300 ${
-                    openPopup
-                      ? "opacity-100 scale-100"
-                      : "opacity-0 scale-95 pointer-events-none"
-                  }`}
+                  onClick={e => {
+                    e.stopPropagation();
+                    setOpenPopup(!openPopup);
+                  }}
+                  className="relative"
                 >
-                  <div className="flex gap-3 md:gap-4 items-center mb-4 lg:mb-5">
-                    <figure className="size-10 lg:size-12 bg-primary-blue rounded-full cursor-pointer relative grid place-items-center">
-                      {user?.avatar ? (
-                        <Image
-                          src={`${process.env.NEXT_PUBLIC_SITE_URL}/${user?.avatar}`}
-                          alt="user"
-                          fill
-                          className="size-full rounded-full object-cover"
-                        />
-                      ) : (
-                        <p className="text-lg lg:text-[22px] font-medium text-white rounded-full">
-                          {user?.name.slice(0, 1)}
-                        </p>
-                      )}
-                    </figure>
-
-                    <div>
-                      <h3 className="font-semibold truncate">{user?.name}</h3>
-                      <p className="text-gray-500 text-sm truncate">
-                        {user?.email}
+                  {/* Figure Image */}
+                  <figure className="size-10 lg:size-11 3xl:size-12 bg-primary-blue rounded-full cursor-pointer relative grid place-items-center">
+                    {user?.avatar ? (
+                      <Image
+                        src={`${process.env.NEXT_PUBLIC_SITE_URL}/${user?.avatar}`}
+                        alt="user"
+                        fill
+                        className="size-full rounded-full object-cover"
+                      />
+                    ) : (
+                      <p className="text-lg lg:text-[22px] font-medium text-white rounded-full">
+                        {user?.name.slice(0, 1)}
                       </p>
+                    )}
+                  </figure>
+
+                  {/* Account Modal */}
+                  <div
+                    className={`bg-gray-200 z-50 rounded-xl w-64 lg:w-[260px] 3xl:w-[270px] absolute right-0 top-full mt-2 shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-4 3xl:p-5 transition-all duration-300 overflow-hidden ${
+                      openPopup
+                        ? "opacity-100 scale-100"
+                        : "opacity-0 scale-95 pointer-events-none"
+                    }`}
+                  >
+                    <div className="flex gap-3 md:gap-4 items-center mb-4 lg:mb-5">
+                      <figure className="size-10 lg:size-12 bg-primary-blue rounded-full cursor-pointer relative grid place-items-center shrink-0">
+                        {user?.avatar ? (
+                          <Image
+                            src={`${process.env.NEXT_PUBLIC_SITE_URL}/${user?.avatar}`}
+                            alt="user"
+                            fill
+                            className="size-full rounded-full object-cover"
+                          />
+                        ) : (
+                          <p className="text-lg lg:text-[22px] font-medium text-white rounded-full">
+                            {user?.name.slice(0, 1)}
+                          </p>
+                        )}
+                      </figure>
+
+                      <div>
+                        <h3 className="font-semibold truncate">{user?.name}</h3>
+                        <p className="text-gray-500 text-sm w-44 truncate">
+                          {user?.email}
+                        </p>
+                      </div>
+                    </div>
+
+                    <hr className="text-gray-300" />
+
+                    <div className="mt-4 font-medium flex gap-2.5 lg:gap-3.5 3xl:gap-4 flex-col text-gray-700 text-sm lg:text-[15px]">
+                      <button
+                        onClick={() => router.push("/dashboard")}
+                        className="w-fit flex gap-2 items-center cursor-pointer hover:text-primary-blue duration-200"
+                      >
+                        <FaUser />
+                        Dashboard
+                      </button>
+
+                      <button
+                        onClick={() => router.push("/dashboard/accounts")}
+                        className="w-fit flex gap-2 items-center cursor-pointer hover:text-primary-blue duration-200"
+                      >
+                        <IoSettingsOutline />
+                        Settings
+                      </button>
+
+                      <button
+                        disabled={isPending}
+                        onClick={() => logoutMutation()}
+                        className={`text-left text-red-500 w-fit flex gap-2 items-center ${
+                          isPending ? "!cursor-not-allowed" : "cursor-pointer"
+                        }`}
+                      >
+                        {isPending ? (
+                          <div className="flex gap-2 items-center">
+                            <CgSpinnerTwo className="animate-spin text-xl" />
+                            <span>Signing out...</span>
+                          </div>
+                        ) : (
+                          <p className="flex gap-1 items-center">
+                            <MdLogout />
+                            Sign Out
+                          </p>
+                        )}
+                      </button>
                     </div>
                   </div>
-
-                  <hr className="text-gray-300" />
-
-                  <div className="mt-4 font-medium flex gap-2.5 lg:gap-4 flex-col text-gray-700 text-sm lg:text-[15px]">
-                    <button
-                      onClick={() => router.push("/dashboard")}
-                      className="w-fit flex gap-2 items-center cursor-pointer hover:text-primary-blue duration-200"
-                    >
-                      <FaUser />
-                      Dashboard
-                    </button>
-
-                    <button
-                      onClick={() => router.push("/dashboard/accounts")}
-                      className="w-fit flex gap-2 items-center cursor-pointer hover:text-primary-blue duration-200"
-                    >
-                      <IoSettingsOutline />
-                      Settings
-                    </button>
-
-                    <button
-                      disabled={isPending}
-                      onClick={() => logoutMutation()}
-                      className={`text-left text-red-500 w-fit flex gap-2 items-center ${
-                        isPending ? "!cursor-not-allowed" : "cursor-pointer"
-                      }`}
-                    >
-                      {isPending ? (
-                        <div className="flex gap-2 items-center">
-                          <CgSpinnerTwo className="animate-spin text-xl" />
-                          <span>Signing out...</span>
-                        </div>
-                      ) : (
-                        <p className="flex gap-1 items-center">
-                          <MdLogout />
-                          Sign Out
-                        </p>
-                      )}
-                    </button>
-                  </div>
                 </div>
-              </div>
-            ) : (
-              <button
-                onClick={() => {
-                  router.push("/auth/home");
-                }}
-                className="hidden xl:block primary-btn !py-2.5 2xl:!py-3 3xl:!py-3.5 !text-lg"
-              >
-                Log In
-              </button>
-            )}
+              ) : (
+                <button
+                  onClick={() => {
+                    router.push("/auth/home");
+                  }}
+                  className="hidden xl:block primary-btn !py-2.5 !text-lg"
+                >
+                  Log In
+                </button>
+              )}
+            </div>
 
             <button
               onClick={() => setOpen(!open)}
@@ -347,53 +349,58 @@ const Navbar = () => {
               </p>
             </Link>
           ))}
-          {/* Language */}
-          <ReactFlagsSelect
-            selected={selectedCountry}
-            onSelect={countryCode => {
-              const languageMap: Record<string, string> = {
-                US: "en",
-                GB: "en",
-                FR: "fr",
-                DE: "de",
-                IT: "it",
-                BD: "bn",
-                IN: "hi",
-              };
 
-              const langCode = languageMap[countryCode] || "en";
-              changeLanguage(langCode);
-              setSelectedCountry(countryCode);
-            }}
-            countries={["US", "GB", "FR", "DE", "IT", "BD", "IN"]}
-            customLabels={{
-              US: "English",
-              GB: "English (UK)",
-              FR: "Français",
-              DE: "Deutsch",
-              IT: "Italiano",
-              BD: "বাংলা",
-              IN: "हिन्दी",
-            }}
-            placeholder="Select Language"
-            searchable
-            searchPlaceholder="Search..."
-            selectedSize={16}
-            optionsSize={14}
-            className="!w-full !block"
-            selectButtonClassName="p-2 border bg-[#0F1E3A] text-white !border-gray-700 "
-          />
+          <hr className="text-gray-200 my-3" />
+
+          {user ? (
+            <div className="space-y-4">
+              <button
+                onClick={() => router.push("/dashboard")}
+                className="w-fit flex gap-2 items-center cursor-pointer text-gray-100"
+              >
+                <FaUser />
+                Dashboard
+              </button>
+
+              <button
+                onClick={() => router.push("/dashboard/accounts")}
+                className="w-fit flex gap-2 items-center cursor-pointer text-gray-100"
+              >
+                <IoSettingsOutline />
+                Settings
+              </button>
+
+              <button
+                disabled={isPending}
+                onClick={() => logoutMutation()}
+                className={`text-left text-red-500 font-medium w-fit flex gap-2 items-center ${
+                  isPending ? "!cursor-not-allowed" : "cursor-pointer"
+                }`}
+              >
+                {isPending ? (
+                  <div className="flex gap-2 items-center">
+                    <CgSpinnerTwo className="animate-spin text-xl" />
+                    <span>Signing out...</span>
+                  </div>
+                ) : (
+                  <p className="flex gap-1 items-center">
+                    <MdLogout />
+                    Sign Out
+                  </p>
+                )}
+              </button>
+            </div>
+          ) : (
+            <button
+              onClick={() => {
+                router.push("/auth/home");
+              }}
+              className="primary-btn !py-2.5 block w-full"
+            >
+              Log In
+            </button>
+          )}
         </div>
-
-        {/* login btn */}
-        <button
-          onClick={() => {
-            router.push("/auth/home");
-          }}
-          className="primary-btn mt-5 !py-2.5 block w-full"
-        >
-          Log In
-        </button>
 
         {/* Cancel btn */}
         <button

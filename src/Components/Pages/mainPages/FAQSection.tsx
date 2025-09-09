@@ -27,7 +27,7 @@ const FAQSection = ({ data }: FAQSectionProps) => {
   return (
     <section id="pricing">
       <Container>
-        <div className="flex flex-col 2xl:items-center gap-y-5 2xl:gap-y-10">
+        <div className="flex flex-col 2xl:items-center gap-y-4 lg:gap-y-5 2xl:gap-y-10">
           {/* Title */}
           <Heading
             className="text-2xl md:text-4xl xl:text-5xl 3xl:text-[64px] text-center font-[600] leading-[164%] capitalize text-primary-blue "
@@ -35,16 +35,16 @@ const FAQSection = ({ data }: FAQSectionProps) => {
           />
 
           {/* Map */}
-          <div className="w-full flex flex-col gap-y-4 md:gap-y-5">
+          <div className="w-full flex flex-col gap-y-4 xl:gap-y-5">
             {data?.map(({ id, question, answer }) => (
               <div
                 key={id}
-                className="bg-white flex flex-col gap-y-4 rounded-xl md:rounded-2xl p-4 md:p-7 cursor-pointer ease-in-out duration-300 hover:shadow"
+                className="bg-white flex flex-col gap-y-4 rounded-xl md:rounded-2xl p-4 lg:p-5 xl:p-7 cursor-pointer ease-in-out duration-300 hover:shadow"
                 onClick={() => toggle(id)}
               >
                 <div className="flex gap-1.5 justify-between items-center">
                   <Heading
-                    className="font-semibold text-dark-blue md:text-lg lg:text-xl 2xl:text-2xl"
+                    className="font-semibold text-dark-blue md:text-lg 2xl:text-xl 3xl:text-2xl"
                     Txt={question}
                   />
                   <span className="shrink-0">
@@ -59,7 +59,7 @@ const FAQSection = ({ data }: FAQSectionProps) => {
                       : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className="text-sm md:text-base lg:text-lg 2xl:text-xl text-primary-gray font-normal leading-[164%]">
+                  <p className="text-sm md:text-base 2xl:text-lg 3xl:text-xl text-primary-gray font-normal leading-[164%]">
                     {answer}
                   </p>
                 </div>

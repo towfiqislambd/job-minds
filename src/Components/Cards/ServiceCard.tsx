@@ -20,7 +20,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   bgImg,
 }) => {
   return (
-    <div className="flex flex-col-reverse lg:flex-row items-center gap-5 2xl:gap-10 p-5 md:p-6 xl:p-12 rounded-2xl xl:rounded-[40px] bg-white">
+    <div className="flex flex-col-reverse lg:flex-row items-center gap-5 2xl:gap-10 p-4 md:p-6 xl:p-12 rounded-2xl xl:rounded-[40px] bg-white">
       {/* Left */}
       <div className="lg:flex-1 flex flex-col gap-y-3 lg:gap-y-5 xl:gap-y-8 max-w-[633px]">
         <Heading
@@ -29,7 +29,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
         />
 
         <Paragraph
-          className="xl:text-xl 3xl:text-2xl font-normal leading-[164%] text-light-gray "
+          className="text-sm lg:text-base xl:text-xl 3xl:text-2xl font-normal leading-[164%] text-light-gray "
           Txt={description}
         />
 

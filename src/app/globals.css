@@ -45,11 +45,11 @@ html {
 
 /* Custom CSS */
 .primary-btn {
-  @apply px-5 lg:px-8 py-1.5 lg:py-2.5 capitalize rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] leading-[164%] text-white text-sm md:text-base;
+  @apply px-5 lg:px-8 py-1.5 lg:py-2.5 capitalize rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] leading-[164%] text-white text-sm md:text-base hover:scale-105 duration-300 transition-transform;
 }
 
 .secondary-btn {
-  @apply px-5 lg:px-8 py-1.5 lg:py-2.5 rounded-[50px] font-medium bg-transparent text-primary-blue border border-primary-blue cursor-pointer text-sm md:text-base;
+  @apply px-5 lg:px-8 py-1.5 lg:py-2.5 rounded-[50px] font-medium bg-transparent text-primary-blue border border-primary-blue cursor-pointer text-sm md:text-base hover:bg-primary-blue hover:text-white duration-300 transition-all;
 }
 
 .auth-btn {

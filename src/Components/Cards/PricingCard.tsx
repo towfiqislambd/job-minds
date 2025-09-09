@@ -86,7 +86,7 @@ const PricingCard: React.FC<PricingCardProps> = ({
                 </div>
                 <Paragraph
                   Txt={item?.feature_name}
-                  className="text-sm md:text-base lg:text-lg font-normal leading-[164%] text-dark-blue max-w-[337px]"
+                  className="text-sm md:text-base 3xl:text-lg font-normal leading-[164%] text-dark-blue max-w-[337px]"
                 />
               </div>
             );
