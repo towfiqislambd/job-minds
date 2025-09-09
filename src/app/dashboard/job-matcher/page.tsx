@@ -85,7 +85,7 @@ const page = () => {
           <div>
             <label
               htmlFor="file"
-              className="border block w-full hover:bg-gray-100 duration-200 transition-all rounded-lg border-gray-100 text-center cursor-pointer py-10 bg-gray-50"
+              className="border block w-full hover:bg-gray-100 duration-200 transition-all rounded-lg border-gray-100 text-center cursor-pointer py-7 lg:py-10 bg-gray-50"
             >
               <div className="flex flex-col gap-3 justify-center items-center">
                 <DownloadSvg />

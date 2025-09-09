@@ -74,7 +74,7 @@ const page = () => {
     <div className="dashboard_card">
       <h3 className="section_sub_title">Mock Interview Session</h3>
 
-      <div className="mt-5 border border-[#EAEAEA] rounded-[8px] h-[calc(100vh-250px)] flex flex-col justify-between">
+      <div className="mt-5 border border-[#EAEAEA] rounded-[8px] h-[calc(100vh-180px)] lg:h-[calc(100vh-220px)] 2xl:h-[calc(100vh-250px)] flex flex-col justify-between">
         {/* Upper Part */}
         <div className="border-b border-[#EAEAEA] sticky top-0 z-30 bg-white py-3.5 px-4 flex gap-3 lg:gap-5 items-center rounded-t-[8px]">
           <figure className="bg-[#C6DFF6] size-14 rounded-full flex justify-center items-center">
@@ -92,30 +92,32 @@ const page = () => {
           className="my-4 px-3 md:px-4 2xl:px-7 grow overflow-y-auto"
         >
           {isLoading ? (
-            Array.from({ length: 9 }).map((_, idx) => (
-              <div
-                key={idx}
-                className={`flex ${
-                  idx % 2 === 0 ? "justify-end" : "justify-start"
-                }`}
-              >
+            <div className="space-y-5">
+              {Array.from({ length: 9 }).map((_, idx) => (
                 <div
-                  className={`flex gap-5 animate-pulse ${
-                    idx % 2 === 0 ? "flex-row-reverse" : "flex-row"
+                  key={idx}
+                  className={`flex ${
+                    idx % 2 === 0 ? "justify-end" : "justify-start"
                   }`}
                 >
-                  <div className="size-12 rounded-full bg-gray-200 shrink-0" />
-                  <div className="flex flex-col gap-2">
-                    <div
-                      className={`h-4 w-32 bg-gray-200 rounded-md ${
-                        idx % 2 === 0 ? "self-end" : "self-start"
-                      }`}
-                    />
-                    <div className="h-4 w-48 bg-gray-200 rounded-md" />
+                  <div
+                    className={`flex gap-5 animate-pulse ${
+                      idx % 2 === 0 ? "flex-row-reverse" : "flex-row"
+                    }`}
+                  >
+                    <div className="size-10 lg:size-12 rounded-full bg-gray-200 shrink-0" />
+                    <div className="flex flex-col gap-2">
+                      <div
+                        className={`h-2.5 lg:h-4 w-24 lg:w-32 bg-gray-200 rounded-md ${
+                          idx % 2 === 0 ? "self-end" : "self-start"
+                        }`}
+                      />
+                      <div className="h-3 lg:h-4 w-36 lg:w-48 bg-gray-200 rounded-md" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
+              ))}
+            </div>
           ) : (
             <div className="space-y-5 flex flex-col h-full">
               {chats?.length === 0 ? (
@@ -142,7 +144,7 @@ const page = () => {
                       <figure
                         className={`${
                           sender === "user" ? "bg-gray-200" : "bg-[#C6DFF6]"
-                        } size-10 2xl:size-11 3xl:size-12 rounded-full flex justify-center items-center shrink-0 relative`}
+                        } size-9 lg:size-10 2xl:size-11 3xl:size-12 rounded-full flex justify-center items-center shrink-0 relative`}
                       >
                         {sender === "user" ? (
                           user?.avatar ? (

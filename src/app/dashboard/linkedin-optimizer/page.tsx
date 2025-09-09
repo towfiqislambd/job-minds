@@ -119,7 +119,7 @@ const Page = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <textarea
               placeholder="Paste Your Current LinkedIn Profile Content"
-              className="resume_input h-[430px] bg-gray-50 !leading-[164%] !text-sm !text-gray-700"
+              className="resume_input h-[200px] lg:h-[430px] bg-gray-50 !leading-[164%] !text-sm !text-gray-700"
               id="profile_summary"
               {...register("profile_summary", {
                 required: "You must provide your profile information here",
@@ -134,7 +134,7 @@ const Page = () => {
             <button
               type="submit"
               disabled={isPending}
-              className={`primary-btn mt-5 ${
+              className={`primary-btn mt-3 lg:mt-5 ${
                 isPending && "!cursor-not-allowed"
               }`}
             >
@@ -152,38 +152,39 @@ const Page = () => {
 
         {/* Right - Output */}
         <div className="dashboard_card">
-          <div className="flex justify-between">
-            <h5 className="section_sub_title !mb-3.5 3xl:!mb-5">
-              AI-Enhanced Profile
-            </h5>
+          <div className="flex justify-between !mb-3.5 3xl:!mb-5">
+            <h5 className="section_sub_title">AI-Enhanced Profile</h5>
 
             {/* Copy to clipboard */}
             <button
-              className="size-9 border border-gray-300 rounded-full grid place-items-center cursor-pointer"
+              className="size-8 lg:size-9 border border-gray-300 rounded-full grid place-items-center cursor-pointer"
               onClick={handleCopyToClipboard}
             >
-              <MdContentCopy className="text text-gray-500" />
+              <MdContentCopy className="text-gray-500" />
             </button>
           </div>
 
           <div>
-            <div className="h-[430px] rounded-lg bg-gray-50 overflow-y-auto p-5 leading-[164%] text-sm text-gray-700 relative">
+            <div className="h-[330px] lg:h-[430px] rounded-lg bg-gray-50 overflow-y-auto p-3 lg:p-5 leading-[164%] text-sm text-gray-700 relative">
               {isPending ? (
-                <div className="w-full h-full bg-[#F8FAFB] space-y-6 animate-pulse">
+                <div className="w-full h-full bg-[#F8FAFB] space-y-3 lg:space-y-6 animate-pulse">
                   <div className="h-4 w-40 bg-gray-200 rounded" />
                   <div className="h-4 w-60 bg-gray-200 rounded" />
                   <div className="h-14 w-1/3 bg-gray-200 rounded" />
-                  <div className="h-14 w-2/3 bg-gray-200 rounded" />
-                  <div className="h-14 w-full bg-gray-200 rounded" />
-                  <div className="h-4 w-28 bg-gray-200 rounded" />
+                  <div className="h-12 lg:h-14 w-2/3 bg-gray-200 rounded" />
+                  <div className="h-12 lg:h-14 w-full bg-gray-200 rounded" />
+                  <div className="hidden lg:block h-4 w-28 bg-gray-200 rounded" />
                   <div className="h-4 w-36 bg-gray-200 rounded" />
                 </div>
               ) : optimizedData ? (
-                <div dangerouslySetInnerHTML={{ __html: optimizedData }} />
+                <div
+                  dangerouslySetInnerHTML={{ __html: optimizedData }}
+                  className="text-sm lg:text-base text-gray-700 leading-[170%]"
+                />
               ) : (
-                <div className="w-full outline-none h-full p-6 bg-[#F8FAFB] flex justify-center items-center flex-col gap-3">
-                  <IoDocumentTextOutline className="text-6xl text-gray-500" />
-                  <p className="text-gray-500 font-medium">
+                <div className="w-full outline-none h-full p-3 lg:p-6 bg-[#F8FAFB] flex justify-center items-center flex-col gap-3">
+                  <IoDocumentTextOutline className="text-5xl lg:text-6xl text-gray-500" />
+                  <p className="text-gray-500 font-medium text-center text-sm lg:text-base">
                     Generate AI Enhanced Content
                   </p>
                 </div>

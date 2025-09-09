@@ -200,6 +200,43 @@ export default function DashboardLayout({
 
           {/* Right */}
           <div className="flex gap-3 items-center">
+            {/* Language Modal */}
+            <ReactFlagsSelect
+              selected={selectedCountry}
+              onSelect={countryCode => {
+                const languageMap: Record<string, string> = {
+                  US: "en",
+                  GB: "en",
+                  FR: "fr",
+                  DE: "de",
+                  IT: "it",
+                  BD: "bn",
+                  IN: "hi",
+                };
+
+                const langCode = languageMap[countryCode] || "en";
+                changeLanguage(langCode);
+                setSelectedCountry(countryCode);
+              }}
+              countries={["US", "GB", "FR", "DE", "IT", "BD", "IN"]}
+              customLabels={{
+                US: "English",
+                GB: "English (UK)",
+                FR: "Français",
+                DE: "Deutsch",
+                IT: "Italiano",
+                BD: "বাংলা",
+                IN: "हिन्दी",
+              }}
+              placeholder="Select Language"
+              searchable
+              searchPlaceholder="Search..."
+              selectedSize={16}
+              optionsSize={14}
+              className="inline-block"
+              selectButtonClassName="!px-1 !py-[2px] md:!py-1.5 md:!px-2.5 !mt-1 !rounded-full !border-transparent lg:!border-gray-200 bg-[#0F1E3A] text-white"
+            />
+
             {/* Notification Modal */}
             <div className="relative">
               {/* btn */}
@@ -258,51 +295,14 @@ export default function DashboardLayout({
                       </div>
                     ))
                   ) : (
-                    <p className="text-center py-7 text-gray-600 flex flex-col gap-5 justify-center items-center">
-                      <RiNotificationOffLine className="text-5xl" />
-                      No Notifications found!!
+                    <p className="text-center py-7 text-gray-600 flex flex-col gap-3 lg:gap-5 justify-center items-center">
+                      <RiNotificationOffLine className="text-4xl lg:text-5xl" />
+                      <span className="text-sm lg:text-base">No Notifications found!!</span>
                     </p>
                   )}
                 </div>
               </div>
             </div>
-
-            {/* Language Modal */}
-            <ReactFlagsSelect
-              selected={selectedCountry}
-              onSelect={countryCode => {
-                const languageMap: Record<string, string> = {
-                  US: "en",
-                  GB: "en",
-                  FR: "fr",
-                  DE: "de",
-                  IT: "it",
-                  BD: "bn",
-                  IN: "hi",
-                };
-
-                const langCode = languageMap[countryCode] || "en";
-                changeLanguage(langCode);
-                setSelectedCountry(countryCode);
-              }}
-              countries={["US", "GB", "FR", "DE", "IT", "BD", "IN"]}
-              customLabels={{
-                US: "English",
-                GB: "English (UK)",
-                FR: "Français",
-                DE: "Deutsch",
-                IT: "Italiano",
-                BD: "বাংলা",
-                IN: "हिन्दी",
-              }}
-              placeholder="Select Language"
-              searchable
-              searchPlaceholder="Search..."
-              selectedSize={16}
-              optionsSize={14}
-              className="inline-block"
-              selectButtonClassName="p-2 !mt-1 !rounded-full !border-gray-200 bg-[#0F1E3A] text-white"
-            />
 
             {/* Profile Modal */}
             <div
@@ -311,7 +311,7 @@ export default function DashboardLayout({
                 setOpenPopup(!openPopup);
                 setNotification(false);
               }}
-              className="relative"
+              className="relative hidden lg:block"
             >
               {/* Figure Image */}
               <figure className="size-10 2xl:size-11 bg-primary-blue rounded-full cursor-pointer relative grid place-items-center">
@@ -364,14 +364,6 @@ export default function DashboardLayout({
                 <hr className="text-gray-300" />
 
                 <div className="mt-4 font-medium flex gap-2.5 lg:gap-3.5 3xl:gap-4 flex-col text-gray-700 text-sm lg:text-[15px]">
-                  <button
-                    onClick={() => router.push("/dashboard")}
-                    className="w-fit flex gap-2 items-center cursor-pointer hover:text-primary-blue duration-200"
-                  >
-                    <FaUser />
-                    Dashboard
-                  </button>
-
                   <button
                     onClick={() => router.push("/dashboard/accounts")}
                     className="w-fit flex gap-2 items-center cursor-pointer hover:text-primary-blue duration-200"
@@ -468,6 +460,25 @@ export default function DashboardLayout({
                   </div>
                 );
               })}
+              <button
+                disabled={isPending}
+                onClick={() => logoutMutation()}
+                className={`flex text-[15px] 2xl:text-base px-4 3xl:px-5 gap-2.5 3xl:gap-4 items-center font-medium text-red-500 ${
+                  isPending ? "!cursor-not-allowed" : "cursor-pointer"
+                }`}
+              >
+                {isPending ? (
+                  <div className="flex gap-2 items-center">
+                    <CgSpinnerTwo className="animate-spin text-xl" />
+                    <span>Signing out...</span>
+                  </div>
+                ) : (
+                  <p className="flex gap-1 items-center">
+                    <MdLogout />
+                    Sign Out
+                  </p>
+                )}
+              </button>
             </ul>
           </aside>
 

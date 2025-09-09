@@ -34,9 +34,9 @@ const ResumeSuggestion = ({
       <div className="space-y-3 lg:space-y-5">
         {data?.map(({ title, suggestions }, idx) => (
           <div key={idx} className="border p-4 rounded-lg border-gray-100">
-            <div className="flex flex-col-reverse md:flex-row justify-between items-start gap-3 md:gap-5">
-              <div>
-                <p className="section_sub_title !text-base lg:!text-lg 3xl:!text-xl">
+            <div className="flex flex-row-reverse md:flex-row justify-between items-start gap-3 md:gap-5">
+              <div className="-mt-1">
+                <p className="section_sub_title !text-sm md:!text-base lg:!text-lg 3xl:!text-xl">
                   {title}
                 </p>
                 <p className="text-light-gray text-sm lg:text-[15px] 3xl:text-base">
@@ -44,7 +44,7 @@ const ResumeSuggestion = ({
                 </p>
               </div>
 
-              <p className=" shrink-0 cursor-pointer grid place-items-center">
+              <p className="shrink-0 cursor-pointer grid place-items-center">
                 <input
                   type="checkbox"
                   className="scale-125"

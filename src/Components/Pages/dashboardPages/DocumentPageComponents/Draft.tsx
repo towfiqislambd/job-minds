@@ -75,7 +75,7 @@ const Draft = () => {
                   <h4 className="text-lg font-poppins font-medium">
                     {index + 1}.
                   </h4>
-                  <h3 className="text-base lg:text-[17px] font-poppins text-[#071431] font-medium 2xl:font-semibold capitalize">
+                  <h3 className="text-base xl:text-[17px] font-poppins text-[#071431] font-medium 2xl:font-semibold capitalize">
                     {item?.job_title}
                   </h3>
                 </div>
@@ -97,7 +97,7 @@ const Draft = () => {
                     transition={{ duration: 0.4, ease: "easeInOut" }}
                     className="overflow-hidden"
                   >
-                    <h3 className="mt-5 text-sm lg:text-base font-poppins text-gray-700 font-medium">
+                    <h3 className="mt-5 text-sm xl:text-base font-poppins text-gray-700 font-medium">
                       Question: {item?.question}
                     </h3>
 

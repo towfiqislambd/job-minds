@@ -22,7 +22,7 @@ const CoverLetterSuggestion = ({ data }: any) => {
         Suggested Cover Letter
       </h4>
 
-      <div className="w-full outline-none p-5 3xl:p-6 bg-[#F8FAFB] overflow-y-auto text-gray-800 text-[15px] leading-[170%] relative rounded-lg max-h-[500px]">
+      <div className="w-full outline-none p-3 lg:p-5 3xl:p-6 bg-[#F8FAFB] overflow-y-auto text-gray-700 text-sm lg:text-[15px] leading-[170%] relative rounded-lg max-h-[400px] lg:max-h-[500px]">
         <div
           dangerouslySetInnerHTML={{
             __html: data?.replace(/\n/g, "<br />"),
@@ -31,7 +31,7 @@ const CoverLetterSuggestion = ({ data }: any) => {
 
         {/* Copy to clipboard */}
         <button
-          className="absolute top-5 right-5 size-9 border border-gray-300 rounded-full grid place-items-center cursor-pointer"
+          className="absolute top-3 lg:top-5 right-3 lg:right-5 size-8 lg:size-9 border border-gray-300 rounded-full grid place-items-center cursor-pointer"
           onClick={handleCopyToClipboard}
         >
           <MdContentCopy className="text-gray-500" />

@@ -157,7 +157,7 @@ const Page = () => {
                       onClick={() => toggleAccordion(index)}
                     >
                       <div className="flex gap-x-3">
-                        <h4 className="lg:text-lg 2xl:text-[20px] font-poppins font-normal text-[#696969]">
+                        <h4 className="hidden lg:block lg:text-lg 2xl:text-[20px] font-poppins font-normal text-[#696969]">
                           Q{index + 1}
                         </h4>
                         <h3 className="text-sm lg:text-base 2xl:text-lg font-poppins text-[#071431] font-medium 2xl:font-semibold">

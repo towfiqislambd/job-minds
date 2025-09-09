@@ -39,7 +39,10 @@ const StepFive = ({ step, setStep, template }: any) => {
 
       <div className="flex flex-col md:flex-row md:justify-between items-center gap-3 md:gap-0 dashboard_card">
         {/* Back btn */}
-        <button onClick={() => setStep(step - 1)} className="secondary-btn">
+        <button
+          onClick={() => setStep(step - 1)}
+          className="secondary-btn hidden lg:block"
+        >
           Back
         </button>
 

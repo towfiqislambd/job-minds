@@ -21,7 +21,7 @@ const RecentActivity = () => {
       <h4 className="section_sub_title">Recent Activity</h4>
 
       {/* Map */}
-      <div className="mt-3 xl:mt-5 2xl:mt-7 space-y-3 lg:space-y-5">
+      <div className="mt-3 xl:mt-5 2xl:mt-7 space-y-3 lg:space-y-4 xl:space-y-5">
         {isLoading ? (
           Array.from({ length: 4 }).map((_, idx) => (
             <div
@@ -47,7 +47,7 @@ const RecentActivity = () => {
             ({ id, title, type, created_at }: activityItem) => (
               <div
                 key={id}
-                className="border border-gray-200 rounded-lg p-3 lg:px-5 lg:py-4 flex flex-col md:flex-row md: md:justify-between md:items-center gap-3 md:gap-0 "
+                className="border border-gray-200 rounded-lg p-3 xl:px-5 xl:py-4 flex flex-col md:flex-row md: md:justify-between md:items-center gap-3 md:gap-0 "
               >
                 {/* Left */}
                 <div className="flex gap-4 items-center">

@@ -248,7 +248,7 @@ const AllDocuments = () => {
               setDocType("");
               setStatus("");
             }}
-            className="px-4 py-2.5 rounded-full duration-500 transition-all hover:bg-black hover:text-white border hover:border-transparent border-gray-300 cursor-pointer text-gray-500 flex gap-2 items-center"
+            className="flex gap-2 items-center cursor-pointer px-4 py-1.5 lg:py-2 xl:py-2.5 rounded-full border-gray-200 relative duration-500 transition-all hover:bg-black hover:text-white border hover:border-transparent text-light-gray"
           >
             <GrPowerReset />
             <span>Reset</span>
