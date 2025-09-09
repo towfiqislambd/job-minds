@@ -20,7 +20,7 @@ const EditProfile = () => {
       {/* Premium Access */}
       <div className="dashboard_card">
         {/* Info */}
-        <figure className="relative size-28 mx-auto border border-gray-50 rounded-full text-center bg-gray-200 grid place-items-center">
+        <figure className="relative size-24 lg:size-28 mx-auto border border-gray-50 rounded-full text-center bg-gray-200 grid place-items-center">
           {user?.avatar ? (
             <Image
               src={`${process.env.NEXT_PUBLIC_SITE_URL}/${user?.avatar}`}

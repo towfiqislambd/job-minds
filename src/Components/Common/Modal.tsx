@@ -24,7 +24,7 @@ const Modal = ({ open, onClose, children, className }: ModalProps) => {
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/50 backdrop-blur-[1px]">
       <div className="absolute inset-0" onClick={onClose}></div>
       <div
-        className={`relative z-10 w-full max-w-[550px] max-h-[calc(100vh-50px)] overflow-y-auto py-10 px-5 bg-white rounded-lg shadow-lg ${className}`}
+        className={`relative z-10 w-[calc(100vw-30px)] max-w-[550px] max-h-[calc(100vh-50px)] overflow-y-auto py-10 px-4 lg:px-5 bg-white rounded-lg shadow-lg ${className}`}
       >
         {/* Modal Content */}
         {children}

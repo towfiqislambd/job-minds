@@ -64,16 +64,16 @@ const ChangePassword = () => {
             </p>
           )}
           <button
-            className="absolute top-1.5 md:top-3 right-2 md:right-3 cursor-pointer"
+            className="absolute top-2.5 md:top-3 right-2 md:right-3 cursor-pointer"
             onClick={e => {
               e.preventDefault();
               setShowCurrentPassword(!showCurrentPassword);
             }}
           >
             {showCurrentPassword ? (
-              <LuEye className="text-2xl text-gray-500" />
+              <LuEye className="text-lg lg:text-2xl text-gray-500" />
             ) : (
-              <FaRegEyeSlash className="text-2xl text-gray-500" />
+              <FaRegEyeSlash className="text-lg lg:text-2xl text-gray-500" />
             )}
           </button>
         </div>
@@ -95,16 +95,16 @@ const ChangePassword = () => {
               </p>
             )}
             <button
-              className="absolute top-1.5 md:top-3 right-2 md:right-3 cursor-pointer"
+              className="absolute top-2.5 md:top-3 right-2 md:right-3 cursor-pointer"
               onClick={e => {
                 e.preventDefault();
                 setShowNewPassword(!showNewPassword);
               }}
             >
               {showNewPassword ? (
-                <LuEye className="text-2xl text-gray-500" />
+                <LuEye className="text-lg lg:text-2xl text-gray-500" />
               ) : (
-                <FaRegEyeSlash className="text-2xl text-gray-500" />
+                <FaRegEyeSlash className="text-lg lg:text-2xl text-gray-500" />
               )}
             </button>
           </div>
@@ -127,16 +127,16 @@ const ChangePassword = () => {
               </p>
             )}
             <button
-              className="absolute top-1.5 md:top-3 right-2 md:right-3 cursor-pointer"
+              className="absolute top-2.5 md:top-3 right-2 md:right-3 cursor-pointer"
               onClick={e => {
                 e.preventDefault();
                 setShowConfirmPassword(!showConfirmPassword);
               }}
             >
               {showConfirmPassword ? (
-                <LuEye className="text-2xl text-gray-500" />
+                <LuEye className="text-lg lg:text-2xl text-gray-500" />
               ) : (
-                <FaRegEyeSlash className="text-2xl text-gray-500" />
+                <FaRegEyeSlash className="text-lg lg:text-2xl text-gray-500" />
               )}
             </button>
           </div>
