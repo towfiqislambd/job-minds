@@ -132,7 +132,7 @@ const Navbar = () => {
           </div>
 
           {/* Right */}
-          <div className="flex gap-4 2xl:gap-4.5 items-center ">
+          <div className="flex gap-4 2xl:gap-4.5 items-center">
             {/* Language */}
             <div className="hidden xl:block">
               <ReactFlagsSelect
@@ -233,18 +233,20 @@ const Navbar = () => {
                   <div className="mt-4 font-medium flex gap-2.5 lg:gap-4 flex-col text-gray-700 text-sm lg:text-[15px]">
                     <button
                       onClick={() => router.push("/dashboard")}
-                      className="w-fit flex gap-2 items-center cursor-pointer"
+                      className="w-fit flex gap-2 items-center cursor-pointer hover:text-primary-blue duration-200"
                     >
-                      <FaUser className="text-gray-700" />
+                      <FaUser />
                       Dashboard
                     </button>
+
                     <button
                       onClick={() => router.push("/dashboard/accounts")}
-                      className="w-fit flex gap-2 items-center cursor-pointer"
+                      className="w-fit flex gap-2 items-center cursor-pointer hover:text-primary-blue duration-200"
                     >
-                      <IoSettingsOutline className="text-gray-700" />
+                      <IoSettingsOutline />
                       Settings
                     </button>
+
                     <button
                       disabled={isPending}
                       onClick={() => logoutMutation()}

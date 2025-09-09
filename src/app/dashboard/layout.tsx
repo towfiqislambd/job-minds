@@ -1,6 +1,5 @@
 "use client";
 import {
-  AlertSvg,
   DashboardLogo,
   DFive,
   DFour,
@@ -12,16 +11,23 @@ import {
   NotificationSvg,
   SearchSvg,
 } from "@/Components/SvgContainer/SvgContainer";
-import useAuth from "@/Hooks/useAuth";
+import { RiNotificationOffLine } from "react-icons/ri";
 import PrivateLayout from "@/Private/PrivateLayout";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { FaBars } from "react-icons/fa6";
+import { FaBars, FaUser } from "react-icons/fa6";
 import ReactFlagsSelect from "react-flags-select";
 import { useTranslation } from "@/Provider/TranslationProvider/TranslationContext";
 import { RxCross2 } from "react-icons/rx";
-import { MdOutlineNotificationsActive } from "react-icons/md";
+import { MdLogout, MdOutlineNotificationsActive } from "react-icons/md";
+import { CgSpinnerTwo } from "react-icons/cg";
+import { useLogout } from "@/Hooks/api/auth_api";
+import Image from "next/image";
+import useAuth from "@/Hooks/useAuth";
+import { IoSettingsOutline } from "react-icons/io5";
+import { useAllNotifications } from "@/Hooks/api/dashboard_api";
+import moment from "moment";
 
 const navLinks = [
   {
@@ -136,17 +142,21 @@ export default function DashboardLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const { user } = useAuth();
   const { changeLanguage } = useTranslation();
   const [selectedCountry, setSelectedCountry] = useState("US");
-  const { setSearch } = useAuth();
   const pathname = usePathname();
   const router = useRouter();
   const [open, setOpen] = useState<boolean>(false);
   const [notification, setNotification] = useState<boolean>(false);
+  const { mutate: logoutMutation, isPending } = useLogout();
+  const [openPopup, setOpenPopup] = useState(false);
+  const { data: allNotifications, isLoading } = useAllNotifications();
 
   useEffect(() => {
     const handleWindowClick = () => {
       setNotification(false);
+      setOpenPopup(false);
     };
 
     window.addEventListener("click", handleWindowClick);
@@ -189,14 +199,15 @@ export default function DashboardLayout({
           </div>
 
           {/* Right */}
-          <div className="flex gap-3 md:gap-4 items-center">
-            {/* Notification */}
+          <div className="flex gap-3 items-center">
+            {/* Notification Modal */}
             <div className="relative">
               {/* btn */}
               <button
                 onClick={e => {
                   e.stopPropagation();
                   setNotification(!notification);
+                  setOpenPopup(false);
                 }}
                 className="w-9 md:w-10 h-9 md:h-10 rounded-full grid place-items-center cursor-pointer border border-[#ECEEF0]"
               >
@@ -207,8 +218,10 @@ export default function DashboardLayout({
               <div
                 onClick={e => e.stopPropagation()}
                 className={`${
-                  notification ? "block" : "hidden"
-                } absolute bg-slate-50 top-16 right-0 max-h-[420px] w-[280px] md:w-[320px] rounded-lg shadow-2xl overflow-y-scroll notification_scrollbar z-[999]`}
+                  notification
+                    ? "opacity-100 scale-100"
+                    : "opacity-0 scale-95 pointer-events-none"
+                } absolute bg-slate-50 top-16 right-0 max-h-[420px] w-[280px] md:w-[320px] rounded-lg shadow-2xl overflow-y-scroll transition-all duration-300 notification_scrollbar z-[999]`}
               >
                 <div className="flex justify-between px-4 py-2 sticky top-0 border-b bg-slate-50 border-gray-200">
                   <h3 className="text-xl font-semibold text-headingTextColor">
@@ -223,34 +236,38 @@ export default function DashboardLayout({
                 </div>
 
                 <div className="p-5 space-y-4">
-                  {notificationData?.length > 0 ? (
-                    notificationData?.map(notification => (
+                  {isLoading ? (
+                    "Loading"
+                  ) : allNotifications?.data?.length > 0 ? (
+                    allNotifications?.data?.map((notification: any) => (
                       <div
                         key={notification.id}
-                        className="flex items-center gap-3"
+                        className="flex items-start gap-3"
                       >
-                        <figure className="size-10 rounded-full border border-gray-100 grid place-items-center bg-blue-50">
+                        <figure className="size-10 shrink-0 rounded-full border border-gray-100 grid place-items-center bg-blue-50">
                           <MdOutlineNotificationsActive className="text-xl text-secondary-blue" />
                         </figure>
-                        <div>
-                          <p className="font-medium text-sm">
-                            {notification?.title}
+                        <div className="space-y-1">
+                          <p className="font-medium text-gray-800 text-sm">
+                            {notification?.data?.title}
                           </p>
                           <span className="text-gray-400 text-sm">
-                            {/* {moment(notification?.created_at).fromNow()} */}
-                            {notification?.duration}
+                            {moment(notification?.created_at).fromNow()}
                           </span>
                         </div>
                       </div>
                     ))
                   ) : (
-                    <p className="text-center "></p>
+                    <p className="text-center py-7 text-gray-600 flex flex-col gap-5 justify-center items-center">
+                      <RiNotificationOffLine className="text-5xl" />
+                      No Notifications found!!
+                    </p>
                   )}
                 </div>
               </div>
             </div>
 
-            {/* Language */}
+            {/* Language Modal */}
             <ReactFlagsSelect
               selected={selectedCountry}
               onSelect={countryCode => {
@@ -284,9 +301,109 @@ export default function DashboardLayout({
               selectedSize={16}
               optionsSize={14}
               className="inline-block"
-              selectButtonClassName="p-2 !border-0 bg-[#0F1E3A] text-white"
+              selectButtonClassName="p-2 !rounded-full !border-gray-200 bg-[#0F1E3A] text-white"
             />
 
+            {/* Profile Modal */}
+            <div
+              onClick={e => {
+                e.stopPropagation();
+                setOpenPopup(!openPopup);
+                setNotification(false);
+              }}
+              className="relative"
+            >
+              {/* Figure Image */}
+              <figure className="size-10 lg:size-11 bg-primary-blue rounded-full cursor-pointer relative grid place-items-center">
+                {user?.avatar ? (
+                  <Image
+                    src={`${process.env.NEXT_PUBLIC_SITE_URL}/${user?.avatar}`}
+                    alt="user"
+                    fill
+                    className="size-full rounded-full object-cover"
+                  />
+                ) : (
+                  <p className="text-lg lg:text-[22px] font-medium text-white rounded-full">
+                    {user?.name.slice(0, 1)}
+                  </p>
+                )}
+              </figure>
+
+              {/* Account Modal */}
+              <div
+                className={`bg-gray-200 z-50 rounded-xl w-64 lg:w-[270px] absolute right-0 top-[65px] mt-2 shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-4 md:p-5 transition-all duration-300 ${
+                  openPopup
+                    ? "opacity-100 scale-100"
+                    : "opacity-0 scale-95 pointer-events-none"
+                }`}
+              >
+                <div className="flex gap-3 md:gap-4 items-center mb-4 lg:mb-5">
+                  <figure className="size-10 lg:size-12 bg-primary-blue rounded-full cursor-pointer relative grid place-items-center">
+                    {user?.avatar ? (
+                      <Image
+                        src={`${process.env.NEXT_PUBLIC_SITE_URL}/${user?.avatar}`}
+                        alt="user"
+                        fill
+                        className="size-full rounded-full object-cover"
+                      />
+                    ) : (
+                      <p className="text-lg lg:text-[22px] font-medium text-white rounded-full">
+                        {user?.name.slice(0, 1)}
+                      </p>
+                    )}
+                  </figure>
+
+                  <div>
+                    <h3 className="font-semibold truncate">{user?.name}</h3>
+                    <p className="text-gray-500 text-sm truncate">
+                      {user?.email}
+                    </p>
+                  </div>
+                </div>
+
+                <hr className="text-gray-300" />
+
+                <div className="mt-4 font-medium flex gap-2.5 lg:gap-4 flex-col text-gray-700 text-sm lg:text-[15px]">
+                  <button
+                    onClick={() => router.push("/dashboard")}
+                    className="w-fit flex gap-2 items-center cursor-pointer hover:text-primary-blue duration-200"
+                  >
+                    <FaUser />
+                    Dashboard
+                  </button>
+
+                  <button
+                    onClick={() => router.push("/dashboard/accounts")}
+                    className="w-fit flex gap-2 items-center cursor-pointer hover:text-primary-blue duration-200"
+                  >
+                    <IoSettingsOutline />
+                    Settings
+                  </button>
+
+                  <button
+                    disabled={isPending}
+                    onClick={() => logoutMutation()}
+                    className={`text-left text-red-500 w-fit flex gap-2 items-center ${
+                      isPending ? "!cursor-not-allowed" : "cursor-pointer"
+                    }`}
+                  >
+                    {isPending ? (
+                      <div className="flex gap-2 items-center">
+                        <CgSpinnerTwo className="animate-spin text-xl" />
+                        <span>Signing out...</span>
+                      </div>
+                    ) : (
+                      <p className="flex gap-1 items-center">
+                        <MdLogout />
+                        Sign Out
+                      </p>
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* bar */}
             <button
               onClick={() => setOpen(!open)}
               className="xl:hidden w-9 md:w-10 h-8.5 md:h-9.5 cursor-pointer grid place-items-center rounded text-white bg-secondary-blue"

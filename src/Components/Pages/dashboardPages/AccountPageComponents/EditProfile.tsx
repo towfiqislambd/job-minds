@@ -42,17 +42,21 @@ const EditProfile = () => {
         </p>
 
         {/* Upgrade */}
-        <div className="border py-2 px-3 md:px-4 rounded-xl flex items-center justify-between border-gray-200">
-          <div className="space-y-2">
-            <h4 className="text-center text-secondary-blue text-lg font-semibold leading-[132%] tracking-[-0.319px]">
-              Antonio Renders
-            </h4>
-            <p className="text-dark-blue font-semibold">€9.9/Month</p>
+        {user?.is_subscribed && (
+          <div className="border py-2 px-3 md:px-4 rounded-xl flex items-center justify-between border-gray-200">
+            <div className="space-y-2">
+              <h4 className="text-secondary-blue text-lg font-semibold leading-[132%] tracking-[-0.319px] capitalize">
+                {user?.subscription?.subscription_type}
+              </h4>
+              <p className="text-dark-blue font-semibold capitalize">
+                €{user?.subscription?.price}/{user?.subscription?.type}
+              </p>
+            </div>
+            <button className="px-3 py-1 text-sm rounded-full bg-secondary-blue text-white">
+              Active
+            </button>
           </div>
-          <button className="px-3 py-1 text-sm rounded-full bg-secondary-blue text-white">
-            Upgrade
-          </button>
-        </div>
+        )}
       </div>
 
       {/* Basic Information */}

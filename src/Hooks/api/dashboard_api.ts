@@ -505,3 +505,13 @@ export const useSaveLinkedinOptimizer = () => {
     },
   });
 };
+
+// All Notifications
+export const useAllNotifications = () => {
+  return useApi({
+    method: "get",
+    key: "all-notifications",
+    isPrivate: true,
+    endpoint: "/api/all-notifications",
+  });
+};
