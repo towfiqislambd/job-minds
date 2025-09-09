@@ -71,7 +71,6 @@ const page = () => {
   };
 
   const handleApplyChanges = async () => {
-    console.log(improvement_suggestions);
     if (improvement_suggestions.length === 0) {
       return toast.error("Please select resume suggestions!");
     }
@@ -91,7 +90,7 @@ const page = () => {
         Let AI analyze your job fit and get personalized suggestions
       </p>
 
-      <div className="grid grid-cols-1 2xl:grid-cols-2 gap-5 2xl:gap-6">
+      <div className="grid grid-cols-1 2xl:grid-cols-2 gap-5 3xl:gap-6">
         {/* Detected Job Details */}
         <div className="dashboard_card">
           <h4 className="section_sub_title !mb-5 md:!mb-8">
@@ -105,7 +104,7 @@ const page = () => {
                 className="flex gap-2 md:gap-0 text-sm md:text-base"
               >
                 <p className="space-y-3 text-light-gray md:flex-1">{title}</p>
-                <p className="md:flex-1">: </p>
+                <p className="">: </p>
                 <p className="text-secondary-black font-medium flex-1 md:text-right">
                   {description}
                 </p>

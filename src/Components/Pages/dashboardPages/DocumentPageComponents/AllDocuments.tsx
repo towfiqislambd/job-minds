@@ -128,9 +128,10 @@ const AllDocuments = () => {
       {/* Upper Part */}
       <div className="flex flex-col lg:flex-row gap-3 lg:gap-0 justify-between items-center">
         <h4 className="section_sub_title">All Documents</h4>
+
         <div className="flex gap-3 3xl:gap-5 items-center flex-wrap-reverse justify-center">
           {/* Search */}
-          <p className="border rounded-full w-[350px] px-4 py-1.5 lg:py-2 xl:py-2.5 border-gray-200 flex gap-2 items-center">
+          <p className="border rounded-full w-[270px] 2xl:w-[350px] px-4 py-1.5 lg:py-2 xl:py-2.5 border-gray-200 flex gap-2 items-center">
             <span className="shrink-0">
               <SearchSvg />
             </span>
@@ -278,7 +279,7 @@ const AllDocuments = () => {
                   <div className="h-6 w-16 bg-gray-200 rounded-lg" />
                 </td>
 
-                <td className="px-3 2xl:px-4 flex justify-center items-center">
+                <td className="hidden px-3 2xl:px-4 2xl:flex justify-center items-center">
                   <div className="h-6 w-6 bg-gray-200 rounded" />
                 </td>
               </tr>
@@ -364,9 +365,9 @@ const AllDocuments = () => {
                         onClick={e => e.stopPropagation()}
                         className={`${
                           open && id === popoverId ? "block" : "hidden"
-                        } absolute top-5 right-20 p-3 border border-gray-100 bg-white rounded-lg shadow-lg space-y-2.5 z-40 w-[120px] text-sm ${
+                        } absolute top-5 right-10 2xl:right-14 3xl:right-22 p-3 border border-gray-100 bg-white rounded-lg shadow-lg space-y-2.5 z-40 w-[120px] text-sm ${
                           idx === allDocuments?.data?.data?.length - 1 &&
-                          "!-top-28"
+                          "!-top-22"
                         }`}
                       >
                         {/* View btn */}

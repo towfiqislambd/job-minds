@@ -264,7 +264,7 @@ const Subscription = ({ package_id }: any) => {
           </div>
         </section>
       ) : (
-        <div className="grid xl:grid-cols-2 2xl:grid-cols-3 gap-6">
+        <div className="grid xl:grid-cols-2 3xl:grid-cols-3 gap-5 2xl:gap-6">
           {pricingData?.data?.map((item: any, idx: number) => {
             return (
               <PricingCard

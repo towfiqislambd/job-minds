@@ -301,7 +301,7 @@ export default function DashboardLayout({
               selectedSize={16}
               optionsSize={14}
               className="inline-block"
-              selectButtonClassName="p-2 !rounded-full !border-gray-200 bg-[#0F1E3A] text-white"
+              selectButtonClassName="p-2 !mt-1 !rounded-full !border-gray-200 bg-[#0F1E3A] text-white"
             />
 
             {/* Profile Modal */}
@@ -314,7 +314,7 @@ export default function DashboardLayout({
               className="relative"
             >
               {/* Figure Image */}
-              <figure className="size-10 lg:size-11 bg-primary-blue rounded-full cursor-pointer relative grid place-items-center">
+              <figure className="size-10 2xl:size-11 bg-primary-blue rounded-full cursor-pointer relative grid place-items-center">
                 {user?.avatar ? (
                   <Image
                     src={`${process.env.NEXT_PUBLIC_SITE_URL}/${user?.avatar}`}
@@ -331,14 +331,14 @@ export default function DashboardLayout({
 
               {/* Account Modal */}
               <div
-                className={`bg-gray-200 z-50 rounded-xl w-64 lg:w-[270px] absolute right-0 top-[65px] mt-2 shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-4 md:p-5 transition-all duration-300 ${
+                className={`bg-gray-200 z-50 rounded-xl w-64 lg:w-[260px] 3xl:w-[270px] absolute right-2 2xl:right-0 top-[65px] mt-2 shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-4 3xl:p-5 transition-all duration-300 ${
                   openPopup
                     ? "opacity-100 scale-100"
                     : "opacity-0 scale-95 pointer-events-none"
                 }`}
               >
                 <div className="flex gap-3 md:gap-4 items-center mb-4 lg:mb-5">
-                  <figure className="size-10 lg:size-12 bg-primary-blue rounded-full cursor-pointer relative grid place-items-center">
+                  <figure className="size-10 lg:size-12 bg-primary-blue rounded-full cursor-pointer relative grid place-items-center shrink-0">
                     {user?.avatar ? (
                       <Image
                         src={`${process.env.NEXT_PUBLIC_SITE_URL}/${user?.avatar}`}
@@ -355,7 +355,7 @@ export default function DashboardLayout({
 
                   <div>
                     <h3 className="font-semibold truncate">{user?.name}</h3>
-                    <p className="text-gray-500 text-sm truncate">
+                    <p className="text-gray-500 text-sm w-44 truncate">
                       {user?.email}
                     </p>
                   </div>
@@ -363,7 +363,7 @@ export default function DashboardLayout({
 
                 <hr className="text-gray-300" />
 
-                <div className="mt-4 font-medium flex gap-2.5 lg:gap-4 flex-col text-gray-700 text-sm lg:text-[15px]">
+                <div className="mt-4 font-medium flex gap-2.5 lg:gap-3.5 3xl:gap-4 flex-col text-gray-700 text-sm lg:text-[15px]">
                   <button
                     onClick={() => router.push("/dashboard")}
                     className="w-fit flex gap-2 items-center cursor-pointer hover:text-primary-blue duration-200"

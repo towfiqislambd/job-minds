@@ -83,7 +83,7 @@ const EditProfile = () => {
           {/* Delete btn */}
           <button
             onClick={() => setOpen(true)}
-            className={`secondary-btn !border-red-500 !text-red-500`}
+            className={`secondary-btn hover:!bg-transparent !border-red-500 !text-red-500`}
           >
             Delete Account
           </button>

@@ -65,7 +65,7 @@ const Draft = () => {
           return (
             <div
               key={item.id || index}
-              className="border border-[#EAEAEA] rounded-[8px] p-3 lg:p-5 mt-4"
+              className="border border-[#EAEAEA] rounded-[8px] p-3 xl:p-4 2xl:p-5 mt-4"
             >
               <div
                 className="flex justify-between items-center cursor-pointer"

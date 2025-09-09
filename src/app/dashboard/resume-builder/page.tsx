@@ -51,7 +51,7 @@ const Page = () => {
           }: ResumeItem) => (
             <div
               key={id}
-              className="relative group rounded-2xl border-2 border-transparent p-5 bg-white hover:bg-transparent hover:border-primary-blue transition-all duration-300 pb-[80px] shadow-[-2px_4px_58px_rgba(244,250,255,0.11)]"
+              className="relative group rounded-2xl border-2 border-transparent p-4 3xl:p-5 bg-white hover:bg-transparent hover:border-primary-blue transition-all duration-300 pb-[80px] shadow-[-2px_4px_58px_rgba(244,250,255,0.11)]"
             >
               {/* Template Image */}
               <figure className="w-full rounded-2xl h-[230px] mx-auto shadow-xl mb-5 overflow-hidden relative">
@@ -64,12 +64,12 @@ const Page = () => {
               </figure>
 
               {/* Template Name */}
-              <h3 className="text-secondary-blue text-center text-3xl leading-[132%] font-semibold capitalize">
+              <h3 className="text-secondary-blue text-center text-2xl 3xl:text-3xl leading-[132%] font-semibold capitalize">
                 {template_name}
               </h3>
 
               {/* Short Description */}
-              <p className="text-[#A3A3A3] text-center text-xl leading-[164%]">
+              <p className="text-[#A3A3A3] text-center text-lg 3xl:text-xl leading-[164%]">
                 {title}
               </p>
 

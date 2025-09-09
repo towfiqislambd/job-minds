@@ -89,7 +89,7 @@ const page = () => {
         {/* All Messages */}
         <div
           ref={chatContainerRef}
-          className="my-4 px-3 md:px-5 lg:px-7 grow overflow-y-auto"
+          className="my-4 px-3 md:px-4 2xl:px-7 grow overflow-y-auto"
         >
           {isLoading ? (
             Array.from({ length: 9 }).map((_, idx) => (
@@ -134,7 +134,7 @@ const page = () => {
                     }`}
                   >
                     <div
-                      className={`flex gap-3 items-start ${
+                      className={`flex gap-2 2xl:gap-3 items-start ${
                         sender === "user" ? "flex-row-reverse" : "flex-row"
                       }`}
                     >
@@ -142,7 +142,7 @@ const page = () => {
                       <figure
                         className={`${
                           sender === "user" ? "bg-gray-200" : "bg-[#C6DFF6]"
-                        } size-12 rounded-full flex justify-center items-center shrink-0 relative`}
+                        } size-10 2xl:size-11 3xl:size-12 rounded-full flex justify-center items-center shrink-0 relative`}
                       >
                         {sender === "user" ? (
                           user?.avatar ? (
@@ -164,7 +164,7 @@ const page = () => {
                       <p
                         className={`${
                           status === "sending" ? "opacity-65" : "opacity-100"
-                        } bg-gray-100 px-3 py-2.5 rounded-[8px] text-sm text-gray-700 leading-[164%] w-fit max-w-[500px]`}
+                        } bg-gray-100 px-3 py-2.5 rounded-[8px] text-[13px] 2xl:text-sm text-gray-700 leading-[170%] w-fit max-w-[450px] 2xl:max-w-[500px]`}
                       >
                         {message}
                       </p>

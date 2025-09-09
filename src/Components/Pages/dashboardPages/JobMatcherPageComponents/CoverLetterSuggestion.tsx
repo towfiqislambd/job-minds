@@ -22,7 +22,7 @@ const CoverLetterSuggestion = ({ data }: any) => {
         Suggested Cover Letter
       </h4>
 
-      <div className="w-full outline-none p-6 bg-[#F8FAFB] overflow-y-auto text-gray-800 text-[15px] leading-[170%] relative rounded-lg max-h-[500px]">
+      <div className="w-full outline-none p-5 3xl:p-6 bg-[#F8FAFB] overflow-y-auto text-gray-800 text-[15px] leading-[170%] relative rounded-lg max-h-[500px]">
         <div
           dangerouslySetInnerHTML={{
             __html: data?.replace(/\n/g, "<br />"),

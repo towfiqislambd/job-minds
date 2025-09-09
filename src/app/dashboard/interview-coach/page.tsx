@@ -156,7 +156,7 @@ const Page = () => {
                       className="flex justify-between items-center cursor-pointer"
                       onClick={() => toggleAccordion(index)}
                     >
-                      <div className="flex gap-x-3 items-center">
+                      <div className="flex gap-x-3">
                         <h4 className="lg:text-lg 2xl:text-[20px] font-poppins font-normal text-[#696969]">
                           Q{index + 1}
                         </h4>

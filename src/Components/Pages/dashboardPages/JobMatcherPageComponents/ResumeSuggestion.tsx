@@ -39,7 +39,7 @@ const ResumeSuggestion = ({
                 <p className="section_sub_title !text-base lg:!text-lg 3xl:!text-xl">
                   {title}
                 </p>
-                <p className="text-light-gray text-sm lg:text-base">
+                <p className="text-light-gray text-sm lg:text-[15px] 3xl:text-base">
                   {suggestions}
                 </p>
               </div>
