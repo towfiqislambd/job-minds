@@ -56,6 +56,7 @@ html {
   @apply my-10 w-[calc(100%-30px)] md:w-[calc(100%-50px)] max-w-[700px] mx-auto px-5 md:px-10 py-5 md:py-12 lg:px-24 lg:py-14 bg-primary-off-blue rounded-2xl md:rounded-3xl lg:rounded-[50px] flex flex-col gap-y-5 md:gap-y-7 3xl:gap-y-10;
 }
 
+
 .auth-btn {
   @apply w-fit mx-auto px-5 md:px-7 lg:px-12 py-2 lg:py-3 text-sm md:text-base lg:text-lg capitalize rounded-[50px] cursor-pointer bg-[linear-gradient(90deg,#21489f_0%,#0184ff_100%)] leading-[164%] text-white duration-500 transition-transform hover:scale-105;
 }
