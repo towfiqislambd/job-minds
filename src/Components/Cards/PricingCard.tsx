@@ -1,7 +1,5 @@
 "use client";
 import React from "react";
-import Heading from "@/Components/Tags/Heading/Heading";
-import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
 import { TickMark } from "../SvgContainer/SvgContainer";
 import useAuth from "@/Hooks/useAuth";
 import { useRouter } from "next/navigation";
@@ -50,11 +48,9 @@ const PricingCard: React.FC<PricingCardProps> = ({
       <div className="flex flex-col gap-y-8">
         <div className="flex flex-col gap-y-2">
           <div className="flex gap-3 items-center">
-            <Heading
-              Variant="h3"
-              Txt={package_name}
-              className="text-xl lg:text-2xl font-bold leading-[132%] tracking-[-0.24px] text-primary-blue capitalize"
-            />
+            <h3 className="text-xl lg:text-2xl font-bold leading-[132%] tracking-[-0.24px] text-primary-blue capitalize">
+              {package_name}
+            </h3>
             {user?.subscription?.subscription_type === type && (
               <p className="px-3 py-1.5 rounded-full bg-green-600 text-white text-sm">
                 Purchased
@@ -62,18 +58,13 @@ const PricingCard: React.FC<PricingCardProps> = ({
             )}
           </div>
           <div className="flex flex-col gap-y-5">
-            <Heading
-              Variant="h5"
-              className="text-2xl md:text-3xl lg:text-5xl 3xl:text-[64px] font-bold leading-[132%] tracking-[-0.24px] text-dark-blue"
-              Txt={
-                <>
-                  €{price}
-                  <span className="text-lg text-dark-blue leading-[164%] font-[600] capitalize">
-                    / {interval}
-                  </span>
-                </>
-              }
-            />
+            <h5 className="text-2xl md:text-3xl lg:text-5xl 3xl:text-[64px] font-bold leading-[132%] tracking-[-0.24px] text-dark-blue">
+              {" "}
+              €{price}
+              <span className="text-lg text-dark-blue leading-[164%] font-[600] capitalize">
+                / {interval}
+              </span>
+            </h5>
           </div>
         </div>
 
@@ -81,13 +72,10 @@ const PricingCard: React.FC<PricingCardProps> = ({
           {features?.map((item, idx) => {
             return (
               <div key={idx} className="flex flex-row gap-2 lg:gap-x-2.5 ">
-                <div data-aos="fade-up" data-aos-delay="100">
-                  <TickMark />
-                </div>
-                <Paragraph
-                  Txt={item?.feature_name}
-                  className="text-sm md:text-base 3xl:text-lg font-normal leading-[164%] text-dark-blue max-w-[337px]"
-                />
+                <TickMark />
+                <p className="text-sm md:text-base 3xl:text-lg font-normal leading-[164%] text-dark-blue max-w-[337px]">
+                  {item?.feature_name}
+                </p>
               </div>
             );
           })}

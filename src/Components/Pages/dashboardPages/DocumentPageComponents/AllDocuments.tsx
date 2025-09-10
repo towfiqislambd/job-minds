@@ -150,7 +150,7 @@ const AllDocuments = () => {
               e.stopPropagation();
               setOpenFilter(!openFilter);
             }}
-            className="hidden lg:flex gap-2 items-center cursor-pointer px-4 py-1.5 lg:py-2 2xl:py-2.5 rounded-full border-gray-200 relative duration-500 transition-all hover:bg-black hover:text-white border hover:border-transparent text-light-gray"
+            className="hidden lg:flex gap-2 items-center cursor-pointer px-4 py-1.5 lg:py-2 2xl:py-2.5 rounded-full border-gray-200 relative duration-500 transition-all hover:bg-secondary-blue hover:text-white border hover:border-transparent text-light-gray"
           >
             <span className="shrink-0">
               <FilterSvg />
@@ -250,7 +250,7 @@ const AllDocuments = () => {
               setDocType("");
               setStatus("");
             }}
-            className="hidden lg:flex gap-2 items-center cursor-pointer px-4 py-1.5 lg:py-2 2xl:py-2.5 rounded-full border-gray-200 relative duration-500 transition-all hover:bg-black hover:text-white border hover:border-transparent text-light-gray"
+            className="hidden lg:flex gap-2 items-center cursor-pointer px-4 py-1.5 lg:py-2 2xl:py-2.5 rounded-full border-gray-200 relative duration-300 transition-all hover:bg-secondary-blue hover:text-white border hover:border-transparent text-light-gray"
           >
             <GrPowerReset />
             <span>Reset</span>

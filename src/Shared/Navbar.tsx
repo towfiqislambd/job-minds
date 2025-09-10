@@ -6,7 +6,7 @@ import { FaUser } from "react-icons/fa";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { MdLogout } from "react-icons/md";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 import ReactFlagsSelect from "react-flags-select";
@@ -23,6 +23,7 @@ const Navbar = () => {
   const [selectedCountry, setSelectedCountry] = useState("US");
   const { changeLanguage } = useTranslation();
   const router = useRouter();
+  const pathname = usePathname();
   const [open, setOpen] = useState<boolean>(false);
   const { data: siteSettings, isLoading } = useSiteSettings();
   const { mutate: logoutMutation, isPending } = useLogout();
@@ -115,6 +116,9 @@ const Navbar = () => {
                   duration={700}
                   onClick={() => {
                     setActiveSection(item.id);
+                    if (pathname?.startsWith("/dynamic-pages")) {
+                      router.push("/");
+                    }
                   }}
                   className={`flex flex-row gap-x-2 cursor-pointer px-4 py-1.5  border-[1px] items-center rounded-[50px] ${
                     item.id === activeSection

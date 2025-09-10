@@ -31,8 +31,13 @@ const page = ({ params }: any) => {
       onSubmit={handleSubmit(onSubmit)}
       className="w-full min-h-screen flex items-center justify-center"
     >
-      <div className="auth_box">
+      <div className="auth_box gap-y-5 md:gap-y-7 3xl:gap-y-10">
         <h2 className="auth-heading">Verify your otp</h2>
+
+        <p className="text-center text-sm lg:text-base text-gray-600 leading-[170%]">
+          Enter the ETP code that we sent your email {decodeURIComponent(email)}
+          , Be careful not to share code with anyone.
+        </p>
 
         {/* OTP Input */}
         <div>

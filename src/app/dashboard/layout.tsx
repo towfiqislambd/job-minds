@@ -82,7 +82,7 @@ export default function DashboardLayout({
   // Hooks
   const pathname = usePathname();
   const router = useRouter();
-  const { user } = useAuth();
+  const { user, setSearch } = useAuth();
   const { changeLanguage } = useTranslation();
 
   // States
@@ -133,8 +133,8 @@ export default function DashboardLayout({
                 placeholder="Search....."
                 className="outline-none w-full"
                 onChange={e => {
-                  // router.push("/dashboard/documents");
-                  // setSearch(e.target.value);
+                  router.push("/dashboard/documents");
+                  setSearch(e.target.value);
                 }}
               />
             </p>

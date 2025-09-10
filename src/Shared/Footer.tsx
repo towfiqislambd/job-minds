@@ -9,20 +9,44 @@ import { useDynamicPages } from "@/Hooks/api/cms_api";
 const CombinedArr = [
   {
     title: "Ai tools",
-    navLinkArr: [
-      "Ai resume builder",
-      "Smart Cover Letter Creator",
-      "Interview Preparation Coach",
-      "Job Application Automation",
+    navLinks: [
+      {
+        label: "Ai resume builder",
+        path: "/dashboard/resume-builder",
+      },
+      {
+        label: "Smart Cover Letter Creator",
+        path: "/dashboard/cover-letter-tools",
+      },
+      {
+        label: "Interview Preparation Coach",
+        path: "/dashboard/interview-coach",
+      },
+      {
+        label: "Job Application Automation",
+        path: "/dashboard/job-matcher",
+      },
     ],
   },
   {
-    title: "Blog",
-    navLinkArr: [
-      "Ai resume builder",
-      "Smart Cover Letter Creator",
-      "Interview Preparation Coach",
-      "Job Application Automation",
+    title: "All",
+    navLinks: [
+      {
+        label: "Ai resume builder",
+        path: "/dashboard/resume-builder",
+      },
+      {
+        label: "Smart Cover Letter Creator",
+        path: "/dashboard/cover-letter-tools",
+      },
+      {
+        label: "Interview Preparation Coach",
+        path: "/dashboard/interview-coach",
+      },
+      {
+        label: "Job Application Automation",
+        path: "/dashboard/job-matcher",
+      },
     ],
   },
 ];
@@ -52,7 +76,7 @@ const Footer = () => {
 
           {/* Lower Part */}
           <div className="flex flex-col gap-y-8 lg:gap-9 w-full">
-            <div className="flex flex-col gap-7 md:flex-row gap-x-[70px] ">
+            <div className="flex flex-col gap-7 md:flex-row  gap-x-[70px]">
               {CombinedArr.map((item, idx) => {
                 return (
                   <div key={idx} className="flex flex-col gap-y-[15px]">
@@ -61,13 +85,16 @@ const Footer = () => {
                       Txt={item.title}
                     />
                     <div className="flex flex-col gap-y-3">
-                      {item.navLinkArr.map((item, idx) => {
+                      {item.navLinks.map((item, idx) => {
                         return (
-                          <Paragraph
+                          <Link
                             key={idx}
-                            Txt={item}
-                            className="text-white 3xl:text-lg text-sm lg:text-base lg:font-semibold leading-[164%]"
-                          />
+                            href={item?.path}
+                            className="text-white 3xl:text-lg text-sm
+                            lg:text-base lg:font-semibold leading-[164%] hover:underline"
+                          >
+                            {item?.label}
+                          </Link>
                         );
                       })}
                     </div>

@@ -10,7 +10,6 @@ function AosProvider({ children }: { children: React.ReactNode }) {
       once: true,
       duration: 600,
       easing: "ease-in-out",
-      offset: 50,
     });
 
     AOS.refresh();
