@@ -1,8 +1,11 @@
 "use client";
 import { useRegister } from "@/Hooks/api/auth_api";
 import Link from "next/link";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
+import { LuEye } from "react-icons/lu";
+import { FaRegEyeSlash } from "react-icons/fa6";
 
 type formData = {
   name: string;
@@ -15,6 +18,11 @@ type formData = {
 const Page = () => {
   // Mutation
   const { mutateAsync: registerMutation, isPending } = useRegister();
+
+  // States
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] =
+    useState<boolean>(false);
 
   const {
     register,
@@ -34,7 +42,7 @@ const Page = () => {
       className="w-full min-h-screen flex items-center justify-center"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="my-10 w-[calc(100%-30px)] md:w-[calc(100%-50px)] max-w-[700px] mx-auto px-5 md:px-10 py-5 md:py-12 lg:px-24 lg:py-14 bg-primary-off-blue rounded-3xl md:rounded-[50px] flex flex-col gap-y-5 md:gap-y-7 3xl:gap-y-10">
+      <div className="auth_box">
         <h2 className="auth-heading">Sign Up</h2>
 
         <div className="flex flex-col gap-y-4 md:gap-y-5 3xl:gap-y-7">
@@ -65,35 +73,61 @@ const Page = () => {
           </div>
 
           {/* Password */}
-          <div>
+          <div className="relative">
             <input
               placeholder="Enter your Password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               {...register("password", { required: "Password is required" })}
-              className="auth-input"
+              className="auth-input !pr-8 md:!pr-10 lg:!pr-14"
             />
             {errors.password && (
               <span className="form-error">{errors.password.message}</span>
             )}
+            <button
+              className="absolute top-2.5 md:top-3.5 lg:top-5 right-2 md:right-3 lg:right-5 cursor-pointer"
+              onClick={e => {
+                e.preventDefault();
+                setShowPassword(!showPassword);
+              }}
+            >
+              {showPassword ? (
+                <LuEye className="text-lg lg:text-2xl text-gray-500" />
+              ) : (
+                <FaRegEyeSlash className="text-lg lg:text-2xl text-gray-500" />
+              )}
+            </button>
           </div>
 
           {/* Confirm Password */}
-          <div>
+          <div className="relative">
             <input
               placeholder="Confirm your Password"
-              type="password"
+              type={showConfirmPassword ? "text" : "password"}
               {...register("password_confirmation", {
                 required: "Please confirm your password",
                 validate: value =>
                   value === password || "Passwords do not match",
               })}
-              className="auth-input"
+              className="auth-input !pr-8 md:!pr-10 lg:!pr-14"
             />
             {errors.password_confirmation && (
               <span className="form-error">
                 {errors.password_confirmation.message}
               </span>
             )}
+            <button
+              className="absolute top-2.5 md:top-3.5 lg:top-5 right-2 md:right-3 lg:right-5 cursor-pointer"
+              onClick={e => {
+                e.preventDefault();
+                setShowConfirmPassword(!showConfirmPassword);
+              }}
+            >
+              {showConfirmPassword ? (
+                <LuEye className="text-lg lg:text-2xl text-gray-500" />
+              ) : (
+                <FaRegEyeSlash className="text-lg lg:text-2xl text-gray-500" />
+              )}
+            </button>
           </div>
 
           {/* Terms and Condition */}

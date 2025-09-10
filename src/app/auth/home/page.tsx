@@ -78,13 +78,13 @@ const Page = () => {
           </Link>
 
           {/* Don't have an account */}
-          <div className="flex justify-center text-sm md:text-base lg:text-lg text-center gap-2">
+          <div className="flex justify-center text-sm md:text-base lg:text-lg text-center gap-1 lg:gap-2">
             <p className="text-[#666565] leading-[164%]">
               Don't have an account?
             </p>
             <Link
               href="/auth/sign-up"
-              className="text-primary-blue cursor-pointer"
+              className="text-primary-blue cursor-pointer "
             >
               Sign Up
             </Link>
@@ -94,7 +94,7 @@ const Page = () => {
           <div className="flex justify-center text-center -mt-2">
             <Link
               href="/"
-              className="text-primary-blue cursor-pointer underline"
+              className="text-primary-blue cursor-pointer underline text-sm lg:text-base"
             >
               Back to home
             </Link>
