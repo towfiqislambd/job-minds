@@ -72,6 +72,7 @@ const page = ({ params }: any) => {
           </button>
         </div>
 
+        
         {/* Verify OTP btn */}
         <button
           disabled={isPending}
