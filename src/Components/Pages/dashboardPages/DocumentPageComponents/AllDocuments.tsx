@@ -145,7 +145,7 @@ const AllDocuments = () => {
           </p>
 
           {/* Filter */}
-          <button
+          <div
             onClick={e => {
               e.stopPropagation();
               setOpenFilter(!openFilter);
@@ -157,89 +157,91 @@ const AllDocuments = () => {
             </span>
             <span>Filter</span>
 
-            {openFilter && (
-              <div
-                onClick={e => e.stopPropagation()}
-                className="absolute top-14 right-0 w-[250px] bg-white shadow-lg border border-gray-50 rounded-lg p-4 xl:p-5 z-50"
-              >
-                <div className="flex justify-between items-center font-medium text-secondary-black">
-                  <h3>Filters</h3>
-                </div>
-
-                <hr className="text-gray-300 my-2 xl:my-3" />
-
-                <div className="space-y-2 xl:space-y-3 text-sm text-secondary-gray">
-                  <h3 className="font-medium text-left text-secondary-black text-sm xl:text-base">
-                    Document Type
-                  </h3>
-
-                  {/* Document Type */}
-                  {[
-                    { id: "all", label: "All", value: "" },
-                    { id: "resume", label: "Resume", value: "Resume" },
-                    {
-                      id: "cover_letter",
-                      label: "Cover Letter",
-                      value: "Cover Letter",
-                    },
-                    {
-                      id: "profile_summary",
-                      label: "Profile Summary",
-                      value: "profile summary",
-                    },
-                  ].map(option => (
-                    <p key={option.id} className="flex gap-2 items-center">
-                      <input
-                        type="radio"
-                        id={option.id}
-                        name="document_type"
-                        className="scale-110 xl:scale-125"
-                        value={option.value}
-                        checked={tempDocumentType === option.value}
-                        onChange={e => setTempDocumentType(e.target.value)}
-                      />
-                      <label htmlFor={option.id}>{option.label}</label>
-                    </p>
-                  ))}
-                </div>
-
-                <hr className="text-gray-300 my-3 xl:my-4" />
-
-                {/* Progress Status */}
-                <div className="space-y-2 xl:space-y-3 text-sm text-secondary-gray mb-5">
-                  <h3 className="font-medium text-left text-secondary-black text-sm xl:text-base">
-                    Progress Status
-                  </h3>
-
-                  {[
-                    { id: "all_status", label: "All", value: "" },
-                    { id: "complete", label: "Completed", value: "Completed" },
-                    { id: "exported", label: "Exported", value: "Exported" },
-                  ].map(option => (
-                    <p key={option.id} className="flex gap-2 items-center">
-                      <input
-                        type="radio"
-                        id={option.id}
-                        name="progress_status"
-                        className="scale-110 xl:scale-125"
-                        value={option.value}
-                        checked={tempStatus === option.value}
-                        onChange={e => setTempStatus(e.target.value)}
-                      />
-                      <label htmlFor={option.id}>{option.label}</label>
-                    </p>
-                  ))}
-                </div>
-
-                <button
-                  onClick={handleApplyChange}
-                  className="block w-full bg-secondary-blue text-white font-medium rounded-lg cursor-pointer transition-transform hover:scale-105 duration-300 py-2 xl:py-3"
-                >
-                  Apply Filters
-                </button>
+            <div
+              onClick={e => e.stopPropagation()}
+              className={`absolute top-14 right-0 w-[250px] bg-white shadow-lg border border-gray-50 rounded-lg p-4 xl:p-5 z-50 transition-all duration-300 ${
+                openFilter
+                  ? "opacity-100 scale-100"
+                  : "opacity-0 scale-95 pointer-events-none"
+              }`}
+            >
+              <div className="flex justify-between items-center font-medium text-secondary-black">
+                <h3>Filters</h3>
               </div>
-            )}
-          </button>
+
+              <hr className="text-gray-300 my-2 xl:my-3" />
+
+              <div className="space-y-2 xl:space-y-3 text-sm text-secondary-gray">
+                <h3 className="font-medium text-left text-secondary-black text-sm xl:text-base">
+                  Document Type
+                </h3>
+
+                {/* Document Type */}
+                {[
+                  { id: "all", label: "All", value: "" },
+                  { id: "resume", label: "Resume", value: "Resume" },
+                  {
+                    id: "cover_letter",
+                    label: "Cover Letter",
+                    value: "Cover Letter",
+                  },
+                  {
+                    id: "profile_summary",
+                    label: "Profile Summary",
+                    value: "profile summary",
+                  },
+                ].map(option => (
+                  <p key={option.id} className="flex gap-2 items-center">
+                    <input
+                      type="radio"
+                      id={option.id}
+                      name="document_type"
+                      className="scale-110 xl:scale-125"
+                      value={option.value}
+                      checked={tempDocumentType === option.value}
+                      onChange={e => setTempDocumentType(e.target.value)}
+                    />
+                    <label htmlFor={option.id}>{option.label}</label>
+                  </p>
+                ))}
+              </div>
+
+              <hr className="text-gray-300 my-3 xl:my-4" />
+
+              {/* Progress Status */}
+              <div className="space-y-2 xl:space-y-3 text-sm text-secondary-gray mb-5">
+                <h3 className="font-medium text-left text-secondary-black text-sm xl:text-base">
+                  Progress Status
+                </h3>
+
+                {[
+                  { id: "all_status", label: "All", value: "" },
+                  { id: "complete", label: "Completed", value: "Completed" },
+                  { id: "exported", label: "Exported", value: "Exported" },
+                ].map(option => (
+                  <p key={option.id} className="flex gap-2 items-center">
+                    <input
+                      type="radio"
+                      id={option.id}
+                      name="progress_status"
+                      className="scale-110 xl:scale-125"
+                      value={option.value}
+                      checked={tempStatus === option.value}
+                      onChange={e => setTempStatus(e.target.value)}
+                    />
+                    <label htmlFor={option.id}>{option.label}</label>
+                  </p>
+                ))}
+              </div>
+
+              <button
+                onClick={handleApplyChange}
+                className="block w-full bg-secondary-blue text-white font-medium rounded-lg cursor-pointer transition-transform hover:scale-105 duration-300 py-2 xl:py-3"
+              >
+                Apply Filters
+              </button>
+            </div>
+          </div>
 
           {/* Reset */}
           <button
@@ -362,8 +364,10 @@ const AllDocuments = () => {
                         <div
                           onClick={e => e.stopPropagation()}
                           className={`${
-                            open && id === popoverId ? "block" : "hidden"
-                          } absolute top-5 right-10 2xl:right-14 3xl:right-22 p-3 border border-gray-100 bg-white rounded-lg shadow-lg space-y-2.5 z-40 w-[120px] text-sm ${
+                            open && id === popoverId
+                              ? "opacity-100 scale-100"
+                              : "opacity-0 scale-90"
+                          } absolute duration-300 transition-all top-5 right-10 2xl:right-14 3xl:right-22 p-3 border border-gray-100 bg-white rounded-lg shadow-lg space-y-2.5 z-40 w-[120px] text-sm ${
                             idx === allDocuments?.data?.data?.length - 1 &&
                             "!-top-22"
                           }`}

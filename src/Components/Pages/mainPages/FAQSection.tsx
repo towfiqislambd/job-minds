@@ -6,6 +6,7 @@ import {
   CircleActive,
   CircleInActive,
 } from "@/Components/SvgContainer/SvgContainer";
+import { motion, AnimatePresence } from "framer-motion";
 
 type FAQItem = {
   id: number;
@@ -39,12 +40,14 @@ const FAQSection = ({ data }: FAQSectionProps) => {
             {data?.map(({ id, question, answer }) => (
               <div
                 key={id}
-                className="bg-white flex flex-col gap-y-4 rounded-xl md:rounded-2xl p-4 lg:p-5 xl:p-7 cursor-pointer ease-in-out duration-300 hover:shadow"
-                onClick={() => toggle(id)}
+                className="bg-white flex flex-col rounded-xl md:rounded-2xl p-4 lg:p-5 xl:p-7"
               >
-                <div className="flex gap-1.5 justify-between items-center">
+                <div
+                  onClick={() => toggle(id)}
+                  className="flex gap-1.5 justify-between items-center cursor-pointer"
+                >
                   <Heading
-                    className="font-semibold text-dark-blue md:text-lg 2xl:text-xl 3xl:text-2xl"
+                    className="font-semibold text-dark-blue md:text-lg 2xl:text-xl"
                     Txt={question}
                   />
                   <span className="shrink-0">
@@ -52,17 +55,22 @@ const FAQSection = ({ data }: FAQSectionProps) => {
                   </span>
                 </div>
 
-                <div
-                  className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                    activeIndex === id
-                      ? "max-h-40 opacity-100 mt-2"
-                      : "max-h-0 opacity-0"
-                  }`}
-                >
-                  <p className="text-sm md:text-base 2xl:text-lg 3xl:text-xl text-primary-gray font-normal leading-[164%]">
-                    {answer}
-                  </p>
-                </div>
+                {/* start */}
+                <AnimatePresence initial={false}>
+                  {activeIndex === id && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.4, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p className="mt-5 text-sm md:text-base 2xl:text-lg text-primary-gray leading-[164%]">
+                        {answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ))}
           </div>

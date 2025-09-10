@@ -4,7 +4,6 @@ import { Poppins } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import AosProvider from "@/Provider/AosProvider/AosProvider";
 import QueryProvider from "@/Provider/QueryProvider/QueryProvider";
-import ReduxProvider from "@/Provider/ReduxProvider/ReduxProvider";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import AuthProvider from "@/Provider/AuthProvider/AuthProvider";
 import { TranslationProvider } from "@/Provider/TranslationProvider/TranslationContext";
@@ -36,16 +35,14 @@ export default async function RootLayout({
         <TranslationProvider>
           <QueryProvider>
             <AuthProvider>
-              <ReduxProvider>
-                <GoogleOAuthProvider
-                  clientId={`${process.env.NEXT_PUBLIC_GOOGLE_AUTH_ID}`}
-                >
-                  <AosProvider>{children}</AosProvider>
-                  <Toaster />
-                  <UseSiteSettings />
-                  <div id="google_translate_element" />
-                </GoogleOAuthProvider>
-              </ReduxProvider>
+              <GoogleOAuthProvider
+                clientId={`${process.env.NEXT_PUBLIC_GOOGLE_AUTH_ID}`}
+              >
+                <AosProvider>{children}</AosProvider>
+                <Toaster />
+                <UseSiteSettings />
+                <div id="google_translate_element" />
+              </GoogleOAuthProvider>
             </AuthProvider>
           </QueryProvider>
         </TranslationProvider>

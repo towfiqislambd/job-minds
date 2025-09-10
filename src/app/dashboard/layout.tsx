@@ -331,7 +331,7 @@ export default function DashboardLayout({
 
               {/* Account Modal */}
               <div
-                className={`bg-gray-200 z-50 rounded-xl w-64 lg:w-[260px] 3xl:w-[270px] absolute right-2 2xl:right-0 top-[65px] mt-2 shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-4 3xl:p-5 transition-all duration-300 ${
+                className={`bg-white z-50 rounded-xl w-64 lg:w-[260px] 3xl:w-[270px] absolute right-2 2xl:right-0 top-[65px] mt-2 shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-4 3xl:p-5 transition-all duration-300 ${
                   openPopup
                     ? "opacity-100 scale-100"
                     : "opacity-0 scale-95 pointer-events-none"

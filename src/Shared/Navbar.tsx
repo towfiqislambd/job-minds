@@ -199,13 +199,13 @@ const Navbar = () => {
 
                   {/* Account Modal */}
                   <div
-                    className={`bg-gray-200 z-50 rounded-xl w-64 lg:w-[260px] 3xl:w-[270px] absolute right-0 top-full mt-2 shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-4 3xl:p-5 transition-all duration-300 overflow-hidden ${
+                    className={`bg-gray-200 z-50 rounded-xl w-64 lg:w-[260px] absolute right-0 top-full mt-2 shadow-[0_8px_24px_rgba(0,0,0,0.1)] p-4 transition-all duration-300 overflow-hidden ${
                       openPopup
                         ? "opacity-100 scale-100"
                         : "opacity-0 scale-95 pointer-events-none"
                     }`}
                   >
-                    <div className="flex gap-3 md:gap-4 items-center mb-4 lg:mb-5">
+                    <div className="flex gap-3 items-center mb-4 lg:mb-5">
                       <figure className="size-10 lg:size-12 bg-primary-blue rounded-full cursor-pointer relative grid place-items-center shrink-0">
                         {user?.avatar ? (
                           <Image
@@ -231,7 +231,7 @@ const Navbar = () => {
 
                     <hr className="text-gray-300" />
 
-                    <div className="mt-4 font-medium flex gap-2.5 lg:gap-3.5 3xl:gap-4 flex-col text-gray-700 text-sm lg:text-[15px]">
+                    <div className="mt-4 font-medium flex gap-2.5 lg:gap-3.5 flex-col text-gray-700 text-sm lg:text-[15px]">
                       <button
                         onClick={() => router.push("/dashboard")}
                         className="w-fit flex gap-2 items-center cursor-pointer hover:text-primary-blue duration-200"

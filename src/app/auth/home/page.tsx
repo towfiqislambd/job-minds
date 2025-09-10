@@ -56,12 +56,12 @@ const Page = () => {
           </button>
 
           {/* Apple Login */}
-          <div className="py-3 md:py-4.5 bg-white rounded-[50px] cursor-pointer border border-[#eee] flex gap-3 items-center justify-center">
+          {/* <div className="py-3 md:py-4.5 bg-white rounded-[50px] cursor-pointer border border-[#eee] flex gap-3 items-center justify-center">
             <AppleLogo />
             <p className="leading-[140%] font-medium text-black-gray text-sm md:text-base">
               Continue with Apple
             </p>
-          </div>
+          </div> */}
 
           {/* Or */}
           <div className="flex gap-5 items-center">
