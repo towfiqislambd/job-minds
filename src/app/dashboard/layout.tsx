@@ -11,23 +11,23 @@ import {
   NotificationSvg,
   SearchSvg,
 } from "@/Components/SvgContainer/SvgContainer";
-import { RiNotificationOffLine } from "react-icons/ri";
-import PrivateLayout from "@/Private/PrivateLayout";
+import moment from "moment";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { FaBars, FaUser } from "react-icons/fa6";
-import ReactFlagsSelect from "react-flags-select";
-import { useTranslation } from "@/Provider/TranslationProvider/TranslationContext";
-import { RxCross2 } from "react-icons/rx";
-import { MdLogout, MdOutlineNotificationsActive } from "react-icons/md";
-import { CgSpinnerTwo } from "react-icons/cg";
-import { useLogout } from "@/Hooks/api/auth_api";
 import Image from "next/image";
 import useAuth from "@/Hooks/useAuth";
+import { FaBars } from "react-icons/fa6";
+import { RxCross2 } from "react-icons/rx";
+import { useEffect, useState } from "react";
+import { CgSpinnerTwo } from "react-icons/cg";
+import { useLogout } from "@/Hooks/api/auth_api";
+import ReactFlagsSelect from "react-flags-select";
 import { IoSettingsOutline } from "react-icons/io5";
+import PrivateLayout from "@/Private/PrivateLayout";
+import { RiNotificationOffLine } from "react-icons/ri";
+import { usePathname, useRouter } from "next/navigation";
 import { useAllNotifications } from "@/Hooks/api/dashboard_api";
-import moment from "moment";
+import { MdLogout, MdOutlineNotificationsActive } from "react-icons/md";
+import { useTranslation } from "@/Provider/TranslationProvider/TranslationContext";
 
 const navLinks = [
   {
@@ -74,83 +74,25 @@ const navLinks = [
   },
 ];
 
-const notificationData = [
-  {
-    id: 1,
-    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
-    title: "New Property Alert!",
-    duration: "2 second ago",
-  },
-  {
-    id: 2,
-    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
-    title: "New Property Alert!",
-    duration: "2 days ago",
-  },
-  {
-    id: 3,
-    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
-    title: "New Property Alert!",
-    duration: "1/11/2025",
-  },
-  {
-    id: 4,
-    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
-    title: "New Property Alert!",
-    duration: "5 second ago",
-  },
-  {
-    id: 5,
-    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
-    title: "New Property Alert!",
-    duration: "5 hours ago",
-  },
-  {
-    id: 6,
-    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
-    title: "New Property Alert!",
-    duration: "2 second ago",
-  },
-  {
-    id: 7,
-    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
-    title: "New Property Alert!",
-    duration: "3 days ago",
-  },
-  {
-    id: 8,
-    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
-    title: "New Property Alert!",
-    duration: "4 second ago",
-  },
-  {
-    id: 9,
-    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
-    title: "New Property Alert!",
-    duration: "2 minutes ago",
-  },
-  {
-    id: 10,
-    userProfile: "https://i.ibb.co.com/BH922QRG/profile.jpg",
-    title: "New Property Alert!",
-    duration: "8 second ago",
-  },
-];
-
 export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { user } = useAuth();
-  const { changeLanguage } = useTranslation();
-  const [selectedCountry, setSelectedCountry] = useState("US");
+  // Hooks
   const pathname = usePathname();
   const router = useRouter();
+  const { user } = useAuth();
+  const { changeLanguage } = useTranslation();
+
+  // States
   const [open, setOpen] = useState<boolean>(false);
+  const [selectedCountry, setSelectedCountry] = useState("US");
   const [notification, setNotification] = useState<boolean>(false);
+  const [openPopup, setOpenPopup] = useState<boolean>(false);
+
+  // Mutation & Query
   const { mutate: logoutMutation, isPending } = useLogout();
-  const [openPopup, setOpenPopup] = useState(false);
   const { data: allNotifications, isLoading } = useAllNotifications();
 
   useEffect(() => {
@@ -297,7 +239,9 @@ export default function DashboardLayout({
                   ) : (
                     <p className="text-center py-7 text-gray-600 flex flex-col gap-3 lg:gap-5 justify-center items-center">
                       <RiNotificationOffLine className="text-4xl lg:text-5xl" />
-                      <span className="text-sm lg:text-base">No Notifications found!!</span>
+                      <span className="text-sm lg:text-base">
+                        No Notifications found!!
+                      </span>
                     </p>
                   )}
                 </div>
@@ -474,7 +418,7 @@ export default function DashboardLayout({
                   </div>
                 ) : (
                   <p className="flex gap-1 items-center">
-                    <MdLogout />
+                    <MdLogout className="text-lg" />
                     Sign Out
                   </p>
                 )}

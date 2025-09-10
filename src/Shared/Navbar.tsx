@@ -1,21 +1,21 @@
 "use client";
-import { SiteLogo, WhiteDot } from "@/Components/SvgContainer/SvgContainer";
-import { Link } from "react-scroll";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { FaBars } from "react-icons/fa6";
-import { RxCross2 } from "react-icons/rx";
-import Container from "@/Components/Common/Container";
-import { useLogout, useSiteSettings } from "@/Hooks/api/auth_api";
 import Image from "next/image";
-import { Loader } from "@/Components/Loader/Loader";
-import { useTranslation } from "@/Provider/TranslationProvider/TranslationContext";
-import ReactFlagsSelect from "react-flags-select";
+import { Link } from "react-scroll";
 import useAuth from "@/Hooks/useAuth";
 import { FaUser } from "react-icons/fa";
+import { FaBars } from "react-icons/fa6";
+import { RxCross2 } from "react-icons/rx";
 import { MdLogout } from "react-icons/md";
-import { IoSettingsOutline } from "react-icons/io5";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
+import ReactFlagsSelect from "react-flags-select";
+import { IoSettingsOutline } from "react-icons/io5";
+import { Loader } from "@/Components/Loader/Loader";
+import Container from "@/Components/Common/Container";
+import { useLogout, useSiteSettings } from "@/Hooks/api/auth_api";
+import { SiteLogo, WhiteDot } from "@/Components/SvgContainer/SvgContainer";
+import { useTranslation } from "@/Provider/TranslationProvider/TranslationContext";
 
 const Navbar = () => {
   const { user } = useAuth();
@@ -273,7 +273,7 @@ const Navbar = () => {
               ) : (
                 <button
                   onClick={() => {
-                    router.push("/auth/home");
+                    router.push("/auth/login");
                   }}
                   className="hidden xl:block primary-btn !py-2.5 !text-lg"
                 >
@@ -393,7 +393,7 @@ const Navbar = () => {
           ) : (
             <button
               onClick={() => {
-                router.push("/auth/home");
+                router.push("/auth/login");
               }}
               className="primary-btn !py-2.5 block w-full"
             >
