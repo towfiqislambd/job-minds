@@ -51,7 +51,7 @@ const Page = () => {
           }: ResumeItem) => (
             <div
               key={id}
-              className="relative group rounded-2xl border-2 border-transparent p-4 3xl:p-5 bg-white hover:bg-transparent hover:border-primary-blue transition-all duration-300 pb-[80px] shadow-[-2px_4px_58px_rgba(244,250,255,0.11)]"
+              className="relative group rounded-2xl border-2 border-transparent p-5 bg-white hover:bg-transparent hover:border-primary-blue transition-all duration-300 pb-[80px] shadow-[-2px_4px_58px_rgba(244,250,255,0.11)]"
             >
               {/* Template Image */}
               <figure className="w-full rounded-2xl h-[230px] mx-auto shadow-xl mb-5 overflow-hidden relative">

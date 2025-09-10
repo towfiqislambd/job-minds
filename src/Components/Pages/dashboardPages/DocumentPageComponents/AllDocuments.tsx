@@ -129,9 +129,9 @@ const AllDocuments = () => {
       <div className="flex flex-col lg:flex-row gap-3 lg:gap-0 justify-between items-center">
         <h4 className="section_sub_title">All Documents</h4>
 
-        <div className="flex gap-3 3xl:gap-5 items-center flex-wrap-reverse justify-center">
+        <div className="flex gap-3 3xl:gap-5 items-center flex-wrap justify-center">
           {/* Search */}
-          <p className="border rounded-full w-[270px] 2xl:w-[350px] px-4 py-1.5 lg:py-2 xl:py-2.5 border-gray-200 flex gap-2 items-center">
+          <p className="border rounded-full w-[270px] 2xl:w-[350px] px-4 py-1.5 lg:py-2 2xl:py-2.5 border-gray-200 flex gap-2 items-center">
             <span className="shrink-0">
               <SearchSvg />
             </span>
@@ -150,7 +150,7 @@ const AllDocuments = () => {
               e.stopPropagation();
               setOpenFilter(!openFilter);
             }}
-            className="flex gap-2 items-center cursor-pointer px-4 py-1.5 lg:py-2 xl:py-2.5 rounded-full border-gray-200 relative duration-500 transition-all hover:bg-black hover:text-white border hover:border-transparent text-light-gray"
+            className="hidden lg:flex gap-2 items-center cursor-pointer px-4 py-1.5 lg:py-2 2xl:py-2.5 rounded-full border-gray-200 relative duration-500 transition-all hover:bg-black hover:text-white border hover:border-transparent text-light-gray"
           >
             <span className="shrink-0">
               <FilterSvg />
@@ -160,16 +160,16 @@ const AllDocuments = () => {
             {openFilter && (
               <div
                 onClick={e => e.stopPropagation()}
-                className="absolute top-14 right-0 w-[250px] bg-white shadow-lg border border-gray-50 rounded-lg p-5 z-50"
+                className="absolute top-14 right-0 w-[250px] bg-white shadow-lg border border-gray-50 rounded-lg p-4 xl:p-5 z-50"
               >
                 <div className="flex justify-between items-center font-medium text-secondary-black">
                   <h3>Filters</h3>
                 </div>
 
-                <hr className="text-gray-300 my-3" />
+                <hr className="text-gray-300 my-2 xl:my-3" />
 
-                <div className="space-y-3 text-sm text-secondary-gray">
-                  <h3 className="font-medium text-left text-secondary-black text-base">
+                <div className="space-y-2 xl:space-y-3 text-sm text-secondary-gray">
+                  <h3 className="font-medium text-left text-secondary-black text-sm xl:text-base">
                     Document Type
                   </h3>
 
@@ -193,7 +193,7 @@ const AllDocuments = () => {
                         type="radio"
                         id={option.id}
                         name="document_type"
-                        className="scale-125"
+                        className="scale-110 xl:scale-125"
                         value={option.value}
                         checked={tempDocumentType === option.value}
                         onChange={e => setTempDocumentType(e.target.value)}
@@ -203,11 +203,11 @@ const AllDocuments = () => {
                   ))}
                 </div>
 
-                <hr className="text-gray-300 my-4" />
+                <hr className="text-gray-300 my-3 xl:my-4" />
 
                 {/* Progress Status */}
-                <div className="space-y-3 text-sm text-secondary-gray mb-5">
-                  <h3 className="font-medium text-left text-secondary-black text-base">
+                <div className="space-y-2 xl:space-y-3 text-sm text-secondary-gray mb-5">
+                  <h3 className="font-medium text-left text-secondary-black text-sm xl:text-base">
                     Progress Status
                   </h3>
 
@@ -221,7 +221,7 @@ const AllDocuments = () => {
                         type="radio"
                         id={option.id}
                         name="progress_status"
-                        className="scale-125"
+                        className="scale-110 xl:scale-125"
                         value={option.value}
                         checked={tempStatus === option.value}
                         onChange={e => setTempStatus(e.target.value)}
@@ -233,7 +233,7 @@ const AllDocuments = () => {
 
                 <button
                   onClick={handleApplyChange}
-                  className="block w-full bg-secondary-blue text-white font-medium rounded-lg cursor-pointer transition-transform hover:scale-105 duration-300 py-3"
+                  className="block w-full bg-secondary-blue text-white font-medium rounded-lg cursor-pointer transition-transform hover:scale-105 duration-300 py-2 xl:py-3"
                 >
                   Apply Filters
                 </button>
@@ -248,7 +248,7 @@ const AllDocuments = () => {
               setDocType("");
               setStatus("");
             }}
-            className="flex gap-2 items-center cursor-pointer px-4 py-1.5 lg:py-2 xl:py-2.5 rounded-full border-gray-200 relative duration-500 transition-all hover:bg-black hover:text-white border hover:border-transparent text-light-gray"
+            className="hidden lg:flex gap-2 items-center cursor-pointer px-4 py-1.5 lg:py-2 2xl:py-2.5 rounded-full border-gray-200 relative duration-500 transition-all hover:bg-black hover:text-white border hover:border-transparent text-light-gray"
           >
             <GrPowerReset />
             <span>Reset</span>
@@ -262,162 +262,238 @@ const AllDocuments = () => {
           {Array.from({ length: 4 }).map((_, idx) => (
             <tbody key={idx}>
               <tr className="text-nowrap animate-pulse">
-                <td className="px-3 2xl:px-4 flex gap-3 items-center">
-                  <div className="w-11 h-11 rounded-full bg-gray-200" />
-                  <div className="h-4 w-24 bg-gray-200 rounded" />
+                <td className="lg:px-3 2xl:px-4 flex gap-3 items-center">
+                  <div className="size-11 rounded-full bg-gray-200" />
+                  <div className="h-4 w-20 lg:w-24 bg-gray-200 rounded" />
                 </td>
 
-                <td className="px-3 2xl:px-4">
-                  <div className="h-4 w-32 bg-gray-200 rounded" />
+                <td className="lg:px-3 2xl:px-4">
+                  <div className="h-4 w-28 lg:w-32 bg-gray-200 rounded" />
                 </td>
 
-                <td className="px-3 2xl:px-4">
-                  <div className="h-4 w-20 bg-gray-200 rounded" />
+                <td className="lg:px-3 2xl:px-4">
+                  <div className="hidden md:inline-block h-4 w-20 bg-gray-200 rounded" />
                 </td>
 
-                <td className="px-3 2xl:px-4">
-                  <div className="h-6 w-16 bg-gray-200 rounded-lg" />
-                </td>
-
-                <td className="hidden px-3 2xl:px-4 2xl:flex justify-center items-center">
-                  <div className="h-6 w-6 bg-gray-200 rounded" />
+                <td className=" px-3 2xl:px-4">
+                  <div className="hidden lg:inline-block h-6 w-16 bg-gray-200 rounded-lg" />
                 </td>
               </tr>
             </tbody>
           ))}
         </table>
       ) : allDocuments?.data?.data?.length > 0 ? (
-        <div className="w-full overflow-x-auto mt-2.5 3xl:mt-5">
-          <table className="w-full border-separate border-spacing-y-7 2xl:border-spacing-y-10 text-sm 2xl:text-base">
-            <thead>
-              <tr className="text-nowrap text-dark-blue text-base 2xl:text-lg capitalize">
-                <td className="font-medium px-3 2xl:px-4">Document Type</td>
-                <td className="font-medium px-3 2xl:px-4">Title</td>
-                <td className="font-medium px-3 2xl:px-4">Date</td>
-                <td className="font-medium px-3 2xl:px-4">Status</td>
-                <td className="font-medium px-3 2xl:px-4 text-center">
-                  Action
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-              {allDocuments?.data?.data?.map(
-                (
-                  {
-                    id,
-                    document_type,
-                    title,
-                    last_update,
-                    status,
-                    file_type,
-                    document_file,
-                  }: documentItem,
-                  idx: number
-                ) => (
-                  <tr key={id} className="text-nowrap">
-                    <td className="px-3 2xl:px-4 flex gap-3 items-center">
-                      <p className="w-11 h-11 rounded-full grid place-items-center border-2 bg-[#cce6ff] border-secondary-blue">
-                        <FileSvg />
-                      </p>
-                      <p className="text-secondary-black font-medium capitalize">
-                        {document_type}
-                      </p>
-                    </td>
+        <>
+          {/* Table (visible only on lg and above) */}
+          <div className="hidden lg:block w-full overflow-x-auto mt-2.5 3xl:mt-5">
+            <table className="w-full border-separate border-spacing-y-7 2xl:border-spacing-y-10 text-sm 2xl:text-base">
+              <thead>
+                <tr className="text-nowrap text-dark-blue text-base 2xl:text-lg capitalize">
+                  <td className="font-medium px-3 2xl:px-4">Document Type</td>
+                  <td className="font-medium px-3 2xl:px-4">Title</td>
+                  <td className="font-medium px-3 2xl:px-4">Date</td>
+                  <td className="font-medium px-3 2xl:px-4">Status</td>
+                  <td className="font-medium px-3 2xl:px-4 text-center">
+                    Action
+                  </td>
+                </tr>
+              </thead>
+              <tbody>
+                {allDocuments?.data?.data?.map(
+                  (
+                    {
+                      id,
+                      document_type,
+                      title,
+                      last_update,
+                      status,
+                      file_type,
+                      document_file,
+                    }: documentItem,
+                    idx: number
+                  ) => (
+                    <tr key={id} className="text-nowrap">
+                      <td className="px-3 2xl:px-4 flex gap-3 items-center">
+                        <p className="w-11 h-11 rounded-full grid place-items-center border-2 bg-[#cce6ff] border-secondary-blue">
+                          <FileSvg />
+                        </p>
+                        <p className="text-secondary-black font-medium capitalize">
+                          {document_type}
+                        </p>
+                      </td>
 
-                    <td className="px-3 2xl:px-4">
-                      <p className="text-secondary-black font-medium">
-                        {title}
-                      </p>
-                    </td>
+                      <td className="px-3 2xl:px-4">
+                        <p className="text-secondary-black font-medium">
+                          {title}
+                        </p>
+                      </td>
 
-                    <td className="px-3 2xl:px-4">
-                      <p className="text-secondary-black">
-                        {moment(last_update).format("ll")}
-                      </p>
-                    </td>
+                      <td className="px-3 2xl:px-4">
+                        <p className="text-secondary-black">
+                          {moment(last_update).format("ll")}
+                        </p>
+                      </td>
 
-                    <td className="px-3 2xl:px-4">
-                      <span
-                        className={`capitalize px-3 lg:px-4 py-1 lg:py-1.5 rounded-lg ${
-                          status?.toLowerCase() === "exported"
-                            ? "bg-[#CD8F1E] text-[#fff]"
-                            : "bg-[#DCFCE7] text-[#09A506]"
-                        }`}
-                      >
-                        {status}
-                      </span>
-                    </td>
-
-                    <td className="px-3 2xl:px-4 flex justify-center items-center relative">
-                      <button
-                        onClick={e => {
-                          setOpen(true);
-                          setPopoverId(id);
-                          e.stopPropagation();
-                        }}
-                        className="cursor-pointer"
-                      >
-                        <HiOutlineDotsVertical className="text-xl" />
-                      </button>
-
-                      {/* Popover */}
-                      <div
-                        onClick={e => e.stopPropagation()}
-                        className={`${
-                          open && id === popoverId ? "block" : "hidden"
-                        } absolute top-5 right-10 2xl:right-14 3xl:right-22 p-3 border border-gray-100 bg-white rounded-lg shadow-lg space-y-2.5 z-40 w-[120px] text-sm ${
-                          idx === allDocuments?.data?.data?.length - 1 &&
-                          "!-top-22"
-                        }`}
-                      >
-                        {/* View btn */}
-                        {file_type === "pdf" && (
-                          <button
-                            onClick={() => handleView(document_file)}
-                            className="flex gap-2 items-center cursor-pointer"
-                          >
-                            <FiEye />
-                            <span>View</span>
-                          </button>
-                        )}
-
-                        {/* Export btn */}
-                        <button
-                          disabled={isExporting}
-                          onClick={() => handleExport(id, file_type)}
-                          className={`flex gap-2 items-center cursor-pointer ${
-                            isExporting && "!cursor-not-allowed"
+                      <td className="px-3 2xl:px-4">
+                        <span
+                          className={`capitalize px-3 lg:px-4 py-1 lg:py-1.5 rounded-lg ${
+                            status?.toLowerCase() === "exported"
+                              ? "bg-[#CD8F1E] text-[#fff]"
+                              : "bg-[#DCFCE7] text-[#09A506]"
                           }`}
                         >
-                          <TbFileExport />
-                          <span>{isExporting ? "Exporting" : "Export"}</span>
+                          {status}
+                        </span>
+                      </td>
+
+                      <td className="px-3 2xl:px-4 flex justify-center items-center relative">
+                        <button
+                          onClick={e => {
+                            setOpen(true);
+                            setPopoverId(id);
+                            e.stopPropagation();
+                          }}
+                          className="cursor-pointer"
+                        >
+                          <HiOutlineDotsVertical className="text-xl" />
                         </button>
 
-                        {/* Delete btn */}
-                        <button
-                          onClick={() => {
-                            setDocumentId(id);
-                            if (documentId) {
-                              deleteDocumentMutation();
-                            }
-                          }}
-                          className="flex gap-2 items-center cursor-pointer text-red-500"
+                        {/* Popover */}
+                        <div
+                          onClick={e => e.stopPropagation()}
+                          className={`${
+                            open && id === popoverId ? "block" : "hidden"
+                          } absolute top-5 right-10 2xl:right-14 3xl:right-22 p-3 border border-gray-100 bg-white rounded-lg shadow-lg space-y-2.5 z-40 w-[120px] text-sm ${
+                            idx === allDocuments?.data?.data?.length - 1 &&
+                            "!-top-22"
+                          }`}
                         >
-                          <FiDelete />
-                          <span>{isPending ? "Deleting" : "Delete"}</span>
-                        </button>
-                      </div>
-                    </td>
-                  </tr>
-                )
-              )}
-            </tbody>
-          </table>
-        </div>
+                          {/* View btn */}
+                          {file_type === "pdf" && (
+                            <button
+                              onClick={() => handleView(document_file)}
+                              className="flex gap-2 items-center cursor-pointer"
+                            >
+                              <FiEye />
+                              <span>View</span>
+                            </button>
+                          )}
+
+                          {/* Export btn */}
+                          <button
+                            disabled={isExporting}
+                            onClick={() => handleExport(id, file_type)}
+                            className={`flex gap-2 items-center cursor-pointer ${
+                              isExporting && "!cursor-not-allowed"
+                            }`}
+                          >
+                            <TbFileExport />
+                            <span>{isExporting ? "Exporting" : "Export"}</span>
+                          </button>
+
+                          {/* Delete btn */}
+                          <button
+                            onClick={() => {
+                              setDocumentId(id);
+                              if (documentId) {
+                                deleteDocumentMutation();
+                              }
+                            }}
+                            className="flex gap-2 items-center cursor-pointer text-red-500"
+                          >
+                            <FiDelete />
+                            <span>{isPending ? "Deleting" : "Delete"}</span>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  )
+                )}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Card View (visible only below lg) */}
+          <div className="space-y-4 md:space-y-5 lg:hidden mt-4">
+            {allDocuments?.data?.data?.map(
+              ({
+                id,
+                document_type,
+                title,
+                last_update,
+                status,
+                file_type,
+                document_file,
+              }: documentItem) => (
+                <div
+                  key={id}
+                  className="border border-gray-200 rounded-xl p-4 shadow-sm flex flex-col gap-3 bg-white"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="size-10 rounded-full grid place-items-center border-2 bg-[#cce6ff] border-secondary-blue">
+                      <FileSvg />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 capitalize text-sm">
+                        {document_type}
+                      </h4>
+                      <p className="text-sm text-gray-500">
+                        {moment(last_update).format("ll")}
+                      </p>
+                    </div>
+                  </div>
+
+                  <p className="font-medium text-gray-700 text-sm ">{title}</p>
+
+                  <span
+                    className={`w-max capitalize px-3 py-1 rounded-lg text-sm ${
+                      status?.toLowerCase() === "exported"
+                        ? "bg-[#CD8F1E] text-white"
+                        : "bg-[#DCFCE7] text-[#09A506]"
+                    }`}
+                  >
+                    {status}
+                  </span>
+
+                  {/* Actions */}
+                  <div className="flex justify-between items-center mt-3 text-sm">
+                    {file_type === "pdf" && (
+                      <button
+                        onClick={() => handleView(document_file)}
+                        className="flex gap-1 items-center text-blue-600"
+                      >
+                        <FiEye /> View
+                      </button>
+                    )}
+                    <button
+                      onClick={() => handleExport(id, file_type)}
+                      className="flex gap-1 items-center text-green-600"
+                      disabled={isExporting}
+                    >
+                      <TbFileExport /> {isExporting ? "Exporting..." : "Export"}
+                    </button>
+                    <button
+                      onClick={() => {
+                        setDocumentId(id);
+                        deleteDocumentMutation();
+                      }}
+                      className="flex gap-1 items-center text-red-500"
+                      disabled={isPending}
+                    >
+                      <FiDelete /> {isPending ? "Deleting..." : "Delete"}
+                    </button>
+                  </div>
+                </div>
+              )
+            )}
+          </div>
+        </>
       ) : (
-        <div className="flex flex-col justify-center items-center gap-4 text-center py-20">
+        <div className="flex flex-col justify-center items-center gap-3 lg:gap-4 text-center py-20">
           <AiOutlineFileUnknown className="text-5xl text-gray-500" />
-          <p className="font-medium text-gray-600">No documents found!!</p>
+          <p className="font-medium text-gray-600 text-sm lg:text-base">
+            No documents found!!
+          </p>
         </div>
       )}
 

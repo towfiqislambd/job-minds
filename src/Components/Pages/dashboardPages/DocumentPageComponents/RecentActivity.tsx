@@ -36,7 +36,7 @@ const RecentActivity = () => {
                 </div>
               </div>
 
-              <div className="flex gap-2 items-center justify-center md:justify-start">
+              <div className="hidden lg:flex gap-2 items-center justify-center md:justify-start">
                 <div className="w-4 h-4 bg-gray-200 rounded" />
                 <div className="h-3 lg:h-4 w-16 lg:w-20 bg-gray-200 rounded" />
               </div>
@@ -47,11 +47,11 @@ const RecentActivity = () => {
             ({ id, title, type, created_at }: activityItem) => (
               <div
                 key={id}
-                className="border border-gray-200 rounded-lg p-3 xl:px-5 xl:py-4 flex flex-col md:flex-row md: md:justify-between md:items-center gap-3 md:gap-0 "
+                className="border border-gray-200 rounded-lg p-3 xl:px-5 xl:py-4 flex flex-col md:flex-row md:justify-between md:items-center gap-3 md:gap-0 "
               >
                 {/* Left */}
-                <div className="flex gap-4 items-center">
-                  <p className="w-11 lg:w-12 h-11 lg:h-12 rounded-full grid place-items-center border-2 bg-[#cce6ff] border-secondary-blue">
+                <div className="flex gap-3 lg:gap-4 items-start">
+                  <p className="size-10 lg:size-12 rounded-full grid place-items-center border-2 bg-[#cce6ff] border-secondary-blue shrink-0">
                     <FileSvg />
                   </p>
                   <p className="flex flex-col gap-1 text-sm lg:text-base">

@@ -65,17 +65,17 @@ const Draft = () => {
           return (
             <div
               key={item.id || index}
-              className="border border-[#EAEAEA] rounded-[8px] p-3 xl:p-4 2xl:p-5 mt-4"
+              className="border border-[#EAEAEA] rounded-[8px] p-3 xl:p-4 2xl:p-5 mt-3 lg:mt-4"
             >
               <div
                 className="flex justify-between items-center cursor-pointer"
                 onClick={() => toggleAccordion(index)}
               >
                 <div className="flex gap-x-3 items-center">
-                  <h4 className="text-lg font-poppins font-medium">
+                  <h4 className="lg:text-lg font-poppins font-medium">
                     {index + 1}.
                   </h4>
-                  <h3 className="text-base xl:text-[17px] font-poppins text-[#071431] font-medium 2xl:font-semibold capitalize">
+                  <h3 className="text-sm lg:text-base xl:text-[17px] font-poppins text-[#071431] font-medium 2xl:font-semibold capitalize">
                     {item?.job_title}
                   </h3>
                 </div>
