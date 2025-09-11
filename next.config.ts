@@ -1,5 +1,4 @@
-/** @type {import('next').NextConfig} */
-let domain = "example.com"; // Fallback domain
+let domain = "example.com";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
 if (siteUrl) {
@@ -19,7 +18,7 @@ const nextConfig = {
         protocol: "https",
         hostname: domain,
         port: "",
-        pathname: "/**", 
+        pathname: "/**",
       },
     ],
   },
