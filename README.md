@@ -40,40 +40,35 @@ It includes:
 
 ## 3. Main Features:
 
-- <i>**Authentication System** – Login, Logout, Signup, Reset Password, Change
-  Password, Email Verification, OTP Verification.</i>
-- <i>**Admin Dashboard** – Update CMS, manage content, and monitor activity.</i>
-- <i>**User Dashboard** – Centralized access to all tools and features.</i>
-- <i>**Subscription System** – Three packages with access-based feature
-  control.</i>
-- <i>**AI Resume Builder** – Generate professional resumes instantly with
-  AI.</i>
-- <i>**AI Cover Letter Generator** – Create tailored cover letters & send them
-  to email.</i>
-- <i>**LinkedIn Profile Optimization** – Improve your LinkedIn presence using AI
-  suggestions.</i>
-- <i>**AI Interview Assistant** – Chat-based interview preparation with
-  real-time responses.</i>
-- <i>**AI Interview Questions Generator** – Generate relevant questions based on
-  your role.</i>
-- <i>**Resume + Job Description Matching** – Upload resume & job description →
-  AI suggests improvements & generates a new tailored resume.</i>
-- <i>**AI Interview Simulation** – Conduct mock interviews directly with the
-  AI.</i>
-- <i>**Multi-Language Switcher** – Explore the website in multiple
-  languages.</i>
-- <i>**Fully Responsive Design** – Works seamlessly across desktops, tablets,
-  and mobiles.</i>
-- <i>**High Performance** – Fast loading, SEO-optimized, and scalable
-  codebase.</i>
-- <i>**Reusable & Organized Code** – Clean, scalable, and production-ready
-  structure.</i>
+- **Authentication System** – Login, Logout, Signup, Reset Password, Change
+  Password, Email Verification, OTP Verification.
+- **Admin Dashboard** – Update CMS, manage content, and monitor activity.
+- **User Dashboard** – Centralized access to all tools and features.
+- **Subscription System** – Three packages with access-based feature control.
+- **AI Resume Builder** – Generate professional resumes instantly with AI.
+- **AI Cover Letter Generator** – Create tailored cover letters & send them to
+  email.
+- **LinkedIn Profile Optimization** – Improve your LinkedIn presence using AI
+  suggestions.
+- **AI Interview Assistant** – Chat-based interview preparation with real-time
+  responses.
+- **AI Interview Questions Generator** – Generate relevant questions based on
+  your role.
+- **Resume + Job Description Matching** – Upload resume & job description → AI
+  suggests improvements & generates a new tailored resume.
+- **AI Interview Simulation** – Conduct mock interviews directly with the AI.
+- **Multi-Language Switcher** – Explore the website in multiple languages.
+- **Fully Responsive Design** – Works seamlessly across desktops, tablets, and
+  mobiles.
+- **High Performance** – Fast loading, SEO-optimized, and scalable codebase.
+- **Reusable & Organized Code** – Clean, scalable, and production-ready
+  structure.
 
 ---
 
 ## 4. Dependencies:
 
-````json
+```json
 "dependencies": {
   "@radix-ui/react-avatar": "^1.1.4",
   "@radix-ui/react-dialog": "^1.1.6",
@@ -101,7 +96,12 @@ It includes:
   "swiper": "^11.2.6",
   "tailwind-merge": "^3.0.2",
   "tailwindcss-animate": "^1.0.7"
-},
+}
+```
+
+## 5. devDependencies:
+
+```json
 "devDependencies": {
   "@tailwindcss/postcss": "^4.1.8",
   "@types/node": "^20",
@@ -112,7 +112,7 @@ It includes:
   "tailwindcss": "^4.1.8",
   "typescript": "^5.0.0"
 }
-````
+```
 
 ## 5. Live Website : https://job-minds.vercel.app
 
@@ -134,10 +134,11 @@ npm install
 npm run dev
 
 ---
+```
 
 ## 7. Usage:
 
-Run `npm run dev` to start the project locally.
-The app will run on **http://localhost:3000**
+Run `npm run dev` to start the project locally. The app will run on
+**http://localhost:3000**
 
 ---
