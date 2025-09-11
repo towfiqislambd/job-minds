@@ -161,10 +161,12 @@ const Page = () => {
           <button
             disabled={isPending}
             type="submit"
-            className={`auth-btn ${isPending && "!cursor-not-allowed"}`}
+            className={`auth-btn !w-full !block ${
+              isPending && "!cursor-not-allowed"
+            }`}
           >
             {isPending ? (
-              <div className="flex gap-2 items-center">
+              <div className="flex gap-2 items-center justify-center">
                 <CgSpinnerTwo className="animate-spin text-xl" />
                 <span>Signing up...</span>
               </div>

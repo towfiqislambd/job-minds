@@ -1,5 +1,6 @@
 import { useExportPdf, useSaveResumeTemplate } from "@/Hooks/api/dashboard_api";
 import React from "react";
+import toast from "react-hot-toast";
 import { CgSpinnerTwo } from "react-icons/cg";
 const StepFive = ({ step, setStep, template }: any) => {
   const { mutate: saveResumeMutation, isPending } = useSaveResumeTemplate();
@@ -7,18 +8,24 @@ const StepFive = ({ step, setStep, template }: any) => {
 
   const handleDownload = () => {
     downloadPdf(template, {
-      onSuccess: (blob: any) => {
-        const url = window.URL.createObjectURL(new Blob([blob]));
-        const link = document.createElement("a");
-        link.href = url;
-        link.setAttribute("download", `resume.pdf`);
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        window.URL.revokeObjectURL(url);
-      },
-      onError: (error: any) => {
-        console.error("Failed to download pdf:", error);
+      onSuccess: async (res: any) => {
+        try {
+          const text = await res.text();
+          const json = JSON.parse(text);
+          if (!json.status) {
+            toast.error(json.message || "Failed to export PDF");
+            return;
+          }
+        } catch {
+          const url = window.URL.createObjectURL(res);
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", "resume.pdf");
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          window.URL.revokeObjectURL(url);
+        }
       },
     });
   };

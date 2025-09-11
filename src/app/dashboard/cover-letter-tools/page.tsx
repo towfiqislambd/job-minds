@@ -46,6 +46,9 @@ const Page = () => {
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
+    setPreview(null);
+    setLetter(null);
+
     await generateCoverLetterMutation(data, {
       onSuccess: (data: any) => {
         setPreview(data.data?.content?.replace(/\n/g, "<br />"));

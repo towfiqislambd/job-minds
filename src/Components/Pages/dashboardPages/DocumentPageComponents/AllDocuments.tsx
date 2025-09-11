@@ -127,7 +127,7 @@ const AllDocuments = () => {
     <section className="dashboard_card">
       {/* Upper Part */}
       <div className="flex flex-col lg:flex-row gap-3 lg:gap-0 justify-between items-center">
-        <h4 className="section_sub_title">All Documents</h4>
+        <h4 className="section_sub_title">Saved Documents</h4>
 
         <div className="flex gap-3 3xl:gap-5 items-center flex-wrap justify-center">
           {/* Search */}

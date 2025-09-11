@@ -270,6 +270,9 @@ export const useExportDocument = (document_id: number | null) => {
     onSuccess: () => {
       queryClient.invalidateQueries("all-documents" as any);
     },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
   });
 };
 
@@ -330,6 +333,8 @@ export const usePurchasePlan = (plan_id: number) => {
       if (data?.status) {
         toast.success(data?.message);
         window.location.href = data?.data?.url;
+      } else {
+        toast.success(data?.message);
       }
     },
     onError: (err: any) => {

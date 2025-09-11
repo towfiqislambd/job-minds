@@ -123,7 +123,7 @@ const page = () => {
             }`}
           >
             {isPending ? (
-              <div className="flex gap-2 items-center">
+              <div className="flex gap-2 items-center justify-center">
                 <CgSpinnerTwo className="animate-spin text-xl" />
                 <span>Logging in...</span>
               </div>
