@@ -112,7 +112,7 @@ It includes:
   "tailwindcss": "^4.1.8",
   "typescript": "^5.0.0"
 }
-
+````
 
 ## 5. Live Website : https://job-minds.vercel.app
 
@@ -141,4 +141,3 @@ Run `npm run dev` to start the project locally.
 The app will run on **http://localhost:3000**
 
 ---
-````
