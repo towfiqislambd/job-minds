@@ -25,13 +25,13 @@ It includes:
 
 - HTML
 - CSS
-- Tailwind CSS
+- Tailwind CSS as Framework
 - ShadCN UI as Component Library
 - TypeScript
-- Next.js
+- Next.js (v15)
 - PHP (Backend)
 - Framer Motion (Animations)
-- Axios
+- Axios for API Integration
 - TanStack Query (Real-time Data Fetching)
 - Radix UI Components
 - Lots of modern React ecosystem packages
@@ -99,6 +99,8 @@ It includes:
 }
 ```
 
+---
+
 ## 5. devDependencies:
 
 ```json
@@ -114,8 +116,6 @@ It includes:
 }
 ```
 
-## 5. Live Website : https://job-minds.vercel.app
-
 ---
 
 ## 6. Installation:
@@ -127,14 +127,17 @@ git clone https://github.com/towfiqislambd/job-minds.git
 # Navigate into the project
 cd job-minds
 
+# Add an env.local file in root
+.env.local = Add secret credentials
+
 # Install dependencies
 npm install
 
 # Run the development server
 npm run dev
+```
 
 ---
-```
 
 ## 7. Usage:
 
