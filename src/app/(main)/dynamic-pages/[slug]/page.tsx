@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect } from "react";
+import { Loader } from "@/Components/Loader/Loader";
 import Container from "@/Components/Common/Container";
 import { useSingleDynamicPage } from "@/Hooks/api/cms_api";
-import { Loader } from "@/Components/Loader/Loader";
 
 const page = ({ params }: any) => {
   const { slug } = params;

@@ -1,13 +1,13 @@
 import "./globals.css";
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
 import { Toaster } from "react-hot-toast";
-import AosProvider from "@/Provider/AosProvider/AosProvider";
-import QueryProvider from "@/Provider/QueryProvider/QueryProvider";
-import { GoogleOAuthProvider } from "@react-oauth/google";
-import AuthProvider from "@/Provider/AuthProvider/AuthProvider";
-import { TranslationProvider } from "@/Provider/TranslationProvider/TranslationContext";
+import { Poppins } from "next/font/google";
 import UseSiteSettings from "@/Hooks/UseSiteSettings";
+import { GoogleOAuthProvider } from "@react-oauth/google";
+import AosProvider from "@/Provider/AosProvider/AosProvider";
+import AuthProvider from "@/Provider/AuthProvider/AuthProvider";
+import QueryProvider from "@/Provider/QueryProvider/QueryProvider";
+import { TranslationProvider } from "@/Provider/TranslationProvider/TranslationContext";
 
 const poppins = Poppins({
   variable: "--font-poppins",

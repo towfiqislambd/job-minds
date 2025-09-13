@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
-import Profile from "@/assets/images/dashboard/profile.svg";
+import Profile from "@/assets/profile.svg";
 import { BiSend } from "react-icons/bi";
 import { useAiChatHistory, useAiInterviewer } from "@/Hooks/api/dashboard_api";
 import toast from "react-hot-toast";
@@ -92,7 +92,7 @@ const page = () => {
           className="my-4 px-3 md:px-4 2xl:px-7 grow overflow-y-auto"
         >
           {isLoading ? (
-            <div className="space-y-5">
+            <div className="space-y-3 md:space-y-5">
               {Array.from({ length: 9 }).map((_, idx) => (
                 <div
                   key={idx}

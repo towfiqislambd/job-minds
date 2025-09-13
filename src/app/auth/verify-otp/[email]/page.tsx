@@ -9,12 +9,14 @@ type formData = {
 };
 
 const page = ({ params }: any) => {
+  // Hook
   const { email } = params;
 
   // Mutations
   const { mutateAsync: verifyOtpMutation, isPending } = useVerifyOTP();
   const { mutate: resendOtpMutation, isPending: isSending } = useResendOTP();
 
+  // Form Data
   const {
     control,
     handleSubmit,
