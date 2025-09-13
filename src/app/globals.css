@@ -110,7 +110,8 @@ html {
 .skiptranslate iframe,
 #google_translate_element,
 .VIpgJd-ZVi9od-aZ2wEe-OiiCO,
-#goog-gt-vt {
+#goog-gt-vt,
+#goog-gt-tt {
   display: none !important;
 }
 

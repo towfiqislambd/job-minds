@@ -1,13 +1,14 @@
 "use client";
-import ServiceContainer from "@/Components/Pages/mainPages/ServiceContainer";
+import { useEffect } from "react";
+import { Loader } from "@/Components/Loader/Loader";
+import FAQSection from "@/Components/Pages/mainPages/FAQSection";
 import HeroSection from "../../Components/Pages/mainPages/HeroSection";
 import PricingSection from "@/Components/Pages/mainPages/PricingSection";
-import FAQSection from "@/Components/Pages/mainPages/FAQSection";
+import ServiceContainer from "@/Components/Pages/mainPages/ServiceContainer";
 import { useFaqData, useGetPricing, useHeroData } from "@/Hooks/api/cms_api";
-import { Loader } from "@/Components/Loader/Loader";
-import { useEffect } from "react";
 
 export default function Home() {
+  // Queries
   const { data: heroData, isLoading: heroDataLoading } = useHeroData();
   const { data: faqData, isLoading: faqDataLoading } = useFaqData();
   const { data: pricingData, isLoading: pricingDataLoading } = useGetPricing();

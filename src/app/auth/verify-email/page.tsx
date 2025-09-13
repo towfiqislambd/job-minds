@@ -11,6 +11,7 @@ const page = () => {
   // Mutation
   const { mutateAsync: verifyEmailMutation, isPending } = useVerifyEmail();
 
+  // Form Data
   const {
     register,
     handleSubmit,

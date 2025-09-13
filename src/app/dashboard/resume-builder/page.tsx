@@ -74,7 +74,7 @@ const Page = () => {
               </p>
 
               {/* Buttons */}
-              <div className="absolute left-1/2 -translate-x-1/2 translate-y-5 group-hover:translate-y-1 opacity-0 group-hover:opacity-100 transition-all duration-300 flex gap-3 3xl:justify-between items-center">
+              <div className="absolute left-1/2 -translate-x-1/2 translate-y-3 xl:translate-y-5 xl:group-hover:translate-y-1 xl:opacity-0 xl:group-hover:opacity-100 transition-all duration-300 flex gap-3 3xl:justify-between items-center">
                 {/* View btn */}
                 <Button
                   Txt="View Template"

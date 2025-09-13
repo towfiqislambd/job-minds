@@ -4,9 +4,9 @@ import {
   useGenerateCoverLetter,
   useSaveCoverLetter,
 } from "@/Hooks/api/dashboard_api";
+import toast from "react-hot-toast";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { MdContentCopy } from "react-icons/md";
 import { IoDocumentTextOutline } from "react-icons/io5";
@@ -38,6 +38,7 @@ const Page = () => {
   const { mutate: downloadCoverLetterMutation, isPending: isDownloading } =
     useDownloadCoverLetter();
 
+  // Form Data
   const {
     register,
     reset,

@@ -1,11 +1,11 @@
 "use client";
-import { useRegister } from "@/Hooks/api/auth_api";
 import Link from "next/link";
 import { useState } from "react";
+import { LuEye } from "react-icons/lu";
 import { useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
-import { LuEye } from "react-icons/lu";
 import { FaRegEyeSlash } from "react-icons/fa6";
+import { useRegister } from "@/Hooks/api/auth_api";
 
 type formData = {
   name: string;
@@ -24,6 +24,7 @@ const Page = () => {
   const [showConfirmPassword, setShowConfirmPassword] =
     useState<boolean>(false);
 
+  // Form Data
   const {
     register,
     handleSubmit,

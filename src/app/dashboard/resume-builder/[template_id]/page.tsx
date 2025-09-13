@@ -1,4 +1,5 @@
 "use client";
+import toast from "react-hot-toast";
 import React, { use, useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { useCreateResume } from "@/Hooks/api/dashboard_api";
@@ -7,7 +8,6 @@ import StepTwo from "@/Components/Pages/dashboardPages/resumeBuilderComponents/S
 import StepThree from "@/Components/Pages/dashboardPages/resumeBuilderComponents/StepThree";
 import StepFour from "@/Components/Pages/dashboardPages/resumeBuilderComponents/StepFour";
 import StepFive from "@/Components/Pages/dashboardPages/resumeBuilderComponents/StepFive";
-import toast from "react-hot-toast";
 
 const steps = [
   { component: StepOne },
@@ -106,7 +106,7 @@ const page = ({ params }: Props) => {
           exp.description || ""
         );
       });
-      
+
       data.skills?.forEach((skill: string, index: number) => {
         formData.append(`skills[${index}]`, skill);
       });

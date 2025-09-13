@@ -1,10 +1,10 @@
 "use client";
-import { useResetPassword } from "@/Hooks/api/auth_api";
+import { useState } from "react";
+import { LuEye } from "react-icons/lu";
 import { useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
-import { LuEye } from "react-icons/lu";
 import { FaRegEyeSlash } from "react-icons/fa6";
-import { useState } from "react";
+import { useResetPassword } from "@/Hooks/api/auth_api";
 
 type formData = {
   password: string;
@@ -21,6 +21,7 @@ const page = ({ params }: any) => {
   const [showConfirmPassword, setShowConfirmPassword] =
     useState<boolean>(false);
 
+  // Form Data
   const {
     register,
     handleSubmit,

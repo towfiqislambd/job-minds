@@ -1,15 +1,15 @@
 "use client";
-import { useState } from "react";
-import { CiSearch } from "react-icons/ci";
-import { IoIosArrowUp } from "react-icons/io";
-import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import {
   useDraftInterviewQuestions,
   useInitialJobRoles,
   useInterviewAssistant,
 } from "@/Hooks/api/dashboard_api";
+import { CiSearch } from "react-icons/ci";
+import { IoIosArrowUp } from "react-icons/io";
+import { motion, AnimatePresence } from "framer-motion";
 import { CgSpinnerTwo } from "react-icons/cg";
 import { useRouter } from "next/navigation";
 import { Loader } from "@/Components/Loader/Loader";
@@ -212,7 +212,7 @@ const Page = () => {
                               }}
                             >
                               {isDrafting ? (
-                                <div className="flex gap-2 items-center">
+                                <div className="flex gap-2 items-center justify-center">
                                   <CgSpinnerTwo className="animate-spin text-xl" />
                                   <span>Saving....</span>
                                 </div>

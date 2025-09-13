@@ -1,6 +1,6 @@
+import toast from "react-hot-toast";
 import useApi from "@/Hooks/api/useApi";
 import { useQueryClient } from "@tanstack/react-query";
-import toast from "react-hot-toast";
 
 // All Resume Template
 export const useAllResumeTemplate = () => {

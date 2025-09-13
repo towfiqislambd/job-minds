@@ -1,7 +1,7 @@
 "use client";
+import Image from "next/image";
 import React, { useState } from "react";
 import { FaUser } from "react-icons/fa";
-import Image from "next/image";
 import ChangePassword from "./ChangePassword";
 import BasicInformation from "./BasicInformation";
 import { useLogout } from "@/Hooks/api/auth_api";

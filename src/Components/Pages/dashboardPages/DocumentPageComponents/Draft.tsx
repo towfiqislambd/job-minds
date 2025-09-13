@@ -5,7 +5,6 @@ import { useAllDrafts, useRemoveFromDraft } from "@/Hooks/api/dashboard_api";
 import { AiOutlineFileUnknown } from "react-icons/ai";
 import { motion, AnimatePresence } from "framer-motion";
 import { IoIosArrowUp } from "react-icons/io";
-import { CgSpinnerTwo } from "react-icons/cg";
 
 const Draft = () => {
   // States

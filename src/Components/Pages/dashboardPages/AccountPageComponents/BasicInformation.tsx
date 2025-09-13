@@ -8,6 +8,7 @@ import useAuth from "@/Hooks/useAuth";
 import { FaUser } from "react-icons/fa6";
 
 const BasicInformation = () => {
+  // Hook
   const { user } = useAuth();
 
   // State
@@ -24,6 +25,7 @@ const BasicInformation = () => {
     email: string;
   };
 
+  // Form Data
   const {
     register,
     handleSubmit,

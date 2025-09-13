@@ -9,9 +9,14 @@ import toast from "react-hot-toast";
 import { CgSpinnerTwo } from "react-icons/cg";
 
 const page = () => {
+  // Hook
+  const router = useRouter();
+
+  // Mutation
   const { mutateAsync: applyChangesMutation, isPending } =
     useApplyChangesJobMatcher();
-  const router = useRouter();
+
+  // States
   const [jobData, setJobData] = useState<any>({});
   const [improvement_suggestions, setImprovementSuggestions] = useState<any>(
     []

@@ -20,7 +20,7 @@ const page = () => {
   // State
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  // Mutation
+  // Mutations
   const { mutateAsync: loginMutation, isPending } = useLogin();
   const { mutateAsync: googleLoginMutation } = useGoogleLoginFunc();
 

@@ -1,3 +1,5 @@
+import React from "react";
+import useAuth from "@/Hooks/useAuth";
 import {
   EmailSvg,
   NotificationSvg,
@@ -8,11 +10,12 @@ import {
   useExpiringSubscription,
   useNormalNotification,
 } from "@/Hooks/api/dashboard_api";
-import useAuth from "@/Hooks/useAuth";
-import React from "react";
 
 const Notification = () => {
+  // Hook
   const { user } = useAuth();
+
+  // Mutations
   const { mutate: emailNotificationMutation, isPending } =
     useEmailNotification();
   const { mutate: normalNotificationMutation, isPending: isWorking } =

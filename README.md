@@ -8,10 +8,10 @@ It enables users to **create professional resumes, generate cover letters,
 optimize LinkedIn profiles, prepare for interviews, and more** – all with the
 power of AI.
 
-The platform is modern, SEO-friendly, dynamic, and optimized for fast
-performance across all devices.
-
-It includes:
+The platform is developed with Next.js v15, TypeScript, and a stack of modern
+tools & technologies to ensure scalability, performance, and maintainability. It
+features a modern UI/UX, is SEO-friendly, and optimized for fast performance
+across all devices. It includes:
 
 - **Admin Dashboard** – Manage CMS and update any content dynamically.
 - **User Dashboard** – Access all career tools, AI assistants, and personalized
@@ -23,12 +23,10 @@ It includes:
 
 ## 2. Used Technologies:
 
-- HTML
-- CSS
+- Next.js (v15)
+- TypeScript
 - Tailwind CSS as Framework
 - ShadCN UI as Component Library
-- TypeScript
-- Next.js (v15)
 - PHP (Backend)
 - Framer Motion (Animations)
 - Axios for API Integration

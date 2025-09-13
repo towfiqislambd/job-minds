@@ -24,6 +24,7 @@ const ChangePassword = () => {
   const [showConfirmPassword, setShowConfirmPassword] =
     useState<boolean>(false);
 
+  // Form Data
   const {
     register,
     watch,

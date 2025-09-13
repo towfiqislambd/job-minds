@@ -6,28 +6,34 @@ import { FaUser } from "react-icons/fa";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { MdLogout } from "react-icons/md";
-import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 import ReactFlagsSelect from "react-flags-select";
 import { IoSettingsOutline } from "react-icons/io5";
 import { Loader } from "@/Components/Loader/Loader";
 import Container from "@/Components/Common/Container";
+import { usePathname, useRouter } from "next/navigation";
 import { useLogout, useSiteSettings } from "@/Hooks/api/auth_api";
 import { SiteLogo, WhiteDot } from "@/Components/SvgContainer/SvgContainer";
 import { useTranslation } from "@/Provider/TranslationProvider/TranslationContext";
 
 const Navbar = () => {
-  const { user } = useAuth();
-  const [openPopup, setOpenPopup] = useState(false);
-  const [selectedCountry, setSelectedCountry] = useState("US");
-  const { changeLanguage } = useTranslation();
+  // Hooks
   const router = useRouter();
   const pathname = usePathname();
+  const { user } = useAuth();
+  const { changeLanguage } = useTranslation();
+
+  // States
+  const [openPopup, setOpenPopup] = useState(false);
+  const [selectedCountry, setSelectedCountry] = useState("US");
   const [open, setOpen] = useState<boolean>(false);
+
+  // Mutations and Queries
   const { data: siteSettings, isLoading } = useSiteSettings();
   const { mutate: logoutMutation, isPending } = useLogout();
 
+  // NavLinks
   const publicRoutes = [
     {
       label: "Home",

@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
 import Link from "next/link";
+import { useSiteSettings } from "@/Hooks/api/auth_api";
+import { useDynamicPages } from "@/Hooks/api/cms_api";
 import Container from "@/Components/Common/Container";
 import Heading from "@/Components/Tags/Heading/Heading";
 import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
-import { useSiteSettings } from "@/Hooks/api/auth_api";
-import { useDynamicPages } from "@/Hooks/api/cms_api";
+
 const CombinedArr = [
   {
     title: "Ai tools",
@@ -52,6 +53,7 @@ const CombinedArr = [
 ];
 
 const Footer = () => {
+  // Queries
   const { data: siteSettings } = useSiteSettings();
   const { data: dynamicPages } = useDynamicPages();
 
