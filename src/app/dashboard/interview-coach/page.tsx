@@ -8,11 +8,12 @@ import {
   useInterviewAssistant,
 } from "@/Hooks/api/dashboard_api";
 import { CiSearch } from "react-icons/ci";
-import { IoIosArrowUp } from "react-icons/io";
-import { motion, AnimatePresence } from "framer-motion";
-import { CgSpinnerTwo } from "react-icons/cg";
 import { useRouter } from "next/navigation";
+import { IoIosArrowUp } from "react-icons/io";
+import { CgSpinnerTwo } from "react-icons/cg";
 import { Loader } from "@/Components/Loader/Loader";
+import { AiOutlineFileSearch } from "react-icons/ai";
+import { motion, AnimatePresence } from "framer-motion";
 
 type JobQuestion = {
   question: string;
@@ -48,6 +49,7 @@ const Page = () => {
 
   // Func for generate interview questions
   const handleGenerateQuestions = () => {
+    setJobData([]);
     if (!selectedRole) {
       return toast.error("Please enter your job role");
     }
@@ -144,7 +146,7 @@ const Page = () => {
                 <div className="rounded-[8px] p-3 lg:p-5 animate-pulse bg-gray-100 w-2/3" />
                 <div className="rounded-[8px] p-3 lg:p-5 animate-pulse bg-gray-100" />
               </div>
-            ) : (
+            ) : jobData?.length > 0 ? (
               jobData?.map((item, index) => {
                 const isOpen = openIndex === index;
                 return (
@@ -227,6 +229,13 @@ const Page = () => {
                   </div>
                 );
               })
+            ) : (
+              <div className="w-full outline-none py-20 bg-[#F8FAFB] flex justify-center items-center flex-col gap-3">
+                <AiOutlineFileSearch className="text-6xl text-gray-500" />
+                <p className="text-gray-500 font-medium text-sm lg:text-base">
+                  No data found!
+                </p>
+              </div>
             )}
           </div>
         </div>

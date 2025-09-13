@@ -323,6 +323,7 @@ export const useInitialJobRoles = () => {
 
 // Purchase Plan
 export const usePurchasePlan = (plan_id: number) => {
+  const queryClient = useQueryClient();
   return useApi({
     method: "post",
     key: "purchase-plan",
@@ -333,6 +334,7 @@ export const usePurchasePlan = (plan_id: number) => {
       if (data?.status) {
         toast.success(data?.message);
         window.location.href = data?.data?.url;
+        queryClient.invalidateQueries("single-dynamic-page" as any);
       } else {
         toast.success(data?.message);
       }
@@ -434,6 +436,9 @@ export const useLinkedinOptimizer = () => {
     onSuccess: () => {
       queryClient.invalidateQueries("all-recent-activity" as any);
     },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
   });
 };
 
@@ -518,5 +523,43 @@ export const useAllNotifications = () => {
     key: "all-notifications",
     isPrivate: true,
     endpoint: "/api/all-notifications",
+  });
+};
+
+// Save Job Matching
+export const useSaveJobMatching = () => {
+  const queryClient = useQueryClient();
+  return useApi({
+    method: "post",
+    key: "save-job-matching",
+    isPrivate: true,
+    endpoint: "/api/apply-changes-save",
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+        queryClient.invalidateQueries("all-documents" as any);
+        queryClient.invalidateQueries("all-recent-activity" as any);
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
+
+// Download Job Matching
+export const useDownloadJobMatching = () => {
+  const queryClient = useQueryClient();
+  return useApi({
+    method: "post",
+    key: "download-job-matching",
+    isPrivate: true,
+    endpoint: "/api/export-apply-changes",
+    config: {
+      responseType: "blob",
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries("all-recent-activity" as any);
+    },
   });
 };

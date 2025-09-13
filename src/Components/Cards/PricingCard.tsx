@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import { TickMark } from "../SvgContainer/SvgContainer";
+import toast from "react-hot-toast";
 import useAuth from "@/Hooks/useAuth";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
+import { TickMark } from "../SvgContainer/SvgContainer";
 
 interface PricingCardProps {
   package_name: string;
@@ -59,7 +59,6 @@ const PricingCard: React.FC<PricingCardProps> = ({
           </div>
           <div className="flex flex-col gap-y-5">
             <h5 className="text-2xl md:text-3xl lg:text-5xl 3xl:text-[64px] font-bold leading-[132%] tracking-[-0.24px] text-dark-blue">
-              {" "}
               €{price}
               <span className="text-lg text-dark-blue leading-[164%] font-[600] capitalize">
                 / {interval}

@@ -188,6 +188,16 @@ const Page = () => {
               Log in
             </Link>
           </div>
+
+          {/* Back to home */}
+          <div className="flex justify-center text-center -mt-2">
+            <Link
+              href="/"
+              className="text-primary-blue cursor-pointer underline text-sm lg:text-base"
+            >
+              Back to home
+            </Link>
+          </div>
         </div>
       </div>
     </form>
