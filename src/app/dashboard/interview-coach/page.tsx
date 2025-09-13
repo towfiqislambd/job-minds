@@ -8,12 +8,12 @@ import {
   useInterviewAssistant,
 } from "@/Hooks/api/dashboard_api";
 import { CiSearch } from "react-icons/ci";
-import { IoIosArrowUp } from "react-icons/io";
-import { motion, AnimatePresence } from "framer-motion";
-import { CgSpinnerTwo } from "react-icons/cg";
 import { useRouter } from "next/navigation";
+import { IoIosArrowUp } from "react-icons/io";
+import { CgSpinnerTwo } from "react-icons/cg";
 import { Loader } from "@/Components/Loader/Loader";
 import { AiOutlineFileSearch } from "react-icons/ai";
+import { motion, AnimatePresence } from "framer-motion";
 
 type JobQuestion = {
   question: string;
@@ -49,6 +49,7 @@ const Page = () => {
 
   // Func for generate interview questions
   const handleGenerateQuestions = () => {
+    setJobData([]);
     if (!selectedRole) {
       return toast.error("Please enter your job role");
     }

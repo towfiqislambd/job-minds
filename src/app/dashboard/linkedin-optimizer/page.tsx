@@ -35,6 +35,8 @@ const Page = () => {
   } = useForm<formData>();
 
   const onSubmit = async (data: formData) => {
+    setOptimizedData("");
+    setDoc("");
     await submitDataMutation(data, {
       onSuccess: (data: any) => {
         setOptimizedData(

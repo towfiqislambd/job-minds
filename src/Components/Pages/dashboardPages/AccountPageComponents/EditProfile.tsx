@@ -42,7 +42,7 @@ const EditProfile = () => {
         </p>
 
         {/* Upgrade */}
-        {user?.is_subscribed && (
+        {user?.subscription && (
           <div className="border py-2 px-3 md:px-4 rounded-xl flex items-center justify-between border-gray-200">
             <div className="space-y-2">
               <h4 className="text-secondary-blue text-lg font-semibold leading-[132%] tracking-[-0.319px] capitalize">

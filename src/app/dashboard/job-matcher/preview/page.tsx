@@ -3,7 +3,10 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { CgSpinnerTwo } from "react-icons/cg";
 import React, { useEffect, useState } from "react";
-import { useExportPdf, useSaveResumeTemplate } from "@/Hooks/api/dashboard_api";
+import {
+  useDownloadJobMatching,
+  useSaveJobMatching,
+} from "@/Hooks/api/dashboard_api";
 
 const page = () => {
   // Hook
@@ -13,8 +16,9 @@ const page = () => {
   const [htmlData, setHtmlData] = useState<string>("");
 
   // Mutations
-  const { mutate: downloadPdf, isPending: isDownloading } = useExportPdf();
-  const { mutate: saveResumeMutation, isPending } = useSaveResumeTemplate();
+  const { mutate: downloadPdf, isPending: isDownloading } =
+    useDownloadJobMatching();
+  const { mutate: saveResumeMutation, isPending } = useSaveJobMatching();
 
   useEffect(() => {
     const storedData = sessionStorage.getItem("htmlData");
