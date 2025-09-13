@@ -1,10 +1,11 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import EditProfile from "@/Components/Pages/dashboardPages/AccountPageComponents/EditProfile";
 import Subscription from "@/Components/Pages/dashboardPages/AccountPageComponents/Subscription";
 import TermsOfService from "@/Components/Pages/dashboardPages/AccountPageComponents/TermsOfService";
 import Notification from "@/Components/Pages/dashboardPages/AccountPageComponents/Notification";
-import { useSearchParams } from "next/navigation";
+
 const tabData = [
   { id: 1, label: "Edit profile", path: "edit-profile" },
   { id: 2, label: "Notification Settings", path: "notification" },

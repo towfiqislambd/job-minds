@@ -5,8 +5,13 @@ import { useExportPdf, useSaveResumeTemplate } from "@/Hooks/api/dashboard_api";
 import { CgSpinnerTwo } from "react-icons/cg";
 
 const page = () => {
+  // Hook
   const router = useRouter();
+
+  // State
   const [htmlData, setHtmlData] = useState<string>("");
+
+  // Mutations
   const { mutate: downloadPdf, isPending: isDownloading } = useExportPdf();
   const { mutate: saveResumeMutation, isPending } = useSaveResumeTemplate();
 
@@ -17,7 +22,7 @@ const page = () => {
     }
   }, []);
 
-  
+  // Func for download pdf
   const handleDownload = () => {
     downloadPdf(
       { html: htmlData },

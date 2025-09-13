@@ -1,8 +1,9 @@
 "use client";
-import AllDocuments from "@/Components/Pages/dashboardPages/DocumentPageComponents/AllDocuments";
-import Draft from "@/Components/Pages/dashboardPages/DocumentPageComponents/Draft";
-import RecentActivity from "@/Components/Pages/dashboardPages/DocumentPageComponents/RecentActivity";
 import { useState } from "react";
+import Draft from "@/Components/Pages/dashboardPages/DocumentPageComponents/Draft";
+import AllDocuments from "@/Components/Pages/dashboardPages/DocumentPageComponents/AllDocuments";
+import RecentActivity from "@/Components/Pages/dashboardPages/DocumentPageComponents/RecentActivity";
+
 const tabData = [
   { id: 1, label: "All Documents", path: "all-documents" },
   { id: 2, label: "Recent Activity", path: "recent-activity" },
@@ -10,6 +11,7 @@ const tabData = [
 ];
 
 const page = () => {
+  // State
   const [activeTab, setActiveTab] = useState<string>("all-documents");
 
   return (

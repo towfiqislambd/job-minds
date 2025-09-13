@@ -1,7 +1,7 @@
 "use client";
+import React, { useEffect } from "react";
 import { Loader } from "@/Components/Loader/Loader";
 import { useSingleDynamicPage } from "@/Hooks/api/cms_api";
-import React, { useEffect } from "react";
 
 const TermsOfService = () => {
   const { data: termsData, isLoading } = useSingleDynamicPage(

@@ -22,13 +22,13 @@ import { CgSpinnerTwo } from "react-icons/cg";
 import { useLogout } from "@/Hooks/api/auth_api";
 import ReactFlagsSelect from "react-flags-select";
 import { IoSettingsOutline } from "react-icons/io5";
+import { LuBotMessageSquare } from "react-icons/lu";
 import PrivateLayout from "@/Private/PrivateLayout";
 import { RiNotificationOffLine } from "react-icons/ri";
 import { usePathname, useRouter } from "next/navigation";
 import { useAllNotifications } from "@/Hooks/api/dashboard_api";
 import { MdLogout, MdOutlineNotificationsActive } from "react-icons/md";
 import { useTranslation } from "@/Provider/TranslationProvider/TranslationContext";
-import { LuBotMessageSquare } from "react-icons/lu";
 
 const navLinks = [
   {
@@ -140,7 +140,7 @@ export default function DashboardLayout({
                 placeholder="Search....."
                 className="outline-none w-full"
                 onChange={e => {
-                  // router.push("/dashboard/documents");
+                  router.push("/dashboard/documents");
                   setSearch(e.target.value);
                 }}
               />

@@ -3,9 +3,11 @@ import React from "react";
 import toast from "react-hot-toast";
 import { CgSpinnerTwo } from "react-icons/cg";
 const StepFive = ({ step, setStep, template }: any) => {
+  // Mutations
   const { mutate: saveResumeMutation, isPending } = useSaveResumeTemplate();
   const { mutate: downloadPdf, isPending: isDownloading } = useExportPdf();
 
+  // Func for download pdf
   const handleDownload = () => {
     downloadPdf(template, {
       onSuccess: async (res: any) => {

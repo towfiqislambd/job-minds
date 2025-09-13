@@ -1,28 +1,35 @@
-import PricingCard from "@/Components/Cards/PricingCard";
-import { Loader } from "@/Components/Loader/Loader";
-import { FeatherSvg } from "@/Components/SvgContainer/SvgContainer";
-import { useDetailPricing, useGetPricing } from "@/Hooks/api/cms_api";
-import { usePurchasePlan } from "@/Hooks/api/dashboard_api";
-import useAuth from "@/Hooks/useAuth";
 import React from "react";
+import useAuth from "@/Hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
+import { Loader } from "@/Components/Loader/Loader";
+import PricingCard from "@/Components/Cards/PricingCard";
+import { usePurchasePlan } from "@/Hooks/api/dashboard_api";
+import { FeatherSvg } from "@/Components/SvgContainer/SvgContainer";
+import { useDetailPricing, useGetPricing } from "@/Hooks/api/cms_api";
+
+// Types
+type formData = {
+  first_name: string;
+  surname: string;
+  email: string;
+  is_terms_conditions: boolean;
+  payment_method: string;
+};
 
 const Subscription = ({ package_id }: any) => {
+  // Hook
   const { user } = useAuth();
+
+  // Queries
   const { data: detailPricingData, isLoading } = useDetailPricing(package_id);
-  const { mutateAsync: purchasePlanMutation, isPending } =
-    usePurchasePlan(package_id);
   const { data: pricingData, isLoading: pricingDataLoading } = useGetPricing();
 
-  type formData = {
-    first_name: string;
-    surname: string;
-    email: string;
-    is_terms_conditions: boolean;
-    payment_method: string;
-  };
+  // Mutation
+  const { mutateAsync: purchasePlanMutation, isPending } =
+    usePurchasePlan(package_id);
 
+  // Form Data
   const {
     register,
     handleSubmit,

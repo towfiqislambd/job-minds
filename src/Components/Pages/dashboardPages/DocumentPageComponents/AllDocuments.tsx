@@ -18,6 +18,7 @@ import React, { useEffect, useState } from "react";
 import { AiOutlineFileUnknown } from "react-icons/ai";
 import { HiOutlineDotsVertical } from "react-icons/hi";
 
+// Types
 type documentItem = {
   id: number;
   title: string;
