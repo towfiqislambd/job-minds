@@ -101,7 +101,7 @@ const Page = () => {
     <>
       <div className="mb-7 3xl:mb-10">
         {/* Title */}
-        <h3 className="section_title">LinkedIn Profile Optimizer</h3>
+        <h3 className="section_title">LinkedIn Optimizer</h3>
 
         {/* Description */}
         <p className="section_description">
@@ -113,16 +113,17 @@ const Page = () => {
         {/* Left - Input */}
         <div className="dashboard_card">
           <h5 className="section_sub_title !mb-3.5 3xl:!mb-5">
-            Current Profile
+            Current About Section
           </h5>
 
           <form onSubmit={handleSubmit(onSubmit)}>
             <textarea
-              placeholder="Paste Your Current LinkedIn Profile Content"
+              placeholder="Paste Your Current LinkedIn About Sections Content"
               className="resume_input h-[200px] lg:h-[430px] bg-gray-50 !leading-[164%] !text-sm !text-gray-700"
               id="profile_summary"
               {...register("profile_summary", {
-                required: "You must provide your profile information here",
+                required:
+                  "You must provide your about sections information here",
               })}
             ></textarea>
             {errors.profile_summary && (
@@ -153,7 +154,7 @@ const Page = () => {
         {/* Right - Output */}
         <div className="dashboard_card">
           <div className="flex justify-between !mb-3.5 3xl:!mb-5">
-            <h5 className="section_sub_title">AI-Enhanced Profile</h5>
+            <h5 className="section_sub_title">AI-Enhanced About Section</h5>
 
             {/* Copy to clipboard */}
             <button

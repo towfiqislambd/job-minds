@@ -28,6 +28,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useAllNotifications } from "@/Hooks/api/dashboard_api";
 import { MdLogout, MdOutlineNotificationsActive } from "react-icons/md";
 import { useTranslation } from "@/Provider/TranslationProvider/TranslationContext";
+import { LuBotMessageSquare } from "react-icons/lu";
 
 const navLinks = [
   {
@@ -62,12 +63,18 @@ const navLinks = [
   },
   {
     id: 6,
+    label: "AI Interviewer",
+    path: "/dashboard/mock-interview",
+    icon: <LuBotMessageSquare className="text-xl" />,
+  },
+  {
+    id: 7,
     label: "Documents",
     path: "/dashboard/documents",
     icon: <DSix />,
   },
   {
-    id: 7,
+    id: 8,
     label: "Account",
     path: "/dashboard/accounts",
     icon: <DSeven />,
@@ -200,10 +207,10 @@ export default function DashboardLayout({
                   notification
                     ? "opacity-100 scale-100"
                     : "opacity-0 scale-95 pointer-events-none"
-                } absolute bg-slate-50 top-16 right-0 max-h-[420px] w-[280px] md:w-[320px] rounded-lg shadow-2xl overflow-y-scroll transition-all duration-300 notification_scrollbar z-[999]`}
+                } absolute bg-slate-50 top-14 md:top-16 -right-10 max-h-[420px] w-[280px] md:w-[320px] rounded-lg shadow-2xl overflow-y-scroll transition-all duration-300 notification_scrollbar z-[999]`}
               >
                 <div className="flex justify-between px-4 py-2 sticky top-0 border-b bg-slate-50 border-gray-200">
-                  <h3 className="text-xl font-semibold text-headingTextColor">
+                  <h3 className="text-lg md:text-xl font-semibold text-headingTextColor">
                     Notifications
                   </h3>
                   <button
@@ -369,7 +376,7 @@ export default function DashboardLayout({
             </figure>
 
             {/* Nav Links */}
-            <ul className="space-y-4.5 2xl:space-y-5">
+            <ul className="space-y-4.5">
               <p className="text-light-gray font-medium">AI Tools</p>
 
               {navLinks?.map((link, idx) => {
@@ -381,14 +388,12 @@ export default function DashboardLayout({
                       key={link.id}
                       href={link.path}
                       onClick={() => setOpen(false)}
-                      className={`flex text-[15px] 2xl:text-base px-4 3xl:px-5 py-2.5 2xl:py-3 rounded-[50px] gap-2.5 3xl:gap-4 items-center font-medium
+                      className={`flex text-[15px] 2xl:text-base px-4 3xl:px-5 py-2.5 2xl:py-3 rounded-[50px] gap-2.5 3xl:gap-3.5 items-center font-medium
                   ${
                     (idx === 0 &&
                       pathname.startsWith("/dashboard/resume-builder")) ||
                     (idx === 2 &&
                       pathname.startsWith("/dashboard/job-matcher")) ||
-                    (idx === 3 &&
-                      pathname.startsWith("/dashboard/mock-interview")) ||
                     isActive
                       ? "bg-[linear-gradient(90deg,_#21489F_0%,_#0184FF_100%)] text-white"
                       : "text-light-gray"
@@ -398,7 +403,7 @@ export default function DashboardLayout({
                       {link.icon}
                       <span>{link.label}</span>
                     </Link>
-                    {idx === 5 && (
+                    {idx === 6 && (
                       <p className="text-light-gray font-medium mt-5">Others</p>
                     )}
                   </div>
