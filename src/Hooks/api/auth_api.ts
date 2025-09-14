@@ -9,11 +9,11 @@ import { useQueryClient } from "@tanstack/react-query";
 export const useGetUserData = (token: any) => {
   return useApi({
     method: "get",
-    key: `user-${token}`,
+    key: ["user", token],
     enabled: !!token,
     endpoint: "/api/users/data",
     isPrivate: true,
-    options: {
+    queryOptions: {
       refetchInterval: 1000 * 60 * 60, // refetch every hour
     },
   });
@@ -24,7 +24,7 @@ export const useRegister = () => {
   const router = useRouter();
   return useApi({
     method: "post",
-    key: "register",
+    key: ["register"],
     endpoint: "/api/users/register",
     onSuccess: (data: any) => {
       if (data?.status) {
@@ -45,7 +45,7 @@ export const useLogin = () => {
 
   return useApi({
     method: "post",
-    key: "login",
+    key: ["login"],
     endpoint: "/api/users/login",
     onSuccess: (data: any) => {
       if (data?.status) {
@@ -67,7 +67,7 @@ export const useLogout = () => {
 
   return useApi({
     method: "post",
-    key: "logout",
+    key: ["logout"],
     isPrivate: true,
     endpoint: "/api/users/logout",
     onSuccess: (data: any) => {
@@ -90,7 +90,7 @@ export const useDeleteAccount = () => {
 
   return useApi({
     method: "delete",
-    key: "delete-account",
+    key: ["delete-account"],
     isPrivate: true,
     endpoint: "/api/users/delete",
     onSuccess: (data: any) => {
@@ -111,7 +111,7 @@ export const useVerifyEmail = () => {
   const router = useRouter();
   return useApi({
     method: "post",
-    key: "verify-email",
+    key: ["verify-email"],
     endpoint: "/api/users/login/email-verify",
     onSuccess: (data: any) => {
       if (data?.status) {
@@ -130,7 +130,7 @@ export const useVerifyOTP = () => {
   const router = useRouter();
   return useApi({
     method: "post",
-    key: "verify-otp",
+    key: ["verify-otp"],
     endpoint: "/api/users/login/otp-verify",
     onSuccess: (data: any) => {
       if (data?.status) {
@@ -148,7 +148,7 @@ export const useVerifyOTP = () => {
 export const useResendOTP = () => {
   return useApi({
     method: "post",
-    key: "otp-resend",
+    key: ["otp-resend"],
     endpoint: "/api/users/login/otp-resend",
     onSuccess: (data: any) => {
       if (data?.status) {
@@ -166,7 +166,7 @@ export const useResetPassword = () => {
   const router = useRouter();
   return useApi({
     method: "post",
-    key: "reset-password",
+    key: ["reset-password"],
     endpoint: "/api/users/login/reset-password",
     onSuccess: (data: any) => {
       if (data?.status) {
@@ -187,7 +187,7 @@ export const useGoogleLoginFunc = () => {
 
   return useApi({
     method: "post",
-    key: "google-login",
+    key: ["google-login"],
     endpoint: "/api/social-login",
     onSuccess: (data: any) => {
       if (data?.status) {
@@ -207,7 +207,7 @@ export const useChangePassword = () => {
   return useApi({
     method: "post",
     isPrivate: true,
-    key: "change-password",
+    key: ["change-password"],
     endpoint: "/api/users/password/change",
     onSuccess: (data: any) => {
       if (data?.status) {
@@ -225,7 +225,7 @@ export const useUpdateUser = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "update-user",
+    key: ["update-user"],
     isPrivate: true,
     endpoint: "/api/users/data/update",
     onSuccess: (data: any) => {
@@ -244,7 +244,10 @@ export const useUpdateUser = () => {
 export const useSiteSettings = () => {
   return useApi({
     method: "get",
-    key: "site-settings",
+    key: ["site-settings"],
     endpoint: "/api/site-settings",
+    queryOptions: {
+      staleTime: 5 * 60 * 1000,
+    },
   });
 };
