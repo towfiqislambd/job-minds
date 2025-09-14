@@ -11,6 +11,7 @@ type apiProps = {
   onError?: any;
   queryOptions?: any;
   mutationOptions?: any;
+  axiosOptions?: any;
   params?: any;
   headers?: any;
   enabled?: boolean;
@@ -27,33 +28,34 @@ export default function useApi({
   headers,
   queryOptions,
   mutationOptions,
+  axiosOptions,
   enabled = true,
 }: apiProps): any {
   const axiosInstance = (isPrivate ? axiosSecure : axiosPublic) as any;
 
-  const mutation = useMutation({
+  if (method === "get") {
+    return useQuery({
+      queryKey: key,
+      queryFn: async () => {
+        const res = await axiosInstance.get(endpoint, { params, headers });
+        return res.data;
+      },
+      enabled,
+      ...queryOptions,
+    });
+  }
+
+  return useMutation({
     mutationKey: key,
     mutationFn: async data => {
       const res = await axiosInstance[method](endpoint, data, {
-        headers: headers,
-        ...mutationOptions,
+        headers,
+        ...axiosOptions,
       });
       return res?.data;
     },
     onSuccess,
     onError,
+    ...mutationOptions,
   });
-
-  const query = useQuery({
-    queryKey: key,
-    queryFn: async () => {
-      const res = await axiosInstance.get(endpoint, { params });
-      return res.data;
-    },
-    enabled: method === "get" ? Boolean(enabled) : false,
-    // staleTime: 10 * 1000,
-    ...queryOptions,
-  });
-
-  return method === "get" ? query : mutation;
 }

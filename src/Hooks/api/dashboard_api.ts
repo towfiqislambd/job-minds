@@ -265,7 +265,7 @@ export const useExportDocument = (document_id: number | null) => {
     isPrivate: true,
     enabled: !!document_id,
     endpoint: `/api/export-document/${document_id}`,
-    mutationOptions: {
+    axiosOptions: {
       responseType: "blob",
     },
     onSuccess: () => {
@@ -285,7 +285,7 @@ export const useExportPdf = () => {
     key: ["export-pdf"],
     isPrivate: true,
     endpoint: "api/export-resume/pdf",
-    mutationOptions: {
+    axiosOptions: {
       responseType: "blob",
     },
     onSuccess: () => {
@@ -303,7 +303,7 @@ export const useDownloadCoverLetter = () => {
     key: ["download-cover-letter"],
     isPrivate: true,
     endpoint: "/api/download-cover-letter",
-    mutationOptions: {
+    axiosOptions: {
       responseType: "blob",
     },
     onSuccess: () => {
@@ -454,7 +454,7 @@ export const useDownloadDoc = () => {
     key: ["download-doc"],
     isPrivate: true,
     endpoint: "/api/download-linkedin-profile-summary",
-    mutationOptions: {
+    axiosOptions: {
       responseType: "blob",
     },
     onSuccess: () => {
@@ -559,7 +559,7 @@ export const useDownloadJobMatching = () => {
     key: ["download-job-matching"],
     isPrivate: true,
     endpoint: "/api/export-apply-changes",
-    mutationOptions: {
+    axiosOptions: {
       responseType: "blob",
     },
     onSuccess: () => {
