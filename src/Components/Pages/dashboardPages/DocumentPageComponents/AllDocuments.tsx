@@ -495,7 +495,7 @@ const AllDocuments = () => {
         </>
       ) : (
         <div className="flex flex-col justify-center items-center gap-3 lg:gap-4 text-center py-20">
-          <AiOutlineFileUnknown className="text-5xl text-gray-500" />
+          <AiOutlineFileUnknown className="text-4xl md:text-5xl text-gray-500" />
           <p className="font-medium text-gray-600 text-sm lg:text-base">
             No documents found!!
           </p>

@@ -1,6 +1,7 @@
 import toast from "react-hot-toast";
 import useApi from "@/Hooks/api/useApi";
 import { useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 // All Resume Template
 export const useAllResumeTemplate = () => {
@@ -324,6 +325,8 @@ export const useInitialJobRoles = () => {
 // Purchase Plan
 export const usePurchasePlan = (plan_id: number) => {
   const queryClient = useQueryClient();
+  const router = useRouter();
+
   return useApi({
     method: "post",
     key: "purchase-plan",
@@ -334,9 +337,10 @@ export const usePurchasePlan = (plan_id: number) => {
       if (data?.status) {
         toast.success(data?.message);
         window.location.href = data?.data?.url;
-        queryClient.invalidateQueries("single-dynamic-page" as any);
       } else {
         toast.success(data?.message);
+        queryClient.invalidateQueries("get-pricing" as any);
+        router.push("/dashboard/resume-builder");
       }
     },
     onError: (err: any) => {

@@ -145,9 +145,9 @@ const Draft = () => {
           );
         })
       ) : (
-        <div className="flex flex-col justify-center items-center gap-4 text-center py-16">
-          <AiOutlineFileUnknown className="text-5xl text-gray-500" />
-          <p className="font-medium text-gray-600">No drafts found!</p>
+        <div className="flex flex-col justify-center items-center gap-3 md:gap-4 text-center py-16">
+          <AiOutlineFileUnknown className="text-4xl md:text-5xl text-gray-500" />
+          <p className="font-medium text-gray-600 text-sm md:text-base">No drafts found!</p>
         </div>
       )}
     </section>

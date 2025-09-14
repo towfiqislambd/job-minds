@@ -230,8 +230,8 @@ const Page = () => {
                 );
               })
             ) : (
-              <div className="w-full outline-none py-20 bg-[#F8FAFB] flex justify-center items-center flex-col gap-3">
-                <AiOutlineFileSearch className="text-6xl text-gray-500" />
+              <div className="w-full outline-none py-16 md:py-20 bg-[#F8FAFB] flex justify-center items-center flex-col gap-2 md:gap-3">
+                <AiOutlineFileSearch className="text-4xl md:text-6xl text-gray-500" />
                 <p className="text-gray-500 font-medium text-sm lg:text-base">
                   No data found!
                 </p>

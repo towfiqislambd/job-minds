@@ -29,7 +29,7 @@ export default function Home() {
 
   if (isLoading) {
     return (
-      <div className="h-screen flex justify-center items-center">
+      <div className="h-[90vh] flex justify-center items-center">
         <Loader />
       </div>
     );
