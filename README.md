@@ -5,7 +5,7 @@
 **Job-Minds** is a fully AI-powered, responsive, and user-friendly **resume
 builder & career assistant** platform.  
 It enables users to **create professional resumes, generate cover letters,
-optimize LinkedIn profiles, prepare for interviews, and more** – all with the
+optimize LinkedIn profiles, AI Chatbot, prepare for interviews, and more** – all with the
 power of AI.
 
 The platform is developed with Next.js v15, TypeScript, and a stack of modern
