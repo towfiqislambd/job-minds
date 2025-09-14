@@ -50,7 +50,7 @@ const Page = () => {
   // Func for save
   const handleSave = () => {
     if (!doc) {
-      return toast.error("Please generate linkedin optimizer first");
+      return toast.error("Please generate linkedin optimizer");
     }
     saveMutation({ profile_summary: doc });
   };
@@ -87,7 +87,7 @@ const Page = () => {
   // Func for copy to clipboard
   const handleCopyToClipboard = () => {
     if (!doc) {
-      return toast.error("Please generate linkedin optimizer first");
+      return toast.error("Please generate linkedin optimizer");
     }
 
     const tempDiv = document.createElement("div");
@@ -122,7 +122,7 @@ const Page = () => {
           <form onSubmit={handleSubmit(onSubmit)}>
             <textarea
               placeholder="Paste Your Current LinkedIn About Sections Content"
-              className="resume_input h-[200px] lg:h-[430px] bg-gray-50 !leading-[164%] !text-sm !text-gray-700"
+              className="resume_input h-[280px] lg:h-[430px] bg-gray-50 !leading-[164%] !text-sm !text-gray-700"
               id="profile_summary"
               {...register("profile_summary", {
                 required:

@@ -76,7 +76,7 @@ const page = () => {
 
       <div className="mt-5 border border-[#EAEAEA] rounded-[8px] h-[calc(100vh-180px)] lg:h-[calc(100vh-220px)] 2xl:h-[calc(100vh-250px)] flex flex-col justify-between">
         {/* Upper Part */}
-        <div className="border-b border-[#EAEAEA] sticky top-0 z-30 bg-white py-3.5 px-4 flex gap-3 lg:gap-5 items-center rounded-t-[8px]">
+        <div className="border-b border-[#EAEAEA] sticky top-0 z-30 bg-white py-2.5 md:py-3.5 px-4 flex gap-3 lg:gap-5 items-center rounded-t-[8px]">
           <figure className="bg-[#C6DFF6] size-14 rounded-full flex justify-center items-center">
             <Image src={Profile} alt="profile-img" height={32} width={32} />
           </figure>
@@ -119,11 +119,11 @@ const page = () => {
               ))}
             </div>
           ) : (
-            <div className="space-y-5 flex flex-col h-full">
+            <div className="space-y-3.5 md:space-y-5 flex flex-col h-full">
               {chats?.length === 0 ? (
                 <div className="flex-1 flex flex-col gap-3 justify-center items-center">
-                  <LuBotMessageSquare className="text-6xl text-gray-500" />
-                  <p className="font-medium text-primary-gray">
+                  <LuBotMessageSquare className="text-5xl md:text-6xl text-gray-500" />
+                  <p className="font-medium text-primary-gray text-sm md:text-base">
                     Start Chatting With AI Interviewer
                   </p>
                 </div>
@@ -181,7 +181,7 @@ const page = () => {
         {/* Form */}
         <form
           onSubmit={handleSend}
-          className="border-t border-[#EAEAEA] px-3 md:px-6 py-2 md:py-3 flex items-center gap-3 md:gap-5 sticky bottom-0 z-50 bg-white rounded-b-[8px]"
+          className="border-t border-[#EAEAEA] px-3 md:px-6 py-1.5 md:py-3 flex items-center gap-3 md:gap-5 sticky bottom-0 z-50 bg-white rounded-b-[8px]"
         >
           <input
             type="text"

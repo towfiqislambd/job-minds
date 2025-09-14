@@ -51,7 +51,7 @@ export const useLogin = () => {
       if (data?.status) {
         setToken(data?.data?.token);
         toast.success(data?.message);
-        router.push("/dashboard");
+        router.push("/dashboard/resume-builder");
       }
     },
     onError: (err: any) => {
@@ -193,7 +193,7 @@ export const useGoogleLoginFunc = () => {
       if (data?.status) {
         setToken(data?.data?.token);
         toast.success(data?.message);
-        router.push("/dashboard");
+        router.push("/dashboard/resume-builder");
       }
     },
     onError: (err: any) => {
