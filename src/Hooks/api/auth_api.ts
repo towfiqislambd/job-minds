@@ -74,7 +74,7 @@ export const useLogout = () => {
       if (data?.status) {
         clearToken();
         toast.success(data?.message);
-        router.push("/auth/login");
+        router.replace("/auth/login");
       }
     },
     onError: (err: any) => {
