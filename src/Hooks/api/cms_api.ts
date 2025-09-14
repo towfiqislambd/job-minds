@@ -4,7 +4,7 @@ import useApi from "@/Hooks/api/useApi";
 export const useHeroData = () => {
   return useApi({
     method: "get",
-    key: "hero-section",
+    key: ["hero-section"],
     endpoint: "/api/cms/home-page",
   });
 };
@@ -13,7 +13,7 @@ export const useHeroData = () => {
 export const useFaqData = () => {
   return useApi({
     method: "get",
-    key: "faq-data",
+    key: ["faq-data"],
     endpoint: "/api/faq/all",
   });
 };
@@ -22,7 +22,7 @@ export const useFaqData = () => {
 export const useDynamicPages = () => {
   return useApi({
     method: "get",
-    key: "dynamic-pages",
+    key: ["dynamic-pages"],
     endpoint: "/api/dynamic-pages",
   });
 };
@@ -32,7 +32,7 @@ export const useSingleDynamicPage = (slug: any) => {
   return useApi({
     method: "get",
     enabled: !!slug,
-    key: `single-dynamic-page-${slug}`,
+    key: ["single-dynamic-page", slug],
     endpoint: `/api/dynamic-pages/single/${slug}`,
   });
 };
@@ -41,7 +41,7 @@ export const useSingleDynamicPage = (slug: any) => {
 export const useGetPricing = () => {
   return useApi({
     method: "get",
-    key: "get-pricing",
+    key: ["get-pricing"],
     endpoint: "/api/subscription-plans",
   });
 };
@@ -51,7 +51,7 @@ export const useDetailPricing = (plan_id: number) => {
   return useApi({
     method: "get",
     enabled: !!plan_id,
-    key: `detail-pricing-${plan_id}`,
+    key: ["detail-pricing", plan_id],
     endpoint: `/api/subscription-plan/${plan_id}`,
   });
 };

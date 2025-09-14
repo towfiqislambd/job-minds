@@ -3,14 +3,14 @@ import { axiosSecure } from "@/Hooks/useAxiosSecure";
 import { axiosPublic } from "@/Hooks/useAxiosPublic";
 
 type apiProps = {
-  key?: string;
+  key?: any[];
   endpoint?: string;
-  method?: string;
+  method?: "get" | "post" | "put" | "delete";
   isPrivate?: boolean;
   onSuccess?: any;
   onError?: any;
-  options?: any;
-  config?: any;
+  queryOptions?: any;
+  mutationOptions?: any;
   params?: any;
   headers?: any;
   enabled?: boolean;
@@ -25,18 +25,18 @@ export default function useApi({
   onError,
   params,
   headers,
-  options,
-  config,
+  queryOptions,
+  mutationOptions,
   enabled = true,
 }: apiProps): any {
   const axiosInstance = (isPrivate ? axiosSecure : axiosPublic) as any;
 
   const mutation = useMutation({
-    mutationKey: [key],
+    mutationKey: key,
     mutationFn: async data => {
       const res = await axiosInstance[method](endpoint, data, {
         headers: headers,
-        ...config,
+        ...mutationOptions,
       });
       return res?.data;
     },
@@ -45,14 +45,14 @@ export default function useApi({
   });
 
   const query = useQuery({
-    queryKey: [key, params],
+    queryKey: key,
     queryFn: async () => {
       const res = await axiosInstance.get(endpoint, { params });
       return res.data;
     },
     enabled: method === "get" ? Boolean(enabled) : false,
     // staleTime: 10 * 1000,
-    ...options,
+    ...queryOptions,
   });
 
   return method === "get" ? query : mutation;

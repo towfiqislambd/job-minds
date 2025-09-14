@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 export const useAllResumeTemplate = () => {
   return useApi({
     method: "get",
-    key: "all-resume-template",
+    key: ["all-resume-template"],
     endpoint: "/api/resume-templates",
   });
 };
@@ -17,7 +17,7 @@ export const useSingleResumeTemplate = (id: any) => {
   return useApi({
     method: "get",
     enabled: !!id,
-    key: `single-resume-template-${id}`,
+    key: ["single-resume-template", id],
     endpoint: `/api/resume-template/${id}`,
   });
 };
@@ -28,7 +28,7 @@ export const useCreateResume = (id: any) => {
   return useApi({
     method: "post",
     isPrivate: true,
-    key: "create-resume-template",
+    key: ["create-resume-template"],
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -47,7 +47,7 @@ export const useGenerateCoverLetter = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "generate-cover-letter",
+    key: ["generate-cover-letter"],
     isPrivate: true,
     endpoint: "/api/generate-cover-letter",
     onSuccess: (data: any) => {
@@ -67,7 +67,7 @@ export const useSaveCoverLetter = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "save-cover-letter",
+    key: ["save-cover-letter"],
     isPrivate: true,
     endpoint: "/api/saved-cover-letters",
     onSuccess: (data: any) => {
@@ -88,7 +88,7 @@ export const useSaveResumeTemplate = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "save-resume-template",
+    key: ["save-resume-template"],
     isPrivate: true,
     endpoint: "/api/save-resume",
     onSuccess: (data: any) => {
@@ -109,7 +109,7 @@ export const useAiInterviewer = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "ai-interviewer",
+    key: ["ai-interviewer"],
     isPrivate: true,
     endpoint: "/api/ai-interviewer",
     onSuccess: () => {
@@ -125,7 +125,7 @@ export const useAiInterviewer = () => {
 export const useAiChatHistory = () => {
   return useApi({
     method: "get",
-    key: "ai-chat-history",
+    key: ["ai-chat-history"],
     isPrivate: true,
     endpoint: "/api/chat-history",
   });
@@ -135,7 +135,7 @@ export const useAiChatHistory = () => {
 export const useInterviewAssistant = () => {
   return useApi({
     method: "post",
-    key: "interview-assistant",
+    key: ["interview-assistant"],
     isPrivate: true,
     endpoint: "/api/interview-preparation-assistant",
     onError: (err: any) => {
@@ -149,7 +149,7 @@ export const useDraftInterviewQuestions = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "draft-interview-questions",
+    key: ["draft-interview-questions"],
     isPrivate: true,
     endpoint: "/api/interview-question-draft",
     onSuccess: (data: any) => {
@@ -170,7 +170,7 @@ export const useRemoveFromDraft = (draft_id: string | null) => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "remove-from-draft",
+    key: ["remove-from-draft"],
     isPrivate: true,
     endpoint: `/api/delete-draft/${draft_id}`,
     enabled: !!draft_id,
@@ -190,7 +190,7 @@ export const useRemoveFromDraft = (draft_id: string | null) => {
 export const useAllRecentActivities = (page?: number) => {
   return useApi({
     method: "get",
-    key: "all-recent-activity",
+    key: ["all-recent-activity"],
     isPrivate: true,
     endpoint: "/api/all-recent-activities",
     params: { page },
@@ -206,7 +206,7 @@ export const useAllDocuments = (
 ) => {
   return useApi({
     method: "get",
-    key: "all-documents",
+    key: ["all-documents", search, document_type, status, page],
     isPrivate: true,
     endpoint: "/api/all-documents",
     params: {
@@ -215,7 +215,7 @@ export const useAllDocuments = (
       status,
       page,
     },
-    options: {
+    queryOptions: {
       retry: false,
     },
   });
@@ -225,11 +225,11 @@ export const useAllDocuments = (
 export const useAllDrafts = (search?: string) => {
   return useApi({
     method: "get",
-    key: "all-drafts",
+    key: ["all-drafts"],
     isPrivate: true,
     endpoint: "/api/all-drafts",
     params: { search },
-    options: {
+    queryOptions: {
       retry: false,
     },
   });
@@ -240,7 +240,7 @@ export const useDeleteDocument = (document_id: number | null) => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "delete-document",
+    key: ["delete-document"],
     isPrivate: true,
     endpoint: `/api/delete-document/${document_id}`,
     enabled: !!document_id,
@@ -261,11 +261,11 @@ export const useExportDocument = (document_id: number | null) => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "export-document",
+    key: ["export-document"],
     isPrivate: true,
     enabled: !!document_id,
     endpoint: `/api/export-document/${document_id}`,
-    config: {
+    mutationOptions: {
       responseType: "blob",
     },
     onSuccess: () => {
@@ -282,10 +282,10 @@ export const useExportPdf = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "export-pdf",
+    key: ["export-pdf"],
     isPrivate: true,
     endpoint: "api/export-resume/pdf",
-    config: {
+    mutationOptions: {
       responseType: "blob",
     },
     onSuccess: () => {
@@ -300,10 +300,10 @@ export const useDownloadCoverLetter = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "download-cover-letter",
+    key: ["download-cover-letter"],
     isPrivate: true,
     endpoint: "/api/download-cover-letter",
-    config: {
+    mutationOptions: {
       responseType: "blob",
     },
     onSuccess: () => {
@@ -316,7 +316,7 @@ export const useDownloadCoverLetter = () => {
 export const useInitialJobRoles = () => {
   return useApi({
     method: "get",
-    key: "all-job-roles",
+    key: ["all-job-roles"],
     isPrivate: true,
     endpoint: "/api/all-job-roles",
   });
@@ -329,7 +329,7 @@ export const usePurchasePlan = (plan_id: number) => {
 
   return useApi({
     method: "post",
-    key: "purchase-plan",
+    key: ["purchase-plan"],
     isPrivate: true,
     enabled: !!plan_id,
     endpoint: `/api/subscription-plan/${plan_id}/payment`,
@@ -354,7 +354,7 @@ export const useNormalNotification = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "normal-notification",
+    key: ["normal-notification"],
     isPrivate: true,
     endpoint: "/api/update-notification",
     onSuccess: (data: any) => {
@@ -374,7 +374,7 @@ export const useEmailNotification = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "email-notification",
+    key: ["email-notification"],
     isPrivate: true,
     endpoint: "/api/update-email-notification",
     onSuccess: (data: any) => {
@@ -394,7 +394,7 @@ export const useApplicationDeadline = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "application-deadline",
+    key: ["application-deadline"],
     isPrivate: true,
     endpoint: "/api/update-application-deadline",
     onSuccess: (data: any) => {
@@ -414,7 +414,7 @@ export const useExpiringSubscription = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "expiring-subscription",
+    key: ["expiring-subscription"],
     isPrivate: true,
     endpoint: "/api/update-expiring-subscription",
     onSuccess: (data: any) => {
@@ -434,7 +434,7 @@ export const useLinkedinOptimizer = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "linkedin-optimizer",
+    key: ["linkedin-optimizer"],
     isPrivate: true,
     endpoint: "/api/linkedin-profile-optimizer",
     onSuccess: () => {
@@ -451,10 +451,10 @@ export const useDownloadDoc = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "download-doc",
+    key: ["download-doc"],
     isPrivate: true,
     endpoint: "/api/download-linkedin-profile-summary",
-    config: {
+    mutationOptions: {
       responseType: "blob",
     },
     onSuccess: () => {
@@ -467,7 +467,7 @@ export const useDownloadDoc = () => {
 export const useJobMatching = () => {
   return useApi({
     method: "post",
-    key: "job-matching",
+    key: ["job-matching"],
     isPrivate: true,
     endpoint: "/api/job-matching",
     onSuccess: (data: any) => {
@@ -485,7 +485,7 @@ export const useJobMatching = () => {
 export const useApplyChangesJobMatcher = () => {
   return useApi({
     method: "post",
-    key: "apply-changes-job-matchers",
+    key: ["apply-changes-job-matchers"],
     isPrivate: true,
     endpoint: "/api/apply-changes",
     onSuccess: (data: any) => {
@@ -504,7 +504,7 @@ export const useSaveLinkedinOptimizer = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "save-linkedin-optimizer",
+    key: ["save-linkedin-optimizer"],
     isPrivate: true,
     endpoint: "/api/save-linkedin-profile-summary",
     onSuccess: (data: any) => {
@@ -524,7 +524,7 @@ export const useSaveLinkedinOptimizer = () => {
 export const useAllNotifications = () => {
   return useApi({
     method: "get",
-    key: "all-notifications",
+    key: ["all-notifications"],
     isPrivate: true,
     endpoint: "/api/all-notifications",
   });
@@ -535,7 +535,7 @@ export const useSaveJobMatching = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "save-job-matching",
+    key: ["save-job-matching"],
     isPrivate: true,
     endpoint: "/api/apply-changes-save",
     onSuccess: (data: any) => {
@@ -556,10 +556,10 @@ export const useDownloadJobMatching = () => {
   const queryClient = useQueryClient();
   return useApi({
     method: "post",
-    key: "download-job-matching",
+    key: ["download-job-matching"],
     isPrivate: true,
     endpoint: "/api/export-apply-changes",
-    config: {
+    mutationOptions: {
       responseType: "blob",
     },
     onSuccess: () => {
