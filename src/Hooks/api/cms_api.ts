@@ -6,6 +6,9 @@ export const useHeroData = () => {
     method: "get",
     key: ["hero-section"],
     endpoint: "/api/cms/home-page",
+    queryOptions: {
+      staleTime: 5 * 60 * 1000,
+    },
   });
 };
 
@@ -15,6 +18,9 @@ export const useFaqData = () => {
     method: "get",
     key: ["faq-data"],
     endpoint: "/api/faq/all",
+    queryOptions: {
+      staleTime: 5 * 60 * 1000,
+    },
   });
 };
 
@@ -24,6 +30,9 @@ export const useDynamicPages = () => {
     method: "get",
     key: ["dynamic-pages"],
     endpoint: "/api/dynamic-pages",
+    queryOptions: {
+      staleTime: 5 * 60 * 1000,
+    },
   });
 };
 
@@ -34,6 +43,9 @@ export const useSingleDynamicPage = (slug: any) => {
     enabled: !!slug,
     key: ["single-dynamic-page", slug],
     endpoint: `/api/dynamic-pages/single/${slug}`,
+    queryOptions: {
+      staleTime: 5 * 60 * 1000,
+    },
   });
 };
 
@@ -43,6 +55,9 @@ export const useGetPricing = () => {
     method: "get",
     key: ["get-pricing"],
     endpoint: "/api/subscription-plans",
+    queryOptions: {
+      staleTime: 5 * 60 * 1000,
+    },
   });
 };
 
@@ -53,5 +68,8 @@ export const useDetailPricing = (plan_id: number) => {
     enabled: !!plan_id,
     key: ["detail-pricing", plan_id],
     endpoint: `/api/subscription-plan/${plan_id}`,
+    queryOptions: {
+      staleTime: 5 * 60 * 1000,
+    },
   });
 };

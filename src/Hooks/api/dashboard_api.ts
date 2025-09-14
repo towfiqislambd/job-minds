@@ -9,6 +9,9 @@ export const useAllResumeTemplate = () => {
     method: "get",
     key: ["all-resume-template"],
     endpoint: "/api/resume-templates",
+    queryOptions: {
+      staleTime: 5 * 60 * 1000,
+    },
   });
 };
 
@@ -19,6 +22,9 @@ export const useSingleResumeTemplate = (id: any) => {
     enabled: !!id,
     key: ["single-resume-template", id],
     endpoint: `/api/resume-template/${id}`,
+    queryOptions: {
+      staleTime: 5 * 60 * 1000,
+    },
   });
 };
 
@@ -190,10 +196,13 @@ export const useRemoveFromDraft = (draft_id: string | null) => {
 export const useAllRecentActivities = (page?: number) => {
   return useApi({
     method: "get",
-    key: ["all-recent-activity"],
+    key: ["all-recent-activity", page],
     isPrivate: true,
     endpoint: "/api/all-recent-activities",
     params: { page },
+    queryOptions: {
+      retry: false,
+    },
   });
 };
 
@@ -319,6 +328,9 @@ export const useInitialJobRoles = () => {
     key: ["all-job-roles"],
     isPrivate: true,
     endpoint: "/api/all-job-roles",
+    queryOptions: {
+      staleTime: 5 * 60 * 1000,
+    },
   });
 };
 

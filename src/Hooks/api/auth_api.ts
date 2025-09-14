@@ -246,5 +246,8 @@ export const useSiteSettings = () => {
     method: "get",
     key: ["site-settings"],
     endpoint: "/api/site-settings",
+    queryOptions: {
+      staleTime: 5 * 60 * 1000,
+    },
   });
 };
