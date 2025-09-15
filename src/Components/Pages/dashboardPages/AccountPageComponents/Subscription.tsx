@@ -2,11 +2,10 @@ import React from "react";
 import useAuth from "@/Hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { CgSpinnerTwo } from "react-icons/cg";
-import { Loader } from "@/Components/Loader/Loader";
 import PricingCard from "@/Components/Cards/PricingCard";
 import { usePurchasePlan } from "@/Hooks/api/dashboard_api";
 import { FeatherSvg } from "@/Components/SvgContainer/SvgContainer";
-import { useDetailPricing, useGetPricing } from "@/Hooks/api/cms_api";
+import { useDetailPricing } from "@/Hooks/api/cms_api";
 
 // Types
 type formData = {
@@ -17,13 +16,12 @@ type formData = {
   payment_method: string;
 };
 
-const Subscription = ({ package_id }: any) => {
+const Subscription = ({ package_id, pricingData }: any) => {
   // Hook
   const { user } = useAuth();
 
   // Queries
   const { data: detailPricingData, isLoading } = useDetailPricing(package_id);
-  const { data: pricingData, isLoading: pricingDataLoading } = useGetPricing();
 
   // Mutation
   const { mutateAsync: purchasePlanMutation, isPending } =
@@ -47,14 +45,6 @@ const Subscription = ({ package_id }: any) => {
     await purchasePlanMutation(payload);
     reset();
   };
-
-  if (pricingDataLoading) {
-    return (
-      <div className="h-[70vh] flex justify-center items-center">
-        <Loader />
-      </div>
-    );
-  }
 
   return (
     <>

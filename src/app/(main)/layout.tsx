@@ -1,6 +1,6 @@
 import Navbar from "@/Shared/Navbar";
 import Footer from "@/Shared/Footer";
-import { getSiteSettings } from "@/Hooks/api/server_side_api";
+import { getSiteSettings } from "@/Hooks/api/cms_api";
 
 export default async function MainLayout({
   children,
@@ -13,7 +13,7 @@ export default async function MainLayout({
     <>
       <Navbar siteSettings={siteSettings?.data} />
       <main>{children}</main>
-      <Footer />
+      <Footer siteSettings={siteSettings?.data} />
     </>
   );
 }

@@ -579,3 +579,26 @@ export const useDownloadJobMatching = () => {
     },
   });
 };
+
+// Cancel Subscription
+export const useCancelSubscription = () => {
+  const queryClient = useQueryClient();
+  const router = useRouter();
+
+  return useClientApi({
+    method: "post",
+    key: ["cancel-plan"],
+    isPrivate: true,
+    endpoint: `/api/cancel-subscription`,
+    onSuccess: (data: any) => {
+      if (data?.status) {
+        toast.success(data?.message);
+        queryClient.invalidateQueries("get-pricing" as any);
+        router.push("/dashboard/resume-builder");
+      }
+    },
+    onError: (err: any) => {
+      toast.error(err?.response?.data?.message);
+    },
+  });
+};
