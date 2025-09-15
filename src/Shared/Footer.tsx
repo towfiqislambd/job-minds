@@ -1,11 +1,9 @@
-"use client";
 import React from "react";
 import Link from "next/link";
-import { useSiteSettings } from "@/Hooks/api/auth_api";
-import { useDynamicPages } from "@/Hooks/api/cms_api";
 import Container from "@/Components/Common/Container";
 import Heading from "@/Components/Tags/Heading/Heading";
 import Paragraph from "@/Components/Tags/Paragraph/Paragraph";
+import { getDynamicPages } from "@/Hooks/api/cms_api";
 
 const CombinedArr = [
   {
@@ -52,10 +50,9 @@ const CombinedArr = [
   },
 ];
 
-const Footer = () => {
+const Footer = async ({ siteSettings }: any) => {
   // Queries
-  const { data: siteSettings } = useSiteSettings();
-  const { data: dynamicPages } = useDynamicPages();
+  const dynamicPages = await getDynamicPages();
 
   return (
     <footer className="py-5 md:py-10 bg-dark-blue">

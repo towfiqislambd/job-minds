@@ -1,8 +1,4 @@
-import {
-  getFaqData,
-  getHeroData,
-  getPricingData,
-} from "@/Hooks/api/server_side_api";
+import { getFaqData, getHeroData, getPricingData } from "@/Hooks/api/cms_api";
 import HeroSection from "@/Components/Pages/mainPages/HeroSection";
 import PricingSection from "@/Components/Pages/mainPages/PricingSection";
 import FAQSection from "@/Components/Pages/mainPages/FAQSection";
