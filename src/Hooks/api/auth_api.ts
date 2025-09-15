@@ -1,13 +1,13 @@
 "use client";
 import useAuth from "@/Hooks/useAuth";
-import useApi from "@/Hooks/api/useApi";
+import useClientApi from "@/Hooks/useClientApi";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import { useQueryClient } from "@tanstack/react-query";
 
 // Get User Data
 export const useGetUserData = (token: any) => {
-  return useApi({
+  return useClientApi({
     method: "get",
     key: ["user", token],
     enabled: !!token,
@@ -22,7 +22,7 @@ export const useGetUserData = (token: any) => {
 // Registration
 export const useRegister = () => {
   const router = useRouter();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["register"],
     endpoint: "/api/users/register",
@@ -43,7 +43,7 @@ export const useLogin = () => {
   const router = useRouter();
   const { setToken } = useAuth();
 
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["login"],
     endpoint: "/api/users/login",
@@ -65,7 +65,7 @@ export const useLogout = () => {
   const router = useRouter();
   const { clearToken } = useAuth();
 
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["logout"],
     isPrivate: true,
@@ -88,7 +88,7 @@ export const useDeleteAccount = () => {
   const router = useRouter();
   const { clearToken } = useAuth();
 
-  return useApi({
+  return useClientApi({
     method: "delete",
     key: ["delete-account"],
     isPrivate: true,
@@ -109,7 +109,7 @@ export const useDeleteAccount = () => {
 // Verify Email
 export const useVerifyEmail = () => {
   const router = useRouter();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["verify-email"],
     endpoint: "/api/users/login/email-verify",
@@ -128,7 +128,7 @@ export const useVerifyEmail = () => {
 // Verify OTP
 export const useVerifyOTP = () => {
   const router = useRouter();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["verify-otp"],
     endpoint: "/api/users/login/otp-verify",
@@ -146,7 +146,7 @@ export const useVerifyOTP = () => {
 
 // Resend OTP
 export const useResendOTP = () => {
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["otp-resend"],
     endpoint: "/api/users/login/otp-resend",
@@ -164,7 +164,7 @@ export const useResendOTP = () => {
 // Reset Password
 export const useResetPassword = () => {
   const router = useRouter();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["reset-password"],
     endpoint: "/api/users/login/reset-password",
@@ -185,7 +185,7 @@ export const useGoogleLoginFunc = () => {
   const router = useRouter();
   const { setToken } = useAuth();
 
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["google-login"],
     endpoint: "/api/social-login",
@@ -204,7 +204,7 @@ export const useGoogleLoginFunc = () => {
 
 // Change Password
 export const useChangePassword = () => {
-  return useApi({
+  return useClientApi({
     method: "post",
     isPrivate: true,
     key: ["change-password"],
@@ -223,7 +223,7 @@ export const useChangePassword = () => {
 // Update User Data
 export const useUpdateUser = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["update-user"],
     isPrivate: true,
@@ -242,7 +242,7 @@ export const useUpdateUser = () => {
 
 // Site Settings
 export const useSiteSettings = () => {
-  return useApi({
+  return useClientApi({
     method: "get",
     key: ["site-settings"],
     endpoint: "/api/site-settings",

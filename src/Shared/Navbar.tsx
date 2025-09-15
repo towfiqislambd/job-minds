@@ -10,14 +10,13 @@ import { useEffect, useState } from "react";
 import { CgSpinnerTwo } from "react-icons/cg";
 import ReactFlagsSelect from "react-flags-select";
 import { IoSettingsOutline } from "react-icons/io5";
-import { Loader } from "@/Components/Loader/Loader";
 import Container from "@/Components/Common/Container";
 import { usePathname, useRouter } from "next/navigation";
-import { useLogout, useSiteSettings } from "@/Hooks/api/auth_api";
+import { useLogout } from "@/Hooks/api/auth_api";
 import { SiteLogo, WhiteDot } from "@/Components/SvgContainer/SvgContainer";
 import { useTranslation } from "@/Provider/TranslationProvider/TranslationContext";
 
-const Navbar = () => {
+const Navbar = ({ siteSettings }: any) => {
   // Hooks
   const router = useRouter();
   const pathname = usePathname();
@@ -30,7 +29,6 @@ const Navbar = () => {
   const [open, setOpen] = useState<boolean>(false);
 
   // Mutations and Queries
-  const { data: siteSettings, isLoading } = useSiteSettings();
   const { mutate: logoutMutation, isPending } = useLogout();
 
   // NavLinks
@@ -54,19 +52,6 @@ const Navbar = () => {
   );
 
   useEffect(() => {
-    if (isLoading) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-
-    // Cleanup on unmount
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isLoading]);
-
-  useEffect(() => {
     const handleWindowClick = () => {
       setOpenPopup(false);
     };
@@ -77,14 +62,6 @@ const Navbar = () => {
       window.removeEventListener("click", handleWindowClick);
     };
   }, []);
-
-  if (isLoading) {
-    return (
-      <div className="h-screen flex justify-center items-center">
-        <Loader />
-      </div>
-    );
-  }
 
   return (
     <nav className="bg-[#071431] sticky top-0 z-100 w-full">

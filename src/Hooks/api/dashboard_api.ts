@@ -1,11 +1,11 @@
 import toast from "react-hot-toast";
-import useApi from "@/Hooks/api/useApi";
+import useClientApi from "@/Hooks/useClientApi";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 // All Resume Template
 export const useAllResumeTemplate = () => {
-  return useApi({
+  return useClientApi({
     method: "get",
     key: ["all-resume-template"],
     endpoint: "/api/resume-templates",
@@ -17,7 +17,7 @@ export const useAllResumeTemplate = () => {
 
 // Single Resume Template
 export const useSingleResumeTemplate = (id: any) => {
-  return useApi({
+  return useClientApi({
     method: "get",
     enabled: !!id,
     key: ["single-resume-template", id],
@@ -31,7 +31,7 @@ export const useSingleResumeTemplate = (id: any) => {
 // Create Resume Template
 export const useCreateResume = (id: any) => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     isPrivate: true,
     key: ["create-resume-template"],
@@ -51,7 +51,7 @@ export const useCreateResume = (id: any) => {
 // Generate Cover Letter
 export const useGenerateCoverLetter = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["generate-cover-letter"],
     isPrivate: true,
@@ -71,7 +71,7 @@ export const useGenerateCoverLetter = () => {
 // Save Cover Letter
 export const useSaveCoverLetter = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["save-cover-letter"],
     isPrivate: true,
@@ -92,7 +92,7 @@ export const useSaveCoverLetter = () => {
 // Save Resume Template
 export const useSaveResumeTemplate = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["save-resume-template"],
     isPrivate: true,
@@ -113,7 +113,7 @@ export const useSaveResumeTemplate = () => {
 // AI Interviewer
 export const useAiInterviewer = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["ai-interviewer"],
     isPrivate: true,
@@ -129,7 +129,7 @@ export const useAiInterviewer = () => {
 
 // AI Chat History
 export const useAiChatHistory = () => {
-  return useApi({
+  return useClientApi({
     method: "get",
     key: ["ai-chat-history"],
     isPrivate: true,
@@ -139,7 +139,7 @@ export const useAiChatHistory = () => {
 
 // Interview Assistant
 export const useInterviewAssistant = () => {
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["interview-assistant"],
     isPrivate: true,
@@ -153,7 +153,7 @@ export const useInterviewAssistant = () => {
 // Draft Interview Question
 export const useDraftInterviewQuestions = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["draft-interview-questions"],
     isPrivate: true,
@@ -174,7 +174,7 @@ export const useDraftInterviewQuestions = () => {
 // Remove From Draft
 export const useRemoveFromDraft = (draft_id: string | null) => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["remove-from-draft"],
     isPrivate: true,
@@ -194,7 +194,7 @@ export const useRemoveFromDraft = (draft_id: string | null) => {
 
 // All Recent Activities
 export const useAllRecentActivities = (page?: number) => {
-  return useApi({
+  return useClientApi({
     method: "get",
     key: ["all-recent-activity", page],
     isPrivate: true,
@@ -213,7 +213,7 @@ export const useAllDocuments = (
   status?: string,
   page?: number
 ) => {
-  return useApi({
+  return useClientApi({
     method: "get",
     key: ["all-documents", search, document_type, status, page],
     isPrivate: true,
@@ -232,7 +232,7 @@ export const useAllDocuments = (
 
 // All Drafts
 export const useAllDrafts = (search?: string) => {
-  return useApi({
+  return useClientApi({
     method: "get",
     key: ["all-drafts"],
     isPrivate: true,
@@ -247,7 +247,7 @@ export const useAllDrafts = (search?: string) => {
 // Delete Document
 export const useDeleteDocument = (document_id: number | null) => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["delete-document"],
     isPrivate: true,
@@ -268,7 +268,7 @@ export const useDeleteDocument = (document_id: number | null) => {
 // Export Document
 export const useExportDocument = (document_id: number | null) => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["export-document"],
     isPrivate: true,
@@ -289,7 +289,7 @@ export const useExportDocument = (document_id: number | null) => {
 // Export pdf
 export const useExportPdf = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["export-pdf"],
     isPrivate: true,
@@ -307,7 +307,7 @@ export const useExportPdf = () => {
 // Download Cover Letter
 export const useDownloadCoverLetter = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["download-cover-letter"],
     isPrivate: true,
@@ -323,7 +323,7 @@ export const useDownloadCoverLetter = () => {
 
 // All Job Roles
 export const useInitialJobRoles = () => {
-  return useApi({
+  return useClientApi({
     method: "get",
     key: ["all-job-roles"],
     isPrivate: true,
@@ -339,7 +339,7 @@ export const usePurchasePlan = (plan_id: number) => {
   const queryClient = useQueryClient();
   const router = useRouter();
 
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["purchase-plan"],
     isPrivate: true,
@@ -364,7 +364,7 @@ export const usePurchasePlan = (plan_id: number) => {
 // Normal Notification
 export const useNormalNotification = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["normal-notification"],
     isPrivate: true,
@@ -384,7 +384,7 @@ export const useNormalNotification = () => {
 // Email Notification
 export const useEmailNotification = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["email-notification"],
     isPrivate: true,
@@ -404,7 +404,7 @@ export const useEmailNotification = () => {
 // Application Deadline
 export const useApplicationDeadline = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["application-deadline"],
     isPrivate: true,
@@ -424,7 +424,7 @@ export const useApplicationDeadline = () => {
 // Expiring Subscription
 export const useExpiringSubscription = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["expiring-subscription"],
     isPrivate: true,
@@ -444,7 +444,7 @@ export const useExpiringSubscription = () => {
 // Linkedin Optimizer
 export const useLinkedinOptimizer = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["linkedin-optimizer"],
     isPrivate: true,
@@ -461,7 +461,7 @@ export const useLinkedinOptimizer = () => {
 // Download Doc
 export const useDownloadDoc = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["download-doc"],
     isPrivate: true,
@@ -477,7 +477,7 @@ export const useDownloadDoc = () => {
 
 // Job Matching
 export const useJobMatching = () => {
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["job-matching"],
     isPrivate: true,
@@ -495,7 +495,7 @@ export const useJobMatching = () => {
 
 // Job Matcher Apply Changes
 export const useApplyChangesJobMatcher = () => {
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["apply-changes-job-matchers"],
     isPrivate: true,
@@ -514,7 +514,7 @@ export const useApplyChangesJobMatcher = () => {
 // Save Resume Template
 export const useSaveLinkedinOptimizer = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["save-linkedin-optimizer"],
     isPrivate: true,
@@ -534,7 +534,7 @@ export const useSaveLinkedinOptimizer = () => {
 
 // All Notifications
 export const useAllNotifications = () => {
-  return useApi({
+  return useClientApi({
     method: "get",
     key: ["all-notifications"],
     isPrivate: true,
@@ -545,7 +545,7 @@ export const useAllNotifications = () => {
 // Save Job Matching
 export const useSaveJobMatching = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["save-job-matching"],
     isPrivate: true,
@@ -566,7 +566,7 @@ export const useSaveJobMatching = () => {
 // Download Job Matching
 export const useDownloadJobMatching = () => {
   const queryClient = useQueryClient();
-  return useApi({
+  return useClientApi({
     method: "post",
     key: ["download-job-matching"],
     isPrivate: true,
