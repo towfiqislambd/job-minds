@@ -128,7 +128,7 @@ const page = () => {
         />
 
         {/* Cover Letter Suggestions */}
-        <CoverLetterSuggestion data={jobData?.cover_letter?.content} />
+        <CoverLetterSuggestion data={jobData?.content} />
 
         {/* btns */}
         <div className="2xl:col-span-2 flex justify-end gap-3 xl:gap-5 items-center dashboard_card">

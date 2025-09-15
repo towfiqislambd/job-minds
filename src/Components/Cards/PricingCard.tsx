@@ -4,6 +4,9 @@ import toast from "react-hot-toast";
 import useAuth from "@/Hooks/useAuth";
 import { useRouter } from "next/navigation";
 import { TickMark } from "../SvgContainer/SvgContainer";
+import { number } from "framer-motion";
+import { useCancelSubscription } from "@/Hooks/api/dashboard_api";
+import { CgSpinnerTwo } from "react-icons/cg";
 
 interface PricingCardProps {
   package_name: string;
@@ -28,6 +31,8 @@ const PricingCard: React.FC<PricingCardProps> = ({
 }) => {
   const router = useRouter();
   const { user } = useAuth();
+  const { mutate: cancelSubscriptionMutation, isPending } =
+    useCancelSubscription();
 
   const handleGetStarted = (id: number) => {
     if (!user) {
@@ -37,6 +42,10 @@ const PricingCard: React.FC<PricingCardProps> = ({
     } else {
       router.push(`/dashboard/accounts?package_id=${id}`);
     }
+  };
+
+  const handleCancel = (id: number) => {
+    cancelSubscriptionMutation({ subscription_plan_id: id });
   };
 
   return (
@@ -51,12 +60,14 @@ const PricingCard: React.FC<PricingCardProps> = ({
             <h3 className="text-xl lg:text-2xl font-bold leading-[132%] tracking-[-0.24px] text-primary-blue capitalize">
               {package_name}
             </h3>
+
             {user?.subscription?.subscription_type === type && (
               <p className="px-3 py-1.5 rounded-full bg-green-600 text-white text-sm">
                 Purchased
               </p>
             )}
           </div>
+
           <div className="flex flex-col gap-y-5">
             <h5 className="text-2xl md:text-3xl lg:text-5xl 3xl:text-[64px] font-bold leading-[132%] tracking-[-0.24px] text-dark-blue">
               €{price}
@@ -82,14 +93,28 @@ const PricingCard: React.FC<PricingCardProps> = ({
       </div>
 
       <button
-        disabled={user?.subscription?.subscription_type === type}
-        onClick={() => handleGetStarted(id)}
+        onClick={() =>
+          user?.subscription?.subscription_type === type
+            ? handleCancel(id)
+            : handleGetStarted(id)
+        }
         className={`primary-btn !text-base md:!text-lg 3xl:!text-xl !w-full ${
           user?.subscription?.subscription_type === type &&
-          "opacity-70 !cursor-not-allowed"
+          "!bg-none !bg-green-700"
         }`}
       >
-        Get Started
+        {user?.subscription?.subscription_type === type ? (
+          isPending ? (
+            <div className="flex gap-2 items-center justify-center">
+              <CgSpinnerTwo className="animate-spin text-lg lg:text-xl xl:2xl:" />
+              <span>Cancelling Subscription...</span>
+            </div>
+          ) : (
+            "Cancel Subscription"
+          )
+        ) : (
+          " Get Started"
+        )}
       </button>
     </div>
   );
