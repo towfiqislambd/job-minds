@@ -1,32 +1,8 @@
-import useApi from "@/Hooks/api/useApi";
-
-// Hero Section
-export const useHeroData = () => {
-  return useApi({
-    method: "get",
-    key: ["hero-section"],
-    endpoint: "/api/cms/home-page",
-    queryOptions: {
-      staleTime: 5 * 60 * 1000,
-    },
-  });
-};
-
-// FAQ Section
-export const useFaqData = () => {
-  return useApi({
-    method: "get",
-    key: ["faq-data"],
-    endpoint: "/api/faq/all",
-    queryOptions: {
-      staleTime: 5 * 60 * 1000,
-    },
-  });
-};
+import useClientApi from "@/Hooks/useClientApi";
 
 // Dynamic Pages
 export const useDynamicPages = () => {
-  return useApi({
+  return useClientApi({
     method: "get",
     key: ["dynamic-pages"],
     endpoint: "/api/dynamic-pages",
@@ -38,7 +14,7 @@ export const useDynamicPages = () => {
 
 // Single Dynamic Page
 export const useSingleDynamicPage = (slug: any) => {
-  return useApi({
+  return useClientApi({
     method: "get",
     enabled: !!slug,
     key: ["single-dynamic-page", slug],
@@ -51,7 +27,7 @@ export const useSingleDynamicPage = (slug: any) => {
 
 // Get Pricing
 export const useGetPricing = () => {
-  return useApi({
+  return useClientApi({
     method: "get",
     key: ["get-pricing"],
     endpoint: "/api/subscription-plans",
@@ -63,7 +39,7 @@ export const useGetPricing = () => {
 
 // Detail Pricing
 export const useDetailPricing = (plan_id: number) => {
-  return useApi({
+  return useClientApi({
     method: "get",
     enabled: !!plan_id,
     key: ["detail-pricing", plan_id],

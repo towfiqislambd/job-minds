@@ -27,7 +27,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "src/Hooks/api/useApi.ts"
+    "src/Hooks/useClientApi.ts"
   ],
   "exclude": ["node_modules"]
 }
