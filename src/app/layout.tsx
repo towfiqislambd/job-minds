@@ -26,15 +26,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  let faviconUrl = "/favicon.svg";
   const siteSettings = await getSiteSettings();
-  const faviconUrl = siteSettings?.data?.favicon
-    ? `${process.env.NEXT_PUBLIC_SITE_URL}/${siteSettings.data.favicon}`
-    : "/favicon.svg";
+  if (siteSettings?.data?.favicon) {
+    faviconUrl = `${process.env.NEXT_PUBLIC_SITE_URL}/${siteSettings.data.favicon}`;
+  }
 
   return (
     <html lang="en">
       <head>
-        <link key={faviconUrl} rel="icon" href={faviconUrl} />
+        <link rel="icon" href={faviconUrl} />
       </head>
       <body className={`${poppins.variable} antialiased`}>
         <TranslationProvider>
