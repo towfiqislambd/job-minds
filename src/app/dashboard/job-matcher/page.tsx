@@ -75,12 +75,6 @@ const page = () => {
             )}
           </div>
 
-          <div className="flex justify-center gap-5 items-center">
-            <p className="border-b border-gray-200 flex-1"></p>
-            <p className="text-gray-300 font-medium">OR</p>
-            <p className="border-b border-gray-200 flex-1"></p>
-          </div>
-
           {/* Upload PDF */}
           <div>
             <label
