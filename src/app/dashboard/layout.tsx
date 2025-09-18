@@ -137,7 +137,7 @@ export default function DashboardLayout({
               <SearchSvg />
               <input
                 type="text"
-                placeholder="Search....."
+                placeholder="Search by documents....."
                 className="outline-none w-full"
                 onChange={e => {
                   router.push("/dashboard/documents");

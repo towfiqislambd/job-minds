@@ -49,7 +49,7 @@ html {
 }
 
 .secondary-btn {
-  @apply px-5 lg:px-8 py-1.5 lg:py-2.5 rounded-[50px] font-medium bg-transparent text-primary-blue border border-primary-blue cursor-pointer text-sm md:text-base hover:bg-primary-blue hover:text-white duration-300 transition-all;
+  @apply px-5 lg:px-8 py-1.5 lg:py-2.5 rounded-[50px] font-medium bg-transparent text-primary-blue border border-primary-blue cursor-pointer text-sm md:text-base hover:bg-secondary-blue hover:text-white duration-300 transition-all hover:border-secondary-blue;
 }
 
 .auth_box {
