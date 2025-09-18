@@ -90,7 +90,7 @@ const Footer = async ({ siteSettings }: any) => {
                             key={idx}
                             href={item?.path}
                             className="text-white 3xl:text-lg text-sm
-                            lg:text-base lg:font-semibold leading-[164%] hover:underline"
+                            lg:text-base lg:font-semibold leading-[164%] hover:underline capitalize"
                           >
                             {item?.label}
                           </Link>
