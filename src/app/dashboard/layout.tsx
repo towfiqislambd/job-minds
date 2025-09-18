@@ -140,7 +140,7 @@ export default function DashboardLayout({
                 placeholder="Search by documents....."
                 className="outline-none w-full"
                 onChange={e => {
-                  router.push("/dashboard/documents");
+                  // router.push("/dashboard/documents");
                   setSearch(e.target.value);
                 }}
               />

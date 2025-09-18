@@ -393,10 +393,10 @@ const Page = () => {
         </form>
 
         {/* Right - Preview */}
-        <div className="w-full grow max-h-[517px] lg:max-h-[637px] flex flex-col gap-y-3 dashboard_card">
+        <div className="w-full grow max-h-[517px] lg:max-h-[700px] flex flex-col gap-y-3 dashboard_card">
           <h4 className="section_sub_title">Live Preview</h4>
           {isPending ? (
-            <div className="w-full h-[517px] p-3 lg:p-6 bg-[#F8FAFB] space-y-4 lg:space-y-6 animate-pulse">
+            <div className="w-full h-[550px] p-3 lg:p-6 bg-[#F8FAFB] space-y-4 lg:space-y-6 animate-pulse">
               <div className="h-4 w-32 bg-gray-200 rounded" />
               <div className="h-4 w-40 bg-gray-200 rounded" />
               <div className="h-14 w-2/3 bg-gray-200 rounded" />
@@ -406,12 +406,12 @@ const Page = () => {
               <div className="h-4 w-36 bg-gray-200 rounded" />
             </div>
           ) : preview ? (
-            <div className="w-full outline-none h-[517px] p-3 rounded-lg text-sm lg:text-base text-gray-800 leading-[170%] lg:p-6 bg-[#F8FAFB] overflow-y-auto relative">
+            <div className="w-full outline-none h-[680x] p-3 rounded-lg text-[13px] lg:text-base text-gray-800 leading-[170%] lg:p-6 bg-[#F8FAFB] overflow-y-auto relative">
               <div dangerouslySetInnerHTML={{ __html: preview }} />
 
               {/* Copy to clipboard */}
               <button
-                className="absolute top-3 lg:top-5 right-2 lg:right-5 size-9 lg:size-10 border border-gray-300 rounded-full grid place-items-center cursor-pointer"
+                className="absolute top-3 lg:top-5 right-2 lg:right-5 size-8 lg:size-10 border border-gray-300 rounded-full grid place-items-center cursor-pointer"
                 onClick={handleCopyToClipboard}
               >
                 <MdContentCopy className="lg:text-lg text-gray-500" />
@@ -420,14 +420,14 @@ const Page = () => {
               {/* Send email */}
               <button
                 onClick={handleSendEmail}
-                className="absolute top-3 lg:top-5 right-12 lg:right-[70px] size-9 lg:size-10 border border-gray-300 rounded-full grid place-items-center cursor-pointer"
+                className="absolute top-3 lg:top-5 right-12 lg:right-[70px] size-8 lg:size-10 border border-gray-300 rounded-full grid place-items-center cursor-pointer"
               >
                 <MdOutlineMarkEmailUnread className="lg:text-lg text-gray-500" />
               </button>
             </div>
           ) : (
-            <div className="w-full outline-none h-[517px] p-6 bg-[#F8FAFB] flex justify-center items-center flex-col gap-3">
-              <IoDocumentTextOutline className="text-6xl lg:text-7xl text-gray-500" />
+            <div className="w-full outline-none h-[680px] p-6 bg-[#F8FAFB] flex justify-center items-center flex-col gap-2 lg:gap-3">
+              <IoDocumentTextOutline className="text-5xl lg:text-7xl text-gray-500" />
               <p className="text-gray-500 font-medium text-sm lg:text-base">
                 Generate Cover Letter
               </p>

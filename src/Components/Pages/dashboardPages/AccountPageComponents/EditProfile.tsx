@@ -14,6 +14,7 @@ const EditProfile = () => {
   const [open, setOpen] = useState<boolean>(false);
   const { user } = useAuth();
   const { mutate: logoutMutation, isPending } = useLogout();
+  console.log(user);
 
   return (
     <section className="space-y-5 2xl:space-y-7">
@@ -42,18 +43,25 @@ const EditProfile = () => {
         </p>
 
         {/* Upgrade */}
-        {user?.subscription && (
+        {user?.latest_subscription && (
           <div className="border py-2 px-3 md:px-4 rounded-xl flex items-center justify-between border-gray-200">
             <div className="space-y-2">
               <h4 className="text-secondary-blue text-lg font-semibold leading-[132%] tracking-[-0.319px] capitalize">
-                {user?.subscription?.subscription_type}
+                {user?.latest_subscription?.subscription_type}
               </h4>
               <p className="text-dark-blue font-semibold capitalize">
-                €{user?.subscription?.price}/{user?.subscription?.type}
+                €{user?.latest_subscription?.price}/
+                {user?.latest_subscription?.type}
               </p>
             </div>
-            <button className="px-3 py-1 text-sm rounded-full bg-secondary-blue text-white">
-              Active
+            <button
+              className={`px-3 py-1 text-sm rounded-full text-white capitalize ${
+                user?.latest_subscription?.status === "active"
+                  ? "bg-secondary-blue"
+                  : "bg-red-600"
+              }`}
+            >
+              {user?.latest_subscription?.status}
             </button>
           </div>
         )}
